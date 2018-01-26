@@ -1,0 +1,33 @@
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue.
+$colegio-app-primary: mat-palette($mat-blue);
+$colegio-app-accent:  mat-palette($mat-green, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$colegio-app-warn:    mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$colegio-app-theme: mat-light-theme($colegio-app-primary, $colegio-app-accent, $colegio-app-warn);
+//$colegio-app-theme: mat-dark-theme($colegio-app-primary, $colegio-app-accent, $colegio-app-warn);
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($colegio-app-theme);
+
+.tema-oscuro {
+    $tema-oscuro-primary: mat-palette($mat-indigo,900);
+    $tema-oscuro-accent:  mat-palette($mat-deep-orange, 400);
+  
+    $tema-oscuro-theme: mat-light-theme($tema-oscuro-primary, $tema-oscuro-accent);
+  
+    @include angular-material-theme($tema-oscuro-theme);
+  }

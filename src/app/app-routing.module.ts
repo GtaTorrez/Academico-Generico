@@ -1,10 +1,21 @@
 import { NgModule } from '@angular/core';
+
 import { Routes, RouterModule } from '@angular/router';
 
-const routes: Routes = [];
+import {LoginComponent} from './login/login.component';
+
+import {LoginGuard} from './login/login.guard'
+
+const routes: Routes = [
+  {path:'',redirectTo:"/login",pathMatch:'full'},
+  {path:'login',component:LoginComponent},
+  {path:'administrador',canActivate:[LoginGuard],loadChildren:'./administrador/administrador.module#AdministradorModule'},
+  {path:'estudiantes',loadChildren:'./estudiantes/estudiantes.module#EstudiantesModule'}
+
+];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{useHash:true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

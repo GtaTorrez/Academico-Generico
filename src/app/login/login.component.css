@@ -1,0 +1,22 @@
+.login{
+ 
+    margin: 0px auto;
+    margin-top: 15%;
+}
+.titulo{
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    text-align: center;
+    font-size: 50px;
+}
+.form{
+    align-content: center;
+}
+
+mat-form-field.mat-form-field{
+    width: 100%;
+}
+
+.alto{
+    height: 50px;
+    font-size: 20px;
+}
