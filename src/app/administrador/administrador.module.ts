@@ -10,6 +10,9 @@ import { HorariosComponent } from './horarios/horarios.component';
 
 import {MaterialModule} from '../material.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import {AdministradorService} from './administrador.service';
+import { CursosComponent } from './cursos/cursos.component';
+import { NotasComponent } from './notas/notas.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -17,6 +20,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     MaterialModule,
     FlexLayoutModule
   ],
-  declarations: [MenuComponent, MateriasComponent, ProfesoresComponent, EstudiantesComponent, HorariosComponent]
+  declarations: [MenuComponent, MateriasComponent, ProfesoresComponent, EstudiantesComponent, HorariosComponent, CursosComponent, NotasComponent],
+  providers:[AdministradorService]
 })
 export class AdministradorModule { }

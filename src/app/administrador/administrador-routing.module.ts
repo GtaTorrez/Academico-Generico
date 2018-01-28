@@ -5,6 +5,8 @@ import { MateriasComponent } from './materias/materias.component';
 import { ProfesoresComponent } from './profesores/profesores.component';
 import { EstudiantesComponent } from './estudiantes/estudiantes.component';
 import { HorariosComponent } from './horarios/horarios.component';
+import { CursosComponent } from './cursos/cursos.component';
+import { NotasComponent } from './notas/notas.component';
 
 
 const routes: Routes = [
@@ -13,7 +15,9 @@ const routes: Routes = [
     {path:'materias',component:MateriasComponent},
     {path:'profesores',component:ProfesoresComponent},
     {path:'estudiantes',component:EstudiantesComponent},
-    {path:'horarios',component:HorariosComponent}
+    {path:'horarios',component:HorariosComponent},
+    {path:'notas',component:NotasComponent},
+    {path:'cursos',component:CursosComponent}
 
   ]}
 ];

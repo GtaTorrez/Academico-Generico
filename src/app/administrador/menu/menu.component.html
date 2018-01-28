@@ -1,12 +1,12 @@
-<header class="tema-oscuro">
+<header class="tema-oscuro" >
     <mat-toolbar  color="primary">
         <mat-toolbar-row >
-          <span>Administrador</span>
+          <span> <mat-icon (click)="cambio()" *ngIf="mobileQuery.matches ">reorder</mat-icon> </span>  <span>Administrador</span>
         </mat-toolbar-row>
     </mat-toolbar>      
 </header>
-<mat-sidenav-container fxLayout="row" class="content" >
-    <mat-sidenav  #sidenav mode="side" fxFlex="200px" opened="true"
+<mat-sidenav-container fxLayout="row" class="content"  >
+    <mat-sidenav  #sidenav [mode]=" mobileQuery.matches ? 'over' : 'side'" fxFlex="250px" fxFlex.lt-sm="200px"   [opened]="mobileQuery.matches ? this.openside : 'true'"
      class="colorprimario">
     
      <mat-list>
@@ -14,13 +14,15 @@
         <mat-list-item class="menu"routerLink="profesores" [routerLinkActive]="['active']"><mat-icon >perm_identity</mat-icon> Profesores </mat-list-item>
         <mat-list-item class="menu"routerLink="horarios" [routerLinkActive]="['active']"><mat-icon>schedule</mat-icon> Horarios </mat-list-item>
         <mat-list-item class="menu"routerLink="estudiantes" [routerLinkActive]="['active']"><mat-icon>school</mat-icon> Estudiantes </mat-list-item>
+        <mat-list-item class="menu"routerLink="notas" [routerLinkActive]="['active']"><mat-icon>content_paste</mat-icon> Notas </mat-list-item>
+        <mat-list-item class="menu"routerLink="cursos" [routerLinkActive]="['active']"><mat-icon>storage</mat-icon> Cursos </mat-list-item>
        
       </mat-list>
 
      
     </mat-sidenav>
 
-    <mat-sidenav-content fxFlex="75"  >
+    <mat-sidenav-content fxFlex="75" fxFlex.lt-sm="100%" >
       Hola mundo
       <router-outlet></router-outlet>
     </mat-sidenav-content>
