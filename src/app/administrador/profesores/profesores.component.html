@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">PROFESORES  </mat-toolbar>
 
-<div fxLayout="column " fxLayoutAlign="space-around center"  >
+<div fxLayout="column  wrap" fxLayoutAlign="space-around center"  >
     <mat-radio-group [(ngModel)]="busca" name="search" >
         <mat-radio-button class="radiobtn" *ngFor="let buscar of buscaPor" [value]="buscar">{{buscar}}</mat-radio-button>
       </mat-radio-group>
