@@ -7,6 +7,7 @@ import { EstudiantesComponent } from './estudiantes/estudiantes.component';
 import { HorariosComponent } from './horarios/horarios.component';
 import { CursosComponent } from './cursos/cursos.component';
 import { NotasComponent } from './notas/notas.component';
+import { UsuariosComponent } from './usuarios/usuarios.component';
 
 
 const routes: Routes = [
@@ -17,8 +18,8 @@ const routes: Routes = [
     {path:'estudiantes',component:EstudiantesComponent},
     {path:'horarios',component:HorariosComponent},
     {path:'notas',component:NotasComponent},
-    {path:'cursos',component:CursosComponent}
-
+    {path:'cursos',component:CursosComponent},
+    {path:'usuarios',component:UsuariosComponent}
   ]}
 ];
 

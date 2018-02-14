@@ -2,3 +2,53 @@
     max-width: 500px;
     width: 100%;
 }
+.card{
+    padding: 10px 10px 0px 10px;
+    margin: 5px;
+    width: 230px;
+    height: 115px;
+    display: inline-block;
+}
+.avatar {
+    background-size: cover;
+    width: 58px;
+    height: 65px;
+}
+.nombre{
+    margin-top:5px; 
+    height:32px ;
+}
+.actions{
+    margin: 0px;
+    padding: 0px;
+}
+.center{
+    display: flex;
+}
+.formBuscar{
+    width: 40%;
+}
+.buscar{
+    width: 100%;
+}
+#imgt{
+    margin-left: 15px;
+}
+.radiobtn{
+ margin: 5px;
+}
+.buttonAdd{
+    position: fixed;
+    top:85%;
+    left: 90%;
+}
+@media screen and (max-width:750px) {
+    .formBuscar{
+        width: 90%;
+    }
+    .buttonAdd{
+        
+        top:85%;
+        left: 80%;
+    }   
+}

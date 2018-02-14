@@ -1,5 +1,5 @@
 import {MediaMatcher} from '@angular/cdk/layout';
-import { Component, OnInit,ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit,OnDestroy,ChangeDetectorRef } from '@angular/core';
 
 
 @Component({
@@ -7,7 +7,7 @@ import { Component, OnInit,ChangeDetectorRef } from '@angular/core';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent implements OnInit{
+export class MenuComponent implements OnInit,OnDestroy{
 
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;

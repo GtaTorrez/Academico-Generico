@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 import {LoginComponent} from './login/login.component';
 import {LoginService} from './login/login.service';
@@ -23,6 +24,7 @@ import {LoginGuard} from './login/login.guard'
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     MaterialModule,

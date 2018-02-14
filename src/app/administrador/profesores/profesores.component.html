@@ -1,28 +1,69 @@
-<section fxLayout="row wrap" fxLayoutAlign="center"  >
-    <div fxFlex="50%" fxFlex.lt-sm="100%" fxLayout.sm="column" fxLayout.xs="column" style="background-color:#000;"   >
-      Soy lista de docentes
-    </div> 
+<mat-toolbar color="primary">PROFESORES  </mat-toolbar>
+
+<div fxLayout="column " fxLayoutAlign="space-around center"  >
+    <mat-radio-group [(ngModel)]="busca" name="search" >
+        <mat-radio-button class="radiobtn" *ngFor="let buscar of buscaPor" [value]="buscar">{{buscar}}</mat-radio-button>
+      </mat-radio-group>
+  <form class="formBuscar" >
+    <mat-form-field class="buscar" >
+      <input type="text" placeholder="Buscar por nombre" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto" >
+      <mat-autocomplete #auto="matAutocomplete" >
+        <mat-option *ngFor="let profesor of filteredOptions | async" [value]="profesor.idPersona.nombre+' '+ profesor.idPersona.paterno+' '+profesor.idPersona.materno | uppercase" (click)="profesorSelected(profesor.idPersona)" >
+            {{profesor.idPersona.nombre}} {{profesor.idPersona.paterno}} {{profesor.idPersona.materno}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
     
-    <aside fxFlex="35" fxLayout.sm="column" fxLayout.xs="column" fxFlex.lt-sm="100%" >
-      <mat-card class="example-card">
-        <mat-card-header class="ancho80">
-          <div mat-card-avatar ></div>
-          <mat-card-title>Shiba Inu</mat-card-title>
-          <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-        </mat-card-header>
-        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-        <mat-card-content>
-          <p>
-            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-            bred for hunting.
-          </p>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-button>LIKE</button>
-          <button mat-button>SHARE</button>
-        </mat-card-actions>
-      </mat-card>
-    </aside>
+  </form>
+  <mat-progress-bar *ngIf="consulta" mode="indeterminate"></mat-progress-bar>
+ <div>
+    <app-perfil 
+    *ngIf="profesorEdit" [persona]="profesorEdit" [action]="action"
+    (EnviarPersona)="guardarProfesor($event)"
+      >
+  
+    </app-perfil>
+ </div>
+ <div *ngIf="profesorEdit">
+  <button mat-raised-button *ngIf="action==='nuevo' || action==='editar'" color="accent" (click)="guardarP()" >Guardar</button>
+  <button mat-raised-button *ngIf="action==='ver'" color="primary" (click)="editar()" >Editar</button>
+  <button mat-raised-button *ngIf="action==='nuevo' || action==='editar'" color="warn" (click)="cancelar()" >Cancelar</button> 
+ </div>
+  
+
+  <mat-card *ngIf="profesorSelect" class="card"  >
+      <mat-card-header >
+        <div mat-card-avatar class="avatar"> <img id="imgt" [src]="profesorSelect.img?profesorSelect.img:'./assets/img/people.png'" width="50px" height="50px" >  </div>
+        <div style="margin-left:15px">
+            <mat-card-title class="nombre" >{{profesorSelect.nombre}} {{profesorSelect.paterno}} {{profesorSelect.materno}}</mat-card-title>
+            <mat-card-subtitle>{{profesorSelect.cedula}}</mat-card-subtitle>
+        </div>
+        
+      </mat-card-header>
+      <mat-card-actions class="actions">
+        <button mat-button color="accent" (click)="verProfesor(profesorSelect)" >Ver</button>
+      </mat-card-actions>
+    </mat-card>
+
+    <div class="center" fxFlexAlign="center" >
+            <mat-card class="card" *ngFor="let profesor of profesores" >
+                <mat-card-header >
+                  <div mat-card-avatar class="avatar"> <img id="imgt" [src]="profesor.idPersona.img ? profesor.idPersona.img:'./assets/img/people.png'" width="50px" height="50px" >  </div>
+                  <div style="margin-left:15px">
+                      <mat-card-title class="nombre" >{{profesor.idPersona.nombre}} {{profesor.idPersona.paterno}} {{profesor.idPersona.materno}}</mat-card-title>
+                      <mat-card-subtitle>{{profesor.idPersona.cedula}}</mat-card-subtitle>
+                  </div>
+                  
+                </mat-card-header>
+                <mat-card-actions class="actions">
+                  <button mat-button color="accent" (click)="verProfesor(profesor.idPersona)" >Ver</button>
+                </mat-card-actions>
+              </mat-card>
+    </div>
+
+    <div class="buttonAdd" >
+        <button mat-fab color="accent" (click)="adicionar()"> <mat-icon>add</mat-icon> </button>
+    </div>
     
-</section>
+  
+</div>

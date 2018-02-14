@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Persona } from '../modelos/persona';
-
 @Component({
-  selector: 'app-estudiantes',
-  templateUrl: './estudiantes.component.html',
-  styleUrls: ['./estudiantes.component.css']
+  selector: 'app-usuarios',
+  templateUrl: './usuarios.component.html',
+  styleUrls: ['./usuarios.component.css']
 })
-export class EstudiantesComponent implements OnInit {
+export class UsuariosComponent implements OnInit {
 
   consulta:boolean=false;
   profesorEdit:Persona;
@@ -14,9 +13,10 @@ export class EstudiantesComponent implements OnInit {
   buscaPor=['CI','Rude'];
   action:string='ver'
   constructor() { }
-
+  
   ngOnInit() {
   }
+
   adicionar(){
     
     this.action='nuevo';
@@ -25,5 +25,4 @@ export class EstudiantesComponent implements OnInit {
     this.profesorEdit.rol="profesor";
     
   }
-
 }

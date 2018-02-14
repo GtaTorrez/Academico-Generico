@@ -1,0 +1,93 @@
+<div fxLayout="row"  class="perfil" *ngIf="!edit" style="background-color:rgb(221, 216, 216)" >
+  <div fxFlex fxLayout.lt-md="column">
+      <div fxFlex="200px" fxFlexAlign="center" >
+          <img [src]="persona.img?persona.img:'./assets/img/people.png'" width="150px" height="150px" >
+        </div >
+        <div fxFlex="350px"   >
+          <table >
+          <tr><td>NOMBRE :</td> <td>{{persona.nombre | uppercase}}</td></tr>
+          <tr><td>PATERNO :</td> <td>{{persona.paterno| uppercase}}</td></tr>
+          <tr><td>MATERNO :</td> <td>{{persona.materno| uppercase}}</td></tr>
+          <tr><td>CI :</td> <td>{{persona.cedula }} {{persona.expedido| uppercase}} </td></tr>
+          <tr><td>SEXO :</td> <td>{{persona.sexo| uppercase}}</td></tr>
+          <tr><td>FECHA DE NACIMIENTO :</td> <td><input matInput [matDatepicker]="myDatepicker" placeholder="" [(ngModel)]="persona.fechaNacimiento" name="fecnac" readonly>
+          </td></tr>
+          <tr><td>CELULAR :</td> <td>{{persona.celular}}</td></tr>
+          <tr *ngIf="persona.telefono"><td>TELEFONO :</td> <td>{{persona.telefono}}</td></tr>
+          <tr><td>EMAIL :</td> <td>{{persona.email}}</td></tr>
+          
+          </table>
+        </div>
+  </div>
+  
+</div>
+
+<div fxLayout="row"    *ngIf="edit" style="background-color:rgb(221,216, 216)"  >
+  <div fxFlex="600px"  fxFlex.lt-md="350px"  fxLayout.lt-md="column">
+
+  <div fxFlex="34" fxFlexAlign="center" fxFlex.lt-md="30"  >
+    <div class="img">
+    <img  [src]="persona.img?persona.img:'./assets/img/people.png'" width="150px" height="150px" >
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="avatar">Avatar</label>
+          <input type="file" id="avatar" multiple="true" name="avatar" (change)="onFileChange($event)" #fileInput>
+          <button type="button"  (click)="clearFile()">clear file</button>
+        </div>
+        <button type="submit"  class="btn btn-success">Submit </button>
+      </form>    
+    </div>
+  </div>
+  <div fxFlex="33" fxFlexAlign="center" fxFlex.lt-md="50" >
+    <mat-form-field class="width80">
+      <input type="text" matInput placeholder="Nombre(s)" [(ngModel)]="persona.nombre" name="nombre"  >
+    </mat-form-field>  
+    <mat-form-field class="width80">
+      <input type="text" matInput placeholder="Ap. Paterno" [(ngModel)]="persona.paterno" name="paterno"  >
+    </mat-form-field>
+    <mat-form-field class="width80">
+      <input type="text" matInput placeholder="Ap. Materno" [(ngModel)]="persona.materno" name="materno"  >
+    </mat-form-field>
+    <mat-form-field class="width80">
+      <input type="text" matInput placeholder="Cedula de identidad" [(ngModel)]="persona.cedula" name="ci"  >
+    </mat-form-field>
+    <mat-form-field class="width80">
+      <input type="text" matInput placeholder="Expedido" [(ngModel)]="persona.expedido" name="expedido"  >
+    </mat-form-field>
+  </div>
+  <div fxFlex="33"  fxFlex.lt-md   > 
+    <div class="width80">
+      <Label >Sexo</Label>
+      <p>
+        <mat-radio-group [(ngModel)]="persona.sexo" name="sexo">
+            <mat-radio-button value="M">Masculino</mat-radio-button>
+            <mat-radio-button value="F">Femenino</mat-radio-button>
+        </mat-radio-group>  
+      </p>  
+    </div>
+
+    <mat-form-field class="width80">
+      <input matInput [matDatepicker]="myDatepicker" placeholder="día/mes/año" [(ngModel)]="persona.fechaNacimiento" name="fecnac">
+      <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+      <mat-datepicker #myDatepicker startView="month" [startAt]="startDate" ></mat-datepicker>
+    </mat-form-field>
+   
+    <mat-form-field class="width80">
+      <input type="text" matInput placeholder="Celular" [(ngModel)]="persona.celular" name="celular"  >
+    </mat-form-field>
+    <mat-form-field class="width80">
+      <input type="text" matInput placeholder="Telefono" [(ngModel)]="persona.telefono" name="telefono"  >
+    </mat-form-field>
+    <mat-form-field class="width80">
+      <input type="text" matInput placeholder="Email" [(ngModel)]="persona.email" name="email"  >
+    </mat-form-field>
+    <p>
+        <button mat-raised-button color="accent" (click)="guardar()" >Guardar</button>
+    </p>
+        
+  </div>
+  </div>
+
+      
+</div>
+

@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>{{data.action | uppercase}} MATERIA </h1>
+<div mat-dialog-content class="fullContent">
+  <form #materiaForm="ngForm" class="">
+    <mat-form-field class="block" >
+      <input type="text"  matInput #sigla="ngModel" name="sigla" autocomplete="off" [(ngModel)]="materia.sigla" placeholder="Ingrese la sigla" required>
+      <mat-error *ngIf="sigla.invalid">Debe Ingresar la sigla</mat-error>
+    </mat-form-field>
+    <mat-form-field class="block" >
+      <input type="text"  matInput #mate="ngModel" name="mate" autocomplete="off" [(ngModel)]="materia.nombre" placeholder="Ingrese el nombre de la materia" required>
+      <mat-error *ngIf="mate.invalid">Debe Ingresar el nombre de la materia</mat-error>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="warn" (click)="onNoClick()">Cancelar</button>
+  <button mat-raised-button color="accent" (click)="submit()">Guardar</button>
+</div>

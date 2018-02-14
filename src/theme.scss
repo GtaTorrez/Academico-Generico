@@ -10,7 +10,7 @@
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue.
 $colegio-app-primary: mat-palette($mat-blue);
-$colegio-app-accent:  mat-palette($mat-green, A200, A100, A400);
+$colegio-app-accent:  mat-palette($mat-green, A400);
 
 // The warn palette is optional (defaults to red).
 $colegio-app-warn:    mat-palette($mat-red);
@@ -25,7 +25,7 @@ $colegio-app-theme: mat-light-theme($colegio-app-primary, $colegio-app-accent, $
 
 .tema-oscuro {
     $tema-oscuro-primary: mat-palette($mat-indigo,900);
-    $tema-oscuro-accent:  mat-palette($mat-deep-orange, 400);
+    $tema-oscuro-accent:  mat-palette($mat-grey,900);
   
     $tema-oscuro-theme: mat-light-theme($tema-oscuro-primary, $tema-oscuro-accent);
   

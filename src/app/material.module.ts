@@ -10,8 +10,17 @@ import {
   MatToolbarModule,
   MatSidenavModule,
   MatMenuModule,
-  MatListModule
+  MatListModule,
+  MatDialogModule,
+  MatProgressBarModule,
+  MatSnackBarModule,
+  MatAutocompleteModule,
+  MatSelectModule,
+  MatRadioModule,
+  MatDatepickerModule,
+  MatTabsModule
 } from '@angular/material';
+import {MatMomentDateModule	} from '@angular/material-moment-adapter'
 
 @NgModule({
   imports: [
@@ -25,7 +34,16 @@ import {
     MatToolbarModule,
     MatSidenavModule,
     MatMenuModule,
-    MatListModule  
+    MatListModule,
+    MatDialogModule,
+    MatProgressBarModule,
+    MatSnackBarModule,
+    MatAutocompleteModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    MatMomentDateModule,
+    MatTabsModule  
   ],exports:[
     LayoutModule,
     MatFormFieldModule,
@@ -36,7 +54,16 @@ import {
     MatToolbarModule,
     MatSidenavModule,
     MatMenuModule,
-    MatListModule   
+    MatListModule,
+    MatDialogModule,
+    MatProgressBarModule,
+    MatSnackBarModule,
+    MatAutocompleteModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    MatMomentDateModule,
+    MatTabsModule   
   ]
   
 })
