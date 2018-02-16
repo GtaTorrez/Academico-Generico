@@ -29,9 +29,10 @@ export class AdministradorService {
   getPersonaPorCi(ci:number):Observable<any>{
     return this.http.get(this.baseUrl+"/persona?cedula="+ci);
   }
-  getPersonaPorRude(rude:number):Observable<any>{
-    return this.http.get(this.baseUrl+"/persona?rude="+rude);
+  getPersonaPorIdentificacion(identificacion:number):Observable<any>{
+    return this.http.get(this.baseUrl+"/persona?identificacion="+identificacion);
   }
+  
   //materias
   getMateria():Observable<any>{
     return this.http.get(this.baseUrl+"/asignatura");

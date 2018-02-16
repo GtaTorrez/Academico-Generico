@@ -18,7 +18,9 @@
   <mat-progress-bar *ngIf="consulta" mode="indeterminate"></mat-progress-bar>
  <div>
     <app-perfil 
-    *ngIf="profesorEdit" [persona]="profesorEdit" [action]="action"
+    *ngIf="profesorEdit" [persona]="profesorEdit" 
+    [action]="action"
+    [tipo]="tipo"
     (EnviarPersona)="guardarProfesor($event)"
       >
   

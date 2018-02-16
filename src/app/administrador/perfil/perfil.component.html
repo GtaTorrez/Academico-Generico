@@ -9,6 +9,8 @@
           <tr><td>PATERNO :</td> <td>{{persona.paterno| uppercase}}</td></tr>
           <tr><td>MATERNO :</td> <td>{{persona.materno| uppercase}}</td></tr>
           <tr><td>CI :</td> <td>{{persona.cedula }} {{persona.expedido| uppercase}} </td></tr>
+          <tr *ngIf="tipo==='estudiante'" ><td>Rude :</td> <td>{{persona.identificacion }}</td></tr>
+          <tr *ngIf="tipo==='profesor'" ><td>Item :</td> <td>{{persona.identificacion }}</td></tr>
           <tr><td>SEXO :</td> <td>{{persona.sexo| uppercase}}</td></tr>
           <tr><td>FECHA DE NACIMIENTO :</td> <td><input matInput [matDatepicker]="myDatepicker" placeholder="" [(ngModel)]="persona.fechaNacimiento" name="fecnac" readonly>
           </td></tr>
@@ -48,6 +50,18 @@
     <mat-form-field class="width80">
       <input type="text" matInput placeholder="Ap. Materno" [(ngModel)]="persona.materno" name="materno"  >
     </mat-form-field>
+    <div *ngIf="tipo==='profesor'" >
+      <mat-form-field class="width80">
+        <input type="text" matInput placeholder="item" [(ngModel)]="persona.identificacion" name="ci"  >
+      </mat-form-field>
+    
+    </div>
+    <div *ngIf="tipo==='estudiante'" >
+      <mat-form-field class="width80">
+        <input type="text" matInput placeholder="Rude" [(ngModel)]="persona.identificacion" name="ci"  >
+      </mat-form-field>  
+    </div>  
+
     <mat-form-field class="width80">
       <input type="text" matInput placeholder="Cedula de identidad" [(ngModel)]="persona.cedula" name="ci"  >
     </mat-form-field>
@@ -81,9 +95,7 @@
     <mat-form-field class="width80">
       <input type="text" matInput placeholder="Email" [(ngModel)]="persona.email" name="email"  >
     </mat-form-field>
-    <p>
-        <button mat-raised-button color="accent" (click)="guardar()" >Guardar</button>
-    </p>
+    
         
   </div>
   </div>

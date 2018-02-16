@@ -23,14 +23,15 @@
   <mat-progress-bar *ngIf="consulta" mode="indeterminate"></mat-progress-bar>
  <div>
     <app-perfil 
-    *ngIf="profesorEdit" [persona]="profesorEdit" [action]="action"
+    *ngIf="estudiante" [persona]="estudiante" 
+    [action]="action" [tipo]="tipo"
     (EnviarPersona)="guardarProfesor($event)"
       >
   
     </app-perfil>
  </div>
- <div *ngIf="profesorEdit">
-  <button mat-raised-button *ngIf="action==='nuevo' || action==='editar'" color="accent" (click)="guardarP()" >Guardar</button>
+ <div *ngIf="estudiante">
+  <button mat-raised-button *ngIf="action==='nuevo' || action==='editar'" color="accent" (click)="guardar()" >Guardar</button>
   <button mat-raised-button *ngIf="action==='ver'" color="primary" (click)="editar()" >Editar</button>
   <button mat-raised-button *ngIf="action==='nuevo' || action==='editar'" color="warn" (click)="cancelar()" >Cancelar</button> 
  </div>

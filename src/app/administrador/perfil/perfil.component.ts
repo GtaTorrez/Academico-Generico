@@ -27,6 +27,7 @@ export class PerfilComponent implements OnInit,OnDestroy,DoCheck {
   edit:boolean=false;
   @Input() persona:Persona; 
   @Input() action:string;
+  @Input() tipo:string;
   @Output() EnviarPersona=new EventEmitter();  
   startDate = new Date(1999,1, 1);
 
@@ -72,10 +73,7 @@ export class PerfilComponent implements OnInit,OnDestroy,DoCheck {
   cancel(){
     
   }
-  guardar(){
-    console.log(this.persona.fechaNacimiento)
-    this.EnviarPersona.emit({"persona":this.persona,action:""})
-  }
+  
   onFileChange(event) {
     let reader = new FileReader();
     if(event.target.files && event.target.files.length > 0) {

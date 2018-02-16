@@ -25,6 +25,8 @@ export class ProfesoresComponent implements OnInit {
   consulta:boolean=false;
   nuevo:Persona;
   action:string="ver";
+  tipo="profesor";
+  
   constructor(
     private serve:AdministradorService,
     private notificacion:MatSnackBar
