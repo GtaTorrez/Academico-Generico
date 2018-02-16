@@ -11,14 +11,20 @@
     height: 65px;
 }
 .center{
-    margin-left: 45%;
+    margin-left: 40%;
+}
+.alignText{
+    text-align: right; 
+}
+.radiobtn{
+padding: 5px 5px 0px 5px;
 }
 
 .buscar{
     width: 50%;
 }
 .formBuscar{
-    margin-left: 40%;
+    margin-left: 35%;
     width: 40%;
 }
 .buttonAdd{

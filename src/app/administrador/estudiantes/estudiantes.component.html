@@ -11,9 +11,9 @@
   <div fxFlex="100%" fxFlexAlign="end">
       <form  class="formBuscar">
           <mat-form-field class="buscar">
-            <input type="text" matInput placeholder="Buscar por " aria-label="Number"  >
+            <input type="number" matInput class="alignText" #buscador placeholder="Buscar por " name="dato" [(ngModel)]="parametro" aria-label="Number" required >
           </mat-form-field>
-          <button mat-fab color="primary">Buscar</button>
+          <button mat-fab color="primary" [disabled]="buscador.invalid" (click)="buscarEstudiante()" >Buscar</button>
         </form>
   </div>  
   
