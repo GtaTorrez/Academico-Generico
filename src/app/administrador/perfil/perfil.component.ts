@@ -28,7 +28,7 @@ export class PerfilComponent implements OnInit,OnDestroy,DoCheck {
   @Input() persona:Persona; 
   @Input() action:string;
   @Input() tipo:string;
-  @Output() EnviarPersona=new EventEmitter();  
+  @Output() EnviarPersona=new EventEmitter();  q
   startDate = new Date(1999,1, 1);
 
   form: FormGroup;

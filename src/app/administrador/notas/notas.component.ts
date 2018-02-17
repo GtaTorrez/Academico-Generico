@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotasComponent implements OnInit {
 
+  texto:string;
+
   constructor() { }
 
   ngOnInit() {
   }
-
+  datos(){
+    console.log(this.texto);
+  }
 }
