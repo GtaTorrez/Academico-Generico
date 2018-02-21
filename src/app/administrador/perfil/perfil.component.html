@@ -1,4 +1,4 @@
-<div fxLayout="row"  class="perfil" *ngIf="!edit" style="background-color:rgb(221, 216, 216)" >
+<div fxLayout="row"  class="perfil" *ngIf="!edit"  >
   <div fxFlex fxLayout.lt-md="column">
       <div fxFlex="200px" fxFlexAlign="center" >
           <img [src]="persona.img?persona.img:'./assets/img/people.png'" width="150px" height="150px" >
@@ -21,10 +21,9 @@
           </table>
         </div>
   </div>
-  
 </div>
 
-<div fxLayout="row"    *ngIf="edit" style="background-color:rgb(221,216, 216)"  >
+<div fxLayout="row"    *ngIf="edit"   >
   <div fxFlex="600px"  fxFlex.lt-md="350px"  fxLayout.lt-md="column">
 
   <div fxFlex="34" fxFlexAlign="center" fxFlex.lt-md="30"  >

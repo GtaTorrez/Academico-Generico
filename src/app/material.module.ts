@@ -18,7 +18,9 @@ import {
   MatSelectModule,
   MatRadioModule,
   MatDatepickerModule,
-  MatTabsModule
+  MatTabsModule,
+  MatProgressSpinnerModule,
+  MatChipsModule
 } from '@angular/material';
 import {MatMomentDateModule	} from '@angular/material-moment-adapter'
 
@@ -43,7 +45,9 @@ import {MatMomentDateModule	} from '@angular/material-moment-adapter'
     MatRadioModule,
     MatDatepickerModule,
     MatMomentDateModule,
-    MatTabsModule  
+    MatTabsModule,
+    MatProgressSpinnerModule,
+    MatChipsModule  
   ],exports:[
     LayoutModule,
     MatFormFieldModule,
@@ -63,7 +67,9 @@ import {MatMomentDateModule	} from '@angular/material-moment-adapter'
     MatRadioModule,
     MatDatepickerModule,
     MatMomentDateModule,
-    MatTabsModule   
+    MatTabsModule,
+    MatProgressSpinnerModule,
+    MatChipsModule   
   ]
   
 })

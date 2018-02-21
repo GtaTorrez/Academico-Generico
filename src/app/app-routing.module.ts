@@ -10,7 +10,8 @@ const routes: Routes = [
   {path:'',redirectTo:"/login",pathMatch:'full'},
   {path:'login',component:LoginComponent},
   {path:'administrador',canActivate:[LoginGuard],loadChildren:'./administrador/administrador.module#AdministradorModule'},
-  {path:'estudiantes',loadChildren:'./estudiantes/estudiantes.module#EstudiantesModule'}
+  {path:'estudiantes',loadChildren:'./estudiantes/estudiantes.module#EstudiantesModule'},
+  {path:'asistencia',loadChildren:'./controlasistencia/controlasistencia.module#ControlasistenciaModule'}
 
 ];
 

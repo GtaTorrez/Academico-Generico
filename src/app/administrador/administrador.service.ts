@@ -33,6 +33,14 @@ export class AdministradorService {
     return this.http.get(this.baseUrl+"/persona?identificacion="+identificacion);
   }
   
+  // tutores
+  getTutorEstudiate(id):Observable<any>{
+    return this.http.get(this.baseUrl+"/alumno/tutores/"+id)
+    
+  }
+  postTutor(data):Observable<any>{
+    return this.http.post(this.baseUrl+"/alumno/adicionar_tutor",data,{headers:this.headers})
+  }
   //materias
   getMateria():Observable<any>{
     return this.http.get(this.baseUrl+"/asignatura");
@@ -72,6 +80,9 @@ export class AdministradorService {
   deleteGrupoId(id):Observable<any>{
     return this.http.delete(this.baseUrl+"/grupo/"+id);
   }
+  updateGrupo(body):Observable<any>{
+    return this.http.put(this.baseUrl+`/grupo/${body.id}`,body,{headers:this.headers});
+  }
   //grado
   getGrado():Observable<any>{
     return this.http.get(this.baseUrl+"/grado");
@@ -84,6 +95,9 @@ export class AdministradorService {
   }
   deleteGradoId(id):Observable<any>{
     return this.http.delete(this.baseUrl+"/grado/"+id);
+  }
+  updateGrado(body):Observable<any>{
+    return this.http.put(this.baseUrl+`/grado/${body.id}`,body,{headers:this.headers});
   }
   //Paralelo
   getParalelo():Observable<any>{
@@ -98,6 +112,9 @@ export class AdministradorService {
   deleteParaleloId(id):Observable<any>{
     return this.http.delete(this.baseUrl+"/paralelo/"+id);
   }
+  updateParalelo(body):Observable<any>{
+    return this.http.put(this.baseUrl+`/paralelo/${body.id}`,body,{headers:this.headers});
+  }
   //Periodo
   getPeriodo():Observable<any>{
     return this.http.get(this.baseUrl+"/periodo");
@@ -111,6 +128,9 @@ export class AdministradorService {
   deletePeriodoId(id):Observable<any>{
     return this.http.delete(this.baseUrl+"/periodo/"+id);
   }
+  updatePeriodo(body):Observable<any>{
+    return this.http.put(this.baseUrl+`/periodo/${body.id}`,body,{headers:this.headers});
+  }
   //dia
   getDia():Observable<any>{
     return this.http.get(this.baseUrl+"/dia");
@@ -123,6 +143,25 @@ export class AdministradorService {
   }
   deleteDiaId(id):Observable<any>{
     return this.http.delete(this.baseUrl+"/dia/"+id);
+  }
+  updateDia(body):Observable<any>{
+    return this.http.put(this.baseUrl+`/dia/${body.id}`,body,{headers:this.headers});
+  }
+  //turno
+  getTurno():Observable<any>{
+    return this.http.get(this.baseUrl+"/turno");
+  }
+  getTurnoId(id):Observable<any>{
+    return this.http.get(this.baseUrl+"/turno/"+id);
+  }
+  postTurno(body):Observable<any>{
+    return this.http.post(this.baseUrl+"/turno",JSON.stringify(body),{headers:this.headers});
+  }
+  deleteTurnoId(id):Observable<any>{
+    return this.http.delete(this.baseUrl+"/turno/"+id);
+  }
+  updateTurno(body):Observable<any>{
+    return this.http.put(this.baseUrl+`/turno/${body.id}`,body,{headers:this.headers});
   }
   //usuarios
   getUsuario():Observable<any>{

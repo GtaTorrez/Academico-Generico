@@ -1,0 +1,14 @@
+.container{
+    width: 100%;
+    height: 100%;
+}
+.ancho60{
+    width: 60%;
+}
+.ancho40{
+    width: 40%;
+}
+header{
+    width: 100%;
+    height: 350px;
+}

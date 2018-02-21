@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>{{data.action | uppercase}} TUTOR </h1>
+<div mat-dialog-content class="fullContent">
+  <form #padreForm="ngForm" class="">
+    <mat-form-field class="block" >
+      <input type="text"  matInput #nombre="ngModel" name="nombre" autocomplete="off" [(ngModel)]="padre.nombre" placeholder="Nombre(s)" required>
+      <mat-error *ngIf="nombre.invalid">Debe ingresar el nombre</mat-error>
+    </mat-form-field>
+    <mat-form-field class="block" >
+        <input type="text"  matInput #paterno="ngModel" name="paterno" autocomplete="off" [(ngModel)]="padre.paterno" placeholder="Paterno" required>
+        <mat-error *ngIf="paterno.invalid">Debe ingresar el apellido paterno</mat-error>
+    </mat-form-field>
+    <mat-form-field class="block" >
+      <input type="text"  matInput #materno="ngModel" name="materno" autocomplete="off" [(ngModel)]="padre.materno" placeholder="Materno" required>
+      <mat-error *ngIf="materno.invalid">Debe ingresar el apellido materno</mat-error>
+    </mat-form-field>
+    <mat-form-field class="block" >
+        <input type="text"  matInput #ci="ngModel" name="ci" autocomplete="off" [(ngModel)]="padre.cedula" placeholder="Cédula de identidad" required>
+        <mat-error *ngIf="ci.invalid">Debe ingresar el apellido materno</mat-error>
+    </mat-form-field>
+    <mat-form-field class="block" >
+        <input type="text"  matInput #celular="ngModel" name="celular" autocomplete="off" [(ngModel)]="padre.celular" placeholder="Celular" required>
+        <mat-error *ngIf="celular.invalid">Debe ingresar el apellido materno</mat-error>
+    </mat-form-field>
+</form>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="warn" (click)="onNoClick()">Cancelar</button>
+  <button mat-raised-button color="accent" (click)="submit()">Guardar</button>
+</div>

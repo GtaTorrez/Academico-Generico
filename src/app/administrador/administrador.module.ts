@@ -5,7 +5,7 @@ import { AdministradorRoutingModule } from './administrador-routing.module';
 import { MenuComponent } from './menu/menu.component';
 import { MateriasComponent,Modal } from './materias/materias.component';
 import { ProfesoresComponent } from './profesores/profesores.component';
-import { EstudiantesComponent } from './estudiantes/estudiantes.component';
+import { EstudiantesComponent,ModalP } from './estudiantes/estudiantes.component';
 import { HorariosComponent } from './horarios/horarios.component';
 
 import {MaterialModule} from '../material.module';
@@ -33,9 +33,10 @@ import { PerfilComponent } from './perfil/perfil.component';
     NotasComponent, 
     UsuariosComponent,
     Modal,
-    PerfilComponent
+    PerfilComponent,
+    ModalP
   ],
-  entryComponents:[MateriasComponent,Modal],
+  entryComponents:[MateriasComponent,Modal,ModalP],
   providers:[AdministradorService]
 })
 export class AdministradorModule { }

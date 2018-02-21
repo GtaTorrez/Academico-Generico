@@ -2,6 +2,17 @@
     max-width: 500px;
     width: 100%;
 }
+.margen0{
+    margin: 0px;
+}
+.enlinea{
+    display: inline-block;
+    
+}
+.pullLeft{
+    text-align: right;
+    vertical-align: baseline;  
+}
 .card{
     padding: 10px 10px 0px 10px;
     margin: 5px;
