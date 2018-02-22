@@ -1,3 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=Bellefair');
+
+.fondoHeader{
+    position: relative;
+    top: 20px;
+    background-color: rgba(0, 0, 0, 0.459);
+    margin-bottom: 20px;
+       
+    height: 110px;
+}
+h1.tituloIns{
+    font-size: 40px;
+}
 .matricula{
     display:block;
     float: left;
@@ -5,18 +18,45 @@
     height: 60px;
     padding: 10px;
     margin: 15px 5px; 
-    background-color: red;
+    background: red;
     border-radius:8px; 
     font-size: 24px;
 }
+.tituloHeader{
+    width: 100%;
+    background: red;
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+.linea{
+    display: inline-block;
+}
+.img{
+    width: 20%;
+}
+.logo{
+    position: absolute;
+    left: 150px;
+    margin-top: -40px;
+}
+.title{
+    width: 100%;
+}
+.tituloIns{
+    margin: 0px;
+    font-family: 'Bellefair', serif;
+}
 .bloque{
-    position: relative;
+    /* position: relative;
     top: 60px;
-    left: 28px;
+    left: 28px; */
+    
+    margin: auto;
 }
 .bloqueimg{
-    position: relative;
-    top: 50px;
+    /* position: relative;
+    top: 50px; */
+    margin-top: 35px;
 }
 
 .registro{
@@ -39,6 +79,11 @@
 .campoLn{
     
     margin-bottom: 20px;
+    
+}
+
+.fontBlack{
+    color: black;
 }
 .enlinea{
     display: inline;
@@ -51,24 +96,36 @@
 .titulo{
     border-radius: 15px 15px 0px 0px;
     margin: auto;
-    background-color: red;
+    background: red;
     width: max-content;
     padding: 5px 1.5em;
 }
+.degra{
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f92727+0,f48b8b+6,f91717+25,ee1018+100 */
+background: rgb(249,39,39); /* Old browsers */
+background: -moz-linear-gradient(top, rgba(249,39,39,1) 0%, rgba(244,139,139,1) 6%, rgba(249,23,23,1) 25%, rgba(238,16,24,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, rgba(249,39,39,1) 0%,rgba(244,139,139,1) 6%,rgba(249,23,23,1) 25%,rgba(238,16,24,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, rgba(249,39,39,1) 0%,rgba(244,139,139,1) 6%,rgba(249,23,23,1) 25%,rgba(238,16,24,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f92727', endColorstr='#ee1018',GradientType=0 ); /* IE6-9 */}
 .campo{
     border-radius: 8px;
     text-align: center;
-    background-color: rgba(207, 216, 223, 0.603);
+    background: rgba(207, 216, 223, 0.603);
     width: 100%;
     padding: 5px;
     margin: 0px;
     font-size: 20px;
 }
+.fondo{
+    background: rgba(207, 216, 223, 0.603);
+    font-size: 30px;
+    vertical-align: middle;
+}
 
 .tituloES{
     border-radius: 15px 15px 0px 0px;
     margin: auto;
-    background-color: red;
+    background: red;
     width: max-content;
     padding: 5px 1.5em;
     font-size: 16px;
@@ -76,7 +133,7 @@
 .campoES{
     border-radius: 8px;
     text-align: center;
-    background-color: rgba(207, 216, 223, 0.603);
+    background: rgba(207, 216, 223, 0.603);
     width: 100%;
     margin: 0px;
     font-size: 20px;
@@ -90,22 +147,27 @@
     display: block;
 }
 .container{
+    width: 90%;
+
+}
+.containertotal{
     width: 100%;
 
 }
-
 .center{
     margin: 0px  auto;
     padding: 20px;
 }
 .ancho60{
-    display: inline-block;
-    width: 59%;
+    display: block;
+    float: left;
+    width: 60%;
 
 }
 .ancho40{
-    display: inline-block;
-    width: 40%;
+    display: block;
+    float: left;
+    width: 30%;
 
 }
 .ancho50{
@@ -114,11 +176,29 @@
 }
 header{
     width: 100%;
-    height: 150px;
+    height: 160px;
 }
 .fullHeight{
     height: 100%;
 }
 h3{
     font-size: 1em;
+}
+.foot{
+clear: left;
+}
+@media only screen and (max-width:950px ) {
+    .ancho60{
+        clear: left;
+        width: 100%;
+    
+    }
+    .ancho40{
+        clear: left;
+        width:100%;
+    
+    }
+    .campos{
+        width: 250px;
+    }   
 }

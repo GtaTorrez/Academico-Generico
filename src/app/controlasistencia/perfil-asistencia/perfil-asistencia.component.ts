@@ -14,7 +14,7 @@ export class PerfilAsistenciaComponent implements OnInit {
   nombrePrimario="AMERICANO";
   nombreSecundario="INSTITUTO";
   perfil:Perfil=new Perfil();
-  img=""
+  img="./assets/img/fondof.jpg"
   imgPatter="https://image.freepik.com/free-vector/abstract-background-with-a-3d-pattern_1319-68.jpg"
   imgBackground="" 
   qr:string;

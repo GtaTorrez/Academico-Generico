@@ -1,19 +1,32 @@
-<div [ngStyle]="{'background': '#fff url(' + imgBackground + ') repeat 0 0'}">
+<div [ngStyle]="{'background': '#fff url(' + imgBackground + ') repeat 0 0','color':'#fff'}">
   <header class="" >
-
+    <div class="fondoHeader">
+      <div class="linea img">
+          <img class="logo" src="http://senior91.com/img/insignia.gif" width="200" height="230">
+        </div>
+        <div class="linea title">
+          <div class="textCenter">
+          <h4 class="tituloIns" >{{tipoInstitucion}}</h4>
+          <h2 class="tituloIns" >{{nombreSecundario}} </h2>
+          <h1 class="tituloIns" >{{nombrePrimario}} </h1>
+          </div>
+        </div>  
+        <div class="tituloHeader textCenter" >CONTROL DE INGRESO - SALIDA</div>
+      </div>
+    
   </header>
   <section>
-    <div class="container  " >
+    <div class="container center  " >
       <div  class="ancho60">
         <div  class="center campos ">
 
           <div class="casilla campoLn " >
             <div >
               <div >
-                <h3  class=" matricula textCenter" > NÚMERO DE MATRÍCULA</h3>
+                <h3  class=" matricula textCenter degra" > NÚMERO DE MATRÍCULA</h3>
               </div>
               <div >
-                  <h3 class="matricula textCenter" >{{perfil.nroMatricula}}</h3>
+                  <h3 class="matricula textCenter fondo fontBlack" >{{perfil.nroMatricula}}</h3>
               </div>
             </div>
               
@@ -21,47 +34,44 @@
           <div  class="datos">
               <div class="casilla" >
                   <div>
-                    <h3 class="titulo">APELLIDOS Y NOMBRES</h3>  
+                    <h3 class="titulo degra">APELLIDOS Y NOMBRES</h3>  
                   </div>
-                  <p class="campo ">{{perfil.paterno | uppercase }} {{perfil.materno | uppercase }} {{perfil.nombre | uppercase }}</p>  
+                  <p class="campo fontBlack ">{{perfil.paterno | uppercase }} {{perfil.materno | uppercase }} {{perfil.nombre | uppercase }}</p>  
                 </div>
                 <div class="casilla" >
-                  <h3 class="titulo">CURSO</h3>  
-                  <p class="campo ">{{perfil.paterno | uppercase }} {{perfil.materno | uppercase }} {{perfil.nombre | uppercase }}</p>  
+                  <h3 class="titulo degra">CURSO</h3>  
+                  <p class="campo fontBlack">{{perfil.paterno | uppercase }} {{perfil.materno | uppercase }} {{perfil.nombre | uppercase }}</p>  
                 </div>
                 <div class="casilla" >
-                  <h3 class="titulo">TURNO</h3>  
-                  <p class="campo ">{{perfil.paterno | uppercase }} {{perfil.materno | uppercase }} {{perfil.nombre | uppercase }}</p>  
+                  <h3 class="titulo degra">TURNO</h3>  
+                  <p class="campo fontBlack">{{perfil.paterno | uppercase }} {{perfil.materno | uppercase }} {{perfil.nombre | uppercase }}</p>  
                 </div>
           </div>
           <div class="casilla campoLn " >
-              <div style="background:rgb(30, 88, 196)">
-                <div >
-                  <div class="textCenter registro" >
-                      <h3 class="tituloES">INGRESO</h3>  
-                      <p class="campoES ">{{perfil.paterno | uppercase }} {{perfil.materno | uppercase }} {{perfil.nombre | uppercase }}</p>
-                  </div>
-                </div>
-                <div >
-                    <div class=" textCenter registro" >
-                        <h3 class="tituloES">SALIDA</h3>  
-                        <p class="campoES ">{{perfil.paterno | uppercase }} {{perfil.materno | uppercase }} {{perfil.nombre | uppercase }}</p>
-                    </div>
-                </div>
-              </div>
+                
+            <div class="textCenter registro" >
+                <h3 class="tituloES degra" >INGRESO</h3>  
+                <p class="campoES fontBlack"> {{perfil.celular }} Hrs</p>
+            </div>
+            <div class=" textCenter registro" >
+                <h3 class="tituloES degra">SALIDA</h3>  
+                <p class="campoES fontBlack"> {{perfil.id  }} Hrs </p>
+            </div>
+              
             </div>
         </div>
       </div>
       <div style="" class="ancho40">
         
         <div class="bloqueimg">
-          <img [src]="perfil.img ? perfil.img : './assets/img/people.png'" width="200px" height="200px" alt="">
+          <img [src]="perfil.img ? perfil.img : './assets/img/people.png'" width="180px" height="180px" alt="">
         </div>
-        <div class="bloque">
-            <qr-code  [value]="'Yo world!'" size="150"></qr-code>
+        <div class="bloque center">
+            <qr-code  [value]="'Yo world!'" size="130"></qr-code>
         </div>
       
       </div>
     </div>
   </section>
+  <footer class="foot"></footer>
 </div>
