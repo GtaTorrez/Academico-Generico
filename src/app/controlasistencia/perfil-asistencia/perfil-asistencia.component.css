@@ -34,6 +34,17 @@ h1.tituloIns{
 .img{
     width: 20%;
 }
+.mid{
+    margin: 0px auto;
+    display: table;
+    height: 100%;
+}
+.cntt{
+    display: table-cell;
+	vertical-align: middle;
+    
+}
+
 .logo{
     position: absolute;
     left: 150px;
