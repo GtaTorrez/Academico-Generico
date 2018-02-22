@@ -1,14 +1,124 @@
+.matricula{
+    display:block;
+    float: left;
+    width: 170px;
+    height: 60px;
+    padding: 10px;
+    margin: 15px 5px; 
+    background-color: red;
+    border-radius:8px; 
+    font-size: 24px;
+}
+.bloque{
+    position: relative;
+    top: 60px;
+    left: 28px;
+}
+.bloqueimg{
+    position: relative;
+    top: 50px;
+}
+
+.registro{
+    display:block;
+    float: left;
+    width: 170px;
+    height: 60px;
+    padding: 10px;
+    margin: 15px 5px; 
+    border-radius:8px; 
+    font-size: 20px;
+}
+
+.centers{
+    margin: auto;
+}
+.textCenter{
+    text-align: center;
+}
+.campoLn{
+    
+    margin-bottom: 20px;
+}
+.enlinea{
+    display: inline;
+}
+.datos{
+    clear:left;
+    margin-top: 15px;
+    
+}
+.titulo{
+    border-radius: 15px 15px 0px 0px;
+    margin: auto;
+    background-color: red;
+    width: max-content;
+    padding: 5px 1.5em;
+}
+.campo{
+    border-radius: 8px;
+    text-align: center;
+    background-color: rgba(207, 216, 223, 0.603);
+    width: 100%;
+    padding: 5px;
+    margin: 0px;
+    font-size: 20px;
+}
+
+.tituloES{
+    border-radius: 15px 15px 0px 0px;
+    margin: auto;
+    background-color: red;
+    width: max-content;
+    padding: 5px 1.5em;
+    font-size: 16px;
+}
+.campoES{
+    border-radius: 8px;
+    text-align: center;
+    background-color: rgba(207, 216, 223, 0.603);
+    width: 100%;
+    margin: 0px;
+    font-size: 20px;
+}
+.campos{
+    width: 400px;
+}
+
+.casilla{
+    margin: 0px;
+    display: block;
+}
 .container{
     width: 100%;
-    height: 100%;
+
+}
+
+.center{
+    margin: 0px  auto;
+    padding: 20px;
 }
 .ancho60{
-    width: 60%;
+    display: inline-block;
+    width: 59%;
+
 }
 .ancho40{
+    display: inline-block;
     width: 40%;
+
+}
+.ancho50{
+    width: 50%;
+
 }
 header{
     width: 100%;
-    height: 350px;
+    height: 150px;
+}
+.fullHeight{
+    height: 100%;
+}
+h3{
+    font-size: 1em;
 }
