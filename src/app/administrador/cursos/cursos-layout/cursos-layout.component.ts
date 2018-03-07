@@ -14,10 +14,15 @@ export class CursosLayoutComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getCursos()
   }
 
   getCursos(){
-
+    this.serve.getCurso().subscribe(data=>{
+      this.cursos=data;
+      console.log(data);
+      console.log(this.cursos)
+    });
   }
 
 

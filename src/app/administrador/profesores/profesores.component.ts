@@ -18,6 +18,7 @@ export class ProfesoresComponent implements OnInit {
   myControl: FormControl = new FormControl();
   filteredOptions: Observable<Profesor[]>;
   profesores:Profesor[]=[];
+  profesoresFil:Profesor[]=[];  
   profesorSelect:Persona;
   profesorEdit:Persona;
   busca="Nombre";
@@ -48,12 +49,25 @@ export class ProfesoresComponent implements OnInit {
     console.log(profesor)
   }
   filter(val: string): Profesor[] {
+    let a=this.profesores;
+    this.profesoresFil=[]
+    this.profesores.forEach(profe=>{
+      if(profe.idPersona){
+        console.log(profe)
+        this.profesoresFil.push(profe);
+      }
+    })
+    
+    console.log(this.profesores)
+    console.log(this.profesoresFil)
+    console.log(a)
+
     if(this.busca==='Nombre'){
-      return this.profesores.filter(profesor =>
+      return this.profesoresFil.filter(profesor =>
         (profesor.idPersona.nombre+" "+profesor.idPersona.paterno+" "+profesor.idPersona.materno).toLowerCase().indexOf(val.toLowerCase()) === 0);
     }else{
       if(this.busca==='CI'){
-        return this.profesores.filter(profesor =>
+        return this.profesoresFil.filter(profesor =>
           (profesor.idPersona.cedula+"").indexOf(val.toString().toLowerCase()) === 0);
       }
     }

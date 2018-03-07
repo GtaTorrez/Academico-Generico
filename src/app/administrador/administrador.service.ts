@@ -183,6 +183,23 @@ export class AdministradorService {
   updateTurno(body):Observable<any>{
     return this.http.put(this.baseUrl+`/turno/${body.id}`,body,{headers:this.headers});
   }
+  //cursos
+  getCurso():Observable<any>{
+    return this.http.get(this.baseUrl+"/curso");
+  }
+  getCursoId(id):Observable<any>{
+    return this.http.get(this.baseUrl+"/curso/"+id);
+  }
+  postCurso(body):Observable<any>{
+    return this.http.post(this.baseUrl+"/curso",JSON.stringify(body),{headers:this.headers});
+  }
+  deleteCursoId(id):Observable<any>{
+    return this.http.delete(this.baseUrl+"/curso/"+id);
+  }
+  updateCurso(body):Observable<any>{
+    return this.http.put(this.baseUrl+`/curso/${body.id}`,body,{headers:this.headers});
+  }
+
   //usuarios
   getUsuario():Observable<any>{
     return this.http.get(this.baseUrl+"/usuario");
@@ -191,6 +208,7 @@ export class AdministradorService {
   deleteUsuarioId(id):Observable<any>{
     return this.http.delete(this.baseUrl+"/usuario/"+id);
   }
+
 
 //alumno asistencia 
 

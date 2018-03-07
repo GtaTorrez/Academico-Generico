@@ -24,8 +24,8 @@ export class Paralelo{
 
 export class Curso{
     id:number;
-    paralelo:Paralelo;
-    turno:Turno;
-    grado:Grado;
-    grupo:Grupo;
+    idParalelo:Paralelo;
+    idTurno:Turno;
+    idGrado:Grado;
+    idGrupo:Grupo;
 }
