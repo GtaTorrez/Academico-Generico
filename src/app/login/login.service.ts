@@ -21,6 +21,10 @@ export class LoginService {
     return this.rol;
   }
 
+  getData():Observable<any>{
+    return this.http.get(this.url+'/autentificacion',{withCredentials:true});
+  }
+
 
 
 }

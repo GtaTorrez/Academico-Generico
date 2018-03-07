@@ -20,6 +20,7 @@ export class EstudiantesComponent implements OnInit {
   action='ver';
   parametro:number;
   tipo='estudiante';
+  qr:string;
   constructor(
     private serve:AdministradorService,
     private notificacion:MatSnackBar,
@@ -54,15 +55,23 @@ export class EstudiantesComponent implements OnInit {
     this.consulta=true;
     this.action="ver"
     if(this.busca==="CI"){
-      this.serve.getPersonaPorCi(this.parametro).subscribe(data=>{
+      this.serve.getPersonaPorCi(this.parametro).subscribe((data:any[]) =>{
         console.log(data)
-        if(data[0].rol==="alumno"){
-          this.estudiante=data[0];
-          this.getTutores(this.estudiante.id);  
-          this.AbrirNotificacion("Datos encontrados","Aceptar")        
+        if(data.length>0){
+          if(data[0].rol==="alumno"){
+            this.estudiante=data[0];
+            if (this.estudiante) {
+            this.qr=this.estudiante.idenficacion;                        
+            }
+            this.getTutores(this.estudiante.id);  
+            this.AbrirNotificacion("Datos encontrados","Aceptar")        
+          }else{
+            this.AbrirNotificacion("No es un estudiante","")  
+          }
         }else{
-          this.AbrirNotificacion("No es un estudiante","")  
-        }        
+          this.AbrirNotificacion("No existen datos","")  
+        }
+                
         this.consulta=false;
       },err=>{
         this.AbrirNotificacion("Error con la consulta","")
@@ -73,6 +82,9 @@ export class EstudiantesComponent implements OnInit {
           console.log(data)
           if(data[0].rol==="alumno"){
             this.estudiante=data[0];
+            if (this.estudiante) {
+              this.qr=this.estudiante.idenficacion;                        
+              }
             this.getTutores(this.estudiante.id);  
             this.AbrirNotificacion("Datos encontrados","Aceptar")          
           }else{
@@ -123,6 +135,9 @@ export class EstudiantesComponent implements OnInit {
   verEstudiante(data){
     this.action="ver";
     this.estudiante=data;
+    if (this.estudiante) {
+      this.qr=this.estudiante.idenficacion;                        
+    }
   }
   guardar(){
     this.consulta=true;
@@ -154,12 +169,13 @@ export class EstudiantesComponent implements OnInit {
   }
 
   adicionarPadres(): void {
+    
     let dialogRef = this.dialog.open(ModalP, {
       width: '300px',
       height:'470px',
       data: {action:'nueva' }
     });
-
+    this.tutores=[];
     dialogRef.afterClosed().subscribe(result => {
       console.log("observable de adicionar")
 

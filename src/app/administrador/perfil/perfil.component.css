@@ -16,6 +16,22 @@ tr,td{
 .img{
     padding-left: 25px;
 }
+.custom-file-upload {
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+.custom {
+    display: inline-block;
+    padding: 12px 6px;
+    cursor: pointer;
+}
+input#avatar{
+    cursor: pointer;
+  }
+#avatar{
+    display: none;
+}
 
 @media only screen and (max-width: 959px) {
     .buttonAdd{

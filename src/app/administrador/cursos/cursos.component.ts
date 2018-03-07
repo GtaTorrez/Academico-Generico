@@ -270,5 +270,4 @@ deletePeriodo(id){
   })
 }
 
-
 }

@@ -4,13 +4,16 @@ import { Routes, RouterModule } from '@angular/router';
 
 import {LoginComponent} from './login/login.component';
 
-import {LoginGuard} from './login/login.guard'
+import { AdminGuard } from './login/admin.guard';
+import { EstudianteGuard } from './login/estudiante.guard';
 
 const routes: Routes = [
   {path:'',redirectTo:"/login",pathMatch:'full'},
   {path:'login',component:LoginComponent},
-  {path:'administrador',canActivate:[LoginGuard],loadChildren:'./administrador/administrador.module#AdministradorModule'},
-  {path:'estudiantes',loadChildren:'./estudiantes/estudiantes.module#EstudiantesModule'},
+  {path:'administrador',canActivate:[AdminGuard],loadChildren:'./administrador/administrador.module#AdministradorModule'},
+  {path:'administrador/**',canActivate:[AdminGuard],loadChildren:'./administrador/administrador.module#AdministradorModule'},
+  {path:'estudiantes',canActivate:[EstudianteGuard],loadChildren:'./estudiantes/estudiantes.module#EstudiantesModule'},
+  {path:'estudiantes/**',canActivate:[EstudianteGuard],loadChildren:'./estudiantes/estudiantes.module#EstudiantesModule'},
   {path:'asistencia',loadChildren:'./controlasistencia/controlasistencia.module#ControlasistenciaModule'}
 
 ];

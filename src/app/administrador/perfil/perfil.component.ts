@@ -5,6 +5,7 @@ import {Persona} from '../modelos/persona';
 import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import {AdministradorService} from '../administrador.service';
+import { QRCodeComponent } from 'angular2-qrcode';
 
 @Component({
   selector: 'app-perfil',
@@ -28,6 +29,9 @@ export class PerfilComponent implements OnInit,OnDestroy,DoCheck {
   @Input() persona:Persona; 
   @Input() action:string;
   @Input() tipo:string;
+  
+  @Input() qrCode:string;
+
   @Output() EnviarPersona=new EventEmitter();  q
   startDate = new Date(1999,1, 1);
 
@@ -62,6 +66,7 @@ export class PerfilComponent implements OnInit,OnDestroy,DoCheck {
   ngDoCheck(){
     if(this.action==='ver'){
       this.edit=false;
+      
     }else{
       if(this.action==='editar' || this.action==='nuevo' ){
         this.edit=true;
@@ -75,18 +80,7 @@ export class PerfilComponent implements OnInit,OnDestroy,DoCheck {
   }
   
   onFileChange(event) {
-    let reader = new FileReader();
-    if(event.target.files && event.target.files.length > 0) {
-      let file = event.target.files[0];
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        this.form.get('avatar').setValue({
-          filename: file.name,
-          filetype: file.type,
-          value: reader.result.split(',')[1]
-        })
-      };
-    }
+    console.log("CAMBIO DE IMAGEN");
   }
   private prepareSave(): any {
     let input = new FormData();
@@ -104,10 +98,12 @@ export class PerfilComponent implements OnInit,OnDestroy,DoCheck {
     this.loading = true;
     // In a real-world app you'd have a http request / service call here like
     // this.http.post('apiUrl', formModel)
-    this.http.postPersonaImg(formModel).subscribe(data=>{
+    this.http.postPersonaImg(formModel,this.persona.id).subscribe(data=>{
       console.log("echo")
       console.log(data)
+      this.persona.img=data.img;
       alert('hecho')
+      this.loading=false;
     },err=>{
       alert('error')
       console.error(err)

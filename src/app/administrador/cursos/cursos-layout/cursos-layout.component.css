@@ -1,0 +1,13 @@
+.buttonAdd{
+    position: fixed;
+    top:85%;
+    left: 90%;
+}
+@media screen and (max-width:750px) {
+    .buttonAdd{
+        
+        top:85%;
+        left: 80%;
+    }
+    
+}

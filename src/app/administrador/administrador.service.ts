@@ -10,9 +10,12 @@ export class AdministradorService {
   constructor(private http:HttpClient) { }
 
   //personas
-  postPersonaImg(data):Observable<any>{
+  postPersonaImgs(data):Observable<any>{
     let heimg=new HttpHeaders().set('Content-Type', 'multipart/form-data');
     return this.http.post(this.baseUrl+"/persona/subir",data);
+  }
+  postPersonaImg(data,id):Observable<any>{
+    return this.http.post(this.baseUrl+"/persona/avatar/"+id,data);
   }
   postPersona(data):Observable<any>{
     return this.http.post(this.baseUrl+"/api/persona",JSON.stringify(data),{headers:this.headers});
@@ -67,6 +70,23 @@ export class AdministradorService {
   updateProfesor(data):Observable<any>{
     return this.updatePersona(data);
   }
+  getProfesorDicta(id):Observable<any>{
+    return this.http.get(this.baseUrl+`/profesor/dicta_asignatura/${id}`);
+  }
+  postProfesorAsignatura(data):Observable<any>{
+    return this.http.post(this.baseUrl+'/profesor/adicionar_asignatura',data,{headers:this.headers});
+  }
+  deleteProfesorAsignatura(data):Observable<any>{
+    return this.http.post(this.baseUrl+'/profesor/quitar_asignatura',data,{headers:this.headers});
+  }
+
+
+  //Materias de profesor
+  getMateriasProfesor(id):Observable<any>{
+    return this.http.get(this.baseUrl+`/profesor/dicta_asignatura/${id}`);
+  }
+
+
   //grupo 
   getGrupo():Observable<any>{
     return this.http.get(this.baseUrl+"/grupo");
@@ -170,6 +190,12 @@ export class AdministradorService {
   
   deleteUsuarioId(id):Observable<any>{
     return this.http.delete(this.baseUrl+"/usuario/"+id);
+  }
+
+//alumno asistencia 
+
+  getAsistenciaAlumno(id){
+    return this.http.get(this.baseUrl+`/asistencia/historial_alumno/${id}`);
   }
 
 

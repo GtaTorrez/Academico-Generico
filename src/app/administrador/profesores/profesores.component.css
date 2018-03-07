@@ -1,18 +1,35 @@
-.ancho80{
-    max-width: 500px;
-    width: 100%;
+.titulo{
+    margin-left: 30px;
 }
 .margen0{
-    margin: 0px;
+    margin: auto;
+}
+.margenVer{
+    margin-left: 15%;
+}
+.cancel{
+    margin-left: 20px;
+}
+.pullRight{
+    float: right !important;
+}
+.ancho80{
+    margin: auto;
+    width: 80%;
+}
+.non{
+    clear: right;
 }
 .enlinea{
-    display: inline-block;
-    
+    display: block;
+    float: right;
 }
 .pullLeft{
-    text-align: right;
-    vertical-align: baseline;  
+    float: left;
+    
+
 }
+
 .card{
     padding: 10px 10px 0px 10px;
     margin: 5px;
@@ -34,7 +51,8 @@
     padding: 0px;
 }
 .center{
-    margin-left: 15.5%;
+    margin-left: 10.5%;
+    margin-right: 2.5%;
 }
 .formBuscar{
     width: 40%;
@@ -61,5 +79,16 @@
         
         top:85%;
         left: 80%;
+    }
+    .center{
+        margin-left: 15%;
+        margin-right: 2.5%;
+    }   
+}
+@media screen and (max-width:375px) {
+    
+    .center{
+        margin-left: 11%;
+        margin-right: 2.5%;
     }   
 }

@@ -15,6 +15,8 @@ import {LoginComponent} from './login/login.component';
 import {LoginService} from './login/login.service';
 import {MaterialModule} from './material.module';
 import {LoginGuard} from './login/login.guard'
+import {AdminGuard} from './login/admin.guard'
+import {EstudianteGuard} from './login/estudiante.guard'
 
 @NgModule({
   declarations: [
@@ -30,7 +32,7 @@ import {LoginGuard} from './login/login.guard'
     MaterialModule,
     FlexLayoutModule
   ],
-  providers: [LoginService,LoginGuard],
+  providers: [LoginService,LoginGuard,AdminGuard,EstudianteGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

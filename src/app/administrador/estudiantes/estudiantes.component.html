@@ -36,12 +36,13 @@
         *ngIf="estudiante" [persona]="estudiante" 
         [action]="action" [tipo]="tipo"
         (EnviarPersona)="guardarProfesor($event)"
-          >
+        [qrCode]="estudiante.identificacion"  
+        >
       </app-perfil>
     </div>
   </div>
 
- <div fxFlex="100"  fxFlex.gt-md="40" fxFlex.lt-md="100" fxLayout.gt-md="row wrap"  *ngIf="tutores" >
+ <div fxFlex="100"  fxFlex.gt-md="40" fxFlex.lt-md="100" fxLayout.gt-md="row wrap" fxLayoutAlign="start start" fxFlexAlign="start"  *ngIf="tutores" >
   <div class="ancho80">
       <h3 class="enlinea">Tutores</h3>
         <button mat-icon-button class="enlinea pullRight" color="primary" (click)="adicionarPadres()" ><mat-icon>add</mat-icon> </button>   
@@ -66,4 +67,5 @@
     </div>
     
   
+
 </div>

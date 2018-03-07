@@ -20,8 +20,11 @@ import {
   MatDatepickerModule,
   MatTabsModule,
   MatProgressSpinnerModule,
-  MatChipsModule
+  MatChipsModule,
+  MatTableModule,
+  MatExpansionModule
 } from '@angular/material';
+
 import {MatMomentDateModule	} from '@angular/material-moment-adapter'
 
 @NgModule({
@@ -47,7 +50,9 @@ import {MatMomentDateModule	} from '@angular/material-moment-adapter'
     MatMomentDateModule,
     MatTabsModule,
     MatProgressSpinnerModule,
-    MatChipsModule  
+    MatChipsModule,
+    MatTableModule,
+    MatExpansionModule   
   ],exports:[
     LayoutModule,
     MatFormFieldModule,
@@ -69,7 +74,9 @@ import {MatMomentDateModule	} from '@angular/material-moment-adapter'
     MatMomentDateModule,
     MatTabsModule,
     MatProgressSpinnerModule,
-    MatChipsModule   
+    MatChipsModule,
+    MatTableModule,
+    MatExpansionModule    
   ]
   
 })

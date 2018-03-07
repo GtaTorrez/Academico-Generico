@@ -16,64 +16,69 @@
     
   </form>
   <mat-progress-bar *ngIf="consulta" mode="indeterminate"></mat-progress-bar>
- <div>
-    <div *ngIf="profesorEdit">
-        <h3 class="margen0 enlinea" >Profesor</h3>
-          <div  class=" enlinea pullRight">
-            <button mat-mini-fab   *ngIf="action==='nuevo' || action==='editar'" color="accent" (click)="guardarP()" ><mat-icon>save</mat-icon> </button>
-            <button mat-mini-fab  *ngIf="action==='ver'" color="primary" (click)="editar()" ><mat-icon>edit</mat-icon> </button>
-            <button mat-mini-fab  *ngIf="action==='nuevo' || action==='editar'" color="warn" (click)="cancelar()" ><mat-icon>delete_forever</mat-icon> </button>
-            <button mat-button  *ngIf="action==='nuevo' || action==='editar'" color="primary" (click)="cancelar()" ><mat-icon>arrow_back</mat-icon> </button>
-          </div>
+ <div fxFlex="100" fxLayout="row wrap" >
+  <div fxFlex="100" >
+      
+  </div>  
+  <div fxFlex="90" fxFlexOffset="5"   *ngIf="profesorEdit" >
+    
+
+    <h3 class="enlinea pullLeft"  >Profesor</h3>
+      
+      <button mat-icon-button class="enlinea cancel" *ngIf="action==='nuevo' || action==='editar'" color="primary" (click)="cancelar()" ><mat-icon>arrow_back</mat-icon> </button>        
+      <button mat-icon-button class="enlinea"  *ngIf="action==='nuevo' || action==='editar'" color="accent" (click)="guardarP()" ><mat-icon>save</mat-icon> </button>
+      <button mat-icon-button class="enlinea" *ngIf="action==='ver'" color="primary" (click)="editar()" ><mat-icon>edit</mat-icon> </button>
+      <button mat-icon-button class="enlinea" *ngIf="action==='nuevo' || action==='editar'" color="warn" (click)="cancelar()" ><mat-icon>delete_forever</mat-icon> </button>
+    
+    
+    </div>
+    <div fxFlex="100" >
+
+        <app-perfil 
+        *ngIf="profesorEdit" [persona]="profesorEdit" 
+        [action]="action"
+        [tipo]="tipo"
+        (EnviarPersona)="guardarProfesor($event)"
+        [qrCode]="profesorEdit.identificacion"
+          >
+      
+        </app-perfil>
       </div>
-    <app-perfil 
-    *ngIf="profesorEdit" [persona]="profesorEdit" 
-    [action]="action"
-    [tipo]="tipo"
-    (EnviarPersona)="guardarProfesor($event)"
-      >
-  
-    </app-perfil>
  </div>
- <div *ngIf="profesorEdit">
-  <button mat-raised-button *ngIf="action==='nuevo' || action==='editar'" color="accent" (click)="guardarP()" >Guardar</button>
-  <button mat-raised-button *ngIf="action==='ver'" color="primary" (click)="editar()" >Editar</button>
-  <button mat-raised-button *ngIf="action==='nuevo' || action==='editar'" color="warn" (click)="cancelar()" >Cancelar</button> 
- </div>
-  
-
+ 
+<div fxFlex="100">
   <mat-card *ngIf="profesorSelect" class="card">
-      <mat-card-header >
-        <div mat-card-avatar class="avatar"> <img id="imgt" [src]="profesorSelect.img?profesorSelect.img:'./assets/img/people.png'" width="50px" height="50px" >  </div>
-        <div style="margin-left:15px">
-            <mat-card-title class="nombre" >{{profesorSelect.nombre}} {{profesorSelect.paterno}} {{profesorSelect.materno}}</mat-card-title>
-            <mat-card-subtitle>{{profesorSelect.cedula}}</mat-card-subtitle>
-        </div>
-        
-      </mat-card-header>
-      <mat-card-actions class="actions">
-        <button mat-button color="accent" (click)="verProfesor(profesorSelect)" >Ver</button>
-      </mat-card-actions>
-    </mat-card>
-
-    <div class="center" fxFlexAlign="center" >
-      <div class="card" *ngFor="let profesor of profesores">
-        <mat-card class="card" *ngIf="profesor.idPersona"  >
-          <mat-card-header >
-            <div mat-card-avatar class="avatar"> <img id="imgt" [src]="profesor.idPersona.img ? profesor.idPersona.img:'./assets/img/people.png'" width="50px" height="50px" >  </div>
-            <div style="margin-left:15px">
-                <mat-card-title class="nombre" >{{profesor.idPersona.nombre}} {{profesor.idPersona.paterno}} {{profesor.idPersona.materno}}</mat-card-title>
-                <mat-card-subtitle>{{profesor.idPersona.cedula}}</mat-card-subtitle>
-            </div>
-            
-          </mat-card-header>
-          <mat-card-actions class="actions">
-            <button mat-button color="accent" (click)="verProfesor(profesor.idPersona)" >Ver</button>
-          </mat-card-actions>
-        </mat-card>
+    <mat-card-header >
+      <div mat-card-avatar class="avatar"> <img id="imgt" [src]="profesorSelect.img?profesorSelect.img:'./assets/img/people.png'" width="50px" height="50px" >  </div>
+      <div style="margin-left:15px">
+          <mat-card-title class="nombre" >{{profesorSelect.nombre}} {{profesorSelect.paterno}} {{profesorSelect.materno}}</mat-card-title>
+          <mat-card-subtitle>{{profesorSelect.cedula}}</mat-card-subtitle>
       </div>
       
-    </div>
+    </mat-card-header>
+    <mat-card-actions class="actions">
+      <button mat-button color="accent" (click)="verProfesor(profesorSelect)" >Ver</button>
+    </mat-card-actions>
+  </mat-card>
+  
+</div>
+
+<div fxFlex="100" class="center" fxFlexAlign="center" >
+  <div class="card" *ngFor="let profesor of profesores">
+    <mat-card class="card" *ngIf="profesor.idPersona"  >
+      <mat-card-header >
+        <div mat-card-avatar class="avatar"> <img id="imgt" [src]="profesor.idPersona.img ? profesor.idPersona.img:'./assets/img/people.png'" width="50px" height="50px" >  </div>
+        <div style="margin-left:15px">
+            <mat-card-title class="nombre" >{{profesor.idPersona.nombre}} {{profesor.idPersona.paterno}} {{profesor.idPersona.materno}}</mat-card-title>
+            <mat-card-subtitle>{{profesor.idPersona.cedula}}</mat-card-subtitle>
+        </div>
+      </mat-card-header>
+      <mat-card-actions class="actions">
+        <button mat-button color="accent" (click)="verProfesor(profesor.idPersona)" >Ver</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>  
+</div>
 
     <div class="buttonAdd" >
         <button mat-fab color="accent" (click)="adicionar()"> <mat-icon>add</mat-icon> </button>

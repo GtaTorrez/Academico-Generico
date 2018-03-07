@@ -2,6 +2,7 @@
   <div fxFlex fxLayout.lt-md="column">
       <div fxFlex="200px" fxFlexAlign="center" >
           <img [src]="persona.img?persona.img:'./assets/img/people.png'" width="150px" height="150px" >
+          <qr-code *ngIf="qrCode"  [value]="qrCode" size="130"></qr-code>
         </div >
         <div fxFlex="350px"   >
           <table >
@@ -30,13 +31,22 @@
     <div class="img">
     <img  [src]="persona.img?persona.img:'./assets/img/people.png'" width="150px" height="150px" >
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-          <label for="avatar">Avatar</label>
-          <input type="file" id="avatar" multiple="true" name="avatar" (change)="onFileChange($event)" #fileInput>
-          <button type="button"  (click)="clearFile()">clear file</button>
-        </div>
-        <button type="submit"  class="btn btn-success">Submit </button>
-      </form>    
+      <div class="form-group">
+        <label for="avatar"  class="custom-file-upload " >
+          <mat-icon color="primary" >add_a_photo            
+          <input type="file" id="avatar" name="avatar" (change)="onFileChange($event)"   #fileInput>
+
+          </mat-icon>
+        </label>
+        <label class="custom">
+          <button mat-icon-button type="button" color="warn"  (click)="clearFile()"> <mat-icon> clear</mat-icon> </button>
+        </label>
+        <label class="custom">
+          <button mat-icon-button type="submit" color="accent"  > <mat-icon>send</mat-icon> </button>
+        </label>  
+        
+      </div>
+    </form>    
     </div>
   </div>
   <div fxFlex="33" fxFlexAlign="center" fxFlex.lt-md="50" >

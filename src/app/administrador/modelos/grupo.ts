@@ -21,3 +21,11 @@ export class Paralelo{
     id:number;
     nombre:string;
 }
+
+export class Curso{
+    id:number;
+    paralelo:Paralelo;
+    turno:Turno;
+    grado:Grado;
+    grupo:Grupo;
+}

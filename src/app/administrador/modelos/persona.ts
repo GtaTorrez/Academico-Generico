@@ -3,6 +3,7 @@ export class Persona{
     id:number
     paterno:string
     materno:string
+    idenficacion:string;
     nombre:string
     sexo:string
     fechaNacimiento:string

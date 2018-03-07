@@ -7,9 +7,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PerfilEstudianteComponent implements OnInit {
 
+  user=localStorage.getItem('user');
+  estado:string="";
   constructor() { }
 
   ngOnInit() {
+
+
+  }
+  logOut(){
+    localStorage.clear();
+    
+  }
+  estadoN(){
+    this.estado="Notas";
+  }
+  estadoA(){
+    this.estado="Asistencia";
+  }
+  estadoH(){
+    this.estado="Horario";
   }
 
 }

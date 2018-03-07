@@ -15,6 +15,8 @@ import { CursosComponent } from './cursos/cursos.component';
 import { NotasComponent } from './notas/notas.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { QRCodeModule } from 'angular2-qrcode';
+import { CursosLayoutComponent } from './cursos/cursos-layout/cursos-layout.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -22,7 +24,8 @@ import { PerfilComponent } from './perfil/perfil.component';
     ReactiveFormsModule,
     AdministradorRoutingModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    QRCodeModule
   ],
   declarations: [MenuComponent, 
     MateriasComponent, 
@@ -34,7 +37,8 @@ import { PerfilComponent } from './perfil/perfil.component';
     UsuariosComponent,
     Modal,
     PerfilComponent,
-    ModalP
+    ModalP,
+    CursosLayoutComponent
   ],
   entryComponents:[MateriasComponent,Modal,ModalP],
   providers:[AdministradorService]

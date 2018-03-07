@@ -1,0 +1,11 @@
+.icon {
+    padding: 0 14px;
+  }
+  
+  .spacer {
+    flex: 1 1 auto;
+  }
+  .active{
+    background-color:  #0d68ad;
+    color: #fff;
+}
