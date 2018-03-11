@@ -1,5 +1,5 @@
 
-    <mat-toolbar color="primary">MATERIAS  </mat-toolbar>
+    <mat-toolbar color="primary" class="mat-elevation-z4">MATERIAS  </mat-toolbar>
 
 <section fxLayout="column">
     <mat-progress-bar *ngIf="consulta" mode="query" ></mat-progress-bar>  
@@ -9,8 +9,12 @@
           <tr *ngFor="let materia of asignaturas">
             <td>{{materia.sigla}}</td>
             <td>{{materia.nombre}}</td>
-            <td><button mat-raised-button color="accent" (click)="editar(materia)">Editar</button></td>
-            <td><button mat-raised-button color="warn" (click)="eliminar(materia)" >Eliminar</button></td>
+            <td><button mat-icon-button color="accent" (click)="editar(materia)">
+              <mat-icon> edit</mat-icon>
+            </button></td>
+            <td><button mat-icon-button color="warn" (click)="eliminar(materia)" >
+              <mat-icon>delete_forever</mat-icon>
+            </button></td>
           </tr>
         </table>
       </div>

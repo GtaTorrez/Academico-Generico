@@ -1,6 +1,6 @@
-<div fxLayout="row"  class="perfil" *ngIf="!edit"  >
+<div fxLayout="row" fxLayoutAlign="center"  class="perfil" *ngIf="!edit"  >
   <div fxFlex fxLayout.lt-md="column">
-      <div fxFlex="200px" fxFlexAlign="center" >
+      <div fxFlex="200px" fxFlexAlign="start center" >
           <img [src]="persona.img?persona.img:'./assets/img/people.png'" width="150px" height="150px" >
           <qr-code *ngIf="qrCode"  [value]="qrCode" size="130"></qr-code>
         </div >
@@ -24,7 +24,7 @@
   </div>
 </div>
 
-<div fxLayout="row"    *ngIf="edit"   >
+<div fxLayout="row"  fxLayoutAlign="center"  *ngIf="edit"   >
   <div fxFlex="600px"  fxFlex.lt-md="350px"  fxLayout.lt-md="column">
 
   <div fxFlex="34" fxFlexAlign="center" fxFlex.lt-md="30"  >

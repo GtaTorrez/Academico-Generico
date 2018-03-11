@@ -32,7 +32,7 @@ export class PerfilComponent implements OnInit,OnDestroy,DoCheck {
   
   @Input() qrCode:string;
 
-  @Output() EnviarPersona=new EventEmitter();  q
+  @Output() EnviarPersona=new EventEmitter();  
   startDate = new Date(1999,1, 1);
 
   form: FormGroup;

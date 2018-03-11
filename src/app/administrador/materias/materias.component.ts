@@ -2,6 +2,7 @@ import { Component,Inject, OnInit,DoCheck } from '@angular/core';
 import {Asignatura} from '../modelos/Asignatura';
 import {AdministradorService} from '../administrador.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { LoadersService } from '../../loader/loaders.service';
 
 import {MatSnackBar} from '@angular/material';
 
@@ -17,6 +18,7 @@ export class MateriasComponent implements OnInit {
   consulta:boolean=false;
   constructor(
     private serve:AdministradorService,
+    private loaderService:LoadersService,
     public dialog: MatDialog,
     private snackBar:MatSnackBar
   ) { 
@@ -33,9 +35,11 @@ export class MateriasComponent implements OnInit {
   }
   getMaterias(){
     this.consulta=true;
+    this.loaderService.cambiarEstado(true);
      let data=this.serve.getMateria().subscribe(datos=>{
        this.asignaturas=datos;
        this.consulta=false;
+       this.loaderService.cambiarEstado(false);
      })
   }
 

@@ -1,0 +1,20 @@
+<div>
+  <mat-form-field *ngIf="materiasLista" >
+      <mat-select placeholder="Materias">
+        <mat-option *ngFor="let materia of materiasLista" [value]="materia.nombre">
+          {{ materia.nombre }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+</div>
+<table> 
+  <tr *ngFor="let materia of materias">
+    <td>{{materia.sigla}}</td>
+    <td>{{materia.nombre}}</td>
+    
+    <td><button mat-icon-button color="warn" (click)="eliminar(materia)" >
+      <mat-icon>delete_forever</mat-icon>
+    </button></td>
+  </tr>
+</table>
+1

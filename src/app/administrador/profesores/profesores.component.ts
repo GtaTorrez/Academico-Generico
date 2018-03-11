@@ -17,8 +17,9 @@ export class ProfesoresComponent implements OnInit {
 
   myControl: FormControl = new FormControl();
   filteredOptions: Observable<Profesor[]>;
-  profesores:Profesor[]=[];
-  profesoresFil:Profesor[]=[];  
+  profesores: Profesor[] = [];
+  materias: any[] = [];
+  profesoresFil:Profesor[]=[];
   profesorSelect:Persona;
   profesorEdit:Persona;
   busca="Nombre";
@@ -27,7 +28,7 @@ export class ProfesoresComponent implements OnInit {
   nuevo:Persona;
   action:string="ver";
   tipo="profesor";
-  
+
   constructor(
     private serve:AdministradorService,
     private notificacion:MatSnackBar
@@ -41,26 +42,21 @@ export class ProfesoresComponent implements OnInit {
       startWith(''),
       map(val => this.filter(val))
     );
-     
+
   }
-  
+
   profesorSelected(profesor){
     this.profesorSelect=profesor;
-    console.log(profesor)
   }
   filter(val: string): Profesor[] {
     let a=this.profesores;
     this.profesoresFil=[]
     this.profesores.forEach(profe=>{
       if(profe.idPersona){
-        console.log(profe)
         this.profesoresFil.push(profe);
       }
     })
-    
-    console.log(this.profesores)
-    console.log(this.profesoresFil)
-    console.log(a)
+
 
     if(this.busca==='Nombre'){
       return this.profesoresFil.filter(profesor =>
@@ -71,7 +67,7 @@ export class ProfesoresComponent implements OnInit {
           (profesor.idPersona.cedula+"").indexOf(val.toString().toLowerCase()) === 0);
       }
     }
-    
+
   }
 
   AbrirNotificacion(message: string,action:string) {
@@ -80,12 +76,27 @@ export class ProfesoresComponent implements OnInit {
     })
   }
 
+  getProfeDicta(id){
+    this.serve.getProfesorDicta(id).subscribe((data:any[])=>{
+      console.log(data)
+      if (data) {
+        if(data.length > 0){
+          console.log('9999999')
+          console.log(data)
+          this.materias=data;
+        }else{
+          this.materias=data;
+        }
+      } else {
+        this.materias=[]
+      }
+    })
+  }
   getProfesores(){
     this.consulta=true;
     this.serve.getProfesores().subscribe(data=>{
       this.profesores=data;
       this.consulta=false;
-      console.log(data)
     },err=>{
       console.error(err);
     })
@@ -93,22 +104,20 @@ export class ProfesoresComponent implements OnInit {
 
   verProfesor(profesor:Persona){
     this.profesorEdit=null;
-    console.log(profesor)
     this.profesorEdit=profesor;
     this.action='ver';
+    this.getProfeDicta(this.profesorEdit.id)
   }
   editar(){
     this.action='editar';
-    console.log(this.action)
   }
   cancelar(){
     this.action='ver';
   }
   guardarP(){
     this.consulta=true;
-    console.log(this.profesorEdit)
     if(this.profesorEdit.id){
-      
+
       this.serve.updateProfesor(this.profesorEdit).subscribe(data=>{
         this.verProfesor(data);
         this.consulta=false;
@@ -117,7 +126,7 @@ export class ProfesoresComponent implements OnInit {
         this.AbrirNotificacion("Error al subir los datos","");
         console.error(err);
       })
-    
+
     }else{
         this.profesorEdit.rol="profesor";
         this.serve.postProfesor(this.profesorEdit).subscribe(data=>{
@@ -129,7 +138,7 @@ export class ProfesoresComponent implements OnInit {
         },error=>{
           this.AbrirNotificacion("Error al subir los datos","")
         })
-      
+
     }
   }
   guardarProfesor(event){
@@ -141,7 +150,7 @@ export class ProfesoresComponent implements OnInit {
           this.verProfesor(data);
           this.consulta=false;
           this.AbrirNotificacion("Realizado Correctamente","");
-        },err=>{
+        },err => {
           this.AbrirNotificacion("Error al subir los datos","");
           console.error(err);
         })
@@ -149,7 +158,6 @@ export class ProfesoresComponent implements OnInit {
     }else{
         this.profesorEdit.rol="profesor";
         this.serve.postProfesor(this.profesorEdit).subscribe(data=>{
-          console.log(data);
           this.consulta=false;
           this.AbrirNotificacion("Realizado correctamente","");
           this.verProfesor(data)
@@ -157,22 +165,12 @@ export class ProfesoresComponent implements OnInit {
         },error=>{
           this.AbrirNotificacion("Error al subir los datos","")
         })
-      
-    }
 
-    
-    
-    
-    
-    
-  }
+    }
+}
   adicionar(){
-    
     this.action='nuevo';
-    console.log(this.action)
     this.profesorEdit=new Persona();
     this.profesorEdit.rol="profesor";
-    
   }
-
 }

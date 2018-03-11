@@ -17,11 +17,14 @@ import {MaterialModule} from './material.module';
 import {LoginGuard} from './login/login.guard'
 import {AdminGuard} from './login/admin.guard'
 import {EstudianteGuard} from './login/estudiante.guard'
+import { LoadersService } from './loader/loaders.service';
+import { LoadComponent } from './loader/load/load.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    LoadComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,7 @@ import {EstudianteGuard} from './login/estudiante.guard'
     MaterialModule,
     FlexLayoutModule
   ],
-  providers: [LoginService,LoginGuard,AdminGuard,EstudianteGuard],
+  providers: [LoginService,LoginGuard,AdminGuard,EstudianteGuard,LoadersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

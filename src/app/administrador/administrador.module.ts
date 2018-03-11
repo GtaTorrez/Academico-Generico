@@ -17,6 +17,7 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { QRCodeModule } from 'angular2-qrcode';
 import { CursosLayoutComponent } from './cursos/cursos-layout/cursos-layout.component';
+import { MateriaComponent } from './profesores/materia/materia.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -38,7 +39,9 @@ import { CursosLayoutComponent } from './cursos/cursos-layout/cursos-layout.comp
     Modal,
     PerfilComponent,
     ModalP,
-    CursosLayoutComponent
+    CursosLayoutComponent,
+    MateriaComponent
+    
   ],
   entryComponents:[MateriasComponent,Modal,ModalP],
   providers:[AdministradorService]

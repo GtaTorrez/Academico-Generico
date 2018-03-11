@@ -13,39 +13,58 @@
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
-    
+
   </form>
   <mat-progress-bar *ngIf="consulta" mode="indeterminate"></mat-progress-bar>
  <div fxFlex="100" fxLayout="row wrap" >
   <div fxFlex="100" >
-      
-  </div>  
-  <div fxFlex="90" fxFlexOffset="5"   *ngIf="profesorEdit" >
-    
+
+  </div>
+  <div fxFlex="50" fxFlexOffset="5"   *ngIf="profesorEdit" >
+
 
     <h3 class="enlinea pullLeft"  >Profesor</h3>
-      
-      <button mat-icon-button class="enlinea cancel" *ngIf="action==='nuevo' || action==='editar'" color="primary" (click)="cancelar()" ><mat-icon>arrow_back</mat-icon> </button>        
+
+      <button mat-icon-button class="enlinea cancel" *ngIf="action==='nuevo' || action==='editar'" color="primary" (click)="cancelar()" ><mat-icon>arrow_back</mat-icon> </button>
       <button mat-icon-button class="enlinea"  *ngIf="action==='nuevo' || action==='editar'" color="accent" (click)="guardarP()" ><mat-icon>save</mat-icon> </button>
       <button mat-icon-button class="enlinea" *ngIf="action==='ver'" color="primary" (click)="editar()" ><mat-icon>edit</mat-icon> </button>
       <button mat-icon-button class="enlinea" *ngIf="action==='nuevo' || action==='editar'" color="warn" (click)="cancelar()" ><mat-icon>delete_forever</mat-icon> </button>
-    
-    
-    </div>
-    <div fxFlex="100" >
 
-        <app-perfil 
-        *ngIf="profesorEdit" [persona]="profesorEdit" 
-        [action]="action"
-        [tipo]="tipo"
-        (EnviarPersona)="guardarProfesor($event)"
-        [qrCode]="profesorEdit.identificacion"
-          >
-      
-        </app-perfil>
+
+    </div>
+    <div fxFlex="85" fxFlexOffset="7" FxFill fxFlexAlign="start center" >
+      <mat-card>
+          <mat-card-content>
+            <app-perfil
+            *ngIf="profesorEdit" [persona]="profesorEdit"
+            [action]="action"
+            [tipo]="tipo"
+            (EnviarPersona)="guardarProfesor($event)"
+            [qrCode]="profesorEdit.identificacion"
+              >
+            </app-perfil>
+            <app-materia
+              [materias]="materias"
+              [profesor]="profesorEdit"
+            >
+            </app-materia>
+
+          </mat-card-content>
+
+        <mat-card-actions >
+          <button mat-button  *ngIf="action==='nuevo' || action==='editar'" color="primary" (click)="cancelar()" ><mat-icon>arrow_back</mat-icon>Atras</button>
+          <button mat-button  *ngIf="action==='nuevo' || action==='editar'" color="accent" (click)="guardarP()" >Guardar<mat-icon>save</mat-icon> </button>
+          <button mat-button  *ngIf="action==='ver'" color="primary" (click)="editar()" ><mat-icon>edit</mat-icon>Editar </button>
+          <button mat-button  *ngIf="action==='nuevo' || action==='editar'" color="warn" (click)="cancelar()" >Borrar<mat-icon>delete_forever</mat-icon> </button>
+
+        </mat-card-actions>
+
+      </mat-card>
+
       </div>
+
  </div>
- 
+
 <div fxFlex="100">
   <mat-card *ngIf="profesorSelect" class="card">
     <mat-card-header >
@@ -54,13 +73,13 @@
           <mat-card-title class="nombre" >{{profesorSelect.nombre}} {{profesorSelect.paterno}} {{profesorSelect.materno}}</mat-card-title>
           <mat-card-subtitle>{{profesorSelect.cedula}}</mat-card-subtitle>
       </div>
-      
+
     </mat-card-header>
-    <mat-card-actions class="actions">
-      <button mat-button color="accent" (click)="verProfesor(profesorSelect)" >Ver</button>
-    </mat-card-actions>
+      <mat-card-actions class="actions">
+        <button mat-button color="accent" (click)="verProfesor(profesorSelect)" >Ver</button>
+      </mat-card-actions>
   </mat-card>
-  
+
 </div>
 
 <div fxFlex="100" class="center" fxFlexAlign="center" >
@@ -77,12 +96,12 @@
         <button mat-button color="accent" (click)="verProfesor(profesor.idPersona)" >Ver</button>
       </mat-card-actions>
     </mat-card>
-  </div>  
+  </div>
 </div>
 
     <div class="buttonAdd" >
         <button mat-fab color="accent" (click)="adicionar()"> <mat-icon>add</mat-icon> </button>
     </div>
-    
-  
+
+
 </div>
