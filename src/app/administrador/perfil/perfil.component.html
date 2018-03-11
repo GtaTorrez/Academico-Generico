@@ -2,7 +2,13 @@
   <div fxFlex fxLayout.lt-md="column">
       <div fxFlex="200px" fxFlexAlign="start center" >
           <img [src]="persona.img?persona.img:'./assets/img/people.png'" width="150px" height="150px" >
-          <qr-code *ngIf="qrCode"  [value]="qrCode" size="130"></qr-code>
+          <ngx-qrcode
+            *ngIf="qrCode"
+            qrc-element-type="img"
+            [qrc-value] = "qrCode"
+            qrc-class = "aclass"
+            qrc-errorCorrectionLevel = "L">
+          </ngx-qrcode>
         </div >
         <div fxFlex="350px"   >
           <table >
@@ -18,7 +24,7 @@
           <tr><td>CELULAR :</td> <td>{{persona.celular}}</td></tr>
           <tr *ngIf="persona.telefono"><td>TELEFONO :</td> <td>{{persona.telefono}}</td></tr>
           <tr><td>EMAIL :</td> <td>{{persona.email}}</td></tr>
-          
+
           </table>
         </div>
   </div>
@@ -33,7 +39,7 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="avatar"  class="custom-file-upload " >
-          <mat-icon color="primary" >add_a_photo            
+          <mat-icon color="primary" >add_a_photo
           <input type="file" id="avatar" name="avatar" (change)="onFileChange($event)"   #fileInput>
 
           </mat-icon>
@@ -43,16 +49,16 @@
         </label>
         <label class="custom">
           <button mat-icon-button type="submit" color="accent"  > <mat-icon>send</mat-icon> </button>
-        </label>  
-        
+        </label>
+
       </div>
-    </form>    
+    </form>
     </div>
   </div>
   <div fxFlex="33" fxFlexAlign="center" fxFlex.lt-md="50" >
     <mat-form-field class="width80">
       <input type="text" matInput placeholder="Nombre(s)" [(ngModel)]="persona.nombre" name="nombre"  >
-    </mat-form-field>  
+    </mat-form-field>
     <mat-form-field class="width80">
       <input type="text" matInput placeholder="Ap. Paterno" [(ngModel)]="persona.paterno" name="paterno"  >
     </mat-form-field>
@@ -63,13 +69,13 @@
       <mat-form-field class="width80">
         <input type="text" matInput placeholder="item" [(ngModel)]="persona.identificacion" name="ci"  >
       </mat-form-field>
-    
+
     </div>
     <div *ngIf="tipo==='estudiante'" >
       <mat-form-field class="width80">
         <input type="text" matInput placeholder="Rude" [(ngModel)]="persona.identificacion" name="ci"  >
-      </mat-form-field>  
-    </div>  
+      </mat-form-field>
+    </div>
 
     <mat-form-field class="width80">
       <input type="text" matInput placeholder="Cedula de identidad" [(ngModel)]="persona.cedula" name="ci"  >
@@ -78,15 +84,15 @@
       <input type="text" matInput placeholder="Expedido" [(ngModel)]="persona.expedido" name="expedido"  >
     </mat-form-field>
   </div>
-  <div fxFlex="33"  fxFlex.lt-md   > 
+  <div fxFlex="33"  fxFlex.lt-md   >
     <div class="width80">
       <Label >Sexo</Label>
       <p>
         <mat-radio-group [(ngModel)]="persona.sexo" name="sexo">
             <mat-radio-button value="M">Masculino</mat-radio-button>
             <mat-radio-button value="F">Femenino</mat-radio-button>
-        </mat-radio-group>  
-      </p>  
+        </mat-radio-group>
+      </p>
     </div>
 
     <mat-form-field class="width80">
@@ -94,7 +100,7 @@
       <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
       <mat-datepicker #myDatepicker startView="month" [startAt]="startDate" ></mat-datepicker>
     </mat-form-field>
-   
+
     <mat-form-field class="width80">
       <input type="text" matInput placeholder="Celular" [(ngModel)]="persona.celular" name="celular"  >
     </mat-form-field>
@@ -104,11 +110,10 @@
     <mat-form-field class="width80">
       <input type="text" matInput placeholder="Email" [(ngModel)]="persona.email" name="email"  >
     </mat-form-field>
-    
-        
+
+
   </div>
   </div>
 
-      
+
 </div>
-

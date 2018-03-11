@@ -15,7 +15,7 @@ import { CursosComponent } from './cursos/cursos.component';
 import { NotasComponent } from './notas/notas.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { PerfilComponent } from './perfil/perfil.component';
-import { QRCodeModule } from 'angular2-qrcode';
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 import { CursosLayoutComponent } from './cursos/cursos-layout/cursos-layout.component';
 import { MateriaComponent } from './profesores/materia/materia.component';
 @NgModule({
@@ -26,22 +26,22 @@ import { MateriaComponent } from './profesores/materia/materia.component';
     AdministradorRoutingModule,
     MaterialModule,
     FlexLayoutModule,
-    QRCodeModule
+    NgxQRCodeModule
   ],
-  declarations: [MenuComponent, 
-    MateriasComponent, 
-    ProfesoresComponent, 
-    EstudiantesComponent, 
-    HorariosComponent, 
-    CursosComponent, 
-    NotasComponent, 
+  declarations: [MenuComponent,
+    MateriasComponent,
+    ProfesoresComponent,
+    EstudiantesComponent,
+    HorariosComponent,
+    CursosComponent,
+    NotasComponent,
     UsuariosComponent,
     Modal,
     PerfilComponent,
     ModalP,
     CursosLayoutComponent,
     MateriaComponent
-    
+
   ],
   entryComponents:[MateriasComponent,Modal,ModalP],
   providers:[AdministradorService]
