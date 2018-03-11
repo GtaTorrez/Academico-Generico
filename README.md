@@ -8,4 +8,4 @@ Correr `ng serve` en la consola para el server de desarrollo. Navegar a `http://
 
 ## Desarrollo
 
-El sistema aun esta en desarrollo. 
+El sistema aún esta en desarrollo.
