@@ -5,7 +5,7 @@ import {Persona} from '../modelos/persona';
 import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import {AdministradorService} from '../administrador.service';
-import { QRCodeComponent } from 'angular2-qrcode';
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 
 @Component({
   selector: 'app-perfil',
@@ -26,13 +26,13 @@ import { QRCodeComponent } from 'angular2-qrcode';
 export class PerfilComponent implements OnInit,OnDestroy,DoCheck {
 
   edit:boolean=false;
-  @Input() persona:Persona; 
+  @Input() persona:Persona;
   @Input() action:string;
   @Input() tipo:string;
-  
+
   @Input() qrCode:string;
 
-  @Output() EnviarPersona=new EventEmitter();  
+  @Output() EnviarPersona=new EventEmitter();
   startDate = new Date(1999,1, 1);
 
   form: FormGroup;
@@ -42,7 +42,7 @@ export class PerfilComponent implements OnInit,OnDestroy,DoCheck {
   constructor(
     private fb: FormBuilder,
     private http:AdministradorService
-        ) { 
+        ) {
     this.createForm()
   }
   createForm() {
@@ -53,7 +53,7 @@ export class PerfilComponent implements OnInit,OnDestroy,DoCheck {
   }
 
   ngOnInit() {
-    
+
     this.cancel();
     console.log("inicio")
     if(this.action==='editar' || this.action==='nuevo' ){
@@ -66,7 +66,7 @@ export class PerfilComponent implements OnInit,OnDestroy,DoCheck {
   ngDoCheck(){
     if(this.action==='ver'){
       this.edit=false;
-      
+
     }else{
       if(this.action==='editar' || this.action==='nuevo' ){
         this.edit=true;
@@ -76,9 +76,9 @@ export class PerfilComponent implements OnInit,OnDestroy,DoCheck {
   }
 
   cancel(){
-    
+
   }
-  
+
   onFileChange(event) {
     console.log("CAMBIO DE IMAGEN");
   }
@@ -86,7 +86,7 @@ export class PerfilComponent implements OnInit,OnDestroy,DoCheck {
     let input = new FormData();
     // This can be done a lot prettier; for example automatically assigning values by looping through `this.form.controls`, but we'll keep it as simple as possible here
     //input.append('foto', "subiendo");
-    
+
     input.append('avatar', this.fileInput.nativeElement.files.item(0));
 
     console.log(input.get('avatar'))
@@ -108,13 +108,13 @@ export class PerfilComponent implements OnInit,OnDestroy,DoCheck {
       alert('error')
       console.error(err)
     })
-    
+
   }
   clearFile() {
     this.form.get('avatar').setValue(null);
     this.fileInput.nativeElement.value = '';
   }
-  
+
 
 
 }

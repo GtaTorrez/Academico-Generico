@@ -10,10 +10,10 @@
           <h2 class="tituloIns" >{{nombreSecundario}} </h2>
           <h1 class="tituloIns" >{{nombrePrimario}} </h1>
           </div>
-        </div>  
+        </div>
         <div class="tituloHeader textCenter" >CONTROL DE INGRESO - SALIDA</div>
       </div>
-    
+
   </header>
   <section>
     <div class="container center  " >
@@ -29,47 +29,52 @@
                   <h3 class="matricula textCenter fondo fontBlack " ><div class="mid"><div class="cntt">{{perfil.nroMatricula}}</div></div></h3>
               </div>
             </div>
-              
+
           </div>
           <div  class="datos">
               <div class="casilla" >
                   <div>
-                    <h3 class="titulo degra">APELLIDOS Y NOMBRES</h3>  
+                    <h3 class="titulo degra">APELLIDOS Y NOMBRES</h3>
                   </div>
-                  <p class="campo fontBlack ">{{perfil.paterno | uppercase }} {{perfil.materno | uppercase }} {{perfil.nombre | uppercase }}</p>  
+                  <p class="campo fontBlack ">{{perfil.paterno | uppercase }} {{perfil.materno | uppercase }} {{perfil.nombre | uppercase }}</p>
                 </div>
                 <div class="casilla" >
-                  <h3 class="titulo degra">CURSO</h3>  
-                  <p class="campo fontBlack">{{perfil.paterno | uppercase }} {{perfil.materno | uppercase }} {{perfil.nombre | uppercase }}</p>  
+                  <h3 class="titulo degra">CURSO</h3>
+                  <p class="campo fontBlack">{{perfil.paterno | uppercase }} {{perfil.materno | uppercase }} {{perfil.nombre | uppercase }}</p>
                 </div>
                 <div class="casilla" >
-                  <h3 class="titulo degra">TURNO</h3>  
-                  <p class="campo fontBlack">{{perfil.paterno | uppercase }} {{perfil.materno | uppercase }} {{perfil.nombre | uppercase }}</p>  
+                  <h3 class="titulo degra">TURNO</h3>
+                  <p class="campo fontBlack">{{perfil.paterno | uppercase }} {{perfil.materno | uppercase }} {{perfil.nombre | uppercase }}</p>
                 </div>
           </div>
           <div class="casilla campoLn " >
-                
+
             <div class="textCenter registro" >
-                <h3 class="tituloES degra" >INGRESO</h3>  
+                <h3 class="tituloES degra" >INGRESO</h3>
                 <p class="campoES fontBlack"> {{perfil | json}} Hrs</p>
             </div>
             <div class=" textCenter registro" >
-                <h3 class="tituloES degra">SALIDA</h3>  
+                <h3 class="tituloES degra">SALIDA</h3>
                 <p class="campoES fontBlack"> {{perfil | json }} Hrs </p>
             </div>
-              
+
             </div>
         </div>
       </div>
       <div style="" class="ancho40">
-        
+
         <div class="bloqueimg">
           <img [src]="perfil.img ? perfil.img : './assets/img/people.png'" width="180px" height="180px" alt="">
         </div>
         <div class="bloque center">
-            <qr-code  [value]="'Yo world!'" size="130"></qr-code>
+          <ngx-qrcode
+            qrc-element-type="img"
+            qrc-value = "Jhon Smith"
+            qrc-class = "aclass"
+            qrc-errorCorrectionLevel = "L">
+          </ngx-qrcode>
         </div>
-      
+
       </div>
     </div>
   </section>

@@ -3,16 +3,15 @@ import { CommonModule } from '@angular/common';
 
 import { ControlasistenciaRoutingModule } from './controlasistencia-routing.module';
 import { PerfilAsistenciaComponent } from './perfil-asistencia/perfil-asistencia.component';
-import {AsistenciaService} from './asistencia.service';
-import {HttpClientModule} from '@angular/common/http';
-import { QRCodeModule } from 'angular2-qrcode';
-
+import { AsistenciaService } from './asistencia.service';
+import { HttpClientModule } from '@angular/common/http';
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 
 @NgModule({
   imports: [
     CommonModule,
     HttpClientModule,
-    QRCodeModule,
+    NgxQRCodeModule,
     ControlasistenciaRoutingModule
   ],
   declarations: [PerfilAsistenciaComponent],

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AsistenciaService }  from '../asistencia.service';
-import { QRCodeComponent } from 'angular2-qrcode';
-import { Perfil } from './perfil'; 
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+import { Perfil } from './perfil';
 
 @Component({
   selector: 'app-perfil-asistencia',
@@ -16,12 +16,12 @@ export class PerfilAsistenciaComponent implements OnInit {
   perfil:Perfil=new Perfil();
   img="./assets/img/fondof.jpg"
   imgPatter="https://image.freepik.com/free-vector/abstract-background-with-a-3d-pattern_1319-68.jpg"
-  imgBackground="" 
+  imgBackground=""
   qr:string;
   constructor(
     private serve:AsistenciaService
-  ) { 
-    
+  ) {
+
   }
 
   getPerfil(){
@@ -45,6 +45,6 @@ export class PerfilAsistenciaComponent implements OnInit {
     this.getPerfil();
     this.imgBackground=this.img?this.img:this.imgPatter;
   }
-  
+
 
 }

@@ -1,11 +1,34 @@
 <div>
-  <mat-form-field *ngIf="materiasLista" >
-      <mat-select placeholder="Materias">
-        <mat-option *ngFor="let materia of materiasLista" [value]="materia.nombre">
-          {{ materia.nombre }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+    <!-- <form action="">
+      <h3>Materias</h3>
+      <mat-form-field *ngIf="materiasLista" >
+        <mat-select placeholder="Materias">
+          <mat-option *ngFor="let materia of materiasLista" [value]="materia.nombre">
+            {{ materia.nombre }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    <button mat-button color="accent" > <mat-icon>add</mat-icon> Adicionar</button>
+    </form> -->
+  <mat-card>
+      <mat-card-title>
+        Materias
+      </mat-card-title>
+
+    <mat-card-actions>
+        Materias
+      <mat-form-field *ngIf="materiasLista" >
+          <mat-select placeholder="Materias">
+            <mat-option *ngFor="let materia of materiasLista" [value]="materia.nombre">
+              {{ materia.nombre }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      <button mat-button color="accent" > <mat-icon>add</mat-icon> Adicionar</button>
+    </mat-card-actions>
+  </mat-card>
+
+
 </div>
 <table> 
   <tr *ngFor="let materia of materias">
@@ -17,4 +40,3 @@
     </button></td>
   </tr>
 </table>
-1
