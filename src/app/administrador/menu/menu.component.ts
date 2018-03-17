@@ -25,7 +25,7 @@ export class MenuComponent implements OnInit,OnDestroy{
     media: MediaMatcher,
     private loaderService:LoadersService  
     ) {
-    this.mobileQuery = media.matchMedia('(max-width: 959px)');
+    this.mobileQuery = media.matchMedia('(max-width: 650px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
     if(this.mobileQuery.matches){

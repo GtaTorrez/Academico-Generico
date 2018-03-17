@@ -13,6 +13,10 @@ export class MateriaComponent implements OnInit {
   materiasLista: Asignatura[] ;
   @Input() materias: Asignatura[];
   @Input() profesor: Persona;
+
+  adicionar:boolean=false;
+
+
   constructor(
     private serve: AdministradorService
   ) { }
@@ -21,6 +25,9 @@ export class MateriaComponent implements OnInit {
     this.serve.getMateria().subscribe(data=>{
       this.materiasLista=data;
     })
+  }
+  adiciona(){
+    this.adicionar = this.adicionar ? false : true;
   }
 
   eliminar(dato) {

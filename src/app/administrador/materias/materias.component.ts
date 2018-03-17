@@ -16,6 +16,9 @@ export class MateriasComponent implements OnInit {
   
   asignaturas:Asignatura[]=[]
   consulta:boolean=false;
+  displayedColumns = ['sigla', 'materia', 'editar', 'borrar'];
+  dataSource = this.asignaturas;
+
   constructor(
     private serve:AdministradorService,
     private loaderService:LoadersService,
@@ -23,6 +26,7 @@ export class MateriasComponent implements OnInit {
     private snackBar:MatSnackBar
   ) { 
     
+    console.log(this.dataSource)
   }
   openSnackBar(message: string,action:string) {
     this.snackBar.open(message,action,{
@@ -40,6 +44,7 @@ export class MateriasComponent implements OnInit {
        this.asignaturas=datos;
        this.consulta=false;
        this.loaderService.cambiarEstado(false);
+       this.dataSource=this.asignaturas
      })
   }
 
@@ -140,6 +145,11 @@ export class Modal {
     console.log("enviar() "+this.materia);
     this.dialogRef.close({action:this.data.action,materia:this.materia})
   }
-  
+}
 
+export interface Element {
+  sigla: string;
+  nombre: string;
+  editar: string;
+  borrar: string;
 }
