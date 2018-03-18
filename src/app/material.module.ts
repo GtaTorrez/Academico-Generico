@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {LayoutModule} from '@angular/cdk/layout';
+import { NgModule }           from '@angular/core';
+import { CommonModule }       from '@angular/common';
+import { LayoutModule }       from '@angular/cdk/layout';
 import {
   MatFormFieldModule,
   MatButtonModule,
@@ -22,10 +22,14 @@ import {
   MatProgressSpinnerModule,
   MatChipsModule,
   MatTableModule,
-  MatExpansionModule
-} from '@angular/material';
+  MatExpansionModule,
+  MatCheckboxModule,
+  MatTooltipModule,
+  MatPaginatorModule,
+  MatSortModule
+}                             from '@angular/material';
 
-import {MatMomentDateModule	} from '@angular/material-moment-adapter'
+import { MatMomentDateModule} from '@angular/material-moment-adapter'
 
 @NgModule({
   imports: [
@@ -52,8 +56,9 @@ import {MatMomentDateModule	} from '@angular/material-moment-adapter'
     MatProgressSpinnerModule,
     MatChipsModule,
     MatTableModule,
-    MatExpansionModule   
-  ],exports:[
+    MatExpansionModule
+  ],
+  exports: [
     LayoutModule,
     MatFormFieldModule,
     MatButtonModule,
@@ -76,8 +81,7 @@ import {MatMomentDateModule	} from '@angular/material-moment-adapter'
     MatProgressSpinnerModule,
     MatChipsModule,
     MatTableModule,
-    MatExpansionModule    
+    MatExpansionModule
   ]
-  
 })
 export class MaterialModule { }

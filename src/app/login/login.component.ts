@@ -12,11 +12,8 @@ export class LoginComponent implements OnInit {
   username:string;
   password:string;
   constructor(private serve:LoginService,private router:Router) { }
-
-  ngOnInit() {
-  }
-  submit(){
-    
+  ngOnInit() {}
+  submit() {
     let data={username:this.username,password:this.password};
     console.log(data);
     let resp=this.serve.postUser(data).subscribe(data=>{

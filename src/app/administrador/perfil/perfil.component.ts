@@ -5,7 +5,7 @@ import {Persona} from '../modelos/persona';
 import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import {AdministradorService} from '../administrador.service';
-import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
 
 @Component({
   selector: 'app-perfil',
