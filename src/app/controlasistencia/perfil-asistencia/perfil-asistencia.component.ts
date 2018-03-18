@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AsistenciaService }  from '../asistencia.service';
-import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { Perfil } from './perfil';
 
 @Component({

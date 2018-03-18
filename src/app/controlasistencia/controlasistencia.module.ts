@@ -5,7 +5,7 @@ import { ControlasistenciaRoutingModule } from './controlasistencia-routing.modu
 import { PerfilAsistenciaComponent } from './perfil-asistencia/perfil-asistencia.component';
 import { AsistenciaService } from './asistencia.service';
 import { HttpClientModule } from '@angular/common/http';
-import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
 
 @NgModule({
   imports: [
