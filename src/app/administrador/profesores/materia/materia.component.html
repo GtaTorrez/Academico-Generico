@@ -13,18 +13,25 @@
   <mat-card>
       <mat-card-title>
         Materias
+        <button mat-button color="accent" (click)="adiciona()" *ngIf="!adicionar" > <mat-icon>add</mat-icon> Adicionar</button>
+        <button mat-button color="warn" *ngIf="adicionar" (click)="adiciona()" > <mat-icon>undo</mat-icon> Atras</button>
+        
       </mat-card-title>
+      <mat-card-subtitle >
+        <div *ngIf="adicionar">
+          <mat-form-field *ngIf="materiasLista" >
+              <mat-select placeholder="Materias">
+                <mat-option *ngFor="let materia of materiasLista" [value]="materia.nombre">
+                  {{ materia.nombre }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          <button mat-button color="accent" > <mat-icon>save</mat-icon> Guardar</button>
+        </div>
+      </mat-card-subtitle>
 
     <mat-card-actions>
-        Materias
-      <mat-form-field *ngIf="materiasLista" >
-          <mat-select placeholder="Materias">
-            <mat-option *ngFor="let materia of materiasLista" [value]="materia.nombre">
-              {{ materia.nombre }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      <button mat-button color="accent" > <mat-icon>add</mat-icon> Adicionar</button>
+        
     </mat-card-actions>
   </mat-card>
 

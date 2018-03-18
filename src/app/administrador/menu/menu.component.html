@@ -1,13 +1,10 @@
-<header class="tema-oscuro" >
-    <mat-toolbar  color="primary">
-        <mat-toolbar-row >
-          <span> <mat-icon (click)="cambio()" *ngIf="mobileQuery.matches ">reorder</mat-icon> </span>  <span>Administrador</span>
-        </mat-toolbar-row>
-    </mat-toolbar>      
-</header>
+
 <mat-sidenav-container fxLayout="row" class="content"  >
-    <mat-sidenav  #sidenav [mode]=" mobileQuery.matches ? 'over' : 'side'" fxFlex="200px" fxFlex.lt-sm="200px"   [opened]="mobileQuery.matches ? openside : 'true'"
-     class="colorprimario">
+  <!-- <mat-sidenav  #sidenav [mode]=" mobileQuery.matches ? 'over' : 'side'" fxFlex="200px" fxFlex.lt-sm="200px"   [opened]="mobileQuery.matches"
+     class="">
+       -->
+  <mat-sidenav  #sidenav mode="side" fxFlex="200px" fxFlex.lt-sm="200px"   [opened]="openside"
+     class="">
     
      <mat-list>
       <mat-list-item class="menu" routerLink="usuarios" [routerLinkActive]="['active']"><mat-icon>people</mat-icon> USUARIOS </mat-list-item>
@@ -23,7 +20,14 @@
      
     </mat-sidenav>
 
-    <mat-sidenav-content fxFlex="100" fxFlex.lt-sm="100%" >
+    <mat-sidenav-content fxFlex="100" fxFlex.lt-sm="100%" class="mat-elevation-z2">
+      <header  >
+        <mat-toolbar class="mat-elevation-z2"  color="primary">
+            <mat-toolbar-row >
+              <span> <mat-icon (click)="cambio()"  >reorder</mat-icon> </span>  <span>Administrador</span>
+            </mat-toolbar-row>
+        </mat-toolbar>      
+    </header>
 
       <router-outlet></router-outlet>
 
