@@ -1,16 +1,25 @@
 <div fxLayout="row" fxLayoutAlign="center"  class="perfil" *ngIf="!edit"  >
   <div fxFlex fxLayout.lt-md="column">
-      <div fxFlex="200px" fxFlexAlign="start center" >
-          <img [src]="persona.img?persona.img:'./assets/img/people.png'" width="150px" height="150px" >
+      <div fxFlex="200px" fxLayout="row" fxLayout.gt-sm="column" fxFlexAlign="start center" >
+        <div fxFlex="100" fxFlexAlign="center" >
+          <img class="center" [src]="persona.img?persona.img:'./assets/img/people.png'" width="150px" height="150px" >
+
+        </div>
+        <div fxFlex="80" fxFlexAlign="center" fxFlexAlign.lt-sm="center" fxLayoutAlign.gt-sm="center center"  >
           <ngx-qrcode
+            
             *ngIf="qrCode"
             qrc-element-type="img"
             [qrc-value] = "qrCode"
-            qrc-class = "aclass"
-            qrc-errorCorrectionLevel = "L">
+            qrc-class = "centerCode"
+            qrc-errorCorrectionLevel = "L"
+            
+            >
           </ngx-qrcode>
+        </div>
         </div >
-        <div fxFlex="350px"   >
+        <div fxFlex="340px"   >
+          
           <table >
           <tr><td>NOMBRE :</td> <td>{{persona.nombre | uppercase}}</td></tr>
           <tr><td>PATERNO :</td> <td>{{persona.paterno| uppercase}}</td></tr>
@@ -33,7 +42,7 @@
 <div fxLayout="row"  fxLayoutAlign="center"  *ngIf="edit"   >
   <div fxFlex="600px"  fxFlex.lt-md="350px"  fxLayout.lt-md="column">
 
-  <div fxFlex="34" fxFlexAlign="center" fxFlex.lt-md="30"  >
+  <div fxFlexOffset="12px" fxFlex="34" fxFlexAlign="center" fxFlex.lt-md="30"  >
     <div class="img">
     <img  [src]="persona.img?persona.img:'./assets/img/people.png'" width="150px" height="150px" >
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
