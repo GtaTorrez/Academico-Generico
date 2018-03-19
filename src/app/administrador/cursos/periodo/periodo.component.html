@@ -1,0 +1,19 @@
+<mat-card>
+  <button mat-mini-fab *ngIf="!swPeriodo" class="enLinea" color="accent" (click)="addPeriodo()"> <mat-icon>add</mat-icon> </button>
+  <h3 class="enLinea">Periodo</h3>
+  <div class="enLinea" *ngIf="swPeriodo">
+    <mat-form-field class="enLinea" >
+      <input type="text"  matInput #nombrePdI [(ngModel)]="periodo.hora_ini" name="nombrePdI" autocomplete="off"  placeholder="Inicio" required>
+    </mat-form-field>
+    <mat-form-field class="enLinea" >
+      <input type="text"  matInput #nombrePdF [(ngModel)]="periodo.hora_fin" name="nombrePdF" autocomplete="off"  placeholder="Final " required>
+    </mat-form-field>
+    <button mat-button class="enLinea" color="accent" (click)="postPeriodo()"  >Guardar</button>
+    <button mat-mini-fab class="enLinea" color="warn" (click)="closePeriodo()"> <mat-icon>close</mat-icon> </button>
+  </div>
+  <mat-chip-list >
+    <div *ngFor="let periodo of periodos">
+      <mat-chip color="primary" selected="true">Inicio: {{periodo.hora_ini}} Final: {{periodo.hora_fin}} <mat-icon (click)="deletePeriodo(periodo.id)" >close</mat-icon></mat-chip>                        
+    </div>
+  </mat-chip-list>
+</mat-card>

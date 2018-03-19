@@ -1,0 +1,16 @@
+<mat-card>
+  <button mat-mini-fab *ngIf="!swGrado" class="enLinea" color="accent" (click)="addGrado()"> <mat-icon>add</mat-icon> </button>
+  <h3 class="enLinea">Grado</h3>
+  <div class="enLinea" *ngIf="swGrado">
+    <mat-form-field class="enLinea" >
+      <input type="text"  matInput #nombreGr name="nombreGr" [(ngModel)]="grado.nombre" autocomplete="off"  placeholder="Grado" required>
+    </mat-form-field>
+    <button mat-button class="enLinea" color="accent" (click)="postGrado()"  >Guardar</button>
+    <button mat-mini-fab class="enLinea" color="warn" (click)="closeGrado()"> <mat-icon>close</mat-icon> </button>
+  </div>
+  <mat-chip-list >
+    <div *ngFor="let grado of grados">
+      <mat-chip >{{grado.nombre}} <mat-icon (click)="deleteGrado(grado.id)" >close</mat-icon></mat-chip>                        
+    </div>
+  </mat-chip-list>
+</mat-card>
