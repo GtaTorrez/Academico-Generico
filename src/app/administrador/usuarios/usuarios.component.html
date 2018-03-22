@@ -12,28 +12,50 @@
           <mat-form-field class="buscar">
             <input type="text" matInput placeholder="Buscar por " aria-label="Number"  >
           </mat-form-field>
+          <button mat-icon-button color="primary"  (click)="buscarEstudiante()" ><mat-icon>search</mat-icon> </button>
           <button mat-fab color="primary">Buscar</button>
         </form>
   </div>  
   
-  
-  
-  
   <mat-progress-bar *ngIf="consulta" mode="indeterminate"></mat-progress-bar>
- <div>
-    <app-perfil 
-    *ngIf="profesorEdit" [persona]="profesorEdit" [action]="action"
-    (EnviarPersona)="guardarProfesor($event)"
-      >
-  
-    </app-perfil>
- </div>
- <div *ngIf="profesorEdit">
-  <button mat-raised-button *ngIf="action==='nuevo' || action==='editar'" color="accent" (click)="guardarP()" >Guardar</button>
-  <button mat-raised-button *ngIf="action==='ver'" color="primary" (click)="editar()" >Editar</button>
-  <button mat-raised-button *ngIf="action==='nuevo' || action==='editar'" color="warn" (click)="cancelar()" >Cancelar</button> 
- </div>
-  
+ 
+ <div fxFlex="60"  FxFill fxFlexAlign="start center" >
+    <mat-card *ngIf="profesorEdit" >
+        <mat-card-content>
+          <app-perfil
+           [persona]="profesorEdit"
+          [action]="action"
+          [tipo]="tipo"
+          (EnviarPersona)="guardarProfesor($event)"
+          [qrCode]="profesorEdit.identificacion"
+            >
+          </app-perfil>
+         <mat-card>
+           ROLES
+           <mat-card-content *ngIf="action==='nuevo'">
+              <mat-radio-group name="rol" [(ngModel)]="select" >
+                <mat-radio-button value="administrativo" checked>Administrativo</mat-radio-button>
+                <mat-radio-button value="admin">Super Usuario</mat-radio-button>
+              </mat-radio-group>
+           </mat-card-content>
+           <mat-card-content *ngIf="action==='ver'"> 
+              {{profesorEdit.rol}}
+           </mat-card-content>
+         </mat-card>
+
+        </mat-card-content>
+
+      <mat-card-actions >
+        <button mat-button  *ngIf="action==='nuevo' || action==='editar'" color="primary" (click)="cancelar()" ><mat-icon>arrow_back</mat-icon>Atras</button>
+        <button mat-button  *ngIf="action==='nuevo' || action==='editar'" color="accent" (click)="guardarP()" >Guardar<mat-icon>save</mat-icon> </button>
+        <button mat-button  *ngIf="action==='ver'" color="primary" (click)="editar()" ><mat-icon>edit</mat-icon>Editar </button>
+        <button mat-button  *ngIf="action==='nuevo' || action==='editar'" color="warn" (click)="cancelar()" >Borrar<mat-icon>delete_forever</mat-icon> </button>
+
+      </mat-card-actions>
+
+    </mat-card>
+
+    </div>
 
 
     <div class="buttonAdd" >

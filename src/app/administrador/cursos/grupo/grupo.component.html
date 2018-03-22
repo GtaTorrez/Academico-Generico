@@ -1,17 +1,23 @@
-<mat-card>
-  <button mat-mini-fab *ngIf="!swGrupo" class="enLinea" color="accent" (click)="addGrupo()"> <mat-icon>add</mat-icon> </button>
-  <h3 class="enLinea">Grupo</h3>
-  <div class="enLinea" *ngIf="swGrupo">
-    <mat-form-field class="enLinea" >
+<mat-card class="card">
+  <mat-card-title>
+    <h3>Grupo</h3>
+  </mat-card-title>
+  
+<mat-card-content>
+  <mat-chip-list >
+    <div *ngFor="let grupo of grupos">
+      <mat-chip>{{grupo.nombre}} <mat-icon (click)="deleteGrupo(grupo.id)" >close</mat-icon></mat-chip>                        
+    </div>
+  </mat-chip-list>
+</mat-card-content>
+<mat-card-actions>
+  <button mat-button *ngIf="!swGrupo" color="accent" (click)="addGrupo()"> <mat-icon>add</mat-icon> </button>    
+  <div  *ngIf="swGrupo">
+    <mat-form-field class="ancho">
       <input type="text"  matInput #nombreGp name="nombreGp" [(ngModel)]="grupo.nombre" autocomplete="off"  placeholder="Grupo" required>
     </mat-form-field>
-    <button mat-button class="enLinea" color="accent" (click)="postGrupo()"  >Guardar</button>
-    <button mat-mini-fab class="enLinea" color="warn" (click)="closeGrupo()"> <mat-icon>close</mat-icon> </button>
+    <button mat-button color="accent" (click)="postGrupo()"  >Guardar</button>
+    <button mat-button color="warn" (click)="closeGrupo()"> <mat-icon>close</mat-icon> </button>
   </div>
-    <mat-chip-list >
-      <div *ngFor="let grupo of grupos">
-        <mat-chip color="primary" selected="true">{{grupo.nombre}} <mat-icon (click)="deleteGrupo(grupo.id)" >close</mat-icon></mat-chip>                        
-      </div>
-    </mat-chip-list>
-    
+</mat-card-actions>
 </mat-card>

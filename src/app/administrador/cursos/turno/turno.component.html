@@ -1,18 +1,23 @@
-<mat-card>
-  
-    <button mat-mini-fab *ngIf="!swTurno" class="enLinea" color="accent" (click)="addTurno()"> <mat-icon>add</mat-icon> </button>
-    <h3 class="enLinea">Turno</h3>
-    <div class="enLinea" *ngIf="swTurno">
-      <mat-form-field class="enLinea" >
+<mat-card class="card" >
+  <mat-card-title>
+    <h3 >Turno</h3>
+  </mat-card-title>
+  <mat-card-content>
+    <mat-chip-list >
+      <div *ngFor="let turno of turnos">
+        <mat-chip>{{turno.nombre}} <mat-icon (click)="deleteTurno(turno.id)" >close</mat-icon></mat-chip>                        
+      </div>
+    </mat-chip-list>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button *ngIf="!swTurno"  color="accent" (click)="addTurno()"> <mat-icon>add</mat-icon> </button>
+    <div  *ngIf="swTurno">
+      <mat-form-field class="ancho"  >
         <input type="text"  matInput #nombreT name="nombreT" [(ngModel)]="turno.nombre" autocomplete="off"  placeholder="Turno" required>
       </mat-form-field>
-      <button mat-button class="enLinea" color="accent" (click)="postTurno()"  >Guardar</button>
-      <button mat-mini-fab class="enLinea" color="warn" (click)="closeTurno()"> <mat-icon>close</mat-icon> </button>
+      <button mat-button  color="accent" (click)="postTurno()"  >Guardar</button>
+      <button mat-button  color="warn" (click)="closeTurno()"> <mat-icon>close</mat-icon> </button>
     </div>
+  </mat-card-actions>
   
-  <mat-chip-list >
-    <div *ngFor="let turno of turnos">
-      <mat-chip color="primary" selected="true">{{turno.nombre}} <mat-icon (click)="deleteTurno(turno.id)" >close</mat-icon></mat-chip>                        
-    </div>
-  </mat-chip-list>
 </mat-card>
