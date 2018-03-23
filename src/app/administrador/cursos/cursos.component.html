@@ -17,102 +17,30 @@
     <ng-template mat-tab-label>
       Ajustes <mat-icon>build</mat-icon>
     </ng-template>
-    <div fxLayout="row wrap">
-      <div fxFlex="100" fxFlexOffset="10px" >
+    <div fxLayout="row wrap" fxLayoutAlign="center">
+      <div fxFlex="100" fxFlexOffset="10px"  >
         <div>
-          <button mat-mini-fab *ngIf="!swGrado" class="enLinea" color="accent" (click)="addGrado()"> <mat-icon>add</mat-icon> </button>
-          <h3 class="enLinea">Grado</h3>
-          <div class="enLinea" *ngIf="swGrado">
-            <mat-form-field class="enLinea" >
-              <input type="text"  matInput #nombreGr name="nombreGr" [(ngModel)]="grado.nombre" autocomplete="off"  placeholder="Grado" required>
-            </mat-form-field>
-            <button mat-button class="enLinea" color="accent" (click)="postGrado()"  >Guardar</button>
-            <button mat-mini-fab class="enLinea" color="warn" (click)="closeGrado()"> <mat-icon>close</mat-icon> </button>
-          </div>
-          
+          <!-- grado -->
+          <app-grado></app-grado>
         </div>
-        <mat-chip-list >
-          <div *ngFor="let grado of grados">
-            <mat-chip color="accent" selected="true">{{grado.nombre}} <mat-icon (click)="deleteGrado(grado.id)" >close</mat-icon></mat-chip>                        
-          </div>
-        </mat-chip-list>
+        
       </div>
       <div fxFlex="100" fxFlexOffset="10px" >
-        <div>
-          <button mat-mini-fab *ngIf="!swGrupo" class="enLinea" color="accent" (click)="addGrupo()"> <mat-icon>add</mat-icon> </button>
-          <h3 class="enLinea">Grupo</h3>
-          <div class="enLinea" *ngIf="swGrupo">
-            <mat-form-field class="enLinea" >
-              <input type="text"  matInput #nombreGp name="nombreGp" [(ngModel)]="grupo.nombre" autocomplete="off"  placeholder="Grupo" required>
-            </mat-form-field>
-            <button mat-button class="enLinea" color="accent" (click)="postGrupo()"  >Guardar</button>
-            <button mat-mini-fab class="enLinea" color="warn" (click)="closeGrupo()"> <mat-icon>close</mat-icon> </button>
-          </div>
+        <!-- grupos -->
+        <app-grupo></app-grupo>
+      </div>
+      <div fxFlex="100" fxFlexOffset="10px" >
+       <!-- turno -->
+        <app-turno>
 
-        </div>
-        <mat-chip-list >
-          <div *ngFor="let grupo of grupos">
-            <mat-chip color="primary" selected="true">{{grupo.nombre}} <mat-icon (click)="deleteGrupo(grupo.id)" >close</mat-icon></mat-chip>                        
-          </div>
-        </mat-chip-list>
+       </app-turno>
       </div>
       <div fxFlex="100" fxFlexOffset="10px" >
-        <div>
-          <button mat-mini-fab *ngIf="!swTurno" class="enLinea" color="accent" (click)="addTurno()"> <mat-icon>add</mat-icon> </button>
-          <h3 class="enLinea">Turno</h3>
-          <div class="enLinea" *ngIf="swTurno">
-            <mat-form-field class="enLinea" >
-              <input type="text"  matInput #nombreT name="nombreT" [(ngModel)]="turno.nombre" autocomplete="off"  placeholder="Turno" required>
-            </mat-form-field>
-            <button mat-button class="enLinea" color="accent" (click)="postTurno()"  >Guardar</button>
-            <button mat-mini-fab class="enLinea" color="warn" (click)="closeTurno()"> <mat-icon>close</mat-icon> </button>
-          </div>
-        </div>
-        <mat-chip-list >
-          <div *ngFor="let turno of turnos">
-            <mat-chip color="primary" selected="true">{{turno.nombre}} <mat-icon (click)="deleteTurno(turno.id)" >close</mat-icon></mat-chip>                        
-          </div>
-        </mat-chip-list>
+        <!-- paralelo -->
+        <app-paralelo></app-paralelo>
       </div>
       <div fxFlex="100" fxFlexOffset="10px" >
-        <div>
-          <button mat-mini-fab *ngIf="!swParalelo" class="enLinea" color="accent" (click)="addParalelo()"> <mat-icon>add</mat-icon> </button>
-          <h3 class="enLinea">Paralelo</h3>
-          <div class="enLinea" *ngIf="swParalelo">
-            <mat-form-field class="enLinea" >
-              <input type="text"  matInput #nombrePr name="nombrePr" [(ngModel)]="paralelo.nombre" autocomplete="off"  placeholder="Paralelo " required>
-            </mat-form-field>
-            <button mat-button class="enLinea" color="accent" (click)="postParalelo()"  >Guardar</button>
-            <button mat-mini-fab class="enLinea" color="warn" (click)="closeParalelo()"> <mat-icon>close</mat-icon> </button>
-          </div>
-
-        </div>
-        <mat-chip-list >
-          <div *ngFor="let paralelo of paralelos">
-            <mat-chip color="primary" selected="true">{{paralelo.nombre}} <mat-icon (click)="deleteParalelo(paralelo.id)" >close</mat-icon></mat-chip>                        
-          </div>
-        </mat-chip-list>
-      </div>
-      <div fxFlex="100" fxFlexOffset="10px" >
-        <div>
-          <button mat-mini-fab *ngIf="!swPeriodo" class="enLinea" color="accent" (click)="addPeriodo()"> <mat-icon>add</mat-icon> </button>
-          <h3 class="enLinea">Periodo</h3>
-          <div class="enLinea" *ngIf="swPeriodo">
-            <mat-form-field class="enLinea" >
-              <input type="text"  matInput #nombrePdI [(ngModel)]="periodo.hora_ini" name="nombrePdI" autocomplete="off"  placeholder="Inicio" required>
-            </mat-form-field>
-            <mat-form-field class="enLinea" >
-              <input type="text"  matInput #nombrePdF [(ngModel)]="periodo.hora_fin" name="nombrePdF" autocomplete="off"  placeholder="Final " required>
-            </mat-form-field>
-            <button mat-button class="enLinea" color="accent" (click)="postPeriodo()"  >Guardar</button>
-            <button mat-mini-fab class="enLinea" color="warn" (click)="closePeriodo()"> <mat-icon>close</mat-icon> </button>
-          </div>
-        </div>
-        <mat-chip-list >
-          <div *ngFor="let periodo of periodos">
-            <mat-chip color="primary" selected="true">Inicio: {{periodo.hora_ini}} Final: {{periodo.hora_fin}} <mat-icon (click)="deletePeriodo(periodo.id)" >close</mat-icon></mat-chip>                        
-          </div>
-        </mat-chip-list>
+        <app-periodo></app-periodo>
       </div>
     </div>  
     

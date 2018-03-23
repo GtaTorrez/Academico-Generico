@@ -10,14 +10,14 @@ export class AdminGuard implements CanActivate {
     )
     {}
     canActivate():boolean{
-        let rol="admin";
-        // return true;
-        console.log(localStorage.getItem("rol"))
-        if(rol===localStorage.getItem("rol")){
-            return true;
-        }else{
-            return false;
-        }
+        // let rol="admin";
+        return true;
+        // console.log(localStorage.getItem("rol"))
+        // if(rol===localStorage.getItem("rol")){
+        //     return true;
+        // }else{
+        //     return false;
+        // }
 
     }
 }

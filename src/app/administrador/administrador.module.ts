@@ -18,6 +18,11 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { CursosLayoutComponent } from './cursos/cursos-layout/cursos-layout.component';
 import { MateriaComponent } from './profesores/materia/materia.component';
+import { GradoComponent } from './cursos/grado/grado.component';
+import { GrupoComponent } from './cursos/grupo/grupo.component';
+import { TurnoComponent } from './cursos/turno/turno.component';
+import { ParaleloComponent } from './cursos/paralelo/paralelo.component';
+import { PeriodoComponent } from './cursos/periodo/periodo.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -40,7 +45,12 @@ import { MateriaComponent } from './profesores/materia/materia.component';
     PerfilComponent,
     ModalP,
     CursosLayoutComponent,
-    MateriaComponent
+    MateriaComponent,
+    GradoComponent,
+    GrupoComponent,
+    TurnoComponent,
+    ParaleloComponent,
+    PeriodoComponent
   ],
   entryComponents : [MateriasComponent,Modal,ModalP],
   providers       : [AdministradorService]
