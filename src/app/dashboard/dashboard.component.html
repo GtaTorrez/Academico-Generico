@@ -22,11 +22,11 @@
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #menu="matMenu">
-            <button routerLink="/dashboard/home" mat-menu-item><mat-icon>account_circle</mat-icon> {{usuario.nombre}}</button>
+            <button mat-menu-item><mat-icon>account_circle</mat-icon> {{usuario.nombre}}</button>
             <button (click)="logout()" mat-menu-item><mat-icon>lock</mat-icon> Cerrar sesión</button>
           </mat-menu>
 
-          <button fxShow fxHide.xs="true" routerLink="/dashboard/home" mat-button style="color:white"><mat-icon>account_circle</mat-icon> {{usuario.nombre}}</button>
+          <button fxShow fxHide.xs="true" mat-button style="color:white"><mat-icon>account_circle</mat-icon> {{usuario.nombre}}</button>
           <button fxShow fxHide.xs="true" (click)="logout()" mat-button style="color:white"><mat-icon>lock</mat-icon> Cerrar sesión</button>
         </div>
       </div>
