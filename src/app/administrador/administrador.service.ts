@@ -199,6 +199,11 @@ export class AdministradorService {
   updateCurso(body):Observable<any>{
     return this.http.put(this.baseUrl+`/curso/${body.id}`,body,{headers:this.headers});
   }
+  //alternativa cursos
+
+  getCursoTurno(idTurno):Observable<any>{
+    return this.http.get(this.baseUrl+`/curso/mostrar_turno/${idTurno}`);
+  }
 
   //usuarios
   getUsuario():Observable<any>{

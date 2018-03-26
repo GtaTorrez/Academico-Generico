@@ -1,0 +1,26 @@
+<div fxLayout="row wrap">
+
+    <div fxFlex="80" fxFlexOffset="10">
+        <mat-radio-group [(ngModel)]="idTurnoActual"  >
+            <mat-radio-button  *ngFor="let turno of turnos" [value]="turno.id" (click)="cambioCursos(turno.id)">{{turno.nombre}}</mat-radio-button>
+        </mat-radio-group>
+
+        <app-lista-cursos 
+        *ngIf="idTurnoActual" 
+        [idTurno]="idTurnoActual"
+        [cursos]="cursos"
+        [paralelos]="paralelos"
+        > 
+            
+        </app-lista-cursos>
+    </div>
+
+</div>
+
+
+
+<div class="buttonAdd" >
+    <button mat-fab color="accent" (click)="openModal()" > <mat-icon>add</mat-icon> </button>
+</div>
+
+

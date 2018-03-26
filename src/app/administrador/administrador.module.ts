@@ -16,13 +16,15 @@ import { NotasComponent } from './notas/notas.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
-import { CursosLayoutComponent } from './cursos/cursos-layout/cursos-layout.component';
+import { CursosLayoutComponent } from './cursos-layout/cursos-layout.component';
 import { MateriaComponent } from './profesores/materia/materia.component';
 import { GradoComponent } from './cursos/grado/grado.component';
 import { GrupoComponent } from './cursos/grupo/grupo.component';
 import { TurnoComponent } from './cursos/turno/turno.component';
 import { ParaleloComponent } from './cursos/paralelo/paralelo.component';
 import { PeriodoComponent } from './cursos/periodo/periodo.component';
+import { ListaCursosComponent } from './cursos-layout/lista-cursos/lista-cursos.component';
+import { ModalAddCurso } from './cursos-layout/modalAddCurso/modalAddCurso.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -50,9 +52,11 @@ import { PeriodoComponent } from './cursos/periodo/periodo.component';
     GrupoComponent,
     TurnoComponent,
     ParaleloComponent,
-    PeriodoComponent
+    PeriodoComponent,
+    ListaCursosComponent,
+    ModalAddCurso
   ],
-  entryComponents : [MateriasComponent,Modal,ModalP],
+  entryComponents : [MateriasComponent,Modal,ModalP,ModalAddCurso],
   providers       : [AdministradorService]
 })
 export class AdministradorModule { }

@@ -1,49 +1,27 @@
 
-
-<mat-tab-group>
-  <mat-tab label="Cursos">
-    <ng-template mat-tab-label>
-      Cursos <mat-icon>class</mat-icon>
-    </ng-template>
-    <div fxLayout="row wrap" fxLayoutAlign="center" >
-        <div fxFlex="80" fxFlexOffset="10px" >
-          <app-cursos-layout></app-cursos-layout>
-          
-        </div>
-    </div>  
-  
-  </mat-tab>
-  <mat-tab label="Ajustes">
-    <ng-template mat-tab-label>
-      Ajustes <mat-icon>build</mat-icon>
-    </ng-template>
-    <div fxLayout="row wrap" fxLayoutAlign="center">
-      <div fxFlex="100" fxFlexOffset="10px"  >
-        <div>
-          <!-- grado -->
-          <app-grado></app-grado>
-        </div>
-        
-      </div>
-      <div fxFlex="100" fxFlexOffset="10px" >
-        <!-- grupos -->
-        <app-grupo></app-grupo>
-      </div>
-      <div fxFlex="100" fxFlexOffset="10px" >
-       <!-- turno -->
-        <app-turno>
-
-       </app-turno>
-      </div>
-      <div fxFlex="100" fxFlexOffset="10px" >
-        <!-- paralelo -->
-        <app-paralelo></app-paralelo>
-      </div>
-      <div fxFlex="100" fxFlexOffset="10px" >
-        <app-periodo></app-periodo>
-      </div>
-    </div>  
+<div fxLayout="row wrap" fxLayoutAlign="center">
+  <div fxFlex="100" fxFlexOffset="10px"  >
+    <div>
+      <!-- grado -->
+      <app-grado></app-grado>
+    </div>
     
-  
-  </mat-tab>
-</mat-tab-group>  
+  </div>
+  <div fxFlex="100" fxFlexOffset="10px" >
+    <!-- grupos -->
+    <app-grupo></app-grupo>
+  </div>
+  <div fxFlex="100" fxFlexOffset="10px" >
+    <!-- turno -->
+    <app-turno>
+
+    </app-turno>
+  </div>
+  <div fxFlex="100" fxFlexOffset="10px" >
+    <!-- paralelo -->
+    <app-paralelo></app-paralelo>
+  </div>
+  <div fxFlex="100" fxFlexOffset="10px" >
+    <app-periodo></app-periodo>
+  </div>
+</div>  

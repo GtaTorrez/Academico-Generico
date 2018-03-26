@@ -1,0 +1,40 @@
+<p>
+  lista-cursos works!
+</p>
+<div *ngIf="cursos.grados">
+
+  <div fxLayout="row wrap">
+  <mat-card fxFlex="50" fxFlex.lt-md="100" *ngFor="let grado of cursos.grados" >
+    <mat-card-title>
+      {{grado.nombre | uppercase}}
+    </mat-card-title>
+    <mat-accordion>
+        <mat-expansion-panel  *ngFor="let grupo of grado.grupos "  >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{grupo.nombre | uppercase}}
+            </mat-panel-title>
+            <mat-panel-description>
+              Paralelos
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          
+          <mat-chip-list >
+            <div *ngFor="let paralelo of grupo.paralelos">
+              <mat-chip>{{paralelo.nombre | uppercase}} <mat-icon  >close</mat-icon></mat-chip>                        
+            </div>
+          </mat-chip-list>
+          
+          <mat-action-row>
+            <mat-select class="options" >
+              <mat-option *ngFor="let paralelo of paralelos" [value]="paralelo.nombre" >
+                  {{paralelo.nombre}}
+              </mat-option>
+            </mat-select>
+            <button mat-button color="primary" >Adicionar</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-card>
+  </div>
+</div>

@@ -8,6 +8,7 @@ import { HorariosComponent } from './horarios/horarios.component';
 import { CursosComponent } from './cursos/cursos.component';
 import { NotasComponent } from './notas/notas.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
+import { CursosLayoutComponent } from './cursos-layout/cursos-layout.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
     {path:'estudiantes',component:EstudiantesComponent},
     {path:'horarios',component:HorariosComponent},
     {path:'notas',component:NotasComponent},
-    {path:'cursos',component:CursosComponent},
+    {path:'ajuste',component:CursosComponent},
+    {path:'cursos',component:CursosLayoutComponent},
     {path:'usuarios',component:UsuariosComponent}
   ]}
 ];
