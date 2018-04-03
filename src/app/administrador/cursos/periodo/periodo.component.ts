@@ -13,6 +13,7 @@ export class PeriodoComponent implements OnInit {
   periodos:Periodo[];
   periodo:Periodo;
   swPeriodo=false;
+  action=1;
   constructor(
     private serve:AdministradorService,
     private notificaciones:MatSnackBar
@@ -26,8 +27,13 @@ export class PeriodoComponent implements OnInit {
       duration:2000
     })
   }
-
+  edit(periodo:Periodo){
+    this.action=0;
+    this.swPeriodo=true;
+    this.periodo=periodo;
+  }
   addPeriodo(){
+    this.action=1;
     this.swPeriodo=true;
     this.periodo=new Periodo();
   }
@@ -35,18 +41,15 @@ export class PeriodoComponent implements OnInit {
     this.swPeriodo=false;
   }
   
-  
-
-  
-//Paralelo
-
 //periodos
 postPeriodo(){
   this.periodo.id=0;
+  console.log(this.periodo)
   this.serve.postPeriodo(this.periodo).subscribe(data=>{
     this.periodos.push(data);
     this.swPeriodo=false;
     this.abrirNotificacion("Realizado correctamente","Ok");
+    this.closePeriodo();
   },err=>{
     console.log("ERRROR")
     console.log(err);
@@ -55,6 +58,7 @@ postPeriodo(){
 putPeriodo(){
   this.serve.updatePeriodo(this.periodo).subscribe(data=>{
     this.abrirNotificacion("Realizado correctamente","Ok");
+    this.closePeriodo();
   },err=>{
     console.log("ERRROR")
     console.log(err);
@@ -78,5 +82,12 @@ deletePeriodo(id){
     console.log(err);
   })
 }
-
+guardar(){
+  if (this.action) {
+    this.postPeriodo();
+  } else {
+    this.putPeriodo();
+    
+  }
+}
 }

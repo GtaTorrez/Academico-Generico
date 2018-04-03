@@ -26,17 +26,17 @@
 padding: 5px 5px 0px 5px;
 }
 
+.buttonAdd{
+    position: fixed;
+    top:85%;
+    left: 90%;
+}
 .buscar{
     width: 50%;
 }
 .formBuscar{
     margin-left: 35%;
     width: 40%;
-}
-.buttonAdd{
-    position: fixed;
-    top:85%;
-    left: 90%;
 }
 @media screen and (max-width:750px) {
     .center{

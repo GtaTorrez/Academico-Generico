@@ -28,7 +28,7 @@
           <tr *ngIf="tipo==='estudiante'" ><td>Rude :</td> <td>{{persona.identificacion }}</td></tr>
           <tr *ngIf="tipo==='profesor'" ><td>Item :</td> <td>{{persona.identificacion }}</td></tr>
           <tr><td>SEXO :</td> <td>{{persona.sexo| uppercase}}</td></tr>
-          <tr><td>FECHA DE NACIMIENTO :</td> <td><input matInput [matDatepicker]="myDatepicker" placeholder="" [(ngModel)]="persona.fechaNacimiento" name="fecnac" readonly>
+          <tr *ngIf="persona.fechaNacimiento" ><td>FECHA DE NACIMIENTO :</td> <td><input matInput [matDatepicker]="myDatepicker" placeholder="" [(ngModel)]="persona.fechaNacimiento" name="fecnac" readonly>
           </td></tr>
           <tr><td>CELULAR :</td> <td>{{persona.celular}}</td></tr>
           <tr *ngIf="persona.telefono"><td>TELEFONO :</td> <td>{{persona.telefono}}</td></tr>

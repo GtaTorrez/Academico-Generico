@@ -25,6 +25,8 @@ import { ParaleloComponent } from './cursos/paralelo/paralelo.component';
 import { PeriodoComponent } from './cursos/periodo/periodo.component';
 import { ListaCursosComponent } from './cursos-layout/lista-cursos/lista-cursos.component';
 import { ModalAddCurso } from './cursos-layout/modalAddCurso/modalAddCurso.component';
+import { PensionesComponent } from './pensiones/pensiones.component';
+import { PerfilPadresComponent } from './pensiones/perfil-padres/perfil-padres.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -54,7 +56,9 @@ import { ModalAddCurso } from './cursos-layout/modalAddCurso/modalAddCurso.compo
     ParaleloComponent,
     PeriodoComponent,
     ListaCursosComponent,
-    ModalAddCurso
+    ModalAddCurso,
+    PensionesComponent,
+    PerfilPadresComponent
   ],
   entryComponents : [MateriasComponent,Modal,ModalP,ModalAddCurso],
   providers       : [AdministradorService]

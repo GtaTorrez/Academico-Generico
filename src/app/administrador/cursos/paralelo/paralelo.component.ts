@@ -13,6 +13,7 @@ export class ParaleloComponent implements OnInit {
   paralelos:Paralelo[];
   paralelo:Paralelo;
   swParalelo=false;
+  action=1;
   constructor(
     private serve:AdministradorService,
     private notificaciones:MatSnackBar
@@ -26,7 +27,13 @@ export class ParaleloComponent implements OnInit {
       duration:2000
     })
   }
+  edit(paralelo:Paralelo){
+    this.action=0;
+    this.swParalelo=true;
+    this.paralelo=paralelo;
+  }
   addParalelo(){
+    this.action=1;
     this.swParalelo=true;
     this.paralelo=new Paralelo();
   }
@@ -39,6 +46,7 @@ export class ParaleloComponent implements OnInit {
       this.paralelos.push(data);
       this.swParalelo=false;
       this.abrirNotificacion("Realizado correctamente","Ok");
+      this.closeParalelo();
     },err=>{
       console.log("ERRROR")
       console.log(err);
@@ -47,6 +55,7 @@ export class ParaleloComponent implements OnInit {
   putParalelo(){
     this.serve.updateParalelo(this.paralelo).subscribe(data=>{
       this.abrirNotificacion("Realizado correctamente","Ok");
+      this.closeParalelo();
     },err=>{
       console.log("ERRROR")
       console.log(err);
@@ -69,5 +78,13 @@ export class ParaleloComponent implements OnInit {
       console.log("ERRROR")
       console.log(err);
     })
+  }
+  guardar(){
+    if (this.action) {
+      this.postParalelo();
+    } else {
+      this.putParalelo();
+    }
+    
   }
 }

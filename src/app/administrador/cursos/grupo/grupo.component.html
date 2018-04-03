@@ -1,12 +1,12 @@
 <mat-card class="card">
-  <mat-card-title>
-    <h3>Grupo</h3>
-  </mat-card-title>
+<h2>Grupo</h2>
   
 <mat-card-content>
   <mat-chip-list >
     <div *ngFor="let grupo of grupos">
-      <mat-chip>{{grupo.nombre}} <mat-icon (click)="deleteGrupo(grupo.id)" >close</mat-icon></mat-chip>                        
+      <mat-chip class="margin" >{{grupo.nombre}}
+        <mat-icon class="paddingleft" (click)="editGrupo(grupo)" >edit</mat-icon> 
+        <mat-icon color="warn" class="paddingleft" (click)="deleteGrupo(grupo.id)" >close</mat-icon></mat-chip>                        
     </div>
   </mat-chip-list>
 </mat-card-content>
@@ -16,7 +16,7 @@
     <mat-form-field class="ancho">
       <input type="text"  matInput #nombreGp name="nombreGp" [(ngModel)]="grupo.nombre" autocomplete="off"  placeholder="Grupo" required>
     </mat-form-field>
-    <button mat-button color="accent" (click)="postGrupo()"  >Guardar</button>
+    <button mat-button color="accent" (click)="guardar()"  >Guardar</button>
     <button mat-button color="warn" (click)="closeGrupo()"> <mat-icon>close</mat-icon> </button>
   </div>
 </mat-card-actions>

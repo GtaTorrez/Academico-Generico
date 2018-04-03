@@ -13,7 +13,8 @@ export class GrupoComponent implements OnInit {
   grupos:Grupo[];
   grupo:Grupo;
   swGrupo=false;
-
+  
+  action=1;
   constructor(
     private serve:AdministradorService,
     private notificaciones:MatSnackBar
@@ -27,8 +28,13 @@ export class GrupoComponent implements OnInit {
       duration:2000
     })
   }
-
+  editGrupo(grupo:Grupo){
+    this.action=0;
+    this.swGrupo=true;
+    this.grupo=grupo;
+  }
   addGrupo(){
+    this.action=1;
     this.swGrupo=true;
     this.grupo=new Grupo();
   }
@@ -41,6 +47,7 @@ export class GrupoComponent implements OnInit {
       this.grupos.push(data);
       this.swGrupo=false;
       this.abrirNotificacion("Realizado correctamente","Ok");
+      this.closeGrupo();
     },err=>{
       console.log("ERRROR")
       console.log(err);
@@ -49,6 +56,7 @@ export class GrupoComponent implements OnInit {
   putGrupo(){
     this.serve.updateGrupo(this.grupo).subscribe(data=>{
       this.abrirNotificacion("Realizado correctamente","Ok");
+      this.closeGrupo();
     },err=>{
       console.log("ERRROR")
       console.log(err);
@@ -72,4 +80,13 @@ export class GrupoComponent implements OnInit {
       console.log(err);
     })
   }
+
+  guardar(){
+    if(this.action){
+      this.postGrupo();
+    }else{
+      this.putGrupo();
+    }
+  }
+
 }

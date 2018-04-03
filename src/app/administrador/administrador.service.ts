@@ -221,5 +221,8 @@ export class AdministradorService {
     return this.http.get(this.baseUrl+`/asistencia/historial_alumno/${id}`);
   }
 
-
+//pensiones
+  getPensionesPadre(id){
+    return this.http.get(this.baseUrl+`/pension/pension_por_tutor/${id}`);
+    }
 }

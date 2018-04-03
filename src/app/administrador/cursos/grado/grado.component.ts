@@ -14,6 +14,9 @@ export class GradoComponent implements OnInit {
   grados:Grado[];
   grado:Grado;
   swGrado=false;
+  //1 para crear  0 para editar 
+  action = 1;
+
   constructor(
     private serve:AdministradorService,
     private notificaciones:MatSnackBar
@@ -27,7 +30,14 @@ export class GradoComponent implements OnInit {
       duration:2000
     })
   }
+  editGrado(grado:Grado)
+  {
+    this.action=0;
+    this.swGrado=true;
+    this.grado=grado;
+  }
   addGrado(){
+    this.action=1;
     this.swGrado=true;
     this.grado=new Grado();
   }
@@ -40,6 +50,7 @@ export class GradoComponent implements OnInit {
       this.grados.push(data)
       this.abrirNotificacion("Realizado correctamente","Ok");
       this.swGrado=false;
+      this.closeGrado();
     },err=>{
       console.log("ERRROR")
       console.log(err);
@@ -48,6 +59,7 @@ export class GradoComponent implements OnInit {
   putGrado(){
     this.serve.updateGrado(this.grado).subscribe(data=>{
       this.abrirNotificacion("Realizado correctamente","Ok");
+      this.closeGrado();
     },err=>{
       console.log("ERRROR")
       console.log(err);
@@ -70,6 +82,15 @@ export class GradoComponent implements OnInit {
       console.log("ERRROR")
       console.log(err);
     })
+  }
+  guardarGrado(){
+    if(this.action===1){
+      this.postGrado();
+    }else{
+      if(this.action===0){
+        this.putGrado();
+      }
+    }
   }
 
 }

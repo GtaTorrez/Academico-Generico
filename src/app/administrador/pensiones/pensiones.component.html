@@ -1,0 +1,66 @@
+<div fxLayout="row wrap"  >
+<div fxFlex="100"  >
+  <div  class="formBuscar">
+    <mat-form-field class="buscar">
+      <input type="number" matInput [(ngModel)]="cedulaIdentidad" placeholder="Cédula de identidad " aria-label="Number"  >
+    </mat-form-field>
+    <button mat-icon-button color="primary" (click)="buscar()" ><mat-icon>search</mat-icon> </button>
+  </div>
+</div> 
+<div *ngIf="data" fxFlex="100" fxLayout="row wrap">
+  <div fxFlex="50"  fxLayout="row wrap" fxFlex.lt-md="100"  >
+    <div fxFlex="100">
+      <mat-card fxFlex="90" fxFlexOffset="5"  >
+        <app-perfil-padres
+        [persona]="data.idPersona"
+        >
+        </app-perfil-padres>
+      </mat-card>
+    </div>
+    <div fxFlex="90" fxFlexOffset="5">
+      <mat-table class="marginTop mat-elevation-z2" #table [dataSource]="dataSource">
+          <ng-container  matColumnDef="nombre">
+            <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+            <mat-cell class="buscar" *matCellDef="let element"> {{element.idPersona.nombre}} {{element.idPersona.paterno}} {{element.idPersona.materno}}</mat-cell>
+          </ng-container>
+      
+          <ng-container matColumnDef="ci">
+            <mat-header-cell *matHeaderCellDef> CI </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.idPersona.cedula}} </mat-cell>
+          </ng-container>
+      
+          <ng-container matColumnDef="ver">
+            <mat-header-cell *matHeaderCellDef> Ver </mat-header-cell>
+            <mat-cell *matCellDef="let element" (click)="verPension(element)" >   <mat-icon>visibility</mat-icon> </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+    </div>
+  </div>
+  <div *ngIf="pensiones" fxFlex="50" fxFlex.lt-md="100" >
+    <div fxFlex="90 " fxFlex.lt-md="100" fxFlexOffset="5" fxFlexOffset.lt-md="0" >
+      <mat-card>
+        <mat-card-title>
+          Pagos por meses
+        </mat-card-title>
+        <mat-grid-list cols="2" rowHeight="60px" class="mat-elavation-z3 " >
+          <mat-grid-tile  *ngFor="let mes of pensiones" [style.background]="mes.pago ? '#35f799':'#f55448' "  >
+            <div class="mesclass">
+                <button mat-icon-button class="mesLinea" > <mat-icon> {{ mes.pago ? 'attach_money':'money_off'}} </mat-icon>  </button>
+                <h3 class="mesLinea">
+                  {{mes.mes | uppercase}} 
+                </h3>
+            </div>
+            </mat-grid-tile>    
+        </mat-grid-list>
+
+      </mat-card>
+    </div>
+     
+  </div>
+
+</div>
+
+</div> 

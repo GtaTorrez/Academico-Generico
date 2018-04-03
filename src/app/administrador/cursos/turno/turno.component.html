@@ -1,11 +1,12 @@
 <mat-card class="card" >
-  <mat-card-title>
-    <h3 >Turno</h3>
-  </mat-card-title>
+  <h2 >Turno</h2>
   <mat-card-content>
     <mat-chip-list >
       <div *ngFor="let turno of turnos">
-        <mat-chip>{{turno.nombre}} <mat-icon (click)="deleteTurno(turno.id)" >close</mat-icon></mat-chip>                        
+        <mat-chip class="margin" >{{turno.nombre}} 
+          <mat-icon class="paddingLeft" (click)="edit(turno)" >edit</mat-icon>
+          <mat-icon color="warn" class="paddingLeft" (click)="deleteTurno(turno.id)" >close</mat-icon>
+        </mat-chip>                        
       </div>
     </mat-chip-list>
   </mat-card-content>
@@ -15,7 +16,7 @@
       <mat-form-field class="ancho"  >
         <input type="text"  matInput #nombreT name="nombreT" [(ngModel)]="turno.nombre" autocomplete="off"  placeholder="Turno" required>
       </mat-form-field>
-      <button mat-button  color="accent" (click)="postTurno()"  >Guardar</button>
+      <button mat-button  color="accent" (click)="guardar()"  >Guardar</button>
       <button mat-button  color="warn" (click)="closeTurno()"> <mat-icon>close</mat-icon> </button>
     </div>
   </mat-card-actions>

@@ -15,6 +15,7 @@ export class TurnoComponent implements OnInit {
   turno:Turno;
 
   swTurno=false;
+  accion=1;
   
   constructor(
     private serve:AdministradorService,
@@ -29,7 +30,13 @@ export class TurnoComponent implements OnInit {
       duration:2000
     })
   }
+  edit(turno:Turno){
+    this.accion=0;
+    this.swTurno=true;
+    this.turno=turno;
+  }
   addTurno(){
+    this.accion=1;
     this.swTurno=true;
     this.turno=new Turno();
   }
@@ -42,6 +49,7 @@ export class TurnoComponent implements OnInit {
       this.turnos.push(data);
       this.swTurno=false;
       this.abrirNotificacion("Realizado correctamente","Ok");
+      this.closeTurno();
     },err=>{
       console.log("ERRROR")
       console.log(err);
@@ -50,6 +58,7 @@ export class TurnoComponent implements OnInit {
   putTurno(){
     this.serve.updateTurno(this.turno).subscribe(data=>{
       this.abrirNotificacion("Realizado correctamente","Ok");
+      this.closeTurno();
     },err=>{
       console.log("ERRROR")
       console.log(err);
@@ -73,6 +82,13 @@ export class TurnoComponent implements OnInit {
       console.log("ERRROR")
       console.log(err);
     })
+  }
+  guardar(){
+    if (this.accion) {
+      this.postTurno();
+    } else {
+      this.putTurno();
+    }
   }
 
 }

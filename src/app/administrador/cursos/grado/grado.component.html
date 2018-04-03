@@ -1,12 +1,13 @@
 <mat-card class="card">
-  <mat-card-title>
-    <h3 >Grado</h3>
+    <h2 >Nivel</h2>
   
-  </mat-card-title>
   <mat-card-content>
     <mat-chip-list >
       <div *ngFor="let grado of grados">
-        <mat-chip >{{grado.nombre}} <mat-icon (click)="deleteGrado(grado.id)" >close</mat-icon></mat-chip>                        
+        
+        <mat-chip >{{grado.nombre}} 
+          <mat-icon class="paddingleft" (click)="editGrado(grado)" >edit</mat-icon> 
+          <mat-icon color="warn" class="paddingleft" (click)="deleteGrado(grado.id)" >close</mat-icon></mat-chip>                        
       </div>
     </mat-chip-list>
   </mat-card-content>
@@ -16,7 +17,7 @@
         <mat-form-field class="ancho" >
           <input type="text"  matInput #nombreGr name="nombreGr" [(ngModel)]="grado.nombre" autocomplete="off"  placeholder="Grado" required>
         </mat-form-field>
-        <button mat-button   color="accent" (click)="postGrado()"  >Guardar</button>
+        <button mat-button   color="accent" (click)="guardarGrado()"  >Guardar</button>
         <button mat-button  color="warn" (click)="closeGrado()"> <mat-icon>close</mat-icon> </button>
       </form>
   </mat-card-actions>

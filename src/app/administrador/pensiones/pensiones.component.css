@@ -1,0 +1,42 @@
+.texto{
+    text-align: justify
+}
+ .buscar{
+    width: 70%;
+} 
+.formBuscar{
+    width: 210px;
+    margin: auto;
+    margin-top: 16px;
+}
+.textAlign{
+    justify-content:start;
+}
+.centertext{
+    text-align: center;
+    font-size: 1.3em;
+}
+.marginTop{
+margin-top: 15px;
+}
+.mesclass{
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.mesLinea{
+    display: inline;
+    border: 0px;
+    padding: 0px;
+
+}
+@media screen and (max-width:750px) {
+    .formBuscar{
+        width: 90%;
+        margin-left: 10%;
+    }
+    .buscar{
+        width: 80%;
+    }
+       
+}

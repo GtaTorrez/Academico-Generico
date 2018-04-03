@@ -26,7 +26,8 @@ import {
   MatCheckboxModule,
   MatTooltipModule,
   MatPaginatorModule,
-  MatSortModule
+  MatSortModule,
+  MatGridListModule
 }                             from '@angular/material';
 
 import { MatMomentDateModule} from '@angular/material-moment-adapter'
@@ -56,7 +57,8 @@ import { MatMomentDateModule} from '@angular/material-moment-adapter'
     MatProgressSpinnerModule,
     MatChipsModule,
     MatTableModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatGridListModule
   ],
   exports: [
     LayoutModule,
@@ -81,7 +83,8 @@ import { MatMomentDateModule} from '@angular/material-moment-adapter'
     MatProgressSpinnerModule,
     MatChipsModule,
     MatTableModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatGridListModule
   ]
 })
 export class MaterialModule { }
