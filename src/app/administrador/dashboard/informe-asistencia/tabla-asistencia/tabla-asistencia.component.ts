@@ -128,8 +128,10 @@ export class TablaAsistenciaComponent implements OnInit {
       estado: ESTADO,
       observacion: observacion
     }
+    // this.service.get()
     this.service.create(data).subscribe(result => {
       console.log(result)
+      this.actualizar()
     })
     console.log(data)
   }

@@ -52,12 +52,15 @@ import { MatMomentDateModule} from '@angular/material-moment-adapter'
     MatSelectModule,
     MatRadioModule,
     MatDatepickerModule,
-    MatMomentDateModule,
     MatTabsModule,
     MatProgressSpinnerModule,
     MatChipsModule,
     MatTableModule,
     MatExpansionModule,
+    MatCheckboxModule,
+    MatTooltipModule,
+    MatPaginatorModule,
+    MatSortModule,
     MatGridListModule
   ],
   exports: [
@@ -78,12 +81,15 @@ import { MatMomentDateModule} from '@angular/material-moment-adapter'
     MatSelectModule,
     MatRadioModule,
     MatDatepickerModule,
-    MatMomentDateModule,
     MatTabsModule,
     MatProgressSpinnerModule,
     MatChipsModule,
     MatTableModule,
     MatExpansionModule,
+    MatCheckboxModule,
+    MatTooltipModule,
+    MatPaginatorModule,
+    MatSortModule,
     MatGridListModule
   ]
 })

@@ -24,15 +24,14 @@ export class AsistenciaService {
     return this.http.get(`${RESOURCE_URL}`)
   }
 
-  // getId(fields = 'ALL', id) : Observable<Object> {
-  //   const QUERY = `fields=${fields}`
-  //   return this.http.get(`${RESOURCE_URL}/${id}?${QUERY}`)
+  // getId(id) : Observable<Object> {
+  //   return this.http.get(`${RESOURCE_URL}/${id}`)
   // }
-  //
+
   create(data: any) : Observable<Object> {
     return this.http.post(`${RESOURCE_URL}`, JSON.stringify(data))
   }
-  
+
   update(data: any, id) : Observable<Object> {
     return this.http.put(`${RESOURCE_URL}/${id}`, JSON.stringify(data))
   }

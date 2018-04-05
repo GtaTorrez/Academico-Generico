@@ -39,7 +39,8 @@
           <div *ngIf="persona.marcas.includes(day.id)">
             <div *ngFor="let asistencia of persona.asistencias">
               <div *ngIf="(asistencia.atrasado === true) && asistencia.dia === day.id" class="yellow">&#x2713;</div>
-              <div *ngIf="(asistencia.atrasado === false) && asistencia.dia === day.id" class="green">&#x2713;</div>
+              <div *ngIf="(asistencia.atrasado === false) && asistencia.dia === day.id && asistencia.observacion === null" class="green">&#x2713;</div>
+              <div *ngIf="(asistencia.atrasado === false) && asistencia.dia === day.id && asistencia.observacion !== null" class="red"  [matTooltip]="asistencia.observacion" matTooltipPosition="above">Lic.</div>
             </div>
           </div>
 
