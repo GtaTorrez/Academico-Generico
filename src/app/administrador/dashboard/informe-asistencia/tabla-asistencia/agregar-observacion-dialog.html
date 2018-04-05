@@ -1,0 +1,12 @@
+<div class="container;text-align:center">
+  <h3>Licencia</h3>
+  <p>{{data.nombre}}</p>
+  <form>
+    <mat-form-field>
+      <input matInput placeholder="Detalle de la licencia" required [(ngModel)]="observacion" name="observacion">
+    </mat-form-field>
+
+    <button type="submit" mat-button color="default" (click)="cancelar()">Cancelar</button>
+    <button type="submit" mat-button color="primary" (click)="aceptar()">Aceptar</button>
+  </form>
+</div>

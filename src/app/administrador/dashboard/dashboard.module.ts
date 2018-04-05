@@ -13,7 +13,10 @@ import { DashboardRoutes }        from './dashboard.routes';
 import { DashboardComponent }     from './dashboard.component';
 
 import { InformeAsistenciaComponent } from './informe-asistencia/informe-asistencia.component';
-import { TablaAsistenciaComponent }   from './informe-asistencia/tabla-asistencia/tabla-asistencia.component';
+import {
+  TablaAsistenciaComponent,
+  AgregarObservacionDialog
+}                                     from './informe-asistencia/tabla-asistencia/tabla-asistencia.component';
 import { ReportesComponent }          from './informe-asistencia/reportes/reportes.component';
 
 import { AsistenciaService }          from './services/asistencia.service';
@@ -23,7 +26,10 @@ import { AsistenciaService }          from './services/asistencia.service';
 // import { ConfigService }           from '../../services/config.service';
 
 @NgModule({
-  entryComponents: [],
+  entryComponents: [
+    TablaAsistenciaComponent,
+    AgregarObservacionDialog
+  ],
   imports: [
     CommonModule,
     DashboardRoutes,
@@ -39,7 +45,8 @@ import { AsistenciaService }          from './services/asistencia.service';
     // Componentes secundarios
     InformeAsistenciaComponent,
     ReportesComponent,
-    TablaAsistenciaComponent
+    TablaAsistenciaComponent,
+    AgregarObservacionDialog
   ],
   providers: [
     AsistenciaService,

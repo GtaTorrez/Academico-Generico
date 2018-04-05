@@ -1,66 +1,80 @@
 <form>
-  <mat-form-field>
-    <input matInput placeholder="Mes" required [(ngModel)]="mesAsistencia" name="mesAsistencia">
-  </mat-form-field>
+<mat-form-field>
+  <input type="number" matInput placeholder="Año" required [(ngModel)]="anioAsistencia" name="anioAsistencia" (change)="actualizar()">
+</mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="Año" required [(ngModel)]="anioAsistencia" name="anioAsistencia">
+    <mat-select placeholder="Mes" [(value)]="mesAsistencia" (change)="actualizar()">
+      <mat-option value="01">Enero</mat-option>
+      <mat-option value="02">Febrero</mat-option>
+      <mat-option value="03">Marzo</mat-option>
+      <mat-option value="04">Abril</mat-option>
+      <mat-option value="05">Mayo</mat-option>
+      <mat-option value="06">Junio</mat-option>
+      <mat-option value="07">Julio</mat-option>
+      <mat-option value="08">Agosto</mat-option>
+      <mat-option value="09">Septiembre</mat-option>
+      <mat-option value="10">Octubre</mat-option>
+      <mat-option value="11">Noviembre</mat-option>
+      <mat-option value="12">Diciembre</mat-option>
+    </mat-select>
   </mat-form-field>
-
-  <button type="submit" mat-button color="primary" (click)="actualizar()">Actualizar</button>
 </form>
 
-<table border="0" cellpadding="0px" cellspacing="0px">
-  <thead>
-    <tr>
-      <th rowspan="2">N°</th>
-      <th rowspan="2" style="min-width:200px">Nombre</th>
-      <th [attr.colspan]="days.length">{{mesNombre}} {{anioNombre}}</th>
-      <th colspan="3">Total</th>
-    </tr>
-    <tr>
-      <th *ngFor="let day of days">{{day.id}}</th>
-      <th>Asistencias</th>
-      <th>Faltas</th>
-      <th>Atrasos</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let persona of dataSource; let i = index">
-      <td>{{i + 1}}</td>
-      <td>{{persona.nombre}}</td>
-      <td *ngFor="let day of days">
-        <!-- <div *ngIf="!persona.marcas.includes(day.id) && (day.nro <= 5)" class="red"></div>
-        <div *ngIf="!persona.marcas.includes(day.id) && (day.nro > 5)" class="white"></div> -->
+<mat-progress-bar color="primary" [mode]="loadingMode" value="0"></mat-progress-bar>
+<div class="container">
+  <table border="0" cellpadding="0px" cellspacing="0px">
+    <thead>
+      <tr>
+        <th rowspan="2">N°</th>
+        <th rowspan="2" style="min-width:200px">Nombre</th>
+        <th [attr.colspan]="days.length">{{mesNombre}} {{anioNombre}}</th>
+        <th colspan="3">Total</th>
+      </tr>
+      <tr>
+        <th *ngFor="let day of days">{{day.id}}</th>
+        <th>Asistencias</th>
+        <th>Faltas</th>
+        <th>Atrasos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let persona of dataSource; let i = index">
+        <td>{{i + 1}}</td>
+        <td style="text-align:left;padding-left:10px">{{persona.nombre}}</td>
+        <td *ngFor="let day of days">
+          <!-- <div *ngIf="!persona.marcas.includes(day.id) && (day.nro <= 5)" class="red"></div>
+          <div *ngIf="!persona.marcas.includes(day.id) && (day.nro > 5)" class="white"></div> -->
 
-        <div *ngIf="(day.nro > 5)" class="white"></div>
-        <div *ngIf="(day.nro <= 5)">
+          <div *ngIf="(day.nro > 5)" class="white"></div>
+          <div *ngIf="(day.nro <= 5)">
 
-          <div *ngIf="persona.marcas.includes(day.id)">
+            <div *ngIf="persona.marcas.includes(day.id)">
+              <div *ngFor="let asistencia of persona.asistencias">
+                <div *ngIf="(asistencia.atrasado === true) && asistencia.dia === day.id" class="red">&#x2713;</div>
+                <div *ngIf="(asistencia.atrasado === false) && asistencia.dia === day.id && asistencia.observacion === null" class="green">&#x2713;</div>
+                <div *ngIf="(asistencia.atrasado === false) && asistencia.dia === day.id && asistencia.observacion !== null" class="yellow"  [matTooltip]="asistencia.observacion" matTooltipPosition="above">Lic.</div>
+              </div>
+            </div>
+
+            <div *ngIf="!persona.marcas.includes(day.id)" class="red" (click)="agregarObservacion(day.id, persona)"></div>
+
+          </div>
+
+          <!-- <div *ngIf="persona.marcas.includes(day.id)">
             <div *ngFor="let asistencia of persona.asistencias">
               <div *ngIf="(asistencia.atrasado === true) && asistencia.dia === day.id" class="yellow">&#x2713;</div>
-              <div *ngIf="(asistencia.atrasado === false) && asistencia.dia === day.id && asistencia.observacion === null" class="green">&#x2713;</div>
-              <div *ngIf="(asistencia.atrasado === false) && asistencia.dia === day.id && asistencia.observacion !== null" class="red"  [matTooltip]="asistencia.observacion" matTooltipPosition="above">Lic.</div>
+              <div *ngIf="(asistencia.atrasado === false) && asistencia.dia === day.id" class="green">&#x2713;</div>
             </div>
-          </div>
-
-          <div *ngIf="!persona.marcas.includes(day.id)" class="red" (click)="agregarObservacion(day.id, persona)"></div>
-
-        </div>
-
-        <!-- <div *ngIf="persona.marcas.includes(day.id)">
-          <div *ngFor="let asistencia of persona.asistencias">
-            <div *ngIf="(asistencia.atrasado === true) && asistencia.dia === day.id" class="yellow">&#x2713;</div>
-            <div *ngIf="(asistencia.atrasado === false) && asistencia.dia === day.id" class="green">&#x2713;</div>
-          </div>
-        </div> -->
-      </td>
-      <td>{{persona.totalAsistencias}}</td>
-      <td>{{persona.totalFaltas}}</td>
-      <td>{{persona.totalAtrasos}}</td>
-    </tr>
-  </tbody>
-</table>
+          </div> -->
+        </td>
+        <td>{{persona.totalAsistencias}}</td>
+        <td>{{persona.totalFaltas}}</td>
+        <td>{{persona.totalAtrasos}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 <!-- <table border="0" cellpadding="5px" cellspacing="0px">
   <thead>
     <tr>

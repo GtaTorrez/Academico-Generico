@@ -1,6 +1,9 @@
+.container {
+  overflow: auto;
+}
+
 table, td, th {
   border: solid lightgrey 1px;
-  overflow: auto;
   text-align: center;
   // padding: 5px;
 }

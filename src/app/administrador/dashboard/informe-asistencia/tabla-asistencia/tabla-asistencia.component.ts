@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, Inject } from '@angular/core'
 import { Router }      from '@angular/router'
+
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 // // Servicios
 import {AsistenciaService} from '../../services/asistencia.service';
@@ -14,10 +16,10 @@ import * as moment from 'moment'
 moment.locale('es');
 
 @Component({
-  selector: 'tabla-asistencia',
-  inputs: ['dataSource:data-source', 'columns'],
+  selector:    'tabla-asistencia',
+  inputs:      ['dataSource:data-source', 'columns'],
   templateUrl: './tabla-asistencia.component.html',
-  styleUrls: ['./tabla-asistencia.component.scss']
+  styleUrls:   ['./tabla-asistencia.component.scss']
 })
 export class TablaAsistenciaComponent implements OnInit {
   columns    : Array<any>
@@ -28,9 +30,12 @@ export class TablaAsistenciaComponent implements OnInit {
   anioAsistencia = '2018'
   mesNombre = ''
   anioNombre = ''
+  loadingMode = 'determinate'
+
   constructor(
     // public router      : Router,
     private service:AsistenciaService,
+    public dialog: MatDialog
     // private reportService: ReportService
   ) { }
 
@@ -40,6 +45,7 @@ export class TablaAsistenciaComponent implements OnInit {
   }
 
   actualizar () {
+    this.loadingMode = 'indeterminate'
     const mes        = `${this.anioAsistencia}-${this.mesAsistencia}-01`
     this.mesNombre   = moment(mes).format('MMMM').toUpperCase()
     this.anioNombre  = moment(mes).format('YYYY').toUpperCase()
@@ -115,27 +121,57 @@ export class TablaAsistenciaComponent implements OnInit {
       })
       console.log("FINAL = ", personas)
       this.dataSource = personas
+      this.loadingMode = 'determinate'
     }, error => {
       console.log(error)
+      this.loadingMode = 'determinate'
     })
   }
 
   agregarObservacion (dia, persona) {
-    console.log("PERSONA = ", persona)
-    const ESTADO_CON_LICENCIA = 'Con Licencia'
-    const observacion = 'Faltó por baja médica.'
-    const data =  {
-      idPersona: persona.id,
-      idGestionAcademica: persona.idGestionAcademica,
-      fecha: moment(`${dia}-${this.mesAsistencia}-${this.anioAsistencia}`, 'DD/MM/YYYY').toDate(),
-      estado: ESTADO_CON_LICENCIA,
-      observacion: observacion
-    }
-    // this.service.get()
-    this.service.create(data).subscribe(result => {
-      console.log(result)
-      this.actualizar()
-    })
-    console.log(data)
+
+    let dialogRef = this.dialog.open(AgregarObservacionDialog, {
+      width: '250px',
+      data: { nombre: persona.nombre }
+    });
+
+    dialogRef.afterClosed().subscribe(observacion => {
+      if (observacion) {
+        const ESTADO_CON_LICENCIA = 'Con Licencia'
+        const data =  {
+          idPersona: persona.id,
+          idGestionAcademica: persona.idGestionAcademica,
+          fecha: moment(`${dia}-${this.mesAsistencia}-${this.anioAsistencia}`, 'DD/MM/YYYY').toDate(),
+          estado: ESTADO_CON_LICENCIA,
+          observacion: observacion
+        }
+        this.service.create(data).subscribe(result => {
+          console.log(result)
+          this.actualizar()
+        })
+        console.log(data)
+      }
+    });
   }
+}
+
+@Component({
+  selector: 'agregar-observacion-dialog',
+  templateUrl: 'agregar-observacion-dialog.html',
+})
+export class AgregarObservacionDialog {
+  observacion = ''
+
+  constructor(
+    public dialogRef: MatDialogRef<AgregarObservacionDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+
+  cancelar(): void {
+    this.dialogRef.close();
+  }
+
+  aceptar () {
+    this.dialogRef.close(this.observacion)
+  }
+
 }
