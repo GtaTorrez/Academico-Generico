@@ -49,6 +49,7 @@ tbody tr td:hover {
   width: 30px;
   height: 30px;
   padding-top: 10px;
+  cursor: pointer;
 }
 
 .white {
@@ -58,7 +59,38 @@ tbody tr td:hover {
   padding-top: 10px;
 }
 
-.marca {
-  padding: 0px;
-  margin: 0px;
+.static-title1 {
+  width: 50px;
+  height: 45px;
+  position: absolute;
+  background-color: #f2f2f2;
+}
+
+.static-title2 {
+  width: 260px;
+  height: 44px;
+  position: absolute;
+  background-color: #f2f2f2;
+  margin-left: 50px;
+}
+
+.static-data1 {
+  width: 50px;
+  height: 20px;
+  position: absolute;
+  background-color: white;
+  padding: 10px;
+}
+
+.static-data2 {
+  width: 250px;
+  height: 20px;
+  position: absolute;
+  background-color: white;
+  padding: 10px;
+  margin-left: 50px;
+}
+
+.static-space {
+  min-width: 298px;
 }

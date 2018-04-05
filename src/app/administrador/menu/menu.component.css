@@ -11,6 +11,7 @@
 }
 .menu{
     width: 100%;
+    cursor: pointer;
 }
 .active{
     background-color:  #198ee7;
@@ -19,4 +20,13 @@
 .menu:hover{
     background-color:  #ecf0f3;
     color: #000;
+}
+.mat-icon {
+  padding-right: 10px;
+}
+.mat-icon:hover {
+  cursor: pointer;
+}
+.sidenav {
+  border-right: solid lightgrey 1px;
 }
