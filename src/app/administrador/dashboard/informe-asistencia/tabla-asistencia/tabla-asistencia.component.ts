@@ -69,7 +69,7 @@ export class TablaAsistenciaComponent implements OnInit {
           nombre: (`${`${registro.idPersona.paterno} ${registro.idPersona.materno}`.trim()} ${registro.idPersona.nombre}`).trim(),
           totalAsistencias: 0,
           totalFaltas: diasHabiles,
-          totalAtrasos: 0,
+          totalLicencias: 0,
           asistencias: [],
           marcas : [],
           idGestionAcademica: registro.idGestionAcademica.id
@@ -112,6 +112,9 @@ export class TablaAsistenciaComponent implements OnInit {
             personas[i].asistencias.push(asistencia)
             if (asistencia.estado !== ESTADO_CON_LICENCIA) {
               personas[i].totalAsistencias += 1
+              personas[i].totalFaltas -= 1
+            } else {
+              personas[i].totalLicencias += 1
               personas[i].totalFaltas -= 1
             }
             personas[i].marcas.push(DIA)
