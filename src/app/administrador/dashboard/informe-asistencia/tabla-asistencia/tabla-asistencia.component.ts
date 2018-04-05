@@ -100,11 +100,14 @@ export class TablaAsistenciaComponent implements OnInit {
           estado: registro.estado,
           observacion: registro.observacion
         }
+        const ESTADO_CON_LICENCIA = 'Con Licencia'
         for (let i in personas) {
           if (personas[i].id === ID_PERSONA && asistencia.diaSemana <= 5) {
             personas[i].asistencias.push(asistencia)
-            personas[i].totalAsistencias += 1
-            personas[i].totalFaltas -= 1
+            if (asistencia.estado !== ESTADO_CON_LICENCIA) {
+              personas[i].totalAsistencias += 1
+              personas[i].totalFaltas -= 1
+            }
             personas[i].marcas.push(DIA)
             break;
           }
@@ -119,13 +122,13 @@ export class TablaAsistenciaComponent implements OnInit {
 
   agregarObservacion (dia, persona) {
     console.log("PERSONA = ", persona)
-    const ESTADO = 'Con Licencia'
+    const ESTADO_CON_LICENCIA = 'Con Licencia'
     const observacion = 'Faltó por baja médica.'
     const data =  {
       idPersona: persona.id,
       idGestionAcademica: persona.idGestionAcademica,
       fecha: moment(`${dia}-${this.mesAsistencia}-${this.anioAsistencia}`, 'DD/MM/YYYY').toDate(),
-      estado: ESTADO,
+      estado: ESTADO_CON_LICENCIA,
       observacion: observacion
     }
     // this.service.get()
