@@ -8,6 +8,10 @@ table, td, th {
   // padding: 5px;
 }
 
+table {
+  border: 0px;
+}
+
 .example-tooltip-host {
   display: inline-flex;
   align-items: center;
@@ -60,10 +64,11 @@ tbody tr td:hover {
 }
 
 .static-title1 {
-  width: 50px;
-  height: 45px;
+  width: 40px;
+  height: 44px;
   position: absolute;
   background-color: #f2f2f2;
+  z-index: 999
 }
 
 .static-title2 {
@@ -71,11 +76,11 @@ tbody tr td:hover {
   height: 44px;
   position: absolute;
   background-color: #f2f2f2;
-  margin-left: 50px;
+  margin-left: 52px;
 }
 
 .static-data1 {
-  width: 50px;
+  width: 30px;
   height: 20px;
   position: absolute;
   background-color: white;
@@ -88,9 +93,9 @@ tbody tr td:hover {
   position: absolute;
   background-color: white;
   padding: 10px;
-  margin-left: 50px;
+  margin-left: 52px;
 }
 
 .static-space {
-  min-width: 298px;
+  min-width: 300px;
 }

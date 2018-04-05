@@ -35,9 +35,9 @@
       <tr>
         <th></th>
         <th *ngFor="let day of days">{{day.id}}</th>
-        <th>Asistencias</th>
-        <th>Faltas</th>
-        <th>Licencias</th>
+        <th style="min-width:20px" matTooltip="Asistencias" matTooltipPosition="above">A</th>
+        <th style="min-width:20px" matTooltip="Faltas" matTooltipPosition="above">F</th>
+        <th style="min-width:20px" matTooltip="Licencias" matTooltipPosition="above">L</th>
       </tr>
     </thead>
     <tbody>
