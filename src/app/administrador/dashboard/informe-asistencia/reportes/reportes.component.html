@@ -1,0 +1,21 @@
+<div fxLayout="column" fxLayoutAlign="start start" class=container>
+  <h1 class="mat-display-1">Reportes</h1>
+  <mat-card class="tab-container">
+    <mat-card-content>
+      <mat-tab-group>
+        <mat-tab label="Administrativos">
+          <div class="tab-content">
+            <!-- https://www.npmjs.com/package/ng2-pdf-viewer -->
+            <pdf-viewer
+              [src]="'assets/archivo.pdf'"
+              [render-text]="true"
+              style="display: block;"
+              [autoresize]="true"
+              [original-size]="false"
+            ></pdf-viewer>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+  </mat-card>
+</div>

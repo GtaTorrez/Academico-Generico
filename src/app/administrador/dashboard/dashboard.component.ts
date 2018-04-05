@@ -30,7 +30,8 @@ export class DashboardComponent implements OnInit {
     // this.usuario.nombre = DataService.getSession().usuario.nombre
     // const SESSION = DataService.getSession()
 
-    this.addMenuItem({ path: '/dashboard/informeasistencia', name: 'Informe de asistencia' })
+    // this.addMenuItem({ path: '/dashboard/informeasistencia', name: 'Informe de asistencia' })
+    // this.addMenuItem({ path: '/dashboard/reportes',          name: 'Reportes' })
 
     // for(let i in SESSION.usuario.roles) {
     //   const rol = SESSION.usuario.roles[i]
@@ -48,7 +49,7 @@ export class DashboardComponent implements OnInit {
   }
 
   logout() {
-    this.router.navigate(['login'])
+    // this.router.navigate(['login'])
     // this.authService.logout()
   }
 }

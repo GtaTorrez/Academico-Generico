@@ -18,8 +18,6 @@ import { EstudianteGuard }         from './login/estudiante.guard'
 import { LoadersService }          from './loader/loaders.service';
 import { LoadComponent }           from './loader/load/load.component';
 
-import { DashboardModule }         from './dashboard/dashboard.module';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,8 +31,7 @@ import { DashboardModule }         from './dashboard/dashboard.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     MaterialModule,
-    FlexLayoutModule,
-    DashboardModule
+    FlexLayoutModule
   ],
   providers: [
     LoginService,

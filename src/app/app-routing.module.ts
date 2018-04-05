@@ -12,8 +12,7 @@ const routes: Routes = [
   { path: 'login', component:LoginComponent},
   { path: 'administrador',    canActivate: [AdminGuard],      loadChildren: './administrador/administrador.module#AdministradorModule' },
   { path: 'estudiantes',      canActivate: [EstudianteGuard], loadChildren: './estudiantes/estudiantes.module#EstudiantesModule' },
-  { path: 'asistencia', loadChildren: './controlasistencia/controlasistencia.module#ControlasistenciaModule' },
-  { path: 'dashboard',  loadChildren: './dashboard/dashboard.module#DashboardModule' }
+  { path: 'asistencia', loadChildren: './controlasistencia/controlasistencia.module#ControlasistenciaModule' }
 ];
 
 @NgModule({

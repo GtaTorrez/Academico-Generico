@@ -11,7 +11,6 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
 import { CursosLayoutComponent } from './cursos-layout/cursos-layout.component';
 import { PensionesComponent } from './pensiones/pensiones.component';
 
-
 const routes: Routes = [
   {path:'',redirectTo:'menu',pathMatch:'full'},
   {path:'menu',component:MenuComponent,children:[
@@ -23,7 +22,8 @@ const routes: Routes = [
     {path:'ajuste',component:CursosComponent},
     {path:'cursos',component:CursosLayoutComponent},
     {path:'usuarios',component:UsuariosComponent},
-    {path:'pensiones',component:PensionesComponent}
+    {path:'pensiones',component:PensionesComponent},
+    {path:'asistencias', loadChildren: './dashboard/dashboard.module#DashboardModule' }
   ]}
 ];
 

@@ -35,11 +35,11 @@ export class AdministradorService {
   getPersonaPorIdentificacion(identificacion:number):Observable<any>{
     return this.http.get(this.baseUrl+"/persona?identificacion="+identificacion);
   }
-  
+
   // tutores
   getTutorEstudiate(id):Observable<any>{
     return this.http.get(this.baseUrl+"/alumno/tutores/"+id)
-    
+
   }
   postTutor(data):Observable<any>{
     return this.http.post(this.baseUrl+"/alumno/adicionar_tutor",data,{headers:this.headers})
@@ -87,7 +87,7 @@ export class AdministradorService {
   }
 
 
-  //grupo 
+  //grupo
   getGrupo():Observable<any>{
     return this.http.get(this.baseUrl+"/grupo");
   }
@@ -209,20 +209,18 @@ export class AdministradorService {
   getUsuario():Observable<any>{
     return this.http.get(this.baseUrl+"/usuario");
   }
-  
+
   deleteUsuarioId(id):Observable<any>{
     return this.http.delete(this.baseUrl+"/usuario/"+id);
   }
 
-
-//alumno asistencia 
-
+  //alumno asistencia
   getAsistenciaAlumno(id){
     return this.http.get(this.baseUrl+`/asistencia/historial_alumno/${id}`);
   }
 
-//pensiones
+  //pensiones
   getPensionesPadre(id){
     return this.http.get(this.baseUrl+`/pension/pension_por_tutor/${id}`);
-    }
+  }
 }
