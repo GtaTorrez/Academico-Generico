@@ -12,6 +12,8 @@ import { Global as Config } from './../../../config/global';
 import * as moment from 'moment'
 
 const RESOURCE_URL = `${Config.BASE_URL}:${Config.port}/asistencia`
+// const REPORT_URL   = `${Config.BASE_URL}:${Config.port}/reporte`
+const REPORT_URL   = `http://localhost:4000/reporte`
 
 @Injectable()
 export class AsistenciaService {
@@ -23,7 +25,14 @@ export class AsistenciaService {
   getAsistencias() : Observable<Object> {
     return this.http.get(`${RESOURCE_URL}`)
   }
-
+  getReporte(idPersona) : Observable<Object> {
+    // return this.http.get(`${REPORT_URL}/asistencia/individual`)
+    return this.http.get(`${REPORT_URL}/asistencia/individual/${idPersona}`, { responseType: "blob" })
+  }
+  getReporteGeneral() : Observable<Object> {
+    // return this.http.get(`${REPORT_URL}/asistencia/general`)
+    return this.http.get(`${REPORT_URL}/asistencia/general`, { responseType: "blob" })
+  }
   // getId(id) : Observable<Object> {
   //   return this.http.get(`${RESOURCE_URL}/${id}`)
   // }

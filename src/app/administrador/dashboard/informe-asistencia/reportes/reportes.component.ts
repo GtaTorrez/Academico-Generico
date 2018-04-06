@@ -6,7 +6,7 @@ import { Router }      from '@angular/router'
 // import { DataService } from '../../services/data/data.service'
 
 @Component({
-  selector: 'app-reportes',
+  selector: 'reportes',
   templateUrl: './reportes.component.html',
   styleUrls: ['./reportes.component.scss']
 })
@@ -14,6 +14,7 @@ import { Router }      from '@angular/router'
 export class ReportesComponent implements OnInit {
   usuario = { nombre: '' }
   pdfSrc: string = 'archivo.pdf';
+  codigo: string = ''
 
   constructor(
     // public router      : Router,
@@ -22,5 +23,8 @@ export class ReportesComponent implements OnInit {
 
   ngOnInit() {
     console.log("Reportes init")
+  }
+  aceptar () {
+
   }
 }

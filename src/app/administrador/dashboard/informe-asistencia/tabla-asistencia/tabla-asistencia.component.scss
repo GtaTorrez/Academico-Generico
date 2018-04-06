@@ -34,6 +34,14 @@ tbody tr td:hover {
   border: solid black 1px;
 }
 
+tbody tr td.no-select:hover {
+  border: solid lightgrey 1px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
 .green {
   background-color: #edffed;
   width: 30px;
@@ -47,13 +55,15 @@ tbody tr td:hover {
   height: 30px;
   padding-top: 10px;
 }
+.red:hover {
+  // border: solid black 1px;
+}
 
 .red {
   background-color: #ffd6d6;
   width: 30px;
   height: 30px;
   padding-top: 10px;
-  cursor: pointer;
 }
 
 .white {
