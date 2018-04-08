@@ -27,6 +27,7 @@ import { ListaCursosComponent } from './cursos-layout/lista-cursos/lista-cursos.
 import { ModalAddCurso } from './cursos-layout/modalAddCurso/modalAddCurso.component';
 import { PensionesComponent } from './pensiones/pensiones.component';
 import { PerfilPadresComponent } from './pensiones/perfil-padres/perfil-padres.component';
+
 @NgModule({
   imports: [
     CommonModule,
