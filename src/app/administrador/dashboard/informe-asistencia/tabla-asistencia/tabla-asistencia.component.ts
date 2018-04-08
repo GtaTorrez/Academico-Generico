@@ -61,6 +61,7 @@ export class TablaAsistenciaComponent implements OnInit {
           totalAsistencias : 0,
           totalFaltas      : diasHabiles,
           totalLicencias   : 0,
+          totalAtrasos     : 0,
           asistencias      : [],
           marcas           : [],
           idGestionAcademica: registro.idGestionAcademica.id
@@ -137,26 +138,35 @@ export class TablaAsistenciaComponent implements OnInit {
     } catch (err) { console.log(err) }
   }
 
-  agregarObservacion (dia, persona) {
+  editarObservacion (dia, persona, asistencia) {
     const DIA     = dia < 10 ? `0${dia}` : dia
     const FECHA   = moment(`${DIA}/${this.mesAsistencia}/${this.anioAsistencia}`, 'DD/MM/YYYY').format('LL')
     let dialogRef = this.dialog.open(AgregarObservacionDialog, {
-      data: { nombre: persona.nombre, fecha: FECHA }
+      data: { nombre: persona.nombre, fecha: FECHA, asistencia: asistencia }
     })
 
     dialogRef.afterClosed().subscribe(observacion => {
       if (observacion) {
-        const ESTADO_CON_LICENCIA = 'Con Licencia'
-        const data =  {
-          idPersona          : persona.id,
-          idGestionAcademica : persona.idGestionAcademica,
-          fecha              : moment(`${dia}-${this.mesAsistencia}-${this.anioAsistencia}`, 'DD/MM/YYYY').toDate(),
-          estado             : ESTADO_CON_LICENCIA,
-          observacion        : observacion
+        if (asistencia) {
+          const data =  {
+            observacion: observacion
+          }
+          this.service.update(data, asistencia.id).subscribe(result => {
+            this.actualizar()
+          })
+        } else {
+          const ESTADO_CON_LICENCIA = 'Con Licencia'
+          const data =  {
+            idPersona          : persona.id,
+            idGestionAcademica : persona.idGestionAcademica,
+            fecha              : moment(`${dia}-${this.mesAsistencia}-${this.anioAsistencia}`, 'DD/MM/YYYY').toDate(),
+            estado             : ESTADO_CON_LICENCIA,
+            observacion        : observacion
+          }
+          this.service.create(data).subscribe(result => {
+            this.actualizar()
+          })
         }
-        this.service.create(data).subscribe(result => {
-          this.actualizar()
-        })
       }
     })
   }
@@ -167,19 +177,29 @@ export class TablaAsistenciaComponent implements OnInit {
   templateUrl : 'agregar-observacion-dialog.html'
 })
 export class AgregarObservacionDialog {
-  observacion = ''
+  asistencia = {
+    observacion: ''
+  }
 
   constructor(
     public dialogRef: MatDialogRef<AgregarObservacionDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) { }
+
+  ngOnInit () {
+    if (this.data.asistencia) {
+      this.asistencia = this.data.asistencia
+    }
+    console.log("ASISTENCIA = ", this.asistencia)
+  }
 
   cancelar(): void {
     this.dialogRef.close();
   }
 
   aceptar () {
-    if (this.observacion !== '') {
-      this.dialogRef.close(this.observacion)
+    if (this.asistencia.observacion !== '') {
+      this.dialogRef.close(this.asistencia.observacion)
     }
   }
 }

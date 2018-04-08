@@ -4,7 +4,7 @@
      class="">
        -->
   <mat-sidenav  #sidenav mode="side" fxFlex="200px" fxFlex.lt-sm="200px"   [opened]="openside"
-     class="sidenav">
+     class="">
 
      <mat-list>
       <mat-list-item class="menu" routerLink="usuarios"    [routerLinkActive]="['active']"><mat-icon>people</mat-icon> USUARIOS </mat-list-item>
@@ -19,11 +19,10 @@
       <mat-list-item class="menu" routerLink="asistencias" [routerLinkActive]="['active']"><mat-icon>content_paste</mat-icon> Asistencia </mat-list-item>
     </mat-list>
 
-
     </mat-sidenav>
 
     <mat-sidenav-content fxFlex="100" fxFlex.lt-sm="100%" class="mat-elevation-z2">
-      <header  >
+      <header>
         <mat-toolbar class="mat-elevation-z2"  color="primary">
             <mat-toolbar-row >
               <span> <mat-icon (click)="cambio()"  >reorder</mat-icon> </span>  <span>Administrador</span>
