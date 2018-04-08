@@ -3,10 +3,16 @@
     top:85%;
     left: 90%;
 }
-.block{
-    width:80%;
+.blockAdd{
+    width:90%;
     margin: 0px auto;
     margin-top: 5%;
+}
+.block{
+    margin: 0px 16px;
+    margin-top: 5%;
+    margin-left: 16px !important;
+    
 }
 
 @media only screen and (max-width: 959px) {

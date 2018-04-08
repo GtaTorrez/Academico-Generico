@@ -1,12 +1,11 @@
 <div class="container">
-<mat-sidenav-container fxLayout="row" class="content"  >
+<mat-drawer-container fxLayout="row" class="content"  >
   <!-- <mat-sidenav  #sidenav [mode]=" mobileQuery.matches ? 'over' : 'side'" fxFlex="200px" fxFlex.lt-sm="200px"   [opened]="mobileQuery.matches"
      class="">
        -->
-  <mat-sidenav  #sidenav mode="side" fxFlex="200px" fxFlex.lt-sm="200px"   [opened]="openside"
-     class="">
+  <mat-drawer #drawer [mode]=" mobileQuery.matches ? 'over' : 'side'" [opened]="!mobileQuery.matches" fxFlex="200px" fxFlex.lt-sm="200px" class="sidenav">
 
-     <mat-list>
+     <mat-list (click)=" !mobileQuery.matches ? cambio() : drawer.toggle() ">
       <mat-list-item class="menu" routerLink="usuarios"    [routerLinkActive]="['active']"><mat-icon>people</mat-icon> USUARIOS </mat-list-item>
       <mat-list-item class="menu" routerLink="materias"    [routerLinkActive]="['active']"><mat-icon>class</mat-icon> Materias </mat-list-item>
       <mat-list-item class="menu" routerLink="profesores"  [routerLinkActive]="['active']"><mat-icon >perm_identity</mat-icon> Profesores </mat-list-item>
@@ -18,20 +17,19 @@
       <mat-list-item class="menu" routerLink="pensiones"   [routerLinkActive]="['active']"><mat-icon>monetization_on</mat-icon> Pensiones </mat-list-item>
       <mat-list-item class="menu" routerLink="asistencias" [routerLinkActive]="['active']"><mat-icon>content_paste</mat-icon> Asistencia </mat-list-item>
     </mat-list>
+    </mat-drawer>
 
-    </mat-sidenav>
-
-    <mat-sidenav-content fxFlex="100" fxFlex.lt-sm="100%" class="mat-elevation-z2">
-      <header>
+    <mat-drawer-content fxFlex="100" fxFlex.lt-sm="100%" class="mat-elevation-z2">
+      <header  >
         <mat-toolbar class="mat-elevation-z2"  color="primary">
             <mat-toolbar-row >
-              <span> <mat-icon (click)="cambio()"  >reorder</mat-icon> </span>  <span>Administrador</span>
+              <span> <mat-icon (click)="drawer.toggle()"  >reorder</mat-icon> </span>  <span>Administrador</span>
             </mat-toolbar-row>
         </mat-toolbar>
     </header>
 
       <router-outlet></router-outlet>
 
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+    </mat-drawer-content>
+  </mat-drawer-container>
 </div>
