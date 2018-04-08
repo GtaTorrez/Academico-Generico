@@ -35,25 +35,18 @@ export class MenuComponent implements OnInit,OnDestroy{
     this.subscription = this.loaderService.observableEstado.subscribe((data:boolean)=>{
       this.estado=data;
     })
-
+    this.loaderService.cambiarEstado(false);
   }
   ngOnInit() {
-    let a;
+    this.loaderService.cambiarEstado(false);
   
   }
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
     this.subscription.unsubscribe();
   }
-  cambio():boolean{
-    if(this.openside){
-      this.openside=false;
-    }else{
-      this.openside=true;
-    }
+  cambio(){
     
-    console.log("cambio"+"" +this.openside)
-    return this.openside 
   }
   
   cambiodePantalla(){

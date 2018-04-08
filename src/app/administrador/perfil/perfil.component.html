@@ -21,18 +21,31 @@
         <div fxFlex="340px"   >
           
           <table >
-          <tr><td>NOMBRE :</td> <td>{{persona.nombre | uppercase}}</td></tr>
-          <tr><td>PATERNO :</td> <td>{{persona.paterno| uppercase}}</td></tr>
-          <tr><td>MATERNO :</td> <td>{{persona.materno| uppercase}}</td></tr>
-          <tr><td>CI :</td> <td>{{persona.cedula }} {{persona.expedido| uppercase}} </td></tr>
-          <tr *ngIf="tipo==='estudiante'" ><td>Rude :</td> <td>{{persona.identificacion }}</td></tr>
-          <tr *ngIf="tipo==='profesor'" ><td>Item :</td> <td>{{persona.identificacion }}</td></tr>
-          <tr><td>SEXO :</td> <td>{{persona.sexo| uppercase}}</td></tr>
-          <tr *ngIf="persona.fechaNacimiento" ><td>FECHA DE NACIMIENTO :</td> <td><input matInput [matDatepicker]="myDatepicker" placeholder="" [(ngModel)]="persona.fechaNacimiento" name="fecnac" readonly>
-          </td></tr>
-          <tr><td>CELULAR :</td> <td>{{persona.celular}}</td></tr>
-          <tr *ngIf="persona.telefono"><td>TELEFONO :</td> <td>{{persona.telefono}}</td></tr>
-          <tr><td>EMAIL :</td> <td>{{persona.email}}</td></tr>
+          <tr>
+            <td rowspan="3"><mat-icon >account_box</mat-icon></td> 
+            <td>{{persona.nombre | uppercase}}</td></tr>
+          <tr>               <td>{{persona.paterno| uppercase}}</td></tr>
+          <tr>              <td>{{persona.materno| uppercase}}</td></tr>
+          <tr>
+            <td><mat-icon >credit_card</mat-icon></td> 
+            <td>{{persona.cedula }} {{persona.expedido| uppercase}} </td></tr>
+          <tr *ngIf="tipo==='estudiante'" >
+            <td> <mat-icon>perm_contact_calendar</mat-icon> </td> 
+            <td>{{persona.identificacion }}</td></tr>
+          <tr *ngIf="tipo==='profesor'" >
+            <td><mat-icon>perm_contact_calendar</mat-icon></td> 
+            <td>{{persona.identificacion }}</td></tr>
+          <tr>
+            <td><mat-icon>wc</mat-icon></td>  
+            <td>{{persona.sexo| uppercase}}</td></tr>
+          <tr *ngIf="persona.fechaNacimiento" >
+            <td> <mat-icon>event</mat-icon> </td> 
+            <td><input matInput [matDatepicker]="myDatepicker" placeholder="" [(ngModel)]="persona.fechaNacimiento" name="fecnac" readonly>
+            </td></tr>
+          <tr *ngIf="persona.telefono || persona.celular" ><td> <mat-icon>phone</mat-icon> </td> <td>{{persona.celular}} ó {{persona.telefono}} </td></tr>
+          <tr>
+            <td *ngIf="persona.email" > <mat-icon>email</mat-icon>  </td> 
+            <td>{{persona.email}}</td></tr>
 
           </table>
         </div>

@@ -19,5 +19,8 @@ export class AppComponent implements OnDestroy {
   ngOnDestroy(){
     this.subscription.unsubscribe();
   }
+  loadActive(){
+    this.loaderService.cambiarEstado(true)
+  }
 
 }

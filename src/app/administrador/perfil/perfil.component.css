@@ -8,8 +8,8 @@
     padding: 10px;
 }
 table tr td{
-    padding: 5px 0px 5px 5px;
-    width: 110px;
+    padding: 5px 0px 5px 16px;
+    width: auto;
 }
 
 

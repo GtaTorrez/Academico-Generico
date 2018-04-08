@@ -45,6 +45,11 @@ export class MateriasComponent implements OnInit {
        this.consulta=false;
        this.loaderService.cambiarEstado(false);
        this.dataSource=this.asignaturas
+     },(err)=>{
+        console.log("**********")
+        console.log(err)
+        this.openSnackBar("Error de conexion con el servidor" ,"");
+        this.loaderService.cambiarEstado(false); 
      })
   }
 

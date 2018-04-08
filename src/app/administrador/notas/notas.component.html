@@ -1,6 +1,63 @@
-<section style="margin: 0px 20px;">
+<div fxLayout="row wrap" fxLayoutAlign="center" >
+  <div fxFlex="100"  > 
+    <mat-card class="selection" >
+      <table>
+        <tr>
+          <td>Turno</td>
+          <td>
+            <mat-radio-group [(ngModel)]="idTurno" #turno="ngModel" name="turno" required >
+              <mat-radio-button class="radio" *ngFor="let turno of turnos" [value]="turno.id">{{turno.nombre}}</mat-radio-button>
+            </mat-radio-group>
+          </td>
+        </tr>
+      <tr>
+        <td>Grados</td>
+        <td>
+          <mat-radio-group [(ngModel)]="idGrado" #grado="ngModel" name="grado" required >
+              <mat-radio-button class="radio" *ngFor="let grado of grados" [value]="grado.id">{{grado.nombre}}</mat-radio-button>
+          </mat-radio-group>
+        </td>
+      </tr>
+      <tr>
+        <td>Grupos</td>
+        <td>
+          <mat-radio-group [(ngModel)]="idGrupo" #grupo="ngModel" name="grupo" required >
+              <mat-radio-button class="radio" *ngFor="let grupo of grupos" [value]="grupo.id">{{grupo.nombre}}</mat-radio-button>
+          </mat-radio-group>
+        </td>
+      </tr>
+      <tr>
+        <td>Paralelos</td>
+        <td>
+          <mat-radio-group [(ngModel)]="idParalelo" #paralelo="ngModel"  name="paralelo" required >
+              <mat-radio-button class="radio" *ngFor="let paralelo of paralelos" [value]="paralelo.id">{{paralelo.nombre}}</mat-radio-button>
+          </mat-radio-group>
+        </td>
+      </tr>
+      </table>
+      <!-- <label>Turno</label>
+      <mat-radio-group [(ngModel)]="idTurno" #turno="ngModel" name="turno" required >
+          <mat-radio-button class="grado" *ngFor="let turno of turnos" [value]="turno.id">{{turno.nombre}}</mat-radio-button>
+      </mat-radio-group>
+      <br>
+  
+      <label>Grados</label>
+      <mat-radio-group [(ngModel)]="idGrado" #grado="ngModel" name="grado" required >
+          <mat-radio-button class="grado" *ngFor="let grado of grados" [value]="grado.id">{{grado.nombre}}</mat-radio-button>
+      </mat-radio-group>
+      <br>
+      <label>Grupos</label>  
+      <mat-radio-group [(ngModel)]="idGrupo" #grupo="ngModel" name="grupo" required >
+          <mat-radio-button class="grado" *ngFor="let grupo of grupos" [value]="grupo.id">{{grupo.nombre}}</mat-radio-button>
+      </mat-radio-group>
+      <br>
+      <label>Paralelos</label>
+      <mat-radio-group [(ngModel)]="idParalelo" #paralelo="ngModel"  name="paralelo" required >
+          <mat-radio-button class="radio" *ngFor="let paralelo of paralelos" [value]="paralelo.id">{{paralelo.nombre}}</mat-radio-button>
+      </mat-radio-group> -->
+  </mat-card>
+  </div>
+  <div fxFlex="100"  >
 
-    <h1 style="margin-top:20px">
-      Estamos trabajando en ello.... Upss...
-    </h1>
-  </section>
+  </div>
+</div> 

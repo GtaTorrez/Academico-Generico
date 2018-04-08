@@ -31,6 +31,7 @@ export class CursosLayoutComponent implements OnInit {
     this.getGrupos();
     this.getParalelos(); 
   }
+
   openModal() {
     this.dialog.open(ModalAddCurso, {
       width: '330px',height:'555px',
@@ -83,9 +84,10 @@ export class CursosLayoutComponent implements OnInit {
   getTurnos(){
     this.serve.getTurno().subscribe(data=>{
       this.turnos=data;
-      if(this.turnos.length>0){}
+      if(this.turnos.length>0){
         this.idTurnoActual=this.turnos[0].id
         this.getCursos(this.idTurnoActual)
+      }
     })
   }
 }
