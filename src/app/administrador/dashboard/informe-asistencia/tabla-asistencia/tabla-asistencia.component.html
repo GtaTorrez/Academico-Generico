@@ -31,6 +31,35 @@
   </div>
 </div>
 
+<div class="menu-top" fxLayout="row">
+  <div fxLayout="column" fxLayoutAlign="start start">
+    <div fxLayout="row" fxLayoutAlign="end end">
+      <form>
+        <mat-form-field>
+          <mat-select placeholder="Grupo" [(value)]="idGrupo" (change)="actualizar()">
+            <mat-option *ngFor="let grupo of grupos" [value]="grupo.id">{{grupo.nombre}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select placeholder="Grado" [(value)]="idGrado" (change)="actualizar()">
+            <mat-option *ngFor="let grado of grados" [value]="grado.id">{{grado.nombre}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select placeholder="Turno" [(value)]="idTurno" (change)="actualizar()">
+            <mat-option *ngFor="let turno of turnos" [value]="turno.id">{{turno.nombre}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select placeholder="Paralelo" [(value)]="idParalelo" (change)="actualizar()">
+            <mat-option *ngFor="let paralelo of paralelos" [value]="paralelo.id">{{paralelo.nombre}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
+    </div>
+   </div>
+</div>
+
 <mat-progress-bar color="primary" [mode]="loadingMode" value="0"></mat-progress-bar>
 <div class="container">
   <table border="0" cellpadding="0px" cellspacing="0px">
@@ -46,10 +75,10 @@
       <tr>
         <th></th>
         <th *ngFor="let day of days">{{day.id}}</th>
-        <th style="min-width:20px" matTooltip="Asistencias" matTooltipPosition="above">AS</th>
-        <th style="min-width:20px" matTooltip="Faltas" matTooltipPosition="above">FA</th>
-        <th style="min-width:20px" matTooltip="Licencias" matTooltipPosition="above">LI</th>
-        <th style="min-width:20px" matTooltip="Atrasos" matTooltipPosition="above">AT</th>
+        <th style="min-width:20px" matTooltip="Asistencias" matTooltipPosition="above">As</th>
+        <th style="min-width:20px" matTooltip="Faltas" matTooltipPosition="above">Fa</th>
+        <th style="min-width:20px" matTooltip="Licencias" matTooltipPosition="above">Li</th>
+        <th style="min-width:20px" matTooltip="Atrasos" matTooltipPosition="above">At</th>
       </tr>
     </thead>
     <tbody>
@@ -62,7 +91,7 @@
           <div *ngIf="(day.nro <= 5)">
             <div *ngIf="persona.marcas.includes(day.id)">
               <div *ngFor="let asistencia of persona.asistencias">
-                <!-- <div *ngIf="(asistencia.atrasado === true) && asistencia.dia === day.id" class="red">&#x2713;</div> -->
+                <div *ngIf="(asistencia.atrasado === true) && asistencia.dia === day.id" class="yellow">&#x2713;</div>
                 <div *ngIf="(asistencia.atrasado === false) && asistencia.dia === day.id && asistencia.observacion === null" class="green">&#x2713;</div>
                 <div *ngIf="(asistencia.atrasado === false) && asistencia.dia === day.id && asistencia.observacion !== null" class="red pointer" [matTooltip]="asistencia.observacion" matTooltipPosition="above" (click)="editarObservacion(day.id, persona, asistencia)">&#x2713;</div>
               </div>

@@ -11,7 +11,6 @@ moment.locale('es')
 
 @Component({
   selector:    'tabla-asistencia',
-  inputs:      ['dataSource:data-source', 'columns'],
   templateUrl: './tabla-asistencia.component.html',
   styleUrls:   ['./tabla-asistencia.component.scss']
 })
@@ -26,13 +25,41 @@ export class TablaAsistenciaComponent implements OnInit {
   anioNombre     = ''
   loadingMode    = 'determinate'
 
+  idGrupo    = 1
+  idGrado    = 1
+  idTurno    = 1
+  idParalelo = 1
+
+  turnos    = []
+  grados    = []
+  grupos    = []
+  paralelos = []
+
   constructor(
     private service : AsistenciaService,
     public  dialog  : MatDialog
   ) { }
 
   ngOnInit() {
-    this.actualizar()
+    this.turnos    = []
+    this.grados    = []
+    this.grupos    = []
+    this.paralelos = []
+    function add (list, element) {
+      let exist = false
+      list.forEach(obj => { if (obj.id === element.id) { exist = true } })
+      if (!exist) { list.push(element) }
+    }
+    this.service.getCursos().subscribe((result:any) => {
+      result.forEach(registro => {
+        add(this.turnos, registro.idTurno)
+        add(this.grados, registro.idGrado)
+        add(this.grupos, registro.idGrupo)
+        add(this.paralelos, registro.idParalelo)
+      })
+      this.paralelos.sort((a, b) => { return a.nombre.localeCompare(b.nombre) })
+      this.actualizar()
+    })
   }
 
   actualizar () {
@@ -51,7 +78,7 @@ export class TablaAsistenciaComponent implements OnInit {
         diasHabiles += 1
       }
     }
-    this.service.getAsistencias().subscribe((result:any) => {
+    this.service.getAsistencias(this.idTurno, this.idGrado, this.idGrupo, this.idParalelo).subscribe((result:any) => {
       const personas = []
       result.forEach(registro => {
         const NOMBRE = `${`${registro.idPersona.paterno} ${registro.idPersona.materno}`.trim()} ${registro.idPersona.nombre}`.trim()
@@ -108,6 +135,7 @@ export class TablaAsistenciaComponent implements OnInit {
           }
         }
       })
+      personas.sort((a, b) => { return a.nombre.localeCompare(b.nombre) })
       this.dataSource  = personas
       this.loadingMode = 'determinate'
     }, error => {
@@ -123,7 +151,7 @@ export class TablaAsistenciaComponent implements OnInit {
   }
 
   printGeneral () {
-    this.service.getReporteGeneral().subscribe((data:any) => {
+    this.service.getReporteGeneral(this.idTurno, this.idGrado, this.idGrupo, this.idParalelo).subscribe((data:any) => {
       this.downloadFile(data, 'Reporte general de asistencia.pdf')
     },
     error => console.log(error))
@@ -159,7 +187,7 @@ export class TablaAsistenciaComponent implements OnInit {
           const data =  {
             idPersona          : persona.id,
             idGestionAcademica : persona.idGestionAcademica,
-            fecha              : moment(`${dia}-${this.mesAsistencia}-${this.anioAsistencia}`, 'DD/MM/YYYY').toDate(),
+            fecha              : moment(`${DIA}/${this.mesAsistencia}/${this.anioAsistencia}`, 'DD/MM/YYYY').toDate(),
             estado             : ESTADO_CON_LICENCIA,
             observacion        : observacion
           }

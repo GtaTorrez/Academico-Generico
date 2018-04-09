@@ -11,9 +11,11 @@ import { Global as Config } from './../../../config/global';
 
 import * as moment from 'moment'
 
-const RESOURCE_URL = `${Config.BASE_URL}:${Config.port}/asistencia`
+const BASE           = `${Config.BASE_URL}:${Config.port}`
+const ASISTENCIA_URL = `${BASE}/asistencia`
+const CURSOS_URL     = `${BASE}/curso`
 // const REPORT_URL   = `${Config.BASE_URL}:${Config.port}/reporte`
-const REPORT_URL   = `http://localhost:4000/reporte`
+const REPORT_URL     = `http://localhost:4000/reporte`
 
 @Injectable()
 export class AsistenciaService {
@@ -22,34 +24,42 @@ export class AsistenciaService {
     private http: HttpClient
   ) {}
 
-  getAsistencias() : Observable<Object> {
-    return this.http.get(`${RESOURCE_URL}`)
+  getCursos () {
+    return this.http.get(`${CURSOS_URL}`)
   }
+
+  getAsistencias(idTurno, idGrado, idGrupo, idParalelo) : Observable<Object> {
+    // return this.http.get(`${ASISTENCIA_URL}?idTurno=${idTurno}&idGrado=${idGrado}&idGrupo=${idGrupo}&idParalelo=${idParalelo}`)
+    return this.http.get(`${ASISTENCIA_URL}`)
+  }
+
   getReporte(idPersona) : Observable<Object> {
     // return this.http.get(`${REPORT_URL}/asistencia/individual`)
     return this.http.get(`${REPORT_URL}/asistencia/individual/${idPersona}`, { responseType: "blob" })
   }
-  getReporteGeneral() : Observable<Object> {
+
+  getReporteGeneral(idTurno, idGrado, idGrupo, idParalelo) : Observable<Object> {
     // return this.http.get(`${REPORT_URL}/asistencia/general`)
     return this.http.get(`${REPORT_URL}/asistencia/general`, { responseType: "blob" })
+    // return this.http.get(`http://192.168.0.102:1337/reportes/output.pdf`, { responseType: "blob" })
   }
   // getId(id) : Observable<Object> {
-  //   return this.http.get(`${RESOURCE_URL}/${id}`)
+  //   return this.http.get(`${ASISTENCIA_URL}/${id}`)
   // }
 
   create(data: any) : Observable<Object> {
-    return this.http.post(`${RESOURCE_URL}`, JSON.stringify(data))
+    return this.http.post(`${ASISTENCIA_URL}`, JSON.stringify(data))
   }
 
   update(data: any, id) : Observable<Object> {
-    return this.http.put(`${RESOURCE_URL}/${id}`, JSON.stringify(data))
+    return this.http.put(`${ASISTENCIA_URL}/${id}`, JSON.stringify(data))
   }
   //
   // delete(id) : Observable<Object> {
-  //   return this.http.delete(`${RESOURCE_URL}/${id}`)
+  //   return this.http.delete(`${ASISTENCIA_URL}/${id}`)
   // }
   //
   // restore(id) : Observable<Object> {
-  //   return this.http.put(`${RESOURCE_URL}/${id}/restaurar`, null)
+  //   return this.http.put(`${ASISTENCIA_URL}/${id}/restaurar`, null)
   // }
 }
