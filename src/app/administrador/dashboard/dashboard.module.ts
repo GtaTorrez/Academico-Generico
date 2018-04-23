@@ -8,6 +8,7 @@ import { MaterialModule }         from '../../material.module';
 import { FlexLayoutModule }       from '@angular/flex-layout';
 
 import { PdfViewerModule }        from 'ng2-pdf-viewer';
+import { PdfmakeModule }          from 'ng-pdf-make';
 
 import { DashboardRoutes }        from './dashboard.routes';
 import { DashboardComponent }     from './dashboard.component';
@@ -37,7 +38,8 @@ import { AsistenciaService }          from './services/asistencia.service';
     ReactiveFormsModule,
     MaterialModule,
     FlexLayoutModule,
-    PdfViewerModule
+    PdfViewerModule,
+    PdfmakeModule
   ],
   declarations: [
     // componente principal
