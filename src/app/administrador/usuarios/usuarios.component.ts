@@ -23,14 +23,15 @@ export class UsuariosComponent implements OnInit {
     private serve:AdministradorService,
     private notificacion:MatSnackBar
   ) { }
-  buscarEstudiante(){
+  
+  buscarUsuario(){
     this.consulta=true;
     this.action="ver"
-    if(this.busca==="CI"){
+    console.log(this.parametro)
       this.serve.getPersonaPorCi(this.parametro).subscribe((data:any[]) =>{
         console.log(data)
         if(data.length>0){
-          if(data[0].rol==="alumno"){
+          if(data[0].rol==="administrativo" || data[0].rol==="superAdmin"){
             this.profesorEdit=data[0];
             if (this.profesorEdit) {
             }
@@ -46,24 +47,7 @@ export class UsuariosComponent implements OnInit {
       },err=>{
         this.AbrirNotificacion("Error con la consulta","")
       })
-    }else{
-      if(this.busca==="Rude"){
-        this.serve.getPersonaPorIdentificacion(this.parametro).subscribe(data=>{
-          console.log(data)
-          if(data[0].rol==="alumno"){
-            this.profesorEdit=data[0];
-            if (this.profesorEdit) {
-              }
-            this.AbrirNotificacion("Datos encontrados","Aceptar")          
-          }else{
-            this.AbrirNotificacion("No es un estudiante","")  
-          }
-          this.consulta=false;
-        },err=>{
-          this.AbrirNotificacion("Error con la consulta","")
-        })
-      }
-    }
+    
     
   }
   AbrirNotificacion(message: string,action:string) {
@@ -87,6 +71,12 @@ export class UsuariosComponent implements OnInit {
     this.profesorEdit=profesor;
     this.action='ver';
     
+  }
+  editar(){
+    this.action='editar';
+  }
+  cancelar(){
+    this.action='ver';
   }
   guardarP(){
     this.consulta=true;

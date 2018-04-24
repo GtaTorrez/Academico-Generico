@@ -30,3 +30,8 @@
 .sidenav {
   border-right: solid lightgrey 1px ;
 }
+.containerRouter{
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+}

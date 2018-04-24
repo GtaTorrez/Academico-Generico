@@ -38,7 +38,8 @@ import { Turno, Grado,Grupo,Curso,Paralelo} from '../../modelos/grupo';
         this.serve.postCurso(datos).subscribe(data=>{
             if(data.id){
                 console.log(data);
-                alert('datos subidos')
+                this.dialogRef.close("post")
+              
             }
         })
     }

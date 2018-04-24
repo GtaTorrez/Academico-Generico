@@ -1,38 +1,46 @@
+<div class="container">
 
+  
+  
+  <div fxFlex.lt-md="90" fxFlexOffset.lt-md="5" class="block ">
+      
+    <h1 class="titulo" >Materias</h1>
+    <mat-card>
 
-<div fxFlex.lt-md="90" fxFlexOffset.lt-md="5" class="block mat-elevation-z2">
-  <mat-table #table [dataSource]="dataSource">
-    <ng-container matColumnDef="sigla">
-      <mat-header-cell *matHeaderCellDef>Sigla </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.sigla}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="materia">
-      <mat-header-cell *matHeaderCellDef> Materia </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.nombre}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="editar">
-      <mat-header-cell *matHeaderCellDef> Editar </mat-header-cell>
-      <mat-cell *matCellDef="let element"> 
-        <button mat-icon-button color="accent" (click)="editar(element)">
-          <mat-icon> edit</mat-icon>
-        </button>  
-      </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="borrar">
-      <mat-header-cell *matHeaderCellDef> Borrar </mat-header-cell>
-      <mat-cell *matCellDef="let element"> 
-        <button mat-icon-button color="warn" (click)="eliminar(element)" >
-          <mat-icon>delete_forever</mat-icon>
-        </button>  
-      </mat-cell>
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
+      <mat-table #table [dataSource]="dataSource">
+        <ng-container matColumnDef="sigla">
+          <mat-header-cell *matHeaderCellDef>Sigla </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.sigla}} </mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="materia">
+          <mat-header-cell *matHeaderCellDef> Materia </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.nombre}} </mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="editar">
+          <mat-header-cell *matHeaderCellDef> Editar </mat-header-cell>
+          <mat-cell *matCellDef="let element"> 
+            <button mat-icon-button color="accent" (click)="editar(element)">
+              <mat-icon> edit</mat-icon>
+            </button>  
+          </mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="borrar">
+          <mat-header-cell *matHeaderCellDef> Borrar </mat-header-cell>
+          <mat-cell *matCellDef="let element"> 
+            <button mat-icon-button color="warn" (click)="eliminar(element)" >
+              <mat-icon>delete_forever</mat-icon>
+            </button>  
+          </mat-cell>
+        </ng-container>
+    
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </mat-card>
+  </div>
 </div>
 
 <div class="buttonAdd" >

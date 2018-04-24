@@ -10,11 +10,12 @@
 }
 .block{
     margin: 0px 16px;
-    margin-top: 5%;
     margin-left: 16px !important;
     
 }
-
+.center{
+margin: 0px auto;
+}
 @media only screen and (max-width: 959px) {
     .buttonAdd{
         left: 80%;

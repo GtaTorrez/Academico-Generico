@@ -22,7 +22,8 @@
         "styles.css",
         "theme.scss",
         "../node_modules/roboto-fontface/css/roboto/sass/roboto-fontface.scss",
-        "../node_modules/material-design-icons/iconfont/material-icons.css"
+        "../node_modules/material-design-icons/iconfont/material-icons.css",
+        "../node_modules/dragula/dist/dragula.css"
       ],
       "scripts": [
         "../node_modules/moment/min/moment.min.js"

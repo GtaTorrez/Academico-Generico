@@ -5,7 +5,7 @@
     width: 70%;
 } 
 .formBuscar{
-    width: 210px;
+    width: 250px;
     margin: auto;
     margin-top: 16px;
 }
@@ -28,8 +28,29 @@ margin-top: 15px;
     display: inline;
     border: 0px;
     padding: 0px;
-
 }
+.nombre{
+    width: 50%;
+}
+.ciVer{
+    width: 25%;
+}
+.centerElement{
+    display: block;
+    margin: 0px auto;
+}
+.ci{
+    text-align: center;
+}
+
+.tableEst{
+    margin-top: 16px;
+    width: 100%;
+    border-style: solid;
+    border-color: gray;
+    border-spacing: 1px;
+}
+
 @media screen and (max-width:750px) {
     .formBuscar{
         width: 90%;

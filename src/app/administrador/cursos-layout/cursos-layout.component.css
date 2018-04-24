@@ -3,6 +3,20 @@
     top:85%;
     left: 90%;
 }
+.container{
+    padding: 20px;
+}
+.turnos{
+    margin:16px 5px; 
+}
+.options{
+    margin: 0px auto;
+    padding: 20px;   
+}
+.option{
+    display: block;
+    float: left;
+}
 @media screen and (max-width:750px) {
     .buttonAdd{
         

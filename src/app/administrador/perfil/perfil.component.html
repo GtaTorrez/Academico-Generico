@@ -22,29 +22,32 @@
           
           <table >
           <tr>
-            <td rowspan="3"><mat-icon >account_box</mat-icon></td> 
+            <td rowspan="3"><mat-icon >account_box</mat-icon> Nombre(s) </td> 
             <td>{{persona.nombre | uppercase}}</td></tr>
           <tr>               <td>{{persona.paterno| uppercase}}</td></tr>
           <tr>              <td>{{persona.materno| uppercase}}</td></tr>
           <tr>
-            <td><mat-icon >credit_card</mat-icon></td> 
+            <td><mat-icon >credit_card</mat-icon> Cédula</td> 
             <td>{{persona.cedula }} {{persona.expedido| uppercase}} </td></tr>
           <tr *ngIf="tipo==='estudiante'" >
-            <td> <mat-icon>perm_contact_calendar</mat-icon> </td> 
+            <td> <mat-icon>perm_contact_calendar</mat-icon> Rude </td> 
             <td>{{persona.identificacion }}</td></tr>
           <tr *ngIf="tipo==='profesor'" >
-            <td><mat-icon>perm_contact_calendar</mat-icon></td> 
+            <td><mat-icon>perm_contact_calendar</mat-icon> Item</td> 
             <td>{{persona.identificacion }}</td></tr>
           <tr>
-            <td><mat-icon>wc</mat-icon></td>  
+            <td><mat-icon>wc</mat-icon> Género</td>  
             <td>{{persona.sexo| uppercase}}</td></tr>
           <tr *ngIf="persona.fechaNacimiento" >
-            <td> <mat-icon>event</mat-icon> </td> 
+            <td> <mat-icon>event</mat-icon> <span>Nacimiento</span></td> 
             <td><input matInput [matDatepicker]="myDatepicker" placeholder="" [(ngModel)]="persona.fechaNacimiento" name="fecnac" readonly>
             </td></tr>
-          <tr *ngIf="persona.telefono || persona.celular" ><td> <mat-icon>phone</mat-icon> </td> <td>{{persona.celular}} ó {{persona.telefono}} </td></tr>
+          <tr *ngIf="persona.telefono || persona.celular" >
+            <td> <mat-icon>phone</mat-icon> Celular </td> 
+            <td>{{persona.celular}} ó {{persona.telefono}} </td></tr>
           <tr>
-            <td *ngIf="persona.email" > <mat-icon>email</mat-icon>  </td> 
+            <td *ngIf="persona.email" > 
+              <mat-icon>email</mat-icon> Email </td> 
             <td>{{persona.email}}</td></tr>
 
           </table>

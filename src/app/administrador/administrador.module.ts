@@ -27,6 +27,8 @@ import { ListaCursosComponent } from './cursos-layout/lista-cursos/lista-cursos.
 import { ModalAddCurso } from './cursos-layout/modalAddCurso/modalAddCurso.component';
 import { PensionesComponent } from './pensiones/pensiones.component';
 import { PerfilPadresComponent } from './pensiones/perfil-padres/perfil-padres.component';
+import { ListaNotasComponent } from './notas/lista-notas/lista-notas.component';
+import { DragulaModule } from 'ng2-dragula';
 
 @NgModule({
   imports: [
@@ -36,7 +38,8 @@ import { PerfilPadresComponent } from './pensiones/perfil-padres/perfil-padres.c
     AdministradorRoutingModule,
     MaterialModule,
     FlexLayoutModule,
-    NgxQRCodeModule
+    NgxQRCodeModule,
+    DragulaModule
   ],
   declarations: [MenuComponent,
     MateriasComponent,
@@ -59,7 +62,8 @@ import { PerfilPadresComponent } from './pensiones/perfil-padres/perfil-padres.c
     ListaCursosComponent,
     ModalAddCurso,
     PensionesComponent,
-    PerfilPadresComponent
+    PerfilPadresComponent,
+    ListaNotasComponent
   ],
   entryComponents : [MateriasComponent,Modal,ModalP,ModalAddCurso],
   providers       : [AdministradorService]

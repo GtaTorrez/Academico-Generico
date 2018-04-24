@@ -1,24 +1,40 @@
 <div fxLayout="row wrap"  >
 <div fxFlex="100"  >
-  <div  class="formBuscar">
+  <form  class="formBuscar">
     <mat-form-field class="buscar">
-      <input type="number" matInput [(ngModel)]="cedulaIdentidad" placeholder="Cédula de identidad " aria-label="Number"  >
+      <input type="number" matInput [(ngModel)]="cedulaIdentidad" [ngModelOptions]="{standalone: true}" placeholder="Cédula de identidad " aria-label="Number"  >
     </mat-form-field>
-    <button mat-icon-button color="primary" (click)="buscar()" ><mat-icon>search</mat-icon> </button>
-  </div>
+    <button mat-icon-button color="primary" type="submit" (click)="buscar()" ><mat-icon>search</mat-icon> </button>
+  </form>
 </div> 
 <div *ngIf="data" fxFlex="100" fxLayout="row wrap">
   <div fxFlex="50"  fxLayout="row wrap" fxFlex.lt-md="100"  >
     <div fxFlex="100">
       <mat-card fxFlex="90" fxFlexOffset="5"  >
+          Tutor
         <app-perfil-padres
         [persona]="data.idPersona"
         >
         </app-perfil-padres>
       </mat-card>
     </div>
-    <div fxFlex="90" fxFlexOffset="5">
-      <mat-table class="marginTop mat-elevation-z2" #table [dataSource]="dataSource">
+    <mat-card fxFlex="90" fxFlexOffset="5">
+        Estudiante(s)
+
+        <table class="tableEst">
+          <tr>
+              <th class="nombre">Nombre</th>
+              <th class="ciVer">Ci</th>
+              <th class="ciVer">Pensiones</th>
+          </tr>
+          <tr *ngFor="let element of dataSource" >
+            <td>{{element.idPersona.nombre}} {{element.idPersona.paterno}} {{element.idPersona.materno}}</td>
+            <td class="ci">{{element.idPersona.cedula}}</td>
+            <td (click)="verPension(element)"> <mat-icon class="centerElement">visibility</mat-icon> </td>
+          </tr>
+        </table>
+
+      <!-- <mat-table class="marginTop mat-elevation-z2" #table [dataSource]="dataSource">
           <ng-container  matColumnDef="nombre">
             <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
             <mat-cell class="buscar" *matCellDef="let element"> {{element.idPersona.nombre}} {{element.idPersona.paterno}} {{element.idPersona.materno}}</mat-cell>
@@ -36,8 +52,8 @@
 
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
           <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-        </mat-table>
-    </div>
+        </mat-table> -->
+    </mat-card>
   </div>
   <div *ngIf="pensiones" fxFlex="50" fxFlex.lt-md="100" >
     <div fxFlex="90 " fxFlex.lt-md="100" fxFlexOffset="5" fxFlexOffset.lt-md="0" >
@@ -46,7 +62,7 @@
           Pagos por meses
         </mat-card-title>
         <mat-grid-list cols="2" rowHeight="60px" class="mat-elavation-z3 " >
-          <mat-grid-tile  *ngFor="let mes of pensiones" [style.background]="mes.pago ? '#35f799':'#f55448' "  >
+          <mat-grid-tile  *ngFor="let mes of pensiones" [style.background]="mes.pago ? '#35f799':'#b0b0b059' "  >
             <div class="mesclass">
                 <button mat-icon-button class="mesLinea" > <mat-icon> {{ mes.pago ? 'attach_money':'money_off'}} </mat-icon>  </button>
                 <h3 class="mesLinea">

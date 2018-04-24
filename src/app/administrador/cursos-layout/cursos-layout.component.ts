@@ -12,7 +12,7 @@ import { Curso,Paralelo,Grado,Grupo,Turno } from '../modelos/grupo';
 export class CursosLayoutComponent implements OnInit {
 
   idTurnoActual:number;
-    
+  consulta:boolean=false;
   turnos:Turno[];
   grados:Grado[];
   grupos:Grupo[];
@@ -33,7 +33,7 @@ export class CursosLayoutComponent implements OnInit {
   }
 
   openModal() {
-    this.dialog.open(ModalAddCurso, {
+    let dialogRef=this.dialog.open(ModalAddCurso, {
       width: '330px',height:'555px',
       data: {
         animal: 'panda',
@@ -44,6 +44,13 @@ export class CursosLayoutComponent implements OnInit {
         grados:this.grados
       }
     });
+    dialogRef.afterClosed().subscribe(data=>{
+      if(data==="post"){
+        this.getCursos(this.idTurnoActual)
+        this.AbrirNotificacion("Datos guardados","");
+      }
+
+    })
   }
   cambioCursos(id){
     this.getCursos(id)
@@ -52,43 +59,55 @@ export class CursosLayoutComponent implements OnInit {
   AbrirNotificacion(mensaje:string,action:string){
     this.notificaciones.open(mensaje,action,{
       duration:1000
-    })
+    });
   }
   getCursos(id){
+    this.consulta=true;
     this.serve.getCursoTurno(id).subscribe((data:Curso)=>{
       if(data){
         this.cursos=data;
-        console.log(data)
       }else{
         this.AbrirNotificacion("","");
-      }    
+      }
+      this.consulta=false;    
     },err=>{
       this.AbrirNotificacion("Error de conexion","");
-    })
+    });
   }
   getParalelos(){
+    this.consulta=true;
     this.serve.getParalelo().subscribe(data=>{
       this.paralelos=data;
-    })
+      this.consulta=false;
+    },err=>{
+      this.consulta=false;
+      this.AbrirNotificacion("Error de conexion","");
+    });
   }
   getGrupos(){
+    this.consulta=true;
     this.serve.getGrupo().subscribe(data=>{
       this.grupos=data;
-    })
+      this.consulta=false;
+    });
   } 
   getGrados(){
+    this.consulta=true;
     this.serve.getGrado().subscribe(data=>{
       this.grados=data;
-    })
+      this.consulta=false;
+    });
   }
   getTurnos(){
+    this.consulta=true;
     this.serve.getTurno().subscribe(data=>{
       this.turnos=data;
+      this.consulta=false;
       if(this.turnos.length>0){
         this.idTurnoActual=this.turnos[0].id
         this.getCursos(this.idTurnoActual)
       }
-    })
+    });
   }
 }
 

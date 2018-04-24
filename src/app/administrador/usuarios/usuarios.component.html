@@ -1,19 +1,11 @@
 
 <div class="top" fxLayout="row wrap" fxLayoutAlign="center"  >
-  <div fxFlex="100%" >     
-    
-        <mat-radio-group class="center" [(ngModel)]="busca" name="search" >
-          <mat-radio-button class="radiobtn" *ngFor="let buscar of buscaPor" [value]="buscar">{{buscar}}</mat-radio-button>
-        </mat-radio-group>
-    
-  </div>
   <div fxFlex="100%" fxFlexAlign="end">
       <form  class="formBuscar">
           <mat-form-field class="buscar">
-            <input type="text" matInput placeholder="Buscar por " aria-label="Number"  >
+            <input type="text" matInput [(ngModel)]="parametro" name="parametro" placeholder="Ingrese la cédula " aria-label="Number"  >
           </mat-form-field>
-          <button mat-icon-button color="primary"  (click)="buscarEstudiante()" ><mat-icon>search</mat-icon> </button>
-          <button mat-fab color="primary">Buscar</button>
+          <button mat-icon-button color="primary"  (click)="buscarUsuario()" ><mat-icon>search</mat-icon> </button>
         </form>
   </div>  
   
