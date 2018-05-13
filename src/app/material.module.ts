@@ -28,7 +28,8 @@ import {
   MatPaginatorModule,
   MatSortModule,
   MatGridListModule,
-  MatStepperModule
+  MatStepperModule,
+  MatButtonToggleModule
 }                             from '@angular/material';
 
 import { MatMomentDateModule} from '@angular/material-moment-adapter'
@@ -63,7 +64,8 @@ import { MatMomentDateModule} from '@angular/material-moment-adapter'
     MatPaginatorModule,
     MatSortModule,
     MatGridListModule,
-    MatStepperModule
+    MatStepperModule,
+    MatButtonToggleModule
   ],
   exports: [
     LayoutModule,
@@ -93,7 +95,8 @@ import { MatMomentDateModule} from '@angular/material-moment-adapter'
     MatPaginatorModule,
     MatSortModule,
     MatGridListModule,
-    MatStepperModule
+    MatStepperModule,
+    MatButtonToggleModule
   ]
 })
 export class MaterialModule { }

@@ -1,0 +1,22 @@
+.container{
+    padding: 16px;
+    max-width: 100%;
+    height: 100% !important;
+}
+.nombre{
+	width: 50%;
+	font-size: 0.93em;
+}
+.profesor{
+	width: 50%;
+	font-size: 0.7em;
+}
+
+.asignaturas{
+    width: 200px;
+    height: 100%;
+
+}
+.titulo{
+    text-align: center;
+}

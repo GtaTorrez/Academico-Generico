@@ -44,6 +44,7 @@ export class CursosLayoutComponent implements OnInit {
         grados:this.grados
       }
     });
+    
     dialogRef.afterClosed().subscribe(data=>{
       if(data==="post"){
         this.getCursos(this.idTurnoActual)

@@ -223,4 +223,7 @@ export class AdministradorService {
   getPensionesPadre(id){
     return this.http.get(this.baseUrl+`/pension/pension_por_tutor/${id}`);
   }
+
+  //para horario
+  
 }

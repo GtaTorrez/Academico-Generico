@@ -28,7 +28,8 @@ import { ModalAddCurso } from './cursos-layout/modalAddCurso/modalAddCurso.compo
 import { PensionesComponent } from './pensiones/pensiones.component';
 import { PerfilPadresComponent } from './pensiones/perfil-padres/perfil-padres.component';
 import { ListaNotasComponent } from './notas/lista-notas/lista-notas.component';
-import { DragulaModule } from 'ng2-dragula';
+import { ShowHorarioComponent } from './horarios/show-horario/show-horario.component';
+import { NgDragDropModule } from 'ng-drag-drop';
 
 @NgModule({
   imports: [
@@ -39,7 +40,8 @@ import { DragulaModule } from 'ng2-dragula';
     MaterialModule,
     FlexLayoutModule,
     NgxQRCodeModule,
-    DragulaModule
+    NgDragDropModule.forRoot()
+    
   ],
   declarations: [MenuComponent,
     MateriasComponent,
@@ -63,7 +65,8 @@ import { DragulaModule } from 'ng2-dragula';
     ModalAddCurso,
     PensionesComponent,
     PerfilPadresComponent,
-    ListaNotasComponent
+    ListaNotasComponent,
+    ShowHorarioComponent
   ],
   entryComponents : [MateriasComponent,Modal,ModalP,ModalAddCurso],
   providers       : [AdministradorService]

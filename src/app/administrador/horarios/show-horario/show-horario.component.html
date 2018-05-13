@@ -1,0 +1,53 @@
+<table class="tabla">
+    <caption><h3>{{curso}}</h3></caption>
+   <thead>
+     <tr>
+       <th>Periodo</th>
+       <th *ngFor="let dia of dias">{{dia.nombre}}</th>
+     </tr>
+   </thead>
+   <tbody>
+     <tr *ngFor="let campo of horario.periodos ; let i = index  ; async" >
+      <td class="campo">{{campo.HoraIni}} - {{campo.HoraFin}}</td>
+      <td droppable (onDrop)="onMateriaDrop($event,i)
+      " class="campo">
+        <div>
+        {{campo.lunes.nombreMateria}}
+        <span class="profesor">
+          {{campo.lunes.docente}}
+        </span>
+        </div>
+      </td>
+      <td droppable (onDrop)="onMateriaDrop($event,i)"  class="campo">
+        {{campo.martes.nombreMateria != "" ? campo.martes.nombreMateria:"Sin asignar" }}
+        <span class="profesor">
+          {{campo.martes.docente!==''?campo.martes.docente:'Sin asignar'}}
+        </span> 
+      </td>
+      <td droppable (onDrop)="onMateriaDrop($event,i)" class="campo">
+        {{campo.miercoles.nombreMateria != "" ? campo.miercoles.nombreMateria:"Sin asignar"}}
+          <span class="profesor">
+            {{campo.miercoles.docente!==''?campo.miercoles.docente:'Sin asignar'}}
+          </span>
+      </td>
+      <td droppable (onDrop)="onMateriaDrop($event,i)" class="campo">
+        {{campo.jueves.nombreMateria != "" ? campo.jueves.nombreMateria:"Sin asignar"}}
+        <span class="profesor">
+          {{campo.jueves.docente!==''?campo.jueves.docente:'Sin asignar'}}
+        </span>  
+      </td>
+      <td droppable (onDrop)="onMateriaDrop($event,i)" class="campo">
+        {{campo.viernes.nombreMateria != "" ? campo.viernes.nombreMateria:"Sin asignar"}}
+        <span class="profesor">
+          {{campo.viernes.docente!==''?campo.viernes.docente:'Sin asignar'}}
+        </span>  
+      </td>
+      <td droppable (onDrop)="onMateriaDrop($event,i)" class="campo">
+        {{campo.sabado.nombreMateria != "" ? campo.sabado.nombreMateria:"Sin asignar"}}
+        <span class="profesor">
+          {{campo.sabado.docente!==''?campo.sabado.docente:'Sin asignar'}}
+        </span>  
+      </td>
+     </tr>
+   </tbody>
+ </table>

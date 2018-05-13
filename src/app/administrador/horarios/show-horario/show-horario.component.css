@@ -1,0 +1,25 @@
+.tabla{
+    background-color: white;
+    width: 100%;
+    
+}
+.tabla,th,td{
+    border: 1px solid rgb(218, 215, 215);
+    border-collapse: collapse;
+    vertical-align: middle;    
+}
+
+.campo{
+    text-align: center;
+    height: 50px;
+    width: 110px;
+    /* border: 1px solid gray; */
+}
+.profesor{
+font-size: 0.7em;
+
+}
+span.profesor::before{
+    content: '\A'; white-space: pre;
+
+}
