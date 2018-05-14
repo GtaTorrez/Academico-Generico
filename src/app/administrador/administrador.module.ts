@@ -30,6 +30,8 @@ import { PerfilPadresComponent } from './pensiones/perfil-padres/perfil-padres.c
 import { ListaNotasComponent } from './notas/lista-notas/lista-notas.component';
 import { ShowHorarioComponent } from './horarios/show-horario/show-horario.component';
 import { NgDragDropModule } from 'ng-drag-drop';
+import { ListaEstudiantesComponent } from './estudiantes/lista-estudiantes/lista-estudiantes.component';
+import { SelectorCursoComponent } from './selector-curso/selector-curso.component';
 
 @NgModule({
   imports: [
@@ -66,7 +68,9 @@ import { NgDragDropModule } from 'ng-drag-drop';
     PensionesComponent,
     PerfilPadresComponent,
     ListaNotasComponent,
-    ShowHorarioComponent
+    ShowHorarioComponent,
+    ListaEstudiantesComponent,
+    SelectorCursoComponent
   ],
   entryComponents : [MateriasComponent,Modal,ModalP,ModalAddCurso],
   providers       : [AdministradorService]

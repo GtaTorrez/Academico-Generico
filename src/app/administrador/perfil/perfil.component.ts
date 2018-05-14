@@ -6,6 +6,7 @@ import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-mome
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import {AdministradorService} from '../administrador.service';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
+import {Global} from '../../config/global'
 
 @Component({
   selector: 'app-perfil',
@@ -37,6 +38,8 @@ export class PerfilComponent implements OnInit,OnDestroy,DoCheck {
 
   form: FormGroup;
   loading: boolean = false;
+
+
   @ViewChild('fileInput') fileInput: ElementRef;
 
   constructor(

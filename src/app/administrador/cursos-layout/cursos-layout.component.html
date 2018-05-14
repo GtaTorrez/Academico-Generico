@@ -9,7 +9,7 @@
         <mat-radio-button  class="turnos" *ngFor="let turno of turnos" [value]="turno.id" (click)="cambioCursos(turno.id)">{{turno.nombre}}</mat-radio-button>
     </mat-radio-group>
 
-    <div fxFlex="100">
+    <div fxFlex="100" >
         <app-lista-cursos 
         *ngIf="idTurnoActual" 
         [idTurno]="idTurnoActual"

@@ -66,58 +66,67 @@ export class HorariosComponent implements OnInit {
 
   getMaterias(){
     this.consulta=true;
-     let data=this.serve.getMateria().subscribe(datos=>{
-       this.materias=datos;
-       this.consulta=false;
-     },(err)=>{
-        console.log("**********")
-        console.log(err)
-        this.openSnackBar("Error de conexion con el servidor" ,"");
-     })
+     // let data=this.serve.getMateria().subscribe(datos=>{
+     //   this.materias=datos;
+     //   this.consulta=false;
+     // },(err)=>{
+     //    console.log("**********")
+     //    console.log(err)
+     //    this.openSnackBar("Error de conexion con el servidor" ,"");
+     // });
      this.materias=[
       {
       ​"idMateria"​: ​1​,
       ​"sigla"​: ​"Mat"​,
-      ​"nombre"​: ​"Matematica"
+      ​"nombre"​: ​"Matematica",
+      "docente":""
       },
       {
       ​"idMateria"​: ​4​,
       ​"sigla"​: ​"Filo"​,
-      ​"nombre"​: ​"Filosofia"
+      ​"nombre"​: ​"Filosofia",
+      "docente":""
       },
       {
       ​"idMateria"​: ​3​,
       ​"sigla"​: ​"Edu-Fis"​,
-      ​"nombre"​: ​"Educacion Fisica"
+      ​"nombre"​: ​"Educacion Fisica",
+      "docente":""
       },{
       ​"idMateria"​: 2​,
       ​"sigla"​: ​"Fis"​,
-      ​"nombre"​: ​"Fisica"
+      ​"nombre"​: ​"Fisica",
+      "docente":""
       },
       {
       ​"idMateria"​: ​4​,
       ​"sigla"​: ​"QMC"​,
-      ​"nombre"​: ​"Quimica"
+      ​"nombre"​: ​"Quimica",
+      "docente":""
       },
       {
       ​"idMateria"​: ​3​,
       ​"sigla"​: ​"CIV"​,
-      ​"nombre"​: ​"Civica"
+      ​"nombre"​: ​"Civica",
+      "docente":""
       },
       {
       ​"idMateria"​: ​1​,
       ​"sigla"​: ​"Cs. Sc"​,
-      ​"nombre"​: ​"Sociales"
+      ​"nombre"​: ​"Sociales",
+      "docente":""
       },
       {
       ​"idMateria"​: ​4​,
       ​"sigla"​: ​"Geo"​,
-      ​"nombre"​: ​"Geografia"
+      ​"nombre"​: ​"Geografia",
+      "docente":""
       },
       {
       ​"idMateria"​: ​3​,
       ​"sigla"​: ​"MUS"​,
-      ​"nombre"​: ​"Musica"
+      ​"nombre"​: ​"Musica",
+      "docente":""
       }
       ]
   }
