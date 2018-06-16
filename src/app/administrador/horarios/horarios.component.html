@@ -4,25 +4,22 @@
       Seccion de las materias
     </section>
     <div fxFlex="100" fxFlexAlign="start start"  >
-      <mat-drawer-container class="container">
+      <h2>
+        Materias
+      </h2>
+      <mat-drawer-container >
         <mat-drawer class="asignaturas" mode="side" opened="true">
-          <h2>
-            Materias
-          </h2>
           <mat-list>
-            <div draggable *ngFor="let materia of materias ; let  i = index ; async " [dragData]="materia">
+            <div draggable  *ngFor="let materia of materias ; let  i = index ; async " [dragData]="materia">
               <mat-list-item   >
-                <div class="nombre">
+                <div class="nombre"  >
                   {{materia.nombre}}                  
                 </div>
 
-                <mat-form-field class="profesor" [(ngModel)]="materias[i].docente" >
-                  <mat-select placeholder="Profesor" >
-                    <mat-option value="Jose Luis">Jose Luis</mat-option>
-                    <mat-option value="Juan Peres">Juan peres</mat-option>
-                    <mat-option value="Estaban Dido">Estaban Dido</mat-option>
-                    <mat-option value="Victorino tercero">Victorino tercero</mat-option>
-                    <mat-option value="Pascual peres">Pascual peres</mat-option>
+                <mat-form-field class="profesor"   >
+                  <mat-select  placeholder="Profesor" [(value)]="materia.profesor"  >
+                    <mat-option *ngFor="let prof of materia.profesores"  [value]="prof">{{prof.nombre}}</mat-option>
+                    
                   </mat-select>
                 </mat-form-field>
               </mat-list-item>

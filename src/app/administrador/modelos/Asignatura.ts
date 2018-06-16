@@ -1,4 +1,4 @@
-import { Profesor } from "./profesor";
+import { Persona } from "./persona";
 
 export class Asignatura{
      id:number=0;
@@ -7,10 +7,11 @@ export class Asignatura{
      docente:string;
 }
 
-export class CampoHorario{
+export class AsignaturaProfesor{
     idMateria:number;
     sigla:string;
     nombre:string;
-    profesor:Profesor;
-    docente:string;
+    profesores:any[];
+    profesor:any;
+
 }

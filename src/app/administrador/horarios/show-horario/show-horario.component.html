@@ -9,43 +9,43 @@
    <tbody>
      <tr *ngFor="let campo of horario.periodos ; let i = index  ; async" >
       <td class="campo">{{campo.HoraIni}} - {{campo.HoraFin}}</td>
-      <td droppable (onDrop)="onMateriaDrop($event,i)
+      <td droppable (onDrop)="onMateriaDrop($event,i,'lunes')
       " class="campo">
         <div>
         {{campo.lunes.nombreMateria}}
         <span class="profesor">
-          {{campo.lunes.docente}}
+          {{campo.lunes.docente ? campo.lunes.docente.nombre+ ' '+ campo.lunes.docente.paterno:"Sin asignar"}}
         </span>
         </div>
       </td>
-      <td droppable (onDrop)="onMateriaDrop($event,i)"  class="campo">
+      <td droppable (onDrop)="onMateriaDrop($event,i,'martes')"  class="campo">
         {{campo.martes.nombreMateria != "" ? campo.martes.nombreMateria:"Sin asignar" }}
         <span class="profesor">
-          {{campo.martes.docente!==''?campo.martes.docente:'Sin asignar'}}
+          {{campo.martes.docente ? campo.martes.docente.nombre +' '+ campo.martes.docente.nombre:'Sin asignar'}}
         </span> 
       </td>
-      <td droppable (onDrop)="onMateriaDrop($event,i)" class="campo">
+      <td droppable (onDrop)="onMateriaDrop($event,i,'miercoles')" class="campo">
         {{campo.miercoles.nombreMateria != "" ? campo.miercoles.nombreMateria:"Sin asignar"}}
           <span class="profesor">
-            {{campo.miercoles.docente!==''?campo.miercoles.docente:'Sin asignar'}}
+            {{campo.miercoles.docente?campo.miercoles.docente.nombre+' '+campo.miercoles.docente.paterno : 'Sin asignar'}}
           </span>
       </td>
-      <td droppable (onDrop)="onMateriaDrop($event,i)" class="campo">
+      <td droppable (onDrop)="onMateriaDrop($event,i,'jueves')" class="campo">
         {{campo.jueves.nombreMateria != "" ? campo.jueves.nombreMateria:"Sin asignar"}}
         <span class="profesor">
-          {{campo.jueves.docente!==''?campo.jueves.docente:'Sin asignar'}}
+          {{campo.jueves.docente ? campo.jueves.docente.nombre+' '+campo.jueves.docente.paterno :'Sin asignar'}}
         </span>  
       </td>
-      <td droppable (onDrop)="onMateriaDrop($event,i)" class="campo">
+      <td droppable (onDrop)="onMateriaDrop($event,i,'viernes')" class="campo">
         {{campo.viernes.nombreMateria != "" ? campo.viernes.nombreMateria:"Sin asignar"}}
         <span class="profesor">
-          {{campo.viernes.docente!==''?campo.viernes.docente:'Sin asignar'}}
+          {{campo.viernes.docente?campo.viernes.docente.nombre+' '+campo.viernes.docente.paterno :'Sin asignar'}}
         </span>  
       </td>
-      <td droppable (onDrop)="onMateriaDrop($event,i)" class="campo">
+      <td droppable (onDrop)="onMateriaDrop($event,i,'sabado')" class="campo">
         {{campo.sabado.nombreMateria != "" ? campo.sabado.nombreMateria:"Sin asignar"}}
         <span class="profesor">
-          {{campo.sabado.docente!==''?campo.sabado.docente:'Sin asignar'}}
+          {{campo.sabado.docente?campo.sabado.docente.nombre+' '+campo.sabado.docente.paterno:'Sin asignar'}}
         </span>  
       </td>
      </tr>

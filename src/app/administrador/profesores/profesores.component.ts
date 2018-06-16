@@ -81,8 +81,6 @@ export class ProfesoresComponent implements OnInit {
       console.log(data)
       if (data) {
         if(data.length > 0){
-          console.log('9999999')
-          console.log(data)
           this.materias=data;
         }else{
           this.materias=data;
@@ -106,6 +104,7 @@ export class ProfesoresComponent implements OnInit {
     this.profesorEdit=null;
     this.profesorEdit=profesor;
     this.action='ver';
+    console.log(profesor)
     this.getProfeDicta(this.profesorEdit.id)
   }
   editar(){
