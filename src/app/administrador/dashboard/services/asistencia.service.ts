@@ -2,9 +2,8 @@
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http'
 import { catchError, map, tap }                       from 'rxjs/operators'
 import { Injectable } from '@angular/core'
-import { Observable } from 'rxjs/Observable'
-import { of }         from 'rxjs/observable/of'
-import 'rxjs/add/observable/throw'
+import { Observable ,  of } from 'rxjs'
+
 
 // Servicios
 import { Global as Config } from './../../../config/global';
@@ -16,7 +15,7 @@ const ACTUALIZAR_URL = `${BASE}/asistencia`
 const ASISTENCIA_URL = `${BASE}/report/curso`
 const CURSOS_URL     = `${BASE}/curso`
 // const REPORT_URL   = `${Config.BASE_URL}:${Config.port}/reporte`
-const REPORT_URL     = `http://localhost:4000/reporte`
+const REPORT_URL     = `http://moswara.com:49000/reporte`
 
 @Injectable()
 export class AsistenciaService {

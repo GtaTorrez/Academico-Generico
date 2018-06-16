@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Socket } from 'ng-socket-io';
-import 'rxjs/add/operator/map';
+
 
 
 @Injectable()

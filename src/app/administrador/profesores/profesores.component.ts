@@ -3,9 +3,8 @@ import {Persona} from '../modelos/persona';
 import{Profesor} from '../modelos/profesor';
 import {AdministradorService} from '../administrador.service'
 import {FormControl} from '@angular/forms';
-import {Observable} from 'rxjs/Observable';
-import {startWith} from 'rxjs/operators/startWith';
-import {map} from 'rxjs/operators/map';
+import {Observable} from 'rxjs';
+import {startWith, map} from 'rxjs/operators';
 import {MatSnackBar} from '@angular/material';
 
 @Component({

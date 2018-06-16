@@ -1,6 +1,6 @@
 import {MediaMatcher} from '@angular/cdk/layout';
 import { Component, OnInit,OnDestroy,ChangeDetectorRef } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { LoadersService } from '../../loader/loaders.service';
 
 
