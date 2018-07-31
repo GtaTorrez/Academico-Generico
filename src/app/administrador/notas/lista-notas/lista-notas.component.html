@@ -1,0 +1,21 @@
+
+<!-- idPersona:1,nombre:"Ana", paterno:"paucara",materno:"torrez",notas:[64,45,87,98] -->
+<table matSort (matSortChange)="sortData($event)"  >
+  <tr>
+    <th matSortStart="asc" mat-sort-header="paterno">Paterno</th>
+    <th mat-sort-header="materno">Materno</th>
+    <th mat-sort-header="nombre">Nombre(s)</th>
+    <th mat-sort-header="bimestre1">Bimestre 1</th>
+    <th mat-sort-header="bimestre2">Bimestre 2</th>
+    <th mat-sort-header="bimestre3">Bimestre 3</th>
+    <th mat-sort-header="bimestre4">Bimestre 4</th>
+  </tr>
+
+  <tr *ngFor="let estudiante of sortedData">
+    <td>{{estudiante.paterno}}</td>
+    <td>{{estudiante.materno}}</td>
+    <td>{{estudiante.nombre}}</td>
+    <td *ngFor="let nota of estudiante.notas" class="notas">{{nota}}</td>
+    
+  </tr>
+</table>

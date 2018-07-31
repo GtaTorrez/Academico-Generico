@@ -1,12 +1,17 @@
 .content {
     width: 100%;
-    height: 90%;
+    height: 100%;
+}
+.container{
+    width: 100%;
+    height: 100%;
 }
 .colorprimario{
     background-color:  #a9d5f7f3;
 }
 .menu{
     width: 100%;
+    cursor: pointer;
 }
 .active{
     background-color:  #198ee7;
@@ -15,4 +20,18 @@
 .menu:hover{
     background-color:  #ecf0f3;
     color: #000;
+}
+.mat-icon {
+  padding-right: 10px;
+}
+.mat-icon:hover {
+  cursor: pointer;
+}
+.sidenav {
+  border-right: solid lightgrey 1px ;
+}
+.containerRouter{
+    padding: 20px;
+    width: 100%;
+    height: 100%;
 }

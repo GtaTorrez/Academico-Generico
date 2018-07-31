@@ -8,7 +8,8 @@ import { HorariosComponent } from './horarios/horarios.component';
 import { CursosComponent } from './cursos/cursos.component';
 import { NotasComponent } from './notas/notas.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
-
+import { CursosLayoutComponent } from './cursos-layout/cursos-layout.component';
+import { PensionesComponent } from './pensiones/pensiones.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'menu',pathMatch:'full'},
@@ -18,8 +19,11 @@ const routes: Routes = [
     {path:'estudiantes',component:EstudiantesComponent},
     {path:'horarios',component:HorariosComponent},
     {path:'notas',component:NotasComponent},
-    {path:'cursos',component:CursosComponent},
-    {path:'usuarios',component:UsuariosComponent}
+    {path:'ajuste',component:CursosComponent},
+    {path:'cursos',component:CursosLayoutComponent},
+    {path:'usuarios',component:UsuariosComponent},
+    {path:'pensiones',component:PensionesComponent},
+    {path:'asistencias', loadChildren: './dashboard/dashboard.module#DashboardModule' }
   ]}
 ];
 

@@ -3,9 +3,8 @@ import {Persona} from '../modelos/persona';
 import{Profesor} from '../modelos/profesor';
 import {AdministradorService} from '../administrador.service'
 import {FormControl} from '@angular/forms';
-import {Observable} from 'rxjs/Observable';
-import {startWith} from 'rxjs/operators/startWith';
-import {map} from 'rxjs/operators/map';
+import {Observable} from 'rxjs';
+import {startWith, map} from 'rxjs/operators';
 import {MatSnackBar} from '@angular/material';
 
 @Component({
@@ -81,8 +80,6 @@ export class ProfesoresComponent implements OnInit {
       console.log(data)
       if (data) {
         if(data.length > 0){
-          console.log('9999999')
-          console.log(data)
           this.materias=data;
         }else{
           this.materias=data;
@@ -106,6 +103,7 @@ export class ProfesoresComponent implements OnInit {
     this.profesorEdit=null;
     this.profesorEdit=profesor;
     this.action='ver';
+    console.log(profesor)
     this.getProfeDicta(this.profesorEdit.id)
   }
   editar(){

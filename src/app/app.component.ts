@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
-import { LoadersService }  from './loader/loaders.service';
-import { Subscription } from 'rxjs/Subscription';
+import { LoadersService }       from './loader/loaders.service';
+import { Subscription }         from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -15,9 +15,12 @@ export class AppComponent implements OnDestroy {
       this.estado=data;
     })
   }
-  
+
   ngOnDestroy(){
     this.subscription.unsubscribe();
+  }
+  loadActive(){
+    this.loaderService.cambiarEstado(true)
   }
 
 }

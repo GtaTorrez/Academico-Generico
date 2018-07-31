@@ -1,8 +1,10 @@
-
-
-<router-outlet class="fullwith"></router-outlet>
-<button><a routerLink="administrador">ADMINISTRADOR</a></button>
+<div class="contenedor"> 
+    <router-outlet class="fullwith"></router-outlet>
+    <app-load class="fullwith" ></app-load>
+</div>
+<button (click)="loadActive()" ><a routerLink="administrador">ADMINISTRADOR</a></button>
 <button><a routerLink="estudiantes">ESTUDIANTES</a></button>
 <button><a routerLink="asistencia">Asistencia</a></button>
+<button><a routerLink="dashboard">Dashboard</a></button>
 
-<app-load ></app-load>
+

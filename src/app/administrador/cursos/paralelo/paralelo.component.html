@@ -1,0 +1,25 @@
+<mat-card class="card">
+  <h2>Paralelo</h2>
+  <mat-card-content>
+    <mat-chip-list >
+      <div *ngFor="let paralelo of paralelos">
+        <mat-chip class="margin">{{paralelo.nombre}} 
+          <mat-icon class="paddingleft" (click)="edit(paralelo)" >edit</mat-icon>
+          <mat-icon color="warn" class="paddingleft" (click)="deleteParalelo(paralelo.id)" >close</mat-icon>
+        </mat-chip>                        
+      </div>
+    </mat-chip-list>
+  </mat-card-content>
+  <mat-card-actions>
+    
+    <button mat-button *ngIf="!swParalelo" color="accent" (click)="addParalelo()"> <mat-icon>add</mat-icon> </button>
+  <div *ngIf="swParalelo">
+    <mat-form-field class="ancho">
+      <input type="text"  matInput #nombrePr name="nombrePr" [(ngModel)]="paralelo.nombre" autocomplete="off"  placeholder="Paralelo " required>
+    </mat-form-field>
+    <button mat-button color="accent" (click)="guardar()"  >Guardar</button>
+    <button mat-button color="warn" (click)="closeParalelo()"> <mat-icon>close</mat-icon> </button>
+  </div>
+  </mat-card-actions>
+
+</mat-card>

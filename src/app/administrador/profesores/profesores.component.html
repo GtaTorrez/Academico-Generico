@@ -1,6 +1,5 @@
-<mat-toolbar color="primary">PROFESORES  </mat-toolbar>
 
-<div fxLayout="column  wrap" fxLayoutAlign="space-around center"  >
+<div class="top" fxLayout="column  wrap" fxLayoutAlign="space-around center"  >
     <mat-radio-group [(ngModel)]="busca" name="search" >
         <mat-radio-button class="radiobtn" *ngFor="let buscar of buscaPor" [value]="buscar">{{buscar}}</mat-radio-button>
       </mat-radio-group>
@@ -23,20 +22,12 @@
   <div fxFlex="50" fxFlexOffset="5"   *ngIf="profesorEdit" >
 
 
-    <h3 class="enlinea pullLeft"  >Profesor</h3>
-
-      <button mat-icon-button class="enlinea cancel" *ngIf="action==='nuevo' || action==='editar'" color="primary" (click)="cancelar()" ><mat-icon>arrow_back</mat-icon> </button>
-      <button mat-icon-button class="enlinea"  *ngIf="action==='nuevo' || action==='editar'" color="accent" (click)="guardarP()" ><mat-icon>save</mat-icon> </button>
-      <button mat-icon-button class="enlinea" *ngIf="action==='ver'" color="primary" (click)="editar()" ><mat-icon>edit</mat-icon> </button>
-      <button mat-icon-button class="enlinea" *ngIf="action==='nuevo' || action==='editar'" color="warn" (click)="cancelar()" ><mat-icon>delete_forever</mat-icon> </button>
-
-
     </div>
     <div fxFlex="85" fxFlexOffset="7" FxFill fxFlexAlign="start center" >
-      <mat-card>
+      <mat-card *ngIf="profesorEdit" >
           <mat-card-content>
             <app-perfil
-            *ngIf="profesorEdit" [persona]="profesorEdit"
+             [persona]="profesorEdit"
             [action]="action"
             [tipo]="tipo"
             (EnviarPersona)="guardarProfesor($event)"
@@ -46,6 +37,7 @@
             <app-materia
               [materias]="materias"
               [profesor]="profesorEdit"
+              (cargarMaterias)="getProfeDicta(profesorEdit.id)"
             >
             </app-materia>
 

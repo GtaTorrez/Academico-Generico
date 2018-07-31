@@ -3,6 +3,8 @@ import { Persona } from '../modelos/persona';
 import {AdministradorService} from '../administrador.service';
 import {MatSnackBar} from '@angular/material';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { Curso,Paralelo,Grado,Grupo,Turno } from '../modelos/grupo';
+import { Global} from "../../config/global";
 
 
 @Component({
@@ -14,6 +16,7 @@ export class EstudiantesComponent implements OnInit {
 
   consulta:boolean=false;
   estudiante:Persona;
+  estudiantes:Persona[]=[];
   tutores:Persona[];
   busca='CI';
   buscaPor=['CI','Rude'];
@@ -21,6 +24,17 @@ export class EstudiantesComponent implements OnInit {
   parametro:number;
   tipo='estudiante';
   qr:string;
+
+  turnos:Turno[];
+  grados:Grado[];
+  grupos:Grupo[];
+  paralelos:Paralelo[];
+
+  idParalelo:number;
+  idTurno:number;
+  idGrado:number;
+  idGrupo:number;
+
   constructor(
     private serve:AdministradorService,
     private notificacion:MatSnackBar,
@@ -31,6 +45,12 @@ export class EstudiantesComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.getTurnos();  
+    this.getGrados();
+    this.getGrupos();
+    this.getParalelos(); 
+
   }
   AbrirNotificacion(message: string,action:string) {
     this.notificacion.open(message,action,{
@@ -46,10 +66,46 @@ export class EstudiantesComponent implements OnInit {
     this.estudiante.rol="alumno";
       
   }
+  deletePersona(id){
+    this.serve.deletePersona(id).subscribe(data=>{
+      if(data){
+        this.AbrirNotificacion("Exito","Aceptar")
+      } 
+    },err=>{
+      this.AbrirNotificacion("Hubo un error","")
+    })
+  }
   getTutores(id){
     this.serve.getTutorEstudiate(id).subscribe(data=>{
       this.tutores=data;
     })
+  }
+  getParalelos(){
+    this.serve.getParalelo().subscribe(data=>{
+      this.paralelos=data;
+      this.idParalelo=data[0].id
+    })
+  }
+  getGrupos(){
+    this.serve.getGrupo().subscribe(data=>{
+      this.grupos=data;
+      this.idGrupo=data[0].id
+    })
+  } 
+  getGrados(){
+    this.serve.getGrado().subscribe(data=>{
+      this.grados=data;
+      this.idGrado=data[0].id
+    })
+  }
+  getTurnos(){
+    this.serve.getTurno().subscribe(data=>{
+      this.turnos=data;
+      this.idTurno=data[0].id
+    })
+  }
+  mostrarEstudiantes(data){
+    this.estudiantes=data;
   }
   buscarEstudiante(){
     this.consulta=true;
@@ -134,9 +190,15 @@ export class EstudiantesComponent implements OnInit {
   }
   verEstudiante(data){
     this.action="ver";
+    console.log(data);
     this.estudiante=data;
+    if(this.estudiante.img.indexOf(Global.BASE_URL)==-1){
+      this.estudiante.img=Global.BASE_URL+":"+Global.port+"/"+this.estudiante.img;
+    }
+
     if (this.estudiante) {
-      this.qr=this.estudiante.idenficacion;                        
+      this.qr=this.estudiante.idenficacion;
+      this.getTutores(this.estudiante.id);                        
     }
   }
   guardar(){

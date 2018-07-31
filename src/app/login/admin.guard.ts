@@ -6,18 +6,18 @@ export class AdminGuard implements CanActivate {
 
     constructor(
         private router:Router,
-        private login:LoginService        
+        private login:LoginService
     )
     {}
     canActivate():boolean{
-        let rol="admin";
+        // let rol="admin";
         return true;
-        //console.log(localStorage.getItem("rol"))
+        // console.log(localStorage.getItem("rol"))
         // if(rol===localStorage.getItem("rol")){
         //     return true;
         // }else{
         //     return false;
         // }
-         
-    }   
+
+    }
 }

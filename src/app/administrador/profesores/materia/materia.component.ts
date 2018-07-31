@@ -13,6 +13,10 @@ export class MateriaComponent implements OnInit {
   materiasLista: Asignatura[] ;
   @Input() materias: Asignatura[];
   @Input() profesor: Persona;
+  selectMateria:string;
+  adicionar:boolean=false;
+  @Output() cargarMaterias=new EventEmitter();
+
   constructor(
     private serve: AdministradorService
   ) { }
@@ -22,10 +26,35 @@ export class MateriaComponent implements OnInit {
       this.materiasLista=data;
     })
   }
-
-  eliminar(dato) {
-    this.serve.deleteMateria(dato.id).subscribe(res => {
+  adiciona(){
+    this.adicionar = this.adicionar ? false : true;
+    console.log(this.profesor);
+  }
+  guardar(){
+    let asignatura:Asignatura;
+    this.materiasLista.forEach(element => {
+      if(element.nombre==this.selectMateria){
+        asignatura=element
+      }
+    });
+    console.log(asignatura);
+    
+    let data={"idProfesor":this.profesor.id,"idAsignatura":asignatura.id};
+    this.serve.postProfesorAsignatura(data).subscribe(res=>{
       console.log(res);
+      if(res.idAsignatura===data.idAsignatura){
+        this.materias.push(asignatura);
+      }
+    })
+  }
+
+  eliminar(dato:Asignatura) {
+    let data={"idProfesor":this.profesor.id,"idAsignatura":dato.id};
+    this.serve.deleteProfesorAsignatura(data).subscribe(res => {
+      console.log(res);
+      if(res==="se quitó la materia con éxito"){
+        this.cargarMaterias.emit();
+      }
       // this.getMaterias();
       // this.openSnackBar('Realizado Corretamente','Aceptar');
     },err => {

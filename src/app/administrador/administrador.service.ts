@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import {Global} from '../config/global';
 @Injectable()
 export class AdministradorService {
@@ -35,11 +35,11 @@ export class AdministradorService {
   getPersonaPorIdentificacion(identificacion:number):Observable<any>{
     return this.http.get(this.baseUrl+"/persona?identificacion="+identificacion);
   }
-  
+
   // tutores
   getTutorEstudiate(id):Observable<any>{
     return this.http.get(this.baseUrl+"/alumno/tutores/"+id)
-    
+
   }
   postTutor(data):Observable<any>{
     return this.http.post(this.baseUrl+"/alumno/adicionar_tutor",data,{headers:this.headers})
@@ -87,7 +87,7 @@ export class AdministradorService {
   }
 
 
-  //grupo 
+  //grupo
   getGrupo():Observable<any>{
     return this.http.get(this.baseUrl+"/grupo");
   }
@@ -199,22 +199,34 @@ export class AdministradorService {
   updateCurso(body):Observable<any>{
     return this.http.put(this.baseUrl+`/curso/${body.id}`,body,{headers:this.headers});
   }
+  //alternativa cursos
+
+  getCursoTurno(idTurno):Observable<any>{
+    return this.http.get(this.baseUrl+`/curso/mostrar_turno/${idTurno}`);
+  }
 
   //usuarios
   getUsuario():Observable<any>{
     return this.http.get(this.baseUrl+"/usuario");
   }
-  
+
   deleteUsuarioId(id):Observable<any>{
     return this.http.delete(this.baseUrl+"/usuario/"+id);
   }
 
-
-//alumno asistencia 
-
+  //alumno asistencia
   getAsistenciaAlumno(id){
     return this.http.get(this.baseUrl+`/asistencia/historial_alumno/${id}`);
   }
 
+  //pensiones
+  getPensionesPadre(id){
+    return this.http.get(this.baseUrl+`/pension/pension_por_tutor/${id}`);
+  }
 
+  //para horario
+  getEstudiantesCurso(curso:any){
+    return this.http.get(this.baseUrl+`/alumno/curso?idTurno=${curso.idTurno}&idGrado=${curso.idGrado}&idGrupo=${curso.idGrupo}&idParalelo=${curso.idParalelo}`);
+  } 
+  
 }

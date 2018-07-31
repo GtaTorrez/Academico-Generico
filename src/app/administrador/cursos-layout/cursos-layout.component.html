@@ -1,0 +1,29 @@
+<mat-progress-bar *ngIf="consulta" mode="indeterminate"></mat-progress-bar>
+
+<div fxLayout="row wrap" fxLayoutAlign="center" class="container" >
+    <!-- <h1 class="titulo">
+        Cursos
+    </h1> -->
+    
+    <mat-radio-group [(ngModel)]="idTurnoActual"  >
+        <mat-radio-button  class="turnos" *ngFor="let turno of turnos" [value]="turno.id" (click)="cambioCursos(turno.id)">{{turno.nombre}}</mat-radio-button>
+    </mat-radio-group>
+
+    <div fxFlex="100" >
+        <app-lista-cursos 
+        *ngIf="idTurnoActual" 
+        [idTurno]="idTurnoActual"
+        [cursos]="cursos"
+        [paralelos]="paralelos"
+        > 
+        </app-lista-cursos>
+    </div>
+</div>
+
+
+
+<div class="buttonAdd" >
+    <button mat-fab color="accent" (click)="openModal()" > <mat-icon>add</mat-icon> </button>
+</div>
+
+

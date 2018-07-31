@@ -1,6 +1,63 @@
-<section style="margin: 0px 20px;">
+ <div class="container">
+  <div fxLayout="row wrap"   >
+    <section fxFlex="100" fxFlexAlign="start start">
+      Seccion de las materias
+    </section>
+    <div fxFlex="100" fxFlexAlign="start start"  >
+      <h2>
+        Materias
+      </h2>
+      <mat-drawer-container >
+        <mat-drawer class="asignaturas" mode="side" opened="true">
+          <mat-list>
+            <div draggable  *ngFor="let materia of materias ; let  i = index ; async " [dragData]="materia">
+              <mat-list-item   >
+                <div class="nombre"  >
+                  {{materia.nombre}}                  
+                </div>
 
-  <h1 style="margin-top:20px">
-    Estamos trabajando en ello.... Upss...
-  </h1>
-</section>
+                <mat-form-field class="profesor"   >
+                  <mat-select  placeholder="Profesor" [(value)]="materia.profesor"  >
+                    <mat-option *ngFor="let prof of materia.profesores"  [value]="prof">{{prof.nombre}}</mat-option>
+                    
+                  </mat-select>
+                </mat-form-field>
+              </mat-list-item>
+              <mat-divider></mat-divider>
+            </div>
+          </mat-list>
+        </mat-drawer>
+        <mat-drawer-content>
+          <app-show-horario
+            [dias]="dias" 
+            [horario]="horario"
+            [curso]="'Sexto de Secudaria paralelo A'"
+          >
+          </app-show-horario>
+            <!-- <table class="tabla">
+                <caption>Horario</caption>
+               <thead>
+                 <tr>
+                   <th>Periodo</th>
+                   <th *ngFor="let dia of dias">{{dia.nombre}}</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr *ngFor="let campo of horario.periodos" >
+                  <td class="campo">{{campo.HoraIni}} {{campo.HoraFin}}</td>
+                  <td class="campo">{{campo.lunes.nombreMateria}}</td>
+                  <td class="campo">{{campo.martes.nombreMateria}}</td>
+                  <td class="campo">{{campo.miercoles.nombreMateria}}</td>
+                  <td class="campo">{{campo.jueves.nombreMateria}}</td>
+                  <td class="campo">{{campo.viernes.nombreMateria}}</td>
+                  <td class="campo">{{campo.sabado.nombreMateria}}</td>
+                 </tr>
+               </tbody>
+             </table> -->
+  
+        </mat-drawer-content>
+      </mat-drawer-container>
+    </div>
+  </div>
+
+</div>  

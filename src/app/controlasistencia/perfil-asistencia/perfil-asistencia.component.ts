@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,OnDestroy } from '@angular/core';
 import { AsistenciaService }  from '../asistencia.service';
-import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { Perfil } from './perfil';
 
 @Component({
@@ -8,7 +8,7 @@ import { Perfil } from './perfil';
   templateUrl: './perfil-asistencia.component.html',
   styleUrls: ['./perfil-asistencia.component.css']
 })
-export class PerfilAsistenciaComponent implements OnInit {
+export class PerfilAsistenciaComponent implements OnInit,OnDestroy {
 
   tipoInstitucion="UNIDAD ACADEMICA";
   nombrePrimario="AMERICANO";
@@ -25,7 +25,7 @@ export class PerfilAsistenciaComponent implements OnInit {
   }
 
   getPerfil(){
-    this.serve.getPersona().subscribe(data=>{
+    this.serve.getPersonas().subscribe(data=>{
       console.log(data);
       this.perfil.nroMatricula=data.id;
         this.perfil.paterno=data.paterno;
@@ -45,6 +45,8 @@ export class PerfilAsistenciaComponent implements OnInit {
     this.getPerfil();
     this.imgBackground=this.img?this.img:this.imgPatter;
   }
-
+  ngOnDestroy(){
+    this.serve.close();
+  }
 
 }

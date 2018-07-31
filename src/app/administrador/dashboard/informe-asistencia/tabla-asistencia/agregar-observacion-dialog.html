@@ -1,0 +1,15 @@
+<div fxLayout="column" fxLayoutAlign="start center" class="container">
+  <h3>Justificación</h3>
+  <span>{{data.nombre}}</span>
+  <span style="margin:10px;">{{data.fecha}}</span>
+  <form class="form" (ngSubmit)="aceptar()">
+    <mat-form-field style="min-width:200px">
+      <textarea rows="4" matInput placeholder="Justificación de la falta" required [(ngModel)]="asistencia.observacion" name="observacion"></textarea>
+    </mat-form-field>
+
+    <div fxLayout="row" fxLayoutAlign="start rigth">
+      <button mat-button color="default" (click)="cancelar()">Cancelar</button>
+      <button type="submit" style="margin-left:20px" mat-raised-button color="primary">Aceptar</button>
+    </div>
+  </form>
+</div>

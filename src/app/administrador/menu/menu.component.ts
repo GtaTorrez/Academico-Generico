@@ -1,6 +1,6 @@
 import {MediaMatcher} from '@angular/cdk/layout';
 import { Component, OnInit,OnDestroy,ChangeDetectorRef } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { LoadersService } from '../../loader/loaders.service';
 
 
@@ -25,7 +25,7 @@ export class MenuComponent implements OnInit,OnDestroy{
     media: MediaMatcher,
     private loaderService:LoadersService  
     ) {
-    this.mobileQuery = media.matchMedia('(max-width: 959px)');
+    this.mobileQuery = media.matchMedia('(max-width: 650px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
     if(this.mobileQuery.matches){
@@ -35,25 +35,18 @@ export class MenuComponent implements OnInit,OnDestroy{
     this.subscription = this.loaderService.observableEstado.subscribe((data:boolean)=>{
       this.estado=data;
     })
-
+    this.loaderService.cambiarEstado(false);
   }
   ngOnInit() {
-    let a;
+    this.loaderService.cambiarEstado(false);
   
   }
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
     this.subscription.unsubscribe();
   }
-  cambio():boolean{
-    if(this.openside){
-      this.openside=false;
-    }else{
-      this.openside=true;
-    }
+  cambio(){
     
-    console.log("cambio"+"" +this.openside)
-    return this.openside 
   }
   
   cambiodePantalla(){

@@ -1,29 +1,54 @@
 <div fxLayout="row" fxLayoutAlign="center"  class="perfil" *ngIf="!edit"  >
   <div fxFlex fxLayout.lt-md="column">
-      <div fxFlex="200px" fxFlexAlign="start center" >
-          <img [src]="persona.img?persona.img:'./assets/img/people.png'" width="150px" height="150px" >
+      <div fxFlex="200px" fxLayout="row" fxLayout.gt-sm="column" fxFlexAlign="start center" >
+        <div fxFlex="100" fxFlexAlign="center" >
+          <img class="center" [src]="persona.img?persona.img:'./assets/img/people.png'" width="150px" height="150px" >
+
+        </div>
+        <div fxFlex="80" fxFlexAlign="center" fxFlexAlign.lt-sm="center" fxLayoutAlign.gt-sm="center center"  >
           <ngx-qrcode
+            
             *ngIf="qrCode"
             qrc-element-type="img"
             [qrc-value] = "qrCode"
-            qrc-class = "aclass"
-            qrc-errorCorrectionLevel = "L">
+            qrc-class = "centerCode"
+            qrc-errorCorrectionLevel = "L"
+            
+            >
           </ngx-qrcode>
+        </div>
         </div >
-        <div fxFlex="350px"   >
+        <div fxFlex="340px"   >
+          
           <table >
-          <tr><td>NOMBRE :</td> <td>{{persona.nombre | uppercase}}</td></tr>
-          <tr><td>PATERNO :</td> <td>{{persona.paterno| uppercase}}</td></tr>
-          <tr><td>MATERNO :</td> <td>{{persona.materno| uppercase}}</td></tr>
-          <tr><td>CI :</td> <td>{{persona.cedula }} {{persona.expedido| uppercase}} </td></tr>
-          <tr *ngIf="tipo==='estudiante'" ><td>Rude :</td> <td>{{persona.identificacion }}</td></tr>
-          <tr *ngIf="tipo==='profesor'" ><td>Item :</td> <td>{{persona.identificacion }}</td></tr>
-          <tr><td>SEXO :</td> <td>{{persona.sexo| uppercase}}</td></tr>
-          <tr><td>FECHA DE NACIMIENTO :</td> <td><input matInput [matDatepicker]="myDatepicker" placeholder="" [(ngModel)]="persona.fechaNacimiento" name="fecnac" readonly>
-          </td></tr>
-          <tr><td>CELULAR :</td> <td>{{persona.celular}}</td></tr>
-          <tr *ngIf="persona.telefono"><td>TELEFONO :</td> <td>{{persona.telefono}}</td></tr>
-          <tr><td>EMAIL :</td> <td>{{persona.email}}</td></tr>
+          <tr>
+            <td rowspan="3"><mat-icon >account_box</mat-icon> Nombre(s) </td> 
+            <td>{{persona.nombre | uppercase}}</td></tr>
+          <tr>               <td>{{persona.paterno| uppercase}}</td></tr>
+          <tr>              <td>{{persona.materno| uppercase}}</td></tr>
+          <tr>
+            <td><mat-icon >credit_card</mat-icon> Cédula</td> 
+            <td>{{persona.cedula }} {{persona.expedido| uppercase}} </td></tr>
+          <tr *ngIf="tipo==='estudiante'" >
+            <td> <mat-icon>perm_contact_calendar</mat-icon> Rude </td> 
+            <td>{{persona.identificacion }}</td></tr>
+          <tr *ngIf="tipo==='profesor'" >
+            <td><mat-icon>perm_contact_calendar</mat-icon> Item</td> 
+            <td>{{persona.identificacion }}</td></tr>
+          <tr>
+            <td><mat-icon>wc</mat-icon> Género</td>  
+            <td>{{persona.sexo| uppercase}}</td></tr>
+          <tr *ngIf="persona.fechaNacimiento" >
+            <td> <mat-icon>event</mat-icon> <span>Nacimiento</span></td> 
+            <td><input matInput [matDatepicker]="myDatepicker" placeholder="" [(ngModel)]="persona.fechaNacimiento" name="fecnac" readonly>
+            </td></tr>
+          <tr *ngIf="persona.telefono || persona.celular" >
+            <td> <mat-icon>phone</mat-icon> Celular </td> 
+            <td>{{persona.celular}} ó {{persona.telefono}} </td></tr>
+          <tr>
+            <td *ngIf="persona.email" > 
+              <mat-icon>email</mat-icon> Email </td> 
+            <td>{{persona.email}}</td></tr>
 
           </table>
         </div>
@@ -33,7 +58,7 @@
 <div fxLayout="row"  fxLayoutAlign="center"  *ngIf="edit"   >
   <div fxFlex="600px"  fxFlex.lt-md="350px"  fxLayout.lt-md="column">
 
-  <div fxFlex="34" fxFlexAlign="center" fxFlex.lt-md="30"  >
+  <div fxFlexOffset="12px" fxFlex="34" fxFlexAlign="center" fxFlex.lt-md="30"  >
     <div class="img">
     <img  [src]="persona.img?persona.img:'./assets/img/people.png'" width="150px" height="150px" >
     <form [formGroup]="form" (ngSubmit)="onSubmit()">

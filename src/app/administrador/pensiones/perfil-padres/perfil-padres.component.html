@@ -1,0 +1,39 @@
+<div fxFlex="100" fxLayout.lt-md="column">
+  <div fxFlex="40" fxLayout="row" fxLayout.gt-sm="column"  >
+    <div fxFlex="100" fxFlexAlign="center" >
+      <img class="center" [src]="persona.img?persona.img:'./assets/img/people.png'" width="150px" height="150px" >
+
+    </div>
+    
+    </div >
+    <div fxFlex="60"   >
+      <mat-list>
+        <mat-list-item  >
+            <mat-icon class="paddRight">account_box</mat-icon> 
+          <span >
+            {{persona.nombre | uppercase}} {{persona.paterno | uppercase}} {{persona.materno | uppercase}}
+          </span>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon class="paddRight">credit_card</mat-icon> 
+          <span>
+            {{persona.cedula }} {{persona.expedido| uppercase}}
+          </span>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon class="paddRight">contact_phone</mat-icon> 
+          <span>
+            {{persona.celular}} ó {{persona.telefono}}
+          </span>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon class="paddRight">email</mat-icon> 
+          <span>
+            {{persona.email}}
+          </span>
+        </mat-list-item>
+
+      </mat-list>
+     
+    </div>
+</div>

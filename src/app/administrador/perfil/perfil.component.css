@@ -1,17 +1,21 @@
+.center{
+    display: block;
+    margin: auto;
+}
+
+
 .perfil{
     padding: 10px;
 }
 table tr td{
-    padding: 5px 0px 5px 5px;
+    padding: 5px 0px 5px 16px;
+    width: auto;
 }
 
-tr,td{
-    border-bottom: 1px rgb(145, 145, 145) solid;
-}
+
 
 .width80{
     width: 80%;
-    padding-left: 10%;
 }
 .img{
     padding-left: 25px;

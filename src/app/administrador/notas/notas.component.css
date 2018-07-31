@@ -1,0 +1,31 @@
+.selection{
+    margin: 16px;
+}
+.radio{
+    margin:6px 6px 0px 16px;
+}
+table tr{
+    padding: 5px;
+    margin: 5px;
+}
+
+.radios{
+    width: 100%;
+}
+table{
+    width: 100%;
+}
+.buttonAdd{
+    position: fixed;
+    top:85%;
+    left: 90%;
+}
+.content{
+margin: 0px 16px 16px 16px;
+}
+
+@media only screen and (max-width: 959px) {
+    .buttonAdd{
+        left: 80%;
+    }
+}
