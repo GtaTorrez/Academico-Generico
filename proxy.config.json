@@ -1,0 +1,11 @@
+{
+	"/administrador/*":{
+		"target":"http://moswara.com:49000",
+		"secure":false,
+		"logLevel":"debug",
+		"changeOrigin": true,
+		"pathRewrite": {
+		"^/administrador": ""
+    }
+	}
+}
