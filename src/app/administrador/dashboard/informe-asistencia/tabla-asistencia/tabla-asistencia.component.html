@@ -3,10 +3,10 @@
     <div fxLayout="row" fxLayoutAlign="end end">
       <form>
         <mat-form-field>
-          <input type="number" matInput placeholder="Año" required [(ngModel)]="anioAsistencia" name="anioAsistencia" (change)="actualizar()">
+          <input type="number" matInput placeholder="Año" required [(ngModel)]="anioAsistencia" name="anioAsistencia" (selectionChange)="actualizar()">
         </mat-form-field>
         <mat-form-field>
-          <mat-select placeholder="Mes" [(value)]="mesAsistencia" (change)="actualizar()">
+          <mat-select placeholder="Mes" [(value)]="mesAsistencia" (selectionChange)="actualizar()">
             <mat-option value="01">Enero</mat-option>
             <mat-option value="02">Febrero</mat-option>
             <mat-option value="03">Marzo</mat-option>
@@ -37,22 +37,22 @@
     <div fxLayout="row" fxLayoutAlign="end end">
       <form>
         <mat-form-field>
-          <mat-select placeholder="Grupo" [(value)]="idGrupo" (change)="actualizar()">
-            <mat-option *ngFor="let grupo of grupos" [value]="grupo.id">{{grupo.nombre}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-select placeholder="Grado" [(value)]="idGrado" (change)="actualizar()">
-            <mat-option *ngFor="let grado of grados" [value]="grado.id">{{grado.nombre}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-select placeholder="Turno" [(value)]="idTurno" (change)="actualizar()">
+          <mat-select placeholder="Turno" [(value)]="idTurno" (selectionChange)="actualizarSelectorGrados()">
             <mat-option *ngFor="let turno of turnos" [value]="turno.id">{{turno.nombre}}</mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field>
-          <mat-select placeholder="Paralelo" [(value)]="idParalelo" (change)="actualizar()">
+          <mat-select placeholder="Grado" [(value)]="idGrado" (selectionChange)="actualizarSelectorGrupos()">
+            <mat-option *ngFor="let grado of grados" [value]="grado.id">{{grado.nombre}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select placeholder="Grupo" [(value)]="idGrupo" (selectionChange)="actualizarSelectorParalelos()">
+            <mat-option *ngFor="let grupo of grupos" [value]="grupo.id">{{grupo.nombre}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select placeholder="Paralelo" [(value)]="idParalelo" (selectionChange)="actualizar()">
             <mat-option *ngFor="let paralelo of paralelos" [value]="paralelo.id">{{paralelo.nombre}}</mat-option>
           </mat-select>
         </mat-form-field>

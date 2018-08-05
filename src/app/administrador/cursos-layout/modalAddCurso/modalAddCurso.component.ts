@@ -19,9 +19,9 @@ import { Turno, Grado,Grupo,Curso,Paralelo} from '../../modelos/grupo';
     idGrado:number;
     idGrupo:number;
 
-    
+
     constructor(
-        public dialogRef: MatDialogRef<ModalAddCurso>,        
+        public dialogRef: MatDialogRef<ModalAddCurso>,
         @Inject(MAT_DIALOG_DATA) public data: any,
         private serve:AdministradorService
     ) {
@@ -34,12 +34,12 @@ import { Turno, Grado,Grupo,Curso,Paralelo} from '../../modelos/grupo';
     }
     onSubmit(){
         console.log(this.idTurno+" "+this.idGrado+" "+this.idGrupo+" "+this.idParalelo)
-        let datos={id:0,idTurno:this.idTurno,idGrado:this.idGrado,idGrupo:this.idGrupo,idParalelo:this.idParalelo}
+        let datos={idTurno:this.idTurno,idGrado:this.idGrado,idGrupo:this.idGrupo,idParalelo:this.idParalelo}
         this.serve.postCurso(datos).subscribe(data=>{
             if(data.id){
                 console.log(data);
                 this.dialogRef.close("post")
-              
+
             }
         })
     }

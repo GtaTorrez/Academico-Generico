@@ -42,7 +42,7 @@ export class GrupoComponent implements OnInit {
     this.swGrupo=false;
   }
   postGrupo(){
-    this.grupo.id=0;
+    this.grupo.id = undefined;
     this.serve.postGrupo(this.grupo).subscribe(data=>{
       this.grupos.push(data);
       this.swGrupo=false;

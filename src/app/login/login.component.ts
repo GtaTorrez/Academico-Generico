@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
       if (data.message==='Acceso satisfactoriamente' && data.user ) {
         this.serve.getData().subscribe(data=>{
           console.log(data);
-          if(data.usuario.rol==='administrador'){
+          if(data.usuario.rol==='admin'){
             console.log("redireccionar admin")
             localStorage.setItem('rol','admin');
             localStorage.setItem('user',data.usuario.username);

@@ -1,7 +1,7 @@
 import { Persona } from "./persona";
 
 export class Asignatura{
-     id:number=0;
+     id:number=undefined;
      sigla:string;
      nombre:string;
      docente:string;

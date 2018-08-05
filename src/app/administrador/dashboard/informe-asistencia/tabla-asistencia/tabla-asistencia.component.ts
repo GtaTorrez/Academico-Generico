@@ -28,10 +28,10 @@ export class TablaAsistenciaComponent implements OnInit {
   anioNombre     = ''
   loadingMode    = 'determinate'
 
-  idGrupo    = 1
-  idGrado    = 1
-  idTurno    = 1
-  idParalelo = 1
+  idGrupo    = -1
+  idGrado    = -1
+  idTurno    = -1
+  idParalelo = -1
 
   ini         = '2018-01-01'
   fin         = '2018-31-01'
@@ -49,24 +49,82 @@ export class TablaAsistenciaComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.turnos    = []
-    this.grados    = []
-    this.grupos    = []
+    this.actualizarSelectorTurnos()
+  }
+
+  actualizarSelectorTurnos () {
+    this.turnos = []
+    this.grados = []
+    this.grupos = []
     this.paralelos = []
-    function add (list, element) {
-      let exist = false
-      list.forEach(obj => { if (obj.id === element.id) { exist = true } })
-      if (!exist) { list.push(element) }
-    }
-    this.service.getCursos().subscribe((result:any) => {
-      result.forEach(registro => {
-        add(this.turnos, registro.idTurno)
-        add(this.grados, registro.idGrado)
-        add(this.grupos, registro.idGrupo)
-        add(this.paralelos, registro.idParalelo)
+    this.idTurno = -1
+    this.idGrado = -1
+    this.idGrupo = -1
+    this.idParalelo = -1
+    this.service.getTurnos().subscribe((result:any) => {
+      result.forEach(turno => {
+        this.turnos.push(turno)
       })
-      this.paralelos.sort((a, b) => { return a.nombre.localeCompare(b.nombre) })
-      this.actualizar()
+      if (this.turnos.length > 0) {
+        this.idTurno = this.turnos[0].id
+        this.actualizarSelectorGrados()
+      }
+    })
+  }
+
+  actualizarSelectorGrados () {
+    this.grados = []
+    this.grupos = []
+    this.paralelos = []
+    this.idGrado = -1
+    this.idGrupo = -1
+    this.idParalelo = -1
+    this.turnos.forEach((turno:any) => {
+      if (turno.id === this.idTurno) {
+        this.service.getCursosPorTurno(this.idTurno).subscribe((turno:any) => {
+          turno.grados.forEach((grado:any) => {
+            this.grados.push(grado)
+          })
+          if (this.grados.length > 0) {
+            this.idGrado = this.grados[0].id
+            this.actualizarSelectorGrupos()
+          }
+        })
+      }
+    })
+  }
+
+  actualizarSelectorGrupos () {
+    this.grupos = []
+    this.paralelos = []
+    this.idGrupo = -1
+    this.idParalelo = -1
+    this.grados.forEach((grado:any) => {
+      if (grado.id === this.idGrado) {
+        grado.grupos.forEach((grupo:any) => {
+          this.grupos.push(grupo)
+        })
+        if (this.grupos.length > 0) {
+          this.idGrupo = this.grupos[0].id
+          this.actualizarSelectorParalelos()
+        }
+      }
+    })
+  }
+
+  actualizarSelectorParalelos () {
+    this.paralelos = []
+    this.idParalelo = -1
+    this.grupos.forEach((grupo:any) => {
+      if (grupo.id === this.idGrupo) {
+        grupo.paralelos.forEach((paralelo:any) => {
+          this.paralelos.push(paralelo)
+        })
+        if (this.paralelos.length > 0) {
+          this.idParalelo = this.paralelos[0].id
+          this.actualizar()
+        }
+      }
     })
   }
 
@@ -150,7 +208,6 @@ export class TablaAsistenciaComponent implements OnInit {
       })
       personas.sort((a, b) => { return a.nombre.localeCompare(b.nombre) })
       this.dataSource  = personas
-      console.log("DATASOURCE = ", this.dataSource)
       this.loadingMode = 'determinate'
     }, error => {
       this.loadingMode = 'determinate'

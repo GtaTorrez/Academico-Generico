@@ -6,10 +6,11 @@ export class EstudianteGuard implements CanActivate {
 
     constructor(
         private router:Router,
-        private login:LoginService        
+        private login:LoginService
     )
     {}
     canActivate():boolean{
+      console.log("ADMIN GUARD ....")
         let rol="alumno";
         if(rol===localStorage.getItem("rol")){
             return true;
@@ -17,6 +18,6 @@ export class EstudianteGuard implements CanActivate {
             this.router.navigate(['/login']);
             return false;
         }
-         
-    }   
+
+    }
 }

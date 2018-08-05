@@ -14,7 +14,7 @@ export class GradoComponent implements OnInit {
   grados:Grado[];
   grado:Grado;
   swGrado=false;
-  //1 para crear  0 para editar 
+  //1 para crear  0 para editar
   action = 1;
 
   constructor(
@@ -45,7 +45,7 @@ export class GradoComponent implements OnInit {
     this.swGrado=false;
   }
   postGrado(){
-    this.grado.id=0;
+    this.grado.id = undefined;
     this.serve.postGrado(this.grado).subscribe(data=>{
       this.grados.push(data)
       this.abrirNotificacion("Realizado correctamente","Ok");
