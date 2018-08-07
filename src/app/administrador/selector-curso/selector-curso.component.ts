@@ -1,6 +1,7 @@
 import { Component, OnInit,Input, Output,EventEmitter } from '@angular/core';
 import { Curso,Paralelo,Grado,Grupo,Turno } from '../modelos/grupo';
 import {AdministradorService} from '../administrador.service';
+import {CdkStepperModule} from '@angular/cdk/stepper';
 
 @Component({
   selector: 'app-selector-curso',

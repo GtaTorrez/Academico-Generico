@@ -45,7 +45,6 @@ export class GradoComponent implements OnInit {
     this.swGrado=false;
   }
   postGrado(){
-    this.grado.id=0;
     this.serve.postGrado(this.grado).subscribe(data=>{
       this.grados.push(data)
       this.abrirNotificacion("Realizado correctamente","Ok");

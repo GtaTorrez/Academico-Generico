@@ -41,7 +41,6 @@ export class ParaleloComponent implements OnInit {
     this.swParalelo=false;
   }
   postParalelo(){
-    this.paralelo.id=0;
     this.serve.postParalelo(this.paralelo).subscribe(data=>{
       this.paralelos.push(data);
       this.swParalelo=false;

@@ -44,7 +44,6 @@ export class TurnoComponent implements OnInit {
     this.swTurno=false;
   }
   postTurno(){
-    this.turno.id=0;
     this.serve.postTurno(this.turno).subscribe(data=>{
       this.turnos.push(data);
       this.swTurno=false;

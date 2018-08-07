@@ -43,7 +43,6 @@ export class PeriodoComponent implements OnInit {
   
 //periodos
 postPeriodo(){
-  this.periodo.id=0;
   console.log(this.periodo)
   this.serve.postPeriodo(this.periodo).subscribe(data=>{
     this.periodos.push(data);
