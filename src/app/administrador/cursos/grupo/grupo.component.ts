@@ -13,7 +13,7 @@ export class GrupoComponent implements OnInit {
   grupos:Grupo[];
   grupo:Grupo;
   swGrupo=false;
-  
+
   action=1;
   constructor(
     private serve:AdministradorService,

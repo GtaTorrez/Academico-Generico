@@ -84,6 +84,6 @@ export class ParaleloComponent implements OnInit {
     } else {
       this.putParalelo();
     }
-    
+
   }
 }

@@ -14,6 +14,7 @@ const BASE           = `${Config.BASE_URL}:${Config.port}`
 const ACTUALIZAR_URL = `${BASE}/asistencia`
 const ASISTENCIA_URL = `${BASE}/report/curso`
 const CURSOS_URL     = `${BASE}/curso`
+const TURNOS_URL     = `${BASE}/turno`
 // const REPORT_URL   = `${Config.BASE_URL}:${Config.port}/reporte`
 const REPORT_URL     = `http://moswara.com:49000/reporte`
 
@@ -24,12 +25,20 @@ export class AsistenciaService {
     private http: HttpClient
   ) {}
 
+  getCursosPorTurno (idTurno) {
+    return this.http.get(`${CURSOS_URL}/mostrar_turno/${idTurno}`, {withCredentials: true})
+  }
+
   getCursos () {
-    return this.http.get(`${CURSOS_URL}`)
+    return this.http.get(`${CURSOS_URL}`, {withCredentials: true})
+  }
+
+  getTurnos () {
+    return this.http.get(`${TURNOS_URL}`, {withCredentials: true})
   }
 
   getAsistencias(idTurno, idGrado, idGrupo, idParalelo, ini, fin) : Observable<Object> {
-    return this.http.get(`${ASISTENCIA_URL}?idTurno=${idTurno}&idGrado=${idGrado}&idGrupo=${idGrupo}&idParalelo=${idParalelo}&ini=${ini}&fin=${fin}`)
+    return this.http.get(`${ASISTENCIA_URL}?idTurno=${idTurno}&idGrado=${idGrado}&idGrupo=${idGrupo}&idParalelo=${idParalelo}&ini=${ini}&fin=${fin}`, { withCredentials: true })
     // return this.http.get(`${ASISTENCIA_URL}`)
   }
 

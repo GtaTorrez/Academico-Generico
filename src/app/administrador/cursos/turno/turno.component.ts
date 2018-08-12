@@ -16,7 +16,7 @@ export class TurnoComponent implements OnInit {
 
   swTurno=false;
   accion=1;
-  
+
   constructor(
     private serve:AdministradorService,
     private notificaciones:MatSnackBar
@@ -67,7 +67,7 @@ export class TurnoComponent implements OnInit {
     this.serve.getTurno().subscribe(data=>{
       this.turnos=data;
       this.abrirNotificacion("Realizado correctamente","Ok");
-      
+
     },err=>{
       console.log("ERRROR")
       console.log(err);

@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
     private serve:LoginService,
     private router:Router,
     private loader:LoadersService
-    
+
   ) { }
   ngOnInit() {}
   submit() {

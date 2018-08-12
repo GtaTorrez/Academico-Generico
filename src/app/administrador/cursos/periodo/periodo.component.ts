@@ -9,7 +9,7 @@ import {MatSnackBar} from '@angular/material';
   styleUrls: ['./periodo.component.css']
 })
 export class PeriodoComponent implements OnInit {
-  
+
   periodos:Periodo[];
   periodo:Periodo;
   swPeriodo=false;
@@ -40,7 +40,7 @@ export class PeriodoComponent implements OnInit {
   closePeriodo(){
     this.swPeriodo=false;
   }
-  
+
 //periodos
 postPeriodo(){
   console.log(this.periodo)
@@ -86,7 +86,7 @@ guardar(){
     this.postPeriodo();
   } else {
     this.putPeriodo();
-    
+
   }
 }
 }

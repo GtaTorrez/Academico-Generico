@@ -6,7 +6,7 @@ export class EstudianteGuard implements CanActivate {
 
     constructor(
         private router:Router,
-        private login:LoginService        
+        private login:LoginService
     )
     {}
     canActivate():boolean{
@@ -17,6 +17,6 @@ export class EstudianteGuard implements CanActivate {
             this.router.navigate(['/login']);
             return false;
         }
-         
-    }   
+
+    }
 }

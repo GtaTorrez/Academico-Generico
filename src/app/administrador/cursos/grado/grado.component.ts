@@ -14,7 +14,7 @@ export class GradoComponent implements OnInit {
   grados:Grado[];
   grado:Grado;
   swGrado=false;
-  //1 para crear  0 para editar 
+  //1 para crear  0 para editar
   action = 1;
 
   constructor(
