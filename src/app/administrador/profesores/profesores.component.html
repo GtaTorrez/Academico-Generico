@@ -1,20 +1,21 @@
-
+<mat-progress-bar *ngIf="consulta" mode="indeterminate"></mat-progress-bar>
 <div class="top" fxLayout="column  wrap" fxLayoutAlign="space-around center"  >
+  <div fxFlex="100" *ngIf="!adiciona">
     <mat-radio-group [(ngModel)]="busca" name="search" >
-        <mat-radio-button class="radiobtn" *ngFor="let buscar of buscaPor" [value]="buscar">{{buscar}}</mat-radio-button>
-      </mat-radio-group>
-  <form class="formBuscar" >
-    <mat-form-field class="buscar" >
-      <input type="text" placeholder="Buscar por nombre" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto" >
-      <mat-autocomplete #auto="matAutocomplete" >
-        <mat-option *ngFor="let profesor of filteredOptions | async" [value]="profesor.idPersona.nombre+' '+ profesor.idPersona.paterno+' '+profesor.idPersona.materno | uppercase" (click)="profesorSelected(profesor.idPersona)" >
-            {{profesor.idPersona.nombre}} {{profesor.idPersona.paterno}} {{profesor.idPersona.materno}}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
+      <mat-radio-button class="radiobtn" *ngFor="let buscar of buscaPor" [value]="buscar">{{buscar}}</mat-radio-button>
+    </mat-radio-group>
+    <form class="formBuscar" >
+      <mat-form-field class="buscar" >
+        <input type="text" placeholder="Buscar por nombre" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto" >
+        <mat-autocomplete #auto="matAutocomplete" >
+          <mat-option *ngFor="let profesor of filteredOptions | async" [value]="profesor.idPersona.nombre+' '+ profesor.idPersona.paterno+' '+profesor.idPersona.materno | uppercase" (click)="profesorSelected(profesor.idPersona)" >
+              {{profesor.idPersona.nombre}} {{profesor.idPersona.paterno}} {{profesor.idPersona.materno}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+  </div>
 
-  </form>
-  <mat-progress-bar *ngIf="consulta" mode="indeterminate"></mat-progress-bar>
  <div fxFlex="100" fxLayout="row wrap" >
   <div fxFlex="100" >
 
@@ -38,6 +39,7 @@
               [materias]="materias"
               [profesor]="profesorEdit"
               (cargarMaterias)="getProfeDicta(profesorEdit.id)"
+              (cargando)="cargando($event)"
             >
             </app-materia>
 

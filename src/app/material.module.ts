@@ -1,6 +1,7 @@
 import { NgModule }           from '@angular/core';
 import { CommonModule }       from '@angular/common';
 import { LayoutModule }       from '@angular/cdk/layout';
+import { FlexLayoutModule }        from '@angular/flex-layout';
 import {
   MatFormFieldModule,
   MatButtonModule,
@@ -65,7 +66,8 @@ import { MatMomentDateModule} from '@angular/material-moment-adapter'
     MatSortModule,
     MatGridListModule,
     MatStepperModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    FlexLayoutModule
   ],
   exports: [
     LayoutModule,
@@ -96,7 +98,8 @@ import { MatMomentDateModule} from '@angular/material-moment-adapter'
     MatSortModule,
     MatGridListModule,
     MatStepperModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    FlexLayoutModule
   ]
 })
 export class MaterialModule { }

@@ -27,6 +27,7 @@ export class ProfesoresComponent implements OnInit {
   nuevo:Persona;
   action:string="ver";
   tipo="profesor";
+  adiciona:boolean;
 
   constructor(
     private serve:AdministradorService,
@@ -41,7 +42,7 @@ export class ProfesoresComponent implements OnInit {
       startWith(''),
       map(val => this.filter(val))
     );
-
+    this.adiciona=false;
   }
 
   profesorSelected(profesor){
@@ -69,6 +70,9 @@ export class ProfesoresComponent implements OnInit {
 
   }
 
+  cargando(event){
+    this.consulta=event;
+  }
   AbrirNotificacion(message: string,action:string) {
     this.notificacion.open(message,action,{
       duration:2000
@@ -111,6 +115,7 @@ export class ProfesoresComponent implements OnInit {
   }
   cancelar(){
     this.action='ver';
+    this.adiciona=false;
   }
   guardarP(){
     this.consulta=true;
@@ -167,6 +172,7 @@ export class ProfesoresComponent implements OnInit {
     }
 }
   adicionar(){
+    this.adiciona=true;
     this.action='nuevo';
     this.profesorEdit=new Persona();
     this.profesorEdit.rol="profesor";

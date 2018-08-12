@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {LoadersService} from '../loaders.service';
 import { Subscription } from 'rxjs';
 
+
 @Component({
   selector: 'app-load',
   templateUrl: './load.component.html',

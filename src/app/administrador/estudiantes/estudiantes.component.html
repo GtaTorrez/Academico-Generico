@@ -1,4 +1,4 @@
-
+<mat-progress-bar *ngIf="consulta" mode="indeterminate"></mat-progress-bar>
 <div class="top" fxLayout="row wrap" fxLayoutAlign="center"  >
   <!-- <div fxFlex="100" >        
         <mat-radio-group class="center" [(ngModel)]="busca" name="search" >
@@ -16,14 +16,11 @@
   <div fxFlex="100">
     <app-selector-curso
     [turnos]="turnos"
-    [grupos]="grupos"
-    [grados]="grados"
-    [paralelos]="paralelos"
     (enviarEstudiantes)="mostrarEstudiantes($event)"
+    (consultando)="consultando($event)"
     ></app-selector-curso>
   </div>
    <div fxFlex="100" fxFlex.gt-md="60" fxLayout.gt-md="row wrap" fxLayout="column"  fxFlexAlign="center" >
-    <mat-progress-bar *ngIf="consulta" mode="indeterminate"></mat-progress-bar>
     <div *ngIf="estudiante" class="ancho80" >
       <h3 class="enlinea " >Estudiante</h3>
         <button mat-button class="enlinea pullRight" *ngIf="action==='nuevo' || action==='editar'" color="primary" (click)="cancelar()" ><mat-icon>arrow_back</mat-icon> </button>        
@@ -44,17 +41,17 @@
 
  <div fxFlex="100"  fxFlex.gt-md="40" fxFlex.lt-md="100" fxLayout.gt-md="row wrap" fxLayoutAlign="start start" fxFlexAlign="start"  *ngIf="tutores" >
   <div class="ancho80">
-      <h3 class="enlinea">Tutores</h3>
-        <button mat-icon-button class="enlinea pullRight" color="primary" (click)="adicionarPadres()" ><mat-icon>add</mat-icon> </button>   
-        <table class="tutores">
-          <tr *ngFor="let tutor of tutores">
-            <td>{{tutor.idPersona.nombre}} {{tutor.idPersona.paterno}} {{tutor.idPersona.materno}}</td>
-            <td>{{tutor.idPersona.celular}}</td>
-            <td><button mat-icon-button color="accent" (click)="editarPadre(tutor.idPersona)" ><mat-icon>mode_edit</mat-icon> </button></td>
-            <td><button mat-icon-button color="warn" (click)="adicionarPadres()" ><mat-icon>delete</mat-icon> </button></td>
-          </tr>
-        </table>
-    </div>
+    <h3 class="enlinea">Tutores</h3>
+      <button mat-icon-button class="enlinea pullRight" color="primary" (click)="adicionarPadres()" ><mat-icon>add</mat-icon> </button>   
+      <table class="tutores">
+        <tr *ngFor="let tutor of tutores">
+          <td>{{tutor.idPersona.nombre}} {{tutor.idPersona.paterno}} {{tutor.idPersona.materno}}</td>
+          <td>{{tutor.idPersona.celular}}</td>
+          <td><button mat-icon-button color="accent" (click)="editarPadre(tutor.idPersona)" ><mat-icon>mode_edit</mat-icon> </button></td>
+          <td><button mat-icon-button color="warn" (click)="adicionarPadres()" ><mat-icon>delete</mat-icon> </button></td>
+        </tr>
+      </table>
+  </div>
 
  </div>  
   <div fxFlex="100">

@@ -73,4 +73,7 @@ export class NotasComponent implements OnInit {
       this.idTurno=data[0].id
     })
   }
+  mostrarEstudiantes($event){
+
+  }
 }

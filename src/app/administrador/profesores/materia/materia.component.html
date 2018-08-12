@@ -10,36 +10,29 @@
       </mat-form-field>
     <button mat-button color="accent" > <mat-icon>add</mat-icon> Adicionar</button>
     </form> -->
-  <mat-card>
-      <mat-card-title>
-        Materias
-        <button mat-button color="accent" (click)="adiciona()" *ngIf="!adicionar" > <mat-icon>add</mat-icon> Adicionar</button>
-        <button mat-button color="warn" *ngIf="adicionar" (click)="adiciona()" > <mat-icon>undo</mat-icon> Atras</button>
-        
-      </mat-card-title>
-      <mat-card-subtitle >
-        <div *ngIf="adicionar">
-          <mat-form-field *ngIf="materiasLista" >
-              <mat-select placeholder="Materias" [(ngModel)]="selectMateria" >
-                <mat-option *ngFor="let materia of materiasLista" [value]="materia.nombre">
-                  {{ materia.nombre }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          <button mat-button color="accent" (click)="guardar()" > <mat-icon>save</mat-icon> Guardar</button>
+  <div>
+    <h3 class="enlinea" >
+      Materias
+    </h3>
+    <button mat-button color="accent" (click)="adiciona()" *ngIf="!adicionar" > <mat-icon>add</mat-icon> Adicionar</button>
+    <button mat-button color="warn" *ngIf="adicionar" (click)="adiciona()" > <mat-icon>undo</mat-icon> Atras</button>
+  </div>
+  
+  <div *ngIf="adicionar">
+    <mat-form-field *ngIf="materiasLista" >
+        <mat-select placeholder="Materias" [(ngModel)]="selectMateria" >
+          <mat-option *ngFor="let materia of materiasLista" [value]="materia.nombre">
+            {{ materia.nombre }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    <button mat-button color="accent" (click)="guardar()" > <mat-icon>save</mat-icon> Guardar</button>
+  </div>
+    <mat-chip-list >
+        <div *ngFor="let materia of materias">
+          <mat-chip >{{materia.nombre}} <mat-icon (click)="eliminar(materia)" >close</mat-icon></mat-chip>                        
         </div>
-      </mat-card-subtitle>
-      <mat-card-content>
-          <mat-chip-list >
-              <div *ngFor="let materia of materias">
-                <mat-chip >{{materia.nombre}} <mat-icon (click)="eliminar(materia)" >close</mat-icon></mat-chip>                        
-              </div>
-            </mat-chip-list>
-      </mat-card-content>
-    <mat-card-actions>
-        
-    </mat-card-actions>
-  </mat-card>
+    </mat-chip-list>
 
 
 </div>

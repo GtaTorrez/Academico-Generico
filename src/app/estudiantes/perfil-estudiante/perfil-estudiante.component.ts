@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-perfil-estudiante',
@@ -9,7 +10,7 @@ export class PerfilEstudianteComponent implements OnInit {
 
   user=localStorage.getItem('user');
   estado:string="";
-  constructor() { }
+  constructor( private router:Router ) { }
 
   ngOnInit() {
 
@@ -17,7 +18,7 @@ export class PerfilEstudianteComponent implements OnInit {
   }
   logOut(){
     localStorage.clear();
-    
+    this.router.navigateByUrl('/login');
   }
   estadoN(){
     this.estado="Notas";

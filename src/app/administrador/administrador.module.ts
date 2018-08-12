@@ -8,6 +8,7 @@ import { ProfesoresComponent } from './profesores/profesores.component';
 import { EstudiantesComponent,ModalP } from './estudiantes/estudiantes.component';
 import { HorariosComponent } from './horarios/horarios.component';
 
+
 import { MaterialModule } from '../material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AdministradorService } from './administrador.service';
@@ -33,6 +34,9 @@ import { NgDragDropModule } from 'ng-drag-drop';
 import { ListaEstudiantesComponent } from './estudiantes/lista-estudiantes/lista-estudiantes.component';
 import { SelectorCursoComponent } from './selector-curso/selector-curso.component';
 
+import {MatStepperModule} from '@angular/material/stepper';
+import {CdkStepperModule} from '@angular/cdk/stepper';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -42,6 +46,8 @@ import { SelectorCursoComponent } from './selector-curso/selector-curso.componen
     MaterialModule,
     FlexLayoutModule,
     NgxQRCodeModule,
+    MatStepperModule,
+    CdkStepperModule,
     NgDragDropModule.forRoot()
     
   ],

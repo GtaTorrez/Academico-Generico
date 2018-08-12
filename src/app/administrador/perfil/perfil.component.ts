@@ -38,7 +38,18 @@ export class PerfilComponent implements OnInit,OnDestroy,DoCheck {
 
   form: FormGroup;
   loading: boolean = false;
+  headerAction:string;
 
+  expedidos: any[] = [
+    {value: 'LP', viewValue: 'La Paz'},
+    {value: 'OR', viewValue: 'Oruro'},
+    {value: 'CB', viewValue: 'Cochabamba'},
+    {value: 'SC', viewValue: 'Santa Cruz'},
+    {value: 'BN', viewValue: 'Beni'},
+    {value: 'PA', viewValue: 'Pando'},
+    {value: 'TJ', viewValue: 'Tarija'},
+    {value: 'CH', viewValue: 'Chuquisaca'},
+  ];
 
   @ViewChild('fileInput') fileInput: ElementRef;
 
@@ -61,6 +72,12 @@ export class PerfilComponent implements OnInit,OnDestroy,DoCheck {
     console.log("inicio")
     if(this.action==='editar' || this.action==='nuevo' ){
       this.edit=true;
+    }
+    if(this.action==='editar'){
+      this.headerAction="Editar datos"
+    }
+    if(this.action==='nuevo'){
+      this.headerAction="Registrar nuevo"
     }
   }
   ngOnDestroy(){

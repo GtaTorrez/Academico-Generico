@@ -58,7 +58,8 @@
     margin-right: 2.5%;
 }
 .formBuscar{
-    width: 40%;
+    width: 110%;
+    margin-left: -15px;
 }
 .buscar{
     width: 100%;

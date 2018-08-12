@@ -1,35 +1,30 @@
-<div fxLayout="row" fxLayout.sm="column" fxLayoutAlign="center">
-   
-    <div fxFlex="28"  fxFlex.xs="100" fxFlex.sm="100">
-        <mat-card id="log">
-            <mat-card-title>
-                <div class="titulo" >
-                    LOGIN
-                  </div>
-            </mat-card-title>    
-          <form #loginForm="ngForm" >
-                
-                <div >
-                  <p>
-                  <mat-form-field>
-                    <input type="text" matInput placeholder="Nombre de usuario"  #user="ngModel" id="user" name="user" [(ngModel)]="username"  required>
-                    <mat-error *ngIf="user.invalid">No puede estar vacio este campo</mat-error>
-                  </mat-form-field>  
-                  <p>
-                  <mat-form-field>
-                    <input matInput placeholder="Ingrese su contraseña" id="pass" #pass="ngModel" [(ngModel)]="password" name="pass" [type]="hide ? 'password' : 'text'" required>
-                    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-                  </mat-form-field>
-                    
-                  </p>
-                  <p>
-                    <button type="submit"  mat-raised-button class="block alto" (click)="submit()" color="accent">INGRESAR</button>    
-                  </p>
-                </div>
-                
-              </form>
-        </mat-card>
-    </div>  
-    
-    
+<span class="fondo">
+<div class="container"> 
+  <div class="card">
+    <div class="titulo" >
+      Bienvenido
+    </div>
+    <form #loginForm="ngForm" class="floating-form" >
+      <div class="floating-label">      
+        <input class="floating-input" type="text" placeholder=" "  #user="ngModel" id="user" name="user" [(ngModel)]="username"  required >
+        <span class="highlight"></span>
+        <label>Nombre de usuario</label>
+      </div>
+      <p *ngIf="user.invalid && user.dirty" class="error" >Nombre de usuario no puede estar vacio *</p>
+
+      <div class="floating-label">      
+        <input class="floating-input" type="text" placeholder=" " id="pass" #pass="ngModel" [(ngModel)]="password" name="pass" [type]="hide ? 'password' : 'text'" required>
+        <span class="highlight"></span>
+        <label>Contraseña</label>
+      </div>
+      <p *ngIf="pass.invalid && pass.dirty" class="error" >La contraseña no puede estar vacia *</p>
+        <i class="material-icons hidePasswors" (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</i>
+        
+      <button type="submit"  mat-raised-button class="block btn" [disabled]="loginForm.invalid" (click)="submit()" color="accent">INGRESAR</button>    
+      <div *ngIf="errorLog" class="error errorLog">
+        {{msgError}}
+      </div>
+    </form>
+  </div>
 </div>
+</span>

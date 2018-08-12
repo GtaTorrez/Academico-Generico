@@ -1,41 +1,39 @@
 <div fxLayout="row wrap" fxLayoutAlign="center" >
   <div fxFlex="70" fxFlex.lt-md="100" fxFlexAlign="start center" > 
-    <mat-horizontal-stepper class="selection mat-elevation-z1">
-      <mat-step label="Turnos">
+    <mat-horizontal-stepper [linear]="true" class="selection mat-elevation-z1" #stepper>
+      <mat-step [label]="labelTurno">
         <div class="radios" >
           <div class="content" >
             <mat-radio-group  fxLayout="row wrap" fxLayoutAlign="space-around center" [(ngModel)]="idTurno" #turno="ngModel" name="turno" required >
-              <mat-radio-button fxFlexAling="center center" class="radio" *ngFor="let turno of turnos" [value]="turno.id">{{turno.nombre}}</mat-radio-button>
+              <mat-radio-button fxFlexAling="center center" class="radio" *ngFor="let turno of turnos"  [value]="turno.id" (click)=" getCurso(turno) ; nextStep(stepper)  ">{{turno.nombre}}</mat-radio-button>
             </mat-radio-group>
           </div>  
-          <button mat-button matStepperNext >Siguiente</button>
+          
         </div>
       </mat-step>
-      <mat-step label="Nivel">
+      <mat-step [label]="labelNivel">
         <div class="radios" >
           <div class="content">
             <mat-radio-group fxLayout="row wrap" fxLayoutAlign="space-around center" [(ngModel)]="idGrado" #grado="ngModel" name="grado" required >
-                <mat-radio-button fxFlexAling="center center" class="radio" *ngFor="let grado of grados" [value]="grado.id">{{grado.nombre}}</mat-radio-button>
+                <mat-radio-button fxFlexAling="center center" class="radio" *ngFor="let grado of grados" [value]="grado.id" (click)="fillGroup(grado) ; nextStep(stepper)">{{grado.nombre}}</mat-radio-button>
             </mat-radio-group>
           </div>
-          <button mat-button matStepperNext >Siguiente</button>
         </div>
       </mat-step>
-      <mat-step label="Grado">
+      <mat-step [label]="labelGrado">
         <div class="radios" >
           <div class="selection">
             <mat-radio-group fxLayout="row wrap" fxLayoutAlign="space-around center" [(ngModel)]="idGrupo" #grupo="ngModel" name="grupo" required >
-                <mat-radio-button fxFlexAling="center center" class="radio" *ngFor="let grupo of grupos" [value]="grupo.id">{{grupo.nombre}}</mat-radio-button>
+                <mat-radio-button fxFlexAling="center center" class="radio" *ngFor="let grupo of grupos" [value]="grupo.id" (click)="fillParallel(grupo) ; nextStep(stepper)">{{grupo.nombre}}</mat-radio-button>
             </mat-radio-group>
           </div>
-          <button mat-button matStepperNext >Siguiente</button>
         </div>
       </mat-step>
-      <mat-step label="Paralelo">
+      <mat-step [label]="labelParalelo">
         <div class="radios" >
           <div class="selection">
             <mat-radio-group fxLayout="row wrap" fxLayoutAlign="space-around center" [(ngModel)]="idParalelo" #paralelo="ngModel"  name="paralelo" required >
-                <mat-radio-button fxFlexAling="center center" class="radio" *ngFor="let paralelo of paralelos" [value]="paralelo.id">{{paralelo.nombre}}</mat-radio-button>
+                <mat-radio-button fxFlexAling="center center" class="radio" *ngFor="let paralelo of paralelos" [value]="paralelo.id" (click)="completeStep(paralelo) ; nextStep(stepper)">{{paralelo.nombre}}</mat-radio-button>
             </mat-radio-group>
           </div>
           <button mat-button matStepperNext (click)="getEstudiantes()" >Generar</button>

@@ -54,8 +54,10 @@
         </div>
   </div>
 </div>
+<!-- Editar desde aqui -->
 
-<div fxLayout="row"  fxLayoutAlign="center"  *ngIf="edit"   >
+<div fxLayout="row wrap"  fxLayoutAlign="center"  *ngIf="edit"   >
+    <h2>{{headerAction}}</h2>
   <div fxFlex="600px"  fxFlex.lt-md="350px"  fxLayout.lt-md="column">
 
   <div fxFlexOffset="12px" fxFlex="34" fxFlexAlign="center" fxFlex.lt-md="30"  >
@@ -106,8 +108,12 @@
       <input type="text" matInput placeholder="Cedula de identidad" [(ngModel)]="persona.cedula" name="ci"  >
     </mat-form-field>
     <mat-form-field class="width80">
-      <input type="text" matInput placeholder="Expedido" [(ngModel)]="persona.expedido" name="expedido"  >
-    </mat-form-field>
+        <mat-select placeholder="Expedido" [(ngModel)]="persona.expedido">
+          <mat-option *ngFor="let expedido of expedidos" [value]="expedido.value">
+            {{expedido.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
   </div>
   <div fxFlex="33"  fxFlex.lt-md   >
     <div class="width80">

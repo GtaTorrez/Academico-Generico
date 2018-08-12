@@ -1,8 +1,8 @@
 <form #cursoForm="ngForm" (ngSubmit)="onSubmit()" >
     <div mat-dialog-title>Registro</div>
 
-    <div mat-dialog-content >
-        <mat-card>
+    <div >
+        <div>
             <h4>Grados</h4>
             <mat-radio-group [(ngModel)]="idGrado" #grado="ngModel" name="grado" required >
                 <mat-radio-button class="grado" *ngFor="let grado of grados" [value]="grado.id">
@@ -22,7 +22,7 @@
                 <mat-radio-button class="radio" *ngFor="let paralelo of paralelos" [value]="paralelo.id">       {{paralelo.nombre}}
                 </mat-radio-button>
             </mat-radio-group>
-        </mat-card>
+        </div>
     </div>
     <div mat-dialog-actions>
         <button mat-button type="button" color="warn" (click)="close()" > <mat-icon>close</mat-icon> Cerrar</button>

@@ -24,7 +24,6 @@ export class EstudiantesComponent implements OnInit {
   parametro:number;
   tipo='estudiante';
   qr:string;
-
   turnos:Turno[];
   grados:Grado[];
   grupos:Grupo[];
@@ -56,6 +55,10 @@ export class EstudiantesComponent implements OnInit {
     this.notificacion.open(message,action,{
       duration:2000
     })
+  }
+
+  consultando(event:any){
+    this.consulta=event;
   }
 
   adicionar(){
@@ -192,8 +195,10 @@ export class EstudiantesComponent implements OnInit {
     this.action="ver";
     console.log(data);
     this.estudiante=data;
-    if(this.estudiante.img.indexOf(Global.BASE_URL)==-1){
-      this.estudiante.img=Global.BASE_URL+":"+Global.port+"/"+this.estudiante.img;
+    if(this.estudiante.img!==null){
+      if(this.estudiante.img.indexOf(Global.BASE_URL)==-1){
+        this.estudiante.img=Global.BASE_URL+":"+Global.port+"/"+this.estudiante.img;
+      }
     }
 
     if (this.estudiante) {
