@@ -37,9 +37,8 @@ export class LoginComponent implements OnInit {
           if(data.usuario.rol==='alumno'){
             localStorage.setItem('rol','alumno');
             localStorage.setItem('user',data.usuario.username);
-            this.router.navigate(['/estudiantes']);
+            this.router.navigate(['/estudiantes/dashboard/account']);
           }
-
         })
       }else{
         if(data.message==='Usuario No encontrado' || data.message==='Password invalido'){

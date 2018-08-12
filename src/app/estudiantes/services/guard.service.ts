@@ -13,17 +13,18 @@ export class GuardService implements CanActivate, CanActivateChild {
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if (!this.authService.isLogged) {
-      this.router.navigate([this.authService.redirectUrl])
-      return false
-    }
-    for (let i in this.authService.routes) {
-      if (state.url.startsWith(this.authService.routes[i])) {
-        return true
-      }
-    }
-    this.router.navigate([this.authService.redirectUrl])
-    return false
+    return true
+    // if (!this.authService.isLogged) {
+    //   this.router.navigate([this.authService.redirectUrl])
+    //   return false
+    // }
+    // for (let i in this.authService.routes) {
+    //   if (state.url.startsWith(this.authService.routes[i])) {
+    //     return true
+    //   }
+    // }
+    // this.router.navigate([this.authService.redirectUrl])
+    // return false
   }
 
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
