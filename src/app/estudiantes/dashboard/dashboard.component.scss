@@ -1,0 +1,80 @@
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://www.google.com/design/spec/style/color.html
+$primary: mat-palette($mat-indigo);
+$accent:  mat-palette($mat-pink, A200, A100, A400);
+$warn:    mat-palette($mat-red);
+
+.drawer-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-top: 60px;
+}
+
+.drawer {
+  background-color: #f2f2f2;
+  min-width: 200px;
+  border-right: solid lightgrey 1px;
+}
+
+.menu-top {
+  background-color: mat-color($primary);
+  width: 100%;
+  padding: 10px;
+  position: fixed;
+  z-index: 10;
+}
+
+.active {
+  background-color: mat-color($primary);
+  color: white;
+}
+
+.drawer-toggle {
+  color: white;
+}
+
+.titulo-principal {
+  color: white;
+  font-family: roboto;
+  font-weight: bold;
+  padding: 8px;
+  white-space: nowrap;
+}
+
+.link {
+  border-radius: 0px;
+  border-bottom: solid lightgrey 1px;
+}
+
+.picture {
+  text-align: center;
+  height: 100px;
+  background-image: url('assets/img/profile.png');
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin: 10px;
+}
+
+.rol {
+  vertical-align: bottom;
+  text-align: center;
+  border-top: 0px;
+  padding-top: 0px;
+  max-width: 200px;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

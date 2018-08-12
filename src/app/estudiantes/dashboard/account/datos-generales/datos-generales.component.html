@@ -1,0 +1,67 @@
+<div class="container">
+  <form (ngSubmit)="onSubmit()" #LoginForm="ngForm">
+    <div fxLayout="row" fxLayoutAlign="start start">
+      <div fxLayout="column" fxLayoutAlign="start stretch" class="form">
+
+        <span class="seccion-title">Información personal</span>
+
+        <mat-form-field>
+          <input matInput placeholder="Nombre" [(ngModel)]="model.persona.nombre" name="nombre" disabled>
+        </mat-form-field>
+
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <mat-form-field>
+            <input matInput placeholder="Primer apellido" [(ngModel)]="model.persona.primer_apellido" name="pa" disabled>
+          </mat-form-field>
+          <div class="separator"></div>
+          <mat-form-field>
+            <input matInput placeholder="Segundo apellido" [(ngModel)]="model.persona.segundo_apellido" name="sa" disabled>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <mat-form-field>
+            <input matInput placeholder="Documento de identidad" [(ngModel)]="model.persona.documento_identidad" name="di" disabled>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-select placeholder="Roles" multiple disabled [(ngModel)]="model.roles" name="roles">
+              <mat-option *ngFor="let rol of listaRoles" [value]="rol.id_rol">{{rol.nombre}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <span class="seccion-title" *ngIf="model.roles.includes(2)">Datos de administrador</span>
+
+        <mat-form-field *ngIf="model.roles.includes(2)">
+          <input matInput placeholder="Cargo" [(ngModel)]="model.administrador.cargo" name="cargo" disabled>
+        </mat-form-field>
+
+      </div>
+
+      <div class="separator"></div>
+
+      <div fxLayout="column" fxLayoutAlign="start stretch" class="form">
+
+        <span class="seccion-title">Información de contacto</span>
+
+        <mat-form-field>
+          <input matInput placeholder="Dirección" [(ngModel)]="model.persona.direccion" name="direccion">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Teléfono" [(ngModel)]="model.persona.telefono" name="telefono">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Email" [(ngModel)]="model.persona.email" name="email">
+        </mat-form-field>
+
+        <div fxLayout="row" fxLayoutAlign="end center" style="margin-top:20px">
+          <button type="submit" mat-button color="primary" style="margin-left:20px">Actualizar</button>
+        </div>
+
+      </div>
+    </div>
+  </form>
+</div>

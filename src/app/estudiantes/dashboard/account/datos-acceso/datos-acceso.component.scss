@@ -1,0 +1,23 @@
+.container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.separator {
+  width: 20px;
+}
+
+.seccion-title {
+  background-color: #f2f2f2;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.form {
+  width: 400px;
+  border: solid lightgrey 1px;
+  border-radius: 10px;
+  padding: 10px;
+  overflow: hidden;
+}

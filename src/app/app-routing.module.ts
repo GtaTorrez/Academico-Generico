@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: '', redirectTo: "/login", pathMatch: 'full' },
   { path: 'login', component:LoginComponent},
   { path: 'administrador',    canActivate: [AdminGuard],      loadChildren: './administrador/administrador.module#AdministradorModule' },
-  { path: 'estudiantes',      canActivate: [EstudianteGuard], loadChildren: './estudiantes/estudiantes.module#EstudiantesModule' },
+  { path: 'estudiantes',      canActivate: [EstudianteGuard], loadChildren: './estudiantes/app.module#AppModule' },
   { path: 'asistencia', loadChildren: './controlasistencia/controlasistencia.module#ControlasistenciaModule' }
 ];
 

@@ -1,0 +1,37 @@
+<div class="container" fxLayout="column" fxLayoutAlign="start center" >
+
+  <h1 class="mat-display-1">Sistema Académico</h1>
+  <h2 class="mat-h2">Inicio de sesión</h2>
+
+  <form class="form" (ngSubmit)="onSubmit()" #LoginForm="ngForm">
+
+    <mat-card>
+      <mat-card-content>
+        <div fxLayout="column" fxLayoutAlign="start stretch" >
+
+          <mat-form-field>
+            <input matInput placeholder="Usuario" [formControl]="username" required [(ngModel)]="model.username">
+            <mat-error *ngIf="username.invalid">{{ getErrorMessage('username') }}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="Contraseña" [type]="hide ? 'password' : 'text'" [formControl]="password" required [(ngModel)]="model.password">
+            <mat-icon matSuffix (click)="hide = !hide">{{ hide ? 'visibility' : 'visibility_off' }}</mat-icon>
+            <mat-error *ngIf="password.invalid">{{ getErrorMessage('password') }}</mat-error>
+          </mat-form-field>
+
+          <mat-checkbox [(ngModel)]="activo" name="activo">Confío en este equipo</mat-checkbox>
+
+          <button class="submit" type="submit" mat-raised-button color="primary">Ingresar</button>
+
+          <div fxLayout="row" fxLayoutAlign="end end" >
+            <p><a routerLink="/resetPassword">¿Olvidó su contraseña?</a></p>
+          </div>
+
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+  </form>
+
+</div>

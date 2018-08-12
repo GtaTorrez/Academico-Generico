@@ -1,0 +1,31 @@
+<div class="container">
+  <form (ngSubmit)="onSubmit()" #LoginForm="ngForm">
+    <div fxLayout="row" fxLayoutAlign="start start">
+      <div fxLayout="column" fxLayoutAlign="start stretch" class="form">
+
+        <span class="seccion-title">Usuario y contraseña</span>
+
+        <mat-form-field>
+          <input matInput placeholder="Nombre de usuario" [(ngModel)]="model.username" name="username" disabled>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type="password" placeholder="Contraseña actual" [(ngModel)]="model.password_actual" name="passActual" required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type="password" placeholder="Contraseña nueva" [(ngModel)]="model.password" name="pass" required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type="password" placeholder="Confirmar contraseña" [(ngModel)]="model.password_confirm" name="passConfirm" required>
+        </mat-form-field>
+
+        <div fxLayout="row" fxLayoutAlign="end center" style="margin-top:20px">
+          <button type="submit" mat-button color="primary" style="margin-left:20px">Actualizar</button>
+        </div>
+
+      </div>
+    </div>
+  </form>
+</div>

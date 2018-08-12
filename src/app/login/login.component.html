@@ -1,26 +1,26 @@
 <span class="fondo">
-<div class="container"> 
+<div class="container">
   <div class="card">
     <div class="titulo" >
       Bienvenido
     </div>
     <form #loginForm="ngForm" class="floating-form" >
-      <div class="floating-label">      
+      <div class="floating-label">
         <input class="floating-input" type="text" placeholder=" "  #user="ngModel" id="user" name="user" [(ngModel)]="username"  required >
         <span class="highlight"></span>
         <label>Nombre de usuario</label>
       </div>
       <p *ngIf="user.invalid && user.dirty" class="error" >Nombre de usuario no puede estar vacio *</p>
 
-      <div class="floating-label">      
+      <div class="floating-label">
         <input class="floating-input" type="text" placeholder=" " id="pass" #pass="ngModel" [(ngModel)]="password" name="pass" [type]="hide ? 'password' : 'text'" required>
         <span class="highlight"></span>
         <label>Contraseña</label>
       </div>
       <p *ngIf="pass.invalid && pass.dirty" class="error" >La contraseña no puede estar vacia *</p>
         <i class="material-icons hidePasswors" (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</i>
-        
-      <button type="submit"  mat-raised-button class="block btn" [disabled]="loginForm.invalid" (click)="submit()" color="accent">INGRESAR</button>    
+
+      <button type="submit"  mat-raised-button class="block btn" [disabled]="loginForm.invalid" (click)="submit()">INGRESAR</button>    
       <div *ngIf="errorLog" class="error errorLog">
         {{msgError}}
       </div>
