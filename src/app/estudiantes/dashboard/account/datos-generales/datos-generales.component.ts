@@ -34,7 +34,7 @@ export class DatosGeneralesComponent implements OnInit {
   ngOnInit () {
     const SESSION = DataService.getSession()
     const fields = 'ALL'
-    this.dashboardService.obtenerCuenta(fields).subscribe((result : any) => {
+    this.dashboardService.obtenerCuenta().subscribe((result : any) => {
       this.model.id_usuario                  = result.data.id_usuario
       this.model.persona.nombre              = result.data.persona.nombre              || ' '
       this.model.persona.primer_apellido     = result.data.persona.primer_apellido     || ' '
