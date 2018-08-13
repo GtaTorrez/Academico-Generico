@@ -46,4 +46,7 @@ export class DashboardService {
   cambiarPassword (body: any) : Observable<Object> {
     return this.http.post(Config.AUTHORIZATION.cambiarPasswordURL, body)
   }
+
+
+  
 }
