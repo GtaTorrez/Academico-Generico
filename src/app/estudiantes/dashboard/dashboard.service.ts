@@ -10,6 +10,7 @@ import 'rxjs/add/observable/throw'
 import { ConfigService as Config } from '../services/config.service';
 
 import * as moment from 'moment'
+import { Global } from '../../config/global';
 
 const CUENTA_URL = `${Config.AUTHORIZATION.cuentaURL}`
 
@@ -40,7 +41,7 @@ export class DashboardService {
   postDispositivo(dispositivo){
     console.log("upload ")
     let body={"idDispositivo":dispositivo}
-    return this.http.post("http://moswara.com:48000/dispositivo/adicionar",body)
+    return this.http.post(Global.BASE_URL+":"+Global.port+"/dispositivo/adicionar",body,{withCredentials:true})
   }
   
 }

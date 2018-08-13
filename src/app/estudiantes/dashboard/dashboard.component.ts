@@ -5,6 +5,7 @@ import { Router }            from '@angular/router'
 import { AuthService } from '../services/auth.service'
 import { DataService } from '../services/data.service'
 import { DashboardService } from './dashboard.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector    : 'app-dashboard',
@@ -18,7 +19,8 @@ export class DashboardComponent implements OnInit {
   oneSignal:any;
   constructor (
     private dashboardService:DashboardService,
-    public authService: AuthService
+    public authService: AuthService,
+    private snack:MatSnackBar
   ) {
 
   }
@@ -57,20 +59,28 @@ export class DashboardComponent implements OnInit {
       console.log("Reistrando dispositovo desde const")
       this.dashboardService.postDispositivo(id).subscribe(data=>{
         console.log(data)
+        this.snack.open("Registrado tu disposotivo");
       }),err=>{
         console.log("**************************************Error")
       }
     }
-    this.oneSignal.getUserId().then(function (userId) {
-      console.log("User ID is ", userId);
-      localStorage.setItem('idDevice',userId);
-      id=userId;
-      sendDevice(userId);
-    });
+    // this.oneSignal.getUserId().then(function (userId) {
+    //   console.log("User ID is ", userId);
+    //   localStorage.setItem('idDevice',userId);
+    //   id=userId;
+    //   sendDevice(userId);
+    // });
 
-    this.uploadDispositivo(localStorage.getItem('idDevice')).then(val=>{
-      console.log("Guardando el device por localstorage")
-      this.registrarDispositivo(val)
+    this.oneSignal.isPushNotificationsEnabled().then(data=>{
+      console.log(data,!data);
+      if(!data){
+        this.oneSignal.getUserId().then(function (userId) {
+          sendDevice(userId);
+          
+        });
+      }
+    }).catch(err=>{
+      console.log(err);
     })
     // this.oneSignal.push(function () {
     //   // Occurs when the user's subscription changes to a new value.
@@ -98,10 +108,12 @@ export class DashboardComponent implements OnInit {
   }
   uploadDispositivo(val:string){
     const promise =new Promise(( resolve, reject )=>{
-      if(val!==null || val==undefined){
-        resolve(val);
+      if(val!==null || val!==undefined){
+        let dataa=resolve(val); 
+        console.log(dataa)
+      }else{
+        reject(new Error("no se pudo guardar"))
       }
-      reject(new Error("no se pudo guardar"))
     })
     return promise;
   }
