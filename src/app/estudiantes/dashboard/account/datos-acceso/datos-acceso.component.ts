@@ -28,8 +28,7 @@ export class DatosAccesoComponent implements OnInit {
 
   ngOnInit () {
     const SESSION = DataService.getSession()
-    const fields = 'ALL'
-    this.dashboardService.obtenerCuenta(fields).subscribe((result : any) => {
+    this.dashboardService.obtenerCuenta().subscribe((result : any) => {
       this.model.id_usuario = result.data.id_usuario
       this.model.username   = result.data.username
     },

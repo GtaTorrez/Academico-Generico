@@ -26,19 +26,21 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    const SESSION = DataService.getSession()
-    if (!SESSION) { return }
-    this.usuario = SESSION.usuario
-    for(let i in SESSION.usuario.roles) {
-      const rol = SESSION.usuario.roles[i]
-      if (rol === 'superadmin') {
-        this.addMenuItem({ path: '/dashboard/usuarios', name: 'Usuarios' })
-        this.addMenuItem({ path: '/dashboard/modA',     name: 'Módulo A' })
-      }
-      if (rol === 'admin') {
-        this.addMenuItem({ path: '/dashboard/modA', name: 'Módulo A' })
-      }
-    }
+    this.addMenuItem({ path: '/estudiantes/dashboard/usuarios', name: 'Usuarios' })
+    this.addMenuItem({ path: '/estudiantes/dashboard/modA',     name: 'Módulo A' })
+    // const SESSION = DataService.getSession()
+    // if (!SESSION) { return }
+    // this.usuario = SESSION.usuario
+    // for(let i in SESSION.usuario.roles) {
+    //   const rol = SESSION.usuario.roles[i]
+    //   if (rol === 'superadmin') {
+    //     this.addMenuItem({ path: '/estudiantes/dashboard/usuarios', name: 'Usuarios' })
+    //     this.addMenuItem({ path: '/estudiantes/dashboard/modA',     name: 'Módulo A' })
+    //   }
+    //   if (rol === 'admin') {
+    //     this.addMenuItem({ path: '/estudiantes/dashboard/modA', name: 'Módulo A' })
+    //   }
+    // }
   }
 
   logout() {

@@ -20,9 +20,8 @@ export class DashboardService {
     private http: HttpClient
   ) {}
 
-  obtenerCuenta(fields = 'ALL') : Observable<Object> {
-    const QUERY = `fields=${fields}`
-    return this.http.get(`${CUENTA_URL}?${QUERY}`).pipe(
+  obtenerCuenta() : Observable<Object> {
+    return this.http.get(`${CUENTA_URL}`).pipe(
       map((result: any) => {
         const rolesId     = []
         const rolesNombre = []
@@ -35,15 +34,15 @@ export class DashboardService {
         result.data.rolesId     = rolesId
         result.data.rolesNombre = rolesNombre
         return result
-      })
+      }, {withCredentials: true})
     )
   }
 
   actualizarCuenta(body) : Observable<Object> {
-    return this.http.put(CUENTA_URL, body)
+    return this.http.put(CUENTA_URL, body, {withCredentials: true})
   }
 
   cambiarPassword (body: any) : Observable<Object> {
-    return this.http.post(Config.AUTHORIZATION.cambiarPasswordURL, body)
+    return this.http.post(Config.AUTHORIZATION.cambiarPasswordURL, body, {withCredentials: true})
   }
 }
