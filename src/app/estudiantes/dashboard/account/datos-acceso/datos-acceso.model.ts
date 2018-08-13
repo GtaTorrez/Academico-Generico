@@ -1,5 +1,5 @@
 export class DatosAccesoModel {
-  id_usuario       : number = 0
+  id               : number = 0
   username         : string = ''
   password         : string = ''
   password_actual  : string = ''

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core'
 import { Router }            from '@angular/router'
 // Services
 import { AuthService } from '../services/auth.service'
-import { DataService } from '../services/data.service'
+import { DataService } from '../../login/data.service'
 import { DashboardService } from './dashboard.service';
 
 @Component({
@@ -31,14 +31,15 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.addMenuItem({ path: '/estudiantes/dashboard/usuarios', name: 'Usuarios' })
-    this.addMenuItem({ path: '/estudiantes/dashboard/modA',     name: 'Módulo A' })
-    
-    // this.dashboardService.obtenerCuenta().subscribe((result : any) => {
-    //   this.usuario = result.usuario
-    // })
+    // this.addMenuItem({ path: '/estudiantes/dashboard/usuarios', name: 'Usuarios' })
+    const SESSION = DataService.getSession()
+    this.usuario.nombre = SESSION.usuario.nombre
+    if (SESSION.usuario.rol === 'alumno') {
+      this.addMenuItem({ path: '/estudiantes/dashboard/account', name: 'Inicio' });
+      this.addMenuItem({ path: '/estudiantes/dashboard/historial', name: 'Historial' });
+    }
     this.oneSignal=window['OneSignal'] || [];
-    
+
     this.oneSignal.push(["init", {
       appId: "e338a31b-4667-471e-9a1a-4aa0c3cf6d5f",
       autoRegister: false,
@@ -47,9 +48,9 @@ export class DashboardComponent implements OnInit {
         enable: false
       }
     }]);
-    
+
     // this.oneSignal.push(function () {
-      
+
     //   this.oneSignal.push(["registerForPushNotifications"])
     // });
     let id;
@@ -76,7 +77,7 @@ export class DashboardComponent implements OnInit {
     //   // Occurs when the user's subscription changes to a new value.
     //   this.oneSignal.on('subscriptionChange', function (isSubscribed) {
     //     console.log("The user's subscription state is now:", isSubscribed);
-        
+
     //   });
     // });
     // const SESSION = DataService.getSession()
@@ -92,9 +93,9 @@ export class DashboardComponent implements OnInit {
     //     this.addMenuItem({ path: '/estudiantes/dashboard/modA', name: 'Módulo A' })
     //   }
     // }
-  
+
     // this.registrarDispositivo(this.idDevice);
-  
+
   }
   uploadDispositivo(val:string){
     const promise =new Promise(( resolve, reject )=>{

@@ -121,7 +121,7 @@ export class PerfilComponent implements OnInit,OnDestroy,DoCheck {
     this.http.postPersonaImg(formModel,this.persona.id).subscribe(data=>{
       console.log("echo")
       console.log(data)
-      this.persona.img=data.img;
+      this.persona.img= Global.BASE_URL+":"+Global.port +'/'+data.img;
       alert('hecho')
       this.loading=false;
     },err=>{

@@ -9,7 +9,7 @@ import { HomeComponent }   from './home.component';
 // Services
 import { AuthService }    from '../../services/auth.service';
 import { GuardService }   from '../../services/guard.service';
-import { DataService }    from '../../services/data.service';
+import { DataService }    from '../../../login/data.service';
 import { ConfigService }  from '../../services/config.service';
 
 @NgModule({

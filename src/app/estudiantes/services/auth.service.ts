@@ -6,7 +6,7 @@ import { Router }     from '@angular/router'
 import { Observable } from 'rxjs/Observable'
 import 'rxjs/add/observable/throw'
 // Services
-import { DataService }   from './data.service'
+import { DataService }   from '../../login/data.service'
 import { ConfigService } from './config.service'
 
 declare var Buffer : any

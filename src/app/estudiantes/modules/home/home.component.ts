@@ -1,7 +1,7 @@
 // libreries
 import { Component, OnInit } from '@angular/core';
 // Services
-import { DataService } from '../../services/data.service';
+import { DataService } from '../../../login/data.service';
 
 @Component({
   selector    : 'dashboard-home',

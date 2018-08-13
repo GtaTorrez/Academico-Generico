@@ -13,10 +13,9 @@ const ROUTES: Routes = [
     component   : DashboardComponent,
     canActivate : [GuardService],
     children    : [
-      { path: 'account',  component: AccountComponent },
-      { path: 'home',     loadChildren: '../modules/home/home.module#HomeModule' },
-      { path: 'modA',     loadChildren: '../modules/modA/modA.module#ModAModule' },
-      { path: 'usuarios', loadChildren: '../modules/usuarios/usuarios.module#UsuariosModule' }
+      { path: 'account',   component: AccountComponent },
+      { path: 'home',      loadChildren: '../modules/home/home.module#HomeModule' },
+      { path: 'historial', loadChildren: '../modules/historial/historial.module#HistorialModule' }
     ]
   }
 ];
