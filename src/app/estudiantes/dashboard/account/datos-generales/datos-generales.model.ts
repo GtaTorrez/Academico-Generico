@@ -12,7 +12,7 @@ export class DatosGeneralesModel {
   administrador = {
     cargo: ''
   }
-  roles : number[] = []
+  rol : ''
 
   constructor () {}
 }

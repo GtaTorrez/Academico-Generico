@@ -25,17 +25,21 @@
           </mat-form-field>
 
           <mat-form-field>
+            <input matInput placeholder="Rol" [(ngModel)]="model.rol" name="rol" disabled>
+          </mat-form-field>
+
+          <!-- <mat-form-field>
             <mat-select placeholder="Roles" multiple disabled [(ngModel)]="model.roles" name="roles">
               <mat-option *ngFor="let rol of listaRoles" [value]="rol.id_rol">{{rol.nombre}}</mat-option>
             </mat-select>
-          </mat-form-field>
+          </mat-form-field> -->
         </div>
 
-        <span class="seccion-title" *ngIf="model.roles.includes(2)">Datos de administrador</span>
+        <!-- <span class="seccion-title" *ngIf="model.roles.includes(2)">Datos de administrador</span>
 
         <mat-form-field *ngIf="model.roles.includes(2)">
           <input matInput placeholder="Cargo" [(ngModel)]="model.administrador.cargo" name="cargo" disabled>
-        </mat-form-field>
+        </mat-form-field> -->
 
       </div>
 
@@ -46,15 +50,15 @@
         <span class="seccion-title">Información de contacto</span>
 
         <mat-form-field>
-          <input matInput placeholder="Dirección" [(ngModel)]="model.persona.direccion" name="direccion">
+          <input matInput placeholder="Dirección" [(ngModel)]="model.persona.direccion" name="direccion" disabled>
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="Teléfono" [(ngModel)]="model.persona.telefono" name="telefono">
+          <input matInput placeholder="Teléfono" [(ngModel)]="model.persona.telefono" name="telefono" disabled>
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="Email" [(ngModel)]="model.persona.email" name="email">
+          <input matInput placeholder="Email" [(ngModel)]="model.persona.email" name="email" disabled>
         </mat-form-field>
 
         <div fxLayout="row" fxLayoutAlign="end center" style="margin-top:20px">

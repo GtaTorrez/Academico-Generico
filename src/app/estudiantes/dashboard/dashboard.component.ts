@@ -4,6 +4,7 @@ import { Router }            from '@angular/router'
 // Services
 import { AuthService } from '../services/auth.service'
 import { DataService } from '../services/data.service'
+import { DashboardService } from './dashboard.service'
 
 @Component({
   selector    : 'app-dashboard',
@@ -15,6 +16,7 @@ export class DashboardComponent implements OnInit {
   dashboardMenu = []
 
   constructor (
+    public dashboardService: DashboardService,
     public authService: AuthService
   ) {}
 
@@ -28,6 +30,11 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.addMenuItem({ path: '/estudiantes/dashboard/usuarios', name: 'Usuarios' })
     this.addMenuItem({ path: '/estudiantes/dashboard/modA',     name: 'Módulo A' })
+
+    this.dashboardService.obtenerCuenta().subscribe((result : any) => {
+      this.usuario = result.usuario
+    })
+
     // const SESSION = DataService.getSession()
     // if (!SESSION) { return }
     // this.usuario = SESSION.usuario
