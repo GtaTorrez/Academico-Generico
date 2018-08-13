@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {LoginService} from './login.service';
+import { Router }            from '@angular/router';
 
+import { LoginService } from './login.service';
 
-import { Router } from '@angular/router';
 import { LoadersService } from '../loader/loaders.service';
+import { DataService }    from './data.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -21,25 +23,27 @@ export class LoginComponent implements OnInit {
     private loader:LoadersService
 
   ) { }
-  ngOnInit() {}
+  ngOnInit() {
+    const SESSION = DataService.getSession()
+    if (SESSION) {
+      this.redirectToHome(SESSION.usuario.rol)
+    }
+  }
   submit() {
     this.loader.cambiarEstado(true);
     let data={username:this.username,password:this.password};
     let resp=this.serve.postUser(data).subscribe(data=>{
-      console.log(data);
       if (data.message==='Acceso satisfactoriamente' && data.user ) {
-        this.serve.getData().subscribe(data=>{
-          if(data.usuario.rol==='admin'){
-            localStorage.setItem('rol','admin');
-            localStorage.setItem('user',data.usuario.username);
-            this.router.navigate(['/administrador']);
+        const SESSION = {
+          usuario: {
+            id       : data.user.usuario.id,
+            username : data.user.usuario.username,
+            rol      : data.user.usuario.rol,
+            nombre   : `${data.user.nombre ? data.user.nombre : ''} ${data.user.apellido ? data.user.apellido : ''}`.trim()
           }
-          if(data.usuario.rol==='alumno'){
-            localStorage.setItem('rol','alumno');
-            localStorage.setItem('user',data.usuario.username);
-            this.router.navigate(['/estudiantes/dashboard/account']);
-          }
-        })
+        }
+        DataService.setSession(SESSION)
+        this.redirectToHome(SESSION.usuario.rol)
       }else{
         if(data.message==='Usuario No encontrado' || data.message==='Password invalido'){
           this.errorLog=true;
@@ -51,6 +55,15 @@ export class LoginComponent implements OnInit {
       this.loader.cambiarEstado(false);
       console.error(error);
     })
+  }
+
+  redirectToHome (rol) {
+    if (rol === 'admin') {
+      this.router.navigate(['/administrador'])
+    }
+    if (rol === 'alumno') {
+      this.router.navigate(['/estudiantes/dashboard/account']);
+    }
   }
 
 }

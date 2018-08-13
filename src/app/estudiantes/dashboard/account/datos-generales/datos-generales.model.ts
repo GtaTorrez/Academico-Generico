@@ -1,5 +1,6 @@
 export class DatosGeneralesModel {
-  id_usuario: number = 0
+  id  : number = 0
+  rol : string = ''
   persona = {
     nombre              : '',
     primer_apellido     : '',
@@ -9,10 +10,6 @@ export class DatosGeneralesModel {
     direccion           : '',
     telefono            : ''
   }
-  administrador = {
-    cargo: ''
-  }
-  rol : ''
 
   constructor () {}
 }

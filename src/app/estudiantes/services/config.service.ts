@@ -1,6 +1,8 @@
 // Libraries
 import { Injectable } from '@angular/core';
 
+import { Global } from '../../config/global'
+
 @Injectable()
 export class ConfigService {
   public static APP_NAME = 'auth';
@@ -8,25 +10,26 @@ export class ConfigService {
     clientId     : '7dd41969-dc45-4900-b8b3-89603b06dba7',
     clientSecret : 'ssh-kjh345hgf8735hj5489rkj23rfd098sj'
   }
+  public static BASE_URL = `${Global.BASE_URL}:${Global.port}`
   public static AUTHORIZATION = {
-    url                    : 'http://localhost:4000',
-    api                    : 'http://localhost:4000/api/v1',
+    url                    : `${ConfigService.BASE_URL}`,
+    api                    : `${ConfigService.BASE_URL}/api/v1`,
 
-    cuentaURL              : 'http://192.168.0.102:1337/auth/autentificacion',
-    logOutURL              : 'http://192.168.0.102:1337/auth/salir',
+    cuentaURL              : `${ConfigService.BASE_URL}/auth/autentificacion`,
+    logOutURL              : `${ConfigService.BASE_URL}/auth/salir`,
+    cambiarPasswordURL     : `${ConfigService.BASE_URL}/usuario/cambiarPassword`,
 
-    habilitarCuentaURL     : 'http://localhost:4000/account/habilitar',
-    deshabilitarCuentaURL  : 'http://localhost:4000/account/deshabilitar',
+    habilitarCuentaURL     : `${ConfigService.BASE_URL}/account/habilitar`,
+    deshabilitarCuentaURL  : `${ConfigService.BASE_URL}/account/deshabilitar`,
 
-    obtenerTokenURL        : 'http://localhost:4000/auth/token',
-    verificarTokenURL      : 'http://localhost:4000/auth/token/info',
-    refrescarTokenURL      : 'http://localhost:4000/auth/token/refrescar',
+    obtenerTokenURL        : `${ConfigService.BASE_URL}/auth/token`,
+    verificarTokenURL      : `${ConfigService.BASE_URL}/auth/token/info`,
+    refrescarTokenURL      : `${ConfigService.BASE_URL}/auth/token/refrescar`,
 
-    cambiarPasswordURL     : 'http://localhost:4000/auth/pass/cambiar',
-    codigoInfoPasswordURL  : 'http://localhost:4000/auth/pass/codigo/info',
-    recordarPasswordURL    : 'http://localhost:4000/auth/pass/recordar',
-    recuperarPasswordURL   : 'http://localhost:4000/auth/pass/recuperar',
+    codigoInfoPasswordURL  : `${ConfigService.BASE_URL}/auth/pass/codigo/info`,
+    recordarPasswordURL    : `${ConfigService.BASE_URL}/auth/pass/recordar`,
+    recuperarPasswordURL   : `${ConfigService.BASE_URL}/auth/pass/recuperar`,
 
-    resetURL               : 'http://localhost:4200/resetPassword'
+    resetURL               : `${ConfigService.BASE_URL}/resetPassword`
   }
 }

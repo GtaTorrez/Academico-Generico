@@ -16,8 +16,9 @@ import { ResetPasswordComponent } from './pages/reset-password/reset-password.co
 // Services
 import { AuthService }               from './services/auth.service'
 import { GuardService }              from './services/guard.service'
-import { DataService }               from './services/data.service'
 import { ConfigService }             from './services/config.service'
+
+import { DataService }               from '../login/data.service'
 // import { RequestInterceptorService } from './services/request.interceptor'
 
 @NgModule({

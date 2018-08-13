@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material'
 
 // Services
-import { DataService }      from '../../../services/data.service';
+import { DataService }      from '../../../../login/data.service';
 import { DashboardService } from '../../dashboard.service'
 
 import { DatosAccesoModel } from './datos-acceso.model'
@@ -28,14 +28,8 @@ export class DatosAccesoComponent implements OnInit {
 
   ngOnInit () {
     const SESSION = DataService.getSession()
-    // this.dashboardService.obtenerCuenta().subscribe((result : any) => {
-    //   console.log("RESULT 222 ", result)
-    //   this.model.id_usuario = result.usuario.id
-    //   this.model.username   = result.usuario.username
-    // },
-    // error => {
-    //   this.snackBar.open(error.errors[0].msg, 'Error', { duration: 2000 })
-    // })
+    this.model.id       = SESSION.usuario.id
+    this.model.username = SESSION.usuario.username
   }
 
   onSubmit () {
@@ -46,8 +40,8 @@ export class DatosAccesoComponent implements OnInit {
       this.snackBar.open(result.message, 'Ok', { duration: 2000 })
     },
     error => {
-      this.submitted = false
-      this.snackBar.open(error.errors[0].msg, 'Error', { duration: 2000 })
+      console.log("ERROR = ", error)
+      this.snackBar.open('Fatal Error', 'Error', { duration: 2000 })
     })
   }
 

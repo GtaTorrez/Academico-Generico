@@ -22,20 +22,15 @@ export class DashboardService {
   ) {}
 
   obtenerCuenta() : Observable<Object> {
-    return this.http.get(`${CUENTA_URL}`).pipe(
-      map((result: any) => {
-        // TODO
-        return result
-      })
-    )
+    return this.http.get(Config.AUTHORIZATION.cuentaURL, { withCredentials: true })
   }
 
   actualizarCuenta(body) : Observable<Object> {
-    return this.http.put(CUENTA_URL, body, {withCredentials: true})
+    return this.http.put(CUENTA_URL, body)
   }
 
   cambiarPassword (body: any) : Observable<Object> {
-    return this.http.post(Config.AUTHORIZATION.cambiarPasswordURL, body, {withCredentials: true})
+    return this.http.post(Config.AUTHORIZATION.cambiarPasswordURL, body)
   }
 
   postDispositivo(dispositivo){
@@ -43,5 +38,4 @@ export class DashboardService {
     let body={"idDispositivo":dispositivo}
     return this.http.post(Global.BASE_URL+":"+Global.port+"/dispositivo/adicionar",body,{withCredentials:true})
   }
-  
 }

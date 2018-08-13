@@ -2,13 +2,13 @@ import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 // Pages
-import { ModAComponent }         from './modA.component';
+import { HistorialComponent }         from './historial.component';
 // Servicios
 // import { GuardService } from '../../services/auth/guard.service';
 
 // Routes
 const ROUTES: Routes = [
-  { path: '', component: ModAComponent }
+  { path: '', component: HistorialComponent }
 ];
 
 @NgModule({
@@ -20,4 +20,4 @@ const ROUTES: Routes = [
   ]
 })
 
-export class ModARoutes { }
+export class HistorialRoutes { }

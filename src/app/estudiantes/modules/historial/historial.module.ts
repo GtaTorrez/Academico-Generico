@@ -3,25 +3,25 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule }        from '@angular/core';
 import { CommonModule }    from '@angular/common';
 import { MaterialModule }  from '../../material.module';
-import { ModARoutes }      from './modA.routes';
+import { HistorialRoutes }      from './historial.routes';
 // Components
-import { ModAComponent }   from './modA.component';
+import { HistorialComponent }   from './historial.component';
 // Services
 import { AuthService }    from '../../services/auth.service';
 import { GuardService }   from '../../services/guard.service';
-import { DataService }    from '../../services/data.service';
+import { DataService }    from '../../../login/data.service';
 import { ConfigService }  from '../../services/config.service';
 
 @NgModule({
   imports: [
-    ModARoutes,
+    HistorialRoutes,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     MaterialModule
   ],
   declarations: [
-    ModAComponent
+    HistorialComponent
   ],
   providers: [
     DataService,
@@ -30,4 +30,4 @@ import { ConfigService }  from '../../services/config.service';
     GuardService
   ]
 })
-export class ModAModule {}
+export class HistorialModule {}
