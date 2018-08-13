@@ -28,14 +28,14 @@ export class DatosAccesoComponent implements OnInit {
 
   ngOnInit () {
     const SESSION = DataService.getSession()
-    this.dashboardService.obtenerCuenta().subscribe((result : any) => {
-      console.log("RESULT 222 ", result)
-      this.model.id_usuario = result.usuario.id
-      this.model.username   = result.usuario.username
-    },
-    error => {
-      this.snackBar.open(error.errors[0].msg, 'Error', { duration: 2000 })
-    })
+    // this.dashboardService.obtenerCuenta().subscribe((result : any) => {
+    //   console.log("RESULT 222 ", result)
+    //   this.model.id_usuario = result.usuario.id
+    //   this.model.username   = result.usuario.username
+    // },
+    // error => {
+    //   this.snackBar.open(error.errors[0].msg, 'Error', { duration: 2000 })
+    // })
   }
 
   onSubmit () {

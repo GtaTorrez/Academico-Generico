@@ -16,6 +16,6 @@ export class AppComponent {
   ) {}
 
   ngOnInit () {
-    this.authService.restaurarSesion()
+    // this.authService.restaurarSesion()
   }
 }

@@ -35,7 +35,7 @@ export class UsuariosComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.authService.restaurarSesion()
+    // this.authService.restaurarSesion()
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0)
     merge(this.sort.sortChange, this.paginator.page)
       .pipe(

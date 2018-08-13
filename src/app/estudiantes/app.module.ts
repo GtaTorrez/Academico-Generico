@@ -18,7 +18,7 @@ import { AuthService }               from './services/auth.service'
 import { GuardService }              from './services/guard.service'
 import { DataService }               from './services/data.service'
 import { ConfigService }             from './services/config.service'
-import { RequestInterceptorService } from './services/request.interceptor'
+// import { RequestInterceptorService } from './services/request.interceptor'
 
 @NgModule({
   declarations: [
@@ -43,7 +43,7 @@ import { RequestInterceptorService } from './services/request.interceptor'
     GuardService,
     DataService,
     ConfigService,
-    { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptorService, multi: true }
+    // { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptorService, multi: true }
   ],
   bootstrap: [AppComponent]
 })

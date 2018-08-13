@@ -14,11 +14,14 @@ import { DashboardService } from './dashboard.service';
 export class DashboardComponent implements OnInit {
   usuario       = { nombre: '' }
   dashboardMenu = []
-
+  idDevice:string="";
+  oneSignal:any;
   constructor (
-    public dashboardService: DashboardService,
+    private dashboardService:DashboardService,
     public authService: AuthService
-  ) {}
+  ) {
+
+  }
 
   addMenuItem (ROUTE) {
     for (let i in this.dashboardMenu) {
@@ -30,11 +33,52 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.addMenuItem({ path: '/estudiantes/dashboard/usuarios', name: 'Usuarios' })
     this.addMenuItem({ path: '/estudiantes/dashboard/modA',     name: 'Módulo A' })
+    
+    // this.dashboardService.obtenerCuenta().subscribe((result : any) => {
+    //   this.usuario = result.usuario
+    // })
+    this.oneSignal=window['OneSignal'] || [];
+    
+    this.oneSignal.push(["init", {
+      appId: "e338a31b-4667-471e-9a1a-4aa0c3cf6d5f",
+      autoRegister: false,
+      allowLocalhostAsSecureOrigin: true,
+      notifyButton: {
+        enable: false
+      }
+    }]);
+    
+    // this.oneSignal.push(function () {
+      
+    //   this.oneSignal.push(["registerForPushNotifications"])
+    // });
+    let id;
+    const sendDevice=(id)=>{
+      console.log("Reistrando dispositovo desde const")
+      this.dashboardService.postDispositivo(id).subscribe(data=>{
+        console.log(data)
+      }),err=>{
+        console.log("**************************************Error")
+      }
+    }
+    this.oneSignal.getUserId().then(function (userId) {
+      console.log("User ID is ", userId);
+      localStorage.setItem('idDevice',userId);
+      id=userId;
+      sendDevice(userId);
+    });
 
-    this.dashboardService.obtenerCuenta().subscribe((result : any) => {
-      this.usuario = result.usuario
+    this.uploadDispositivo(localStorage.getItem('idDevice')).then(val=>{
+      console.log("Guardando el device por localstorage")
+      this.registrarDispositivo(val)
     })
-
+    // this.oneSignal.push(function () {
+    //   // Occurs when the user's subscription changes to a new value.
+    //   this.oneSignal.on('subscriptionChange', function (isSubscribed) {
+    //     console.log("The user's subscription state is now:", isSubscribed);
+        
+    //   });
+    // });
     // const SESSION = DataService.getSession()
     // if (!SESSION) { return }
     // this.usuario = SESSION.usuario
@@ -48,42 +92,31 @@ export class DashboardComponent implements OnInit {
     //     this.addMenuItem({ path: '/estudiantes/dashboard/modA', name: 'Módulo A' })
     //   }
     // }
-    var OneSignal = window['OneSignal'] || [];
-    
-    OneSignal.push(["init", {
-      appId: "e338a31b-4667-471e-9a1a-4aa0c3cf6d5f",
-      autoRegister: false,
-      allowLocalhostAsSecureOrigin: true,
-      notifyButton: {
-        enable: false
-      }
-    }]);
-    
-    OneSignal.push(function () {
-      
-      OneSignal.push(["registerForPushNotifications"])
-    });
-    OneSignal.push(function () {
-      // Occurs when the user's subscription changes to a new value.
-      OneSignal.on('subscriptionChange', function (isSubscribed) {
-        console.log("The user's subscription state is now:", isSubscribed);
-        OneSignal.getUserId().then(function (userId) {
-          console.log("User ID is ", userId);
-          this.dashboardService.postDispositivo(userId).subscription(data=>{
-            if(data.idDispositivo!==null){
-              console.log("datos guardados ");
-
-            }
-          })
-
-        });
-      });
-    });
   
+    // this.registrarDispositivo(this.idDevice);
+  
+  }
+  uploadDispositivo(val:string){
+    const promise =new Promise(( resolve, reject )=>{
+      if(val!==null || val==undefined){
+        resolve(val);
+      }
+      reject(new Error("no se pudo guardar"))
+    })
+    return promise;
   }
 
   logout() {
     this.authService.logout()
+  }
+
+  registrarDispositivo(id){
+    console.log("Registrndo dispositivo ",id );
+    this.dashboardService.postDispositivo(id).subscribe(data=>{
+      console.log(data)
+    }),err=>{
+      console.log("**************************************Error")
+    }
   }
 
   onClick (drawer) {

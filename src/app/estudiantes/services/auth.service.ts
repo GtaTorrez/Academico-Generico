@@ -145,7 +145,7 @@ export class AuthService {
 
   logout() : void {
     this.updateSession(null)
-    this.http.get(`${ConfigService.AUTHORIZATION.logoutURL}`)
+    this.http.get(`${ConfigService.AUTHORIZATION.logOutURL}`)
     this.router.navigate(['/login'])
   }
 }

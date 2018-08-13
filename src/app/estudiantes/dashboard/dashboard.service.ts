@@ -38,9 +38,9 @@ export class DashboardService {
   }
 
   postDispositivo(dispositivo){
-    let body={"idPersona":1,
-    "idDispositivo":dispositivo}
-    return this.http.post("http:192.168.0.102:1337/dispositivo", body,{withCredentials: true} )
+    console.log("upload ")
+    let body={"idDispositivo":dispositivo}
+    return this.http.post("http://moswara.com:48000/dispositivo/adicionar",body)
   }
   
 }
