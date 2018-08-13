@@ -17,8 +17,8 @@ export class RequestInterceptorService implements HttpInterceptor {
   ) {}
 
   intercept (request: HttpRequest<any>, next: HttpHandler) : Observable<any> {
-    request = request.clone(AuthService.getAuthBearerHttpOptions())
-
+    // const credentials = AuthService.getAuthBearerHttpOptions()
+    request = request.clone({withCredentials : true})
     return next.handle(request).catch(error => {
       if (error.status === 0 || !error.error) {
         console.log("\n\n ////// ERROR INTERNO DEL SERVIDOR //////\n", error)

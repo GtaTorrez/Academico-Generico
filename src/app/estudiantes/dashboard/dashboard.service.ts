@@ -23,18 +23,9 @@ export class DashboardService {
   obtenerCuenta() : Observable<Object> {
     return this.http.get(`${CUENTA_URL}`).pipe(
       map((result: any) => {
-        const rolesId     = []
-        const rolesNombre = []
-        result.data.roles.forEach(rol => {
-          if (rol.rol) {
-            rolesNombre.push(rol.rol.nombre)
-            rolesId.push(rol.rol.id_rol)
-          }
-        })
-        result.data.rolesId     = rolesId
-        result.data.rolesNombre = rolesNombre
+        // TODO
         return result
-      }, {withCredentials: true})
+      })
     )
   }
 

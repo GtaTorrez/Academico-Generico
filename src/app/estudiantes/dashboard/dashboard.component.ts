@@ -16,8 +16,8 @@ export class DashboardComponent implements OnInit {
   dashboardMenu = []
 
   constructor (
-    public authService: AuthService,
-    private serve:DashboardService
+    public dashboardService: DashboardService,
+    public authService: AuthService
   ) {}
 
   addMenuItem (ROUTE) {
@@ -30,6 +30,11 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.addMenuItem({ path: '/estudiantes/dashboard/usuarios', name: 'Usuarios' })
     this.addMenuItem({ path: '/estudiantes/dashboard/modA',     name: 'Módulo A' })
+
+    this.dashboardService.obtenerCuenta().subscribe((result : any) => {
+      this.usuario = result.usuario
+    })
+
     // const SESSION = DataService.getSession()
     // if (!SESSION) { return }
     // this.usuario = SESSION.usuario
@@ -64,7 +69,7 @@ export class DashboardComponent implements OnInit {
         console.log("The user's subscription state is now:", isSubscribed);
         OneSignal.getUserId().then(function (userId) {
           console.log("User ID is ", userId);
-          this.serve.postDispositivo(userId).subscription(data=>{
+          this.dashboardService.postDispositivo(userId).subscription(data=>{
             if(data.idDispositivo!==null){
               console.log("datos guardados ");
 

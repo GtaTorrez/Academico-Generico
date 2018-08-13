@@ -13,6 +13,8 @@ export class ConfigService {
     api                    : 'http://localhost:4000/api/v1',
 
     cuentaURL              : 'http://192.168.0.102:1337/auth/autentificacion',
+    logOutURL              : 'http://192.168.0.102:1337/auth/salir',
+
     habilitarCuentaURL     : 'http://localhost:4000/account/habilitar',
     deshabilitarCuentaURL  : 'http://localhost:4000/account/deshabilitar',
 

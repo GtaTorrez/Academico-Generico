@@ -32,19 +32,19 @@ export class DatosGeneralesComponent implements OnInit {
   }
 
   ngOnInit () {
-    const SESSION = DataService.getSession()
-    const fields = 'ALL'
+    // const SESSION = DataService.getSession()
     this.dashboardService.obtenerCuenta().subscribe((result : any) => {
-      this.model.id_usuario                  = result.data.id_usuario
-      this.model.persona.nombre              = result.data.persona.nombre              || ' '
-      this.model.persona.primer_apellido     = result.data.persona.primer_apellido     || ' '
-      this.model.persona.segundo_apellido    = result.data.persona.segundo_apellido    || ' '
-      this.model.persona.documento_identidad = result.data.persona.documento_identidad || ' '
-      this.model.persona.direccion           = result.data.persona.direccion           || ' '
-      this.model.persona.telefono            = result.data.persona.telefono            || ' '
-      this.model.persona.email               = result.data.persona.email               || ' '
-      this.model.administrador.cargo         = result.data.persona.administador ? result.data.persona.administrador.cargo : ' '
-      this.model.roles                       = result.data.rolesId
+      console.log("RESULT = ", result)
+      this.model.id_usuario                  = result.usuario.id
+      this.model.persona.nombre              = result.usuario.nombre         || ' '
+      this.model.persona.primer_apellido     = result.usuario.paterno        || ' '
+      this.model.persona.segundo_apellido    = result.usuario.materno        || ' '
+      this.model.persona.documento_identidad = result.usuario.cedula         || ' '
+      this.model.persona.direccion           = result.usuario.direccion      || ' '
+      this.model.persona.telefono            = result.usuario.celular        || ' '
+      this.model.persona.email               = result.usuario.email          || ' '
+      this.model.administrador.cargo         = ''
+      this.model.rol                         = result.usuario.rol            || ''
     },
     error => {
       this.snackBar.open(error.errors[0].msg, 'Error', { duration: 2000 })
