@@ -4,6 +4,7 @@ import { Router }            from '@angular/router'
 // Services
 import { AuthService } from '../services/auth.service'
 import { DataService } from '../services/data.service'
+import { DashboardService } from './dashboard.service';
 
 @Component({
   selector    : 'app-dashboard',
@@ -15,7 +16,8 @@ export class DashboardComponent implements OnInit {
   dashboardMenu = []
 
   constructor (
-    public authService: AuthService
+    public authService: AuthService,
+    private serve:DashboardService
   ) {}
 
   addMenuItem (ROUTE) {
@@ -41,6 +43,38 @@ export class DashboardComponent implements OnInit {
     //     this.addMenuItem({ path: '/estudiantes/dashboard/modA', name: 'Módulo A' })
     //   }
     // }
+    var OneSignal = window['OneSignal'] || [];
+    
+    OneSignal.push(["init", {
+      appId: "e338a31b-4667-471e-9a1a-4aa0c3cf6d5f",
+      autoRegister: false,
+      allowLocalhostAsSecureOrigin: true,
+      notifyButton: {
+        enable: false
+      }
+    }]);
+    
+    OneSignal.push(function () {
+      
+      OneSignal.push(["registerForPushNotifications"])
+    });
+    OneSignal.push(function () {
+      // Occurs when the user's subscription changes to a new value.
+      OneSignal.on('subscriptionChange', function (isSubscribed) {
+        console.log("The user's subscription state is now:", isSubscribed);
+        OneSignal.getUserId().then(function (userId) {
+          console.log("User ID is ", userId);
+          this.serve.postDispositivo(userId).subscription(data=>{
+            if(data.idDispositivo!==null){
+              console.log("datos guardados ");
+
+            }
+          })
+
+        });
+      });
+    });
+  
   }
 
   logout() {
@@ -55,4 +89,8 @@ export class DashboardComponent implements OnInit {
     const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth
     return width > 720
   }
+
+
+
+
 }
