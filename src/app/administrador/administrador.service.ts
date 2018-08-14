@@ -227,6 +227,10 @@ export class AdministradorService {
   //para horario
   getEstudiantesCurso(curso:any){
     return this.http.get(this.baseUrl+`/alumno/curso?idTurno=${curso.idTurno}&idGrado=${curso.idGrado}&idGrupo=${curso.idGrupo}&idParalelo=${curso.idParalelo}`);
-  } 
-  
+  }
+
+  logout() {
+    this.http.get(`${this.baseUrl}/auth/salir`, {withCredentials: true})
+    localStorage.removeItem('app_sid')
+  }
 }
