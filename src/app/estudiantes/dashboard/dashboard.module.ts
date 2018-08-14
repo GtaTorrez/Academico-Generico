@@ -5,10 +5,10 @@ import { CommonModule }    from '@angular/common';
 import { MaterialModule }  from '../material.module';
 import { DashboardRoutes } from './dashboard.routes';
 // Components
-import { DashboardComponent }       from './dashboard.component';
-import { AccountComponent }         from './account/account.component';
+import { DashboardComponent }      from './dashboard.component';
+import { AccountComponent }        from './account/account.component';
 import { DatosGeneralesComponent } from './account/datos-generales/datos-generales.component';
-import { DatosAccesoComponent }   from './account/datos-acceso/datos-acceso.component';
+import { DatosAccesoComponent }    from './account/datos-acceso/datos-acceso.component';
 // Services
 import { AuthService }      from '../services/auth.service';
 import { GuardService }     from '../services/guard.service';
