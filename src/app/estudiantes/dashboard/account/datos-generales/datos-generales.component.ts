@@ -33,15 +33,17 @@ export class DatosGeneralesComponent implements OnInit {
 
   ngOnInit () {
     this.dashboardService.obtenerCuenta().subscribe((result : any) => {
-      this.model.id                          = result.usuario.id
-      this.model.rol                         = result.usuario.rol            || ''
-      this.model.persona.nombre              = result.usuario.nombre         || ' '
-      this.model.persona.primer_apellido     = result.usuario.paterno        || ' '
-      this.model.persona.segundo_apellido    = result.usuario.materno        || ' '
-      this.model.persona.documento_identidad = result.usuario.cedula         || ' '
-      this.model.persona.direccion           = result.usuario.direccion      || ' '
-      this.model.persona.telefono            = result.usuario.celular        || ' '
-      this.model.persona.email               = result.usuario.email          || ' '
+      if (result && result.usuario) {
+        this.model.id                          = result.usuario.id
+        this.model.rol                         = result.usuario.rol            || ''
+        this.model.persona.nombre              = result.usuario.nombre         || ' '
+        this.model.persona.primer_apellido     = result.usuario.paterno        || ' '
+        this.model.persona.segundo_apellido    = result.usuario.materno        || ' '
+        this.model.persona.documento_identidad = result.usuario.cedula         || ' '
+        this.model.persona.direccion           = result.usuario.direccion      || ' '
+        this.model.persona.telefono            = result.usuario.celular        || ' '
+        this.model.persona.email               = result.usuario.email          || ' '
+      }
     },
     error => {
       this.snackBar.open(error.errors[0].msg, 'Error', { duration: 2000 })

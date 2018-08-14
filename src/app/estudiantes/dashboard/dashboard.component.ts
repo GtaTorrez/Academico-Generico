@@ -55,10 +55,9 @@ export class DashboardComponent implements OnInit {
 
     //   this.oneSignal.push(["registerForPushNotifications"])
     // });
-    let id;
-    const sendDevice=(id)=>{
+    const sendDevice = (id) => {
       console.log("Reistrando dispositovo desde const")
-      this.dashboardService.postDispositivo(id).subscribe(data=>{
+      this.dashboardService.postDispositivo(id).subscribe(data => {
         console.log(data)
         this.snack.open("Registrado tu disposotivo");
       }),err=>{
@@ -76,8 +75,11 @@ export class DashboardComponent implements OnInit {
       console.log(data,!data);
       if(!data){
         this.oneSignal.getUserId().then(function (userId) {
-          sendDevice(userId);
-          
+          console.log("USER ID === ", userId)
+          if (userId !== undefined || userId !== null) {
+            console.log("sendDevice(userId)")
+            sendDevice(userId);
+          }
         });
       }
     }).catch(err=>{
@@ -110,7 +112,7 @@ export class DashboardComponent implements OnInit {
   uploadDispositivo(val:string){
     const promise =new Promise(( resolve, reject )=>{
       if(val!==null || val!==undefined){
-        let dataa=resolve(val); 
+        let dataa=resolve(val);
         console.log(dataa)
       }else{
         reject(new Error("no se pudo guardar"))
