@@ -11,6 +11,7 @@ import { AuthService }    from '../../services/auth.service';
 import { GuardService }   from '../../services/guard.service';
 import { DataService }    from '../../../login/data.service';
 import { ConfigService }  from '../../services/config.service';
+import { HistorialService }  from './historial.service';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { ConfigService }  from '../../services/config.service';
     DataService,
     ConfigService,
     AuthService,
-    GuardService
+    GuardService,
+    HistorialService
   ]
 })
 export class HistorialModule {}

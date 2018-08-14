@@ -9,11 +9,11 @@ import { DataService } from '../../../login/data.service';
   styleUrls   : ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  idUsuario      = 0
-  nombre         = ''
-  roles          = ''
-  tokenAcceso    = ''
-  tokenRefresco  = ''
+  // idUsuario      = 0
+  // nombre         = ''
+  // roles          = ''
+  // tokenAcceso    = ''
+  // tokenRefresco  = ''
 
   constructor () {}
 

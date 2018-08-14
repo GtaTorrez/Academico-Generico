@@ -21,9 +21,7 @@ export class DashboardComponent implements OnInit {
     private dashboardService:DashboardService,
     public authService: AuthService,
     private snack:MatSnackBar
-  ) {
-
-  }
+  ) {}
 
   addMenuItem (ROUTE) {
     for (let i in this.dashboardMenu) {
@@ -56,12 +54,12 @@ export class DashboardComponent implements OnInit {
     //   this.oneSignal.push(["registerForPushNotifications"])
     // });
     const sendDevice = (id) => {
-      console.log("Reistrando dispositovo desde const")
-      this.dashboardService.postDispositivo(id).subscribe(data => {
-        console.log(data)
-        this.snack.open("Registrado tu disposotivo");
+      // console.log("Reistrando dispositovo desde const")
+      return this.dashboardService.postDispositivo(id).subscribe(data => {
+        // console.log(data)
+        this.snack.open("Registro de dispositivo", '', { duration: 4000 });
       }),err=>{
-        console.log("**************************************Error")
+        console.log("**************************************Error", err)
       }
     }
     // this.oneSignal.getUserId().then(function (userId) {
@@ -71,49 +69,28 @@ export class DashboardComponent implements OnInit {
     //   sendDevice(userId);
     // });
 
-    this.oneSignal.isPushNotificationsEnabled().then(data=>{
+    return this.oneSignal.isPushNotificationsEnabled().then(data=>{
       console.log(data,!data);
       if(!data){
-        this.oneSignal.getUserId().then(function (userId) {
+        return this.oneSignal.getUserId().then(function (userId) {
           console.log("USER ID === ", userId)
           if (userId !== undefined || userId !== null) {
             console.log("sendDevice(userId)")
-            sendDevice(userId);
+            return sendDevice(userId);
           }
+        }).catch(err => {
+          console.log("ERROR oneSignal getUserId: ", err)
         });
       }
     }).catch(err=>{
       console.log(err);
     })
-    // this.oneSignal.push(function () {
-    //   // Occurs when the user's subscription changes to a new value.
-    //   this.oneSignal.on('subscriptionChange', function (isSubscribed) {
-    //     console.log("The user's subscription state is now:", isSubscribed);
-
-    //   });
-    // });
-    // const SESSION = DataService.getSession()
-    // if (!SESSION) { return }
-    // this.usuario = SESSION.usuario
-    // for(let i in SESSION.usuario.roles) {
-    //   const rol = SESSION.usuario.roles[i]
-    //   if (rol === 'superadmin') {
-    //     this.addMenuItem({ path: '/estudiantes/dashboard/usuarios', name: 'Usuarios' })
-    //     this.addMenuItem({ path: '/estudiantes/dashboard/modA',     name: 'Módulo A' })
-    //   }
-    //   if (rol === 'admin') {
-    //     this.addMenuItem({ path: '/estudiantes/dashboard/modA', name: 'Módulo A' })
-    //   }
-    // }
-
-    // this.registrarDispositivo(this.idDevice);
-
   }
   uploadDispositivo(val:string){
     const promise =new Promise(( resolve, reject )=>{
       if(val!==null || val!==undefined){
         let dataa=resolve(val);
-        console.log(dataa)
+        console.log("daata", dataa)
       }else{
         reject(new Error("no se pudo guardar"))
       }
@@ -130,7 +107,7 @@ export class DashboardComponent implements OnInit {
     this.dashboardService.postDispositivo(id).subscribe(data=>{
       console.log(data)
     }),err=>{
-      console.log("**************************************Error")
+      console.log("**************************************Error", err)
     }
   }
 
@@ -142,8 +119,4 @@ export class DashboardComponent implements OnInit {
     const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth
     return width > 720
   }
-
-
-
-
 }
