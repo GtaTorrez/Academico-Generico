@@ -12,7 +12,6 @@ const routes: Routes = [
   { path: 'login', component:LoginComponent},
   { path: 'administrador',    canActivate: [AdminGuard],      loadChildren: './administrador/administrador.module#AdministradorModule' },
   { path: 'estudiantes', loadChildren: './estudiantes/app.module#AppModule' },
-  // { path: 'tutores',          loadChildren: './tutores/app.module#AppModule' },
   { path: 'asistencia', loadChildren: './controlasistencia/controlasistencia.module#ControlasistenciaModule' }
 ];
 
