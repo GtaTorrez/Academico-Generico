@@ -38,6 +38,10 @@ export class DashboardComponent implements OnInit {
       this.addMenuItem({ path: '/estudiantes/dashboard/account', name: 'Inicio' });
       this.addMenuItem({ path: '/estudiantes/dashboard/historial', name: 'Historial' });
     }
+    if (SESSION.usuario.rol === 'tutor') {
+      this.addMenuItem({ path: '/estudiantes/dashboard/account', name: 'Inicio' });
+      this.addMenuItem({ path: '/estudiantes/dashboard/historial-tutor', name: 'Historial Tutor' });
+    }
     this.oneSignal=window['OneSignal'] || [];
 
     this.oneSignal.push(["init", {

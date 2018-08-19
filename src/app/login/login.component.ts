@@ -64,6 +64,9 @@ export class LoginComponent implements OnInit {
     if (rol === 'alumno') {
       this.router.navigate(['/estudiantes/dashboard/account']);
     }
+    if (rol === 'tutor') {
+      this.router.navigate(['/estudiantes/dashboard/account']);
+    }
   }
 
 }

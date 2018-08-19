@@ -9,10 +9,10 @@ import { AppRoutes }                  from './app.routes'
 import { DashboardModule }            from './dashboard/dashboard.module'
 // Components
 import { AppComponent }           from './app.component'
-import { IndexComponent }         from './pages/index/index.component'
-import { LoginComponent }         from './pages/login/login.component'
-import { NotFoundComponent }      from './pages/not-found/not-found.component'
-import { ResetPasswordComponent } from './pages/reset-password/reset-password.component'
+// import { IndexComponent }         from './pages/index/index.component'
+// import { LoginComponent }         from './pages/login/login.component'
+// import { NotFoundComponent }      from './pages/not-found/not-found.component'
+// import { ResetPasswordComponent } from './pages/reset-password/reset-password.component'
 // Services
 import { AuthService }               from './services/auth.service'
 import { GuardService }              from './services/guard.service'
@@ -24,10 +24,10 @@ import { DataService }               from '../login/data.service'
 @NgModule({
   declarations: [
     AppComponent,
-    IndexComponent,
-    LoginComponent,
-    NotFoundComponent,
-    ResetPasswordComponent
+    // IndexComponent,
+    // LoginComponent,
+    // NotFoundComponent,
+    // ResetPasswordComponent
   ],
   imports: [
     DashboardModule,
