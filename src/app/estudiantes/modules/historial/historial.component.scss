@@ -10,3 +10,10 @@
 table {
   width: 100%;
 }
+
+.mat-column-nro              { min-width: 80px; max-width: 80px; }
+.mat-column-fecha            { min-width: 100px; max-width: 100px; }
+.mat-column-hora_llegada     { min-width: 150px; max-width: 100px; }
+.mat-column-hora_salida      { min-width: 150px; max-width: 100px; }
+.mat-column-estado           { min-width: 100px; max-width: 100px; }
+.mat-column-observacion      { min-width: 150px; max-width: 100%; }

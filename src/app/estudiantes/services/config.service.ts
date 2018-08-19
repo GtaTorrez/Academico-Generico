@@ -18,7 +18,9 @@ export class ConfigService {
     cuentaURL              : `${ConfigService.BASE_URL}/auth/autentificacion`,
     logOutURL              : `${ConfigService.BASE_URL}/auth/salir`,
     cambiarPasswordURL     : `${ConfigService.BASE_URL}/usuario/cambiarPassword`,
-    obtenerhistorialEstudianteURL : `${ConfigService.BASE_URL}/asistencia/historial_alumno`,
+
+    obtenerhistorialEstudianteURL      : `${ConfigService.BASE_URL}/asistencia/historial_alumno`,
+    obtenerhistorialEstudianteTutorURL : `${ConfigService.BASE_URL}/asistencia/historial_por_tutor`,
 
     habilitarCuentaURL     : `${ConfigService.BASE_URL}/account/habilitar`,
     deshabilitarCuentaURL  : `${ConfigService.BASE_URL}/account/deshabilitar`,

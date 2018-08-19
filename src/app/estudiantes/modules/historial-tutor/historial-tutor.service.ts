@@ -16,7 +16,7 @@ export class HistorialTutorService {
     private http: HttpClient
   ) {}
 
-  obtenerhistorialEstudiante () : Observable<Object> {
-    return this.http.get(Config.AUTHORIZATION.obtenerhistorialEstudianteURL, {withCredentials : true})
+  obtenerhistorialEstudianteTutor () : Observable<Object> {
+    return this.http.get(Config.AUTHORIZATION.obtenerhistorialEstudianteTutorURL, {withCredentials : true})
   }
 }
