@@ -35,7 +35,6 @@ export class HistorialTutorComponent implements OnInit {
   ngOnInit () {
     this.estudiantes = []
     this.historialTutorService.obtenerhistorialEstudianteTutor().subscribe((result : any) => {
-      console.log("RESULT = ", result)
       result.alumnos.forEach(alumno => {
         let nombreCompleto = alumno.nombre ? alumno.nombre : ''
         nombreCompleto = (nombreCompleto += alumno.paterno ? ` ${alumno.paterno}` : '').trim()
@@ -57,7 +56,6 @@ export class HistorialTutorComponent implements OnInit {
           dataSource: dataSource
         })
       })
-      console.log("FINAL RESULT = ", this.estudiantes)
     },
     error => {
       console.log("err =", error)
