@@ -10,6 +10,10 @@
         </mat-form-field>
 
         <mat-form-field>
+          <input matInput placeholder="Rol del usuario" [(ngModel)]="model.rol" name="rol" disabled>
+        </mat-form-field>
+
+        <mat-form-field>
           <input matInput type="password" placeholder="Contraseña actual" [(ngModel)]="model.password_actual" name="passActual" required>
         </mat-form-field>
 

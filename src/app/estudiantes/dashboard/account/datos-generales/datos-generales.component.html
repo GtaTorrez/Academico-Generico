@@ -9,31 +9,27 @@
           <input matInput placeholder="Nombre" [(ngModel)]="model.persona.nombre" name="nombre" disabled>
         </mat-form-field>
 
-        <div fxLayout="row" fxLayoutAlign="space-between center">
-          <mat-form-field>
-            <input matInput placeholder="Primer apellido" [(ngModel)]="model.persona.primer_apellido" name="pa" disabled>
-          </mat-form-field>
-          <div class="separator"></div>
-          <mat-form-field>
-            <input matInput placeholder="Segundo apellido" [(ngModel)]="model.persona.segundo_apellido" name="sa" disabled>
-          </mat-form-field>
-        </div>
+        <mat-form-field>
+          <input matInput placeholder="Primer apellido" [(ngModel)]="model.persona.primer_apellido" name="pa" disabled>
+        </mat-form-field>
 
-        <div fxLayout="row" fxLayoutAlign="space-between center">
-          <mat-form-field>
-            <input matInput placeholder="Documento de identidad" [(ngModel)]="model.persona.documento_identidad" name="di" disabled>
-          </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Segundo apellido" [(ngModel)]="model.persona.segundo_apellido" name="sa" disabled>
+        </mat-form-field>
 
-          <mat-form-field>
-            <input matInput placeholder="Rol" [(ngModel)]="model.rol" name="rol" disabled>
-          </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Documento de identidad" [(ngModel)]="model.persona.documento_identidad" name="di" disabled>
+        </mat-form-field>
+        
+        <!-- <mat-form-field>
+          <input matInput placeholder="Rol" [(ngModel)]="model.rol" name="rol" disabled>
+        </mat-form-field> -->
 
-          <!-- <mat-form-field>
-            <mat-select placeholder="Roles" multiple disabled [(ngModel)]="model.roles" name="roles">
-              <mat-option *ngFor="let rol of listaRoles" [value]="rol.id_rol">{{rol.nombre}}</mat-option>
-            </mat-select>
-          </mat-form-field> -->
-        </div>
+        <!-- <mat-form-field>
+          <mat-select placeholder="Roles" multiple disabled [(ngModel)]="model.roles" name="roles">
+            <mat-option *ngFor="let rol of listaRoles" [value]="rol.id_rol">{{rol.nombre}}</mat-option>
+          </mat-select>
+        </mat-form-field> -->
 
         <!-- <span class="seccion-title" *ngIf="model.roles.includes(2)">Datos de administrador</span>
 

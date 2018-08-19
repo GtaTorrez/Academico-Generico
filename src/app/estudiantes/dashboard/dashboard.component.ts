@@ -13,7 +13,7 @@ import { MatSnackBar } from '@angular/material';
   styleUrls   : ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  usuario       = { nombre: '' }
+  usuario       = { nombre: '', rol: '' }
   dashboardMenu = []
   idDevice:string="";
   oneSignal:any;
@@ -34,6 +34,7 @@ export class DashboardComponent implements OnInit {
     // this.addMenuItem({ path: '/estudiantes/dashboard/usuarios', name: 'Usuarios' })
     const SESSION = DataService.getSession()
     this.usuario.nombre = SESSION.usuario.nombre
+    this.usuario.rol    = SESSION.usuario.rol
     if (SESSION.usuario.rol === 'alumno') {
       this.addMenuItem({ path: '/estudiantes/dashboard/account', name: 'Inicio' });
       this.addMenuItem({ path: '/estudiantes/dashboard/historial', name: 'Historial' });

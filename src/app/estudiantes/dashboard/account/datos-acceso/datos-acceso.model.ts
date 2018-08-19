@@ -4,5 +4,6 @@ export class DatosAccesoModel {
   password         : string = ''
   password_actual  : string = ''
   password_confirm : string = ''
+  rol              : string = ''
   constructor () {}
 }
