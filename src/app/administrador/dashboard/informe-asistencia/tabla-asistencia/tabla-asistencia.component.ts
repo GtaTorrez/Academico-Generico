@@ -345,7 +345,7 @@ export class TablaAsistenciaComponent implements OnInit {
             idPersona          : persona.id,
             idGestionAcademica : persona.idGestionAcademica,
             fecha              : moment(`${DIA}/${this.mesAsistencia}/${this.anioAsistencia}`, 'DD/MM/YYYY').toDate(),
-            estado             : ESTADO_CON_LICENCIA,
+            // estado             : ESTADO_CON_LICENCIA,
             observacion        : observacion
           }
           this.service.create(data).subscribe(result => {
