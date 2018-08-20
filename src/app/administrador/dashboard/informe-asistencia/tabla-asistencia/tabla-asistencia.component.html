@@ -92,9 +92,10 @@
           <div *ngIf="(day.nro <= 5)">
             <div *ngIf="persona.marcas.includes(day.id)">
               <div *ngFor="let asistencia of persona.asistencias">
-                <div *ngIf="(asistencia.atrasado === true) && asistencia.dia === day.id" class="yellow">&#x2713;</div>
-                <div *ngIf="(asistencia.atrasado === false) && asistencia.dia === day.id && asistencia.observacion === null" class="green">&#x2713;</div>
-                <div *ngIf="(asistencia.atrasado === false) && asistencia.dia === day.id && asistencia.observacion !== null" class="red pointer" [matTooltip]="asistencia.observacion" matTooltipPosition="above" (click)="editarObservacion(day.id, persona, asistencia)">&#x2713;</div>
+                <div *ngIf="(asistencia.dia === day.id) && (asistencia.hora_llegada !== null) && (asistencia.atrasado === true)" class="yellow pointer" (click)="editarObservacion(day.id, persona, asistencia)" [matTooltip]="asistencia.observacion" matTooltipPosition="above">&#x2713;</div>
+                <div *ngIf="(asistencia.dia === day.id) && (asistencia.hora_llegada !== null) && (asistencia.atrasado === false)" class="green pointer" (click)="editarObservacion(day.id, persona, asistencia)" [matTooltip]="asistencia.observacion" matTooltipPosition="above">&#x2713;</div>
+                <div *ngIf="(asistencia.dia === day.id) && (asistencia.hora_llegada === null)" class="red pointer" (click)="editarObservacion(day.id, persona, asistencia)" [matTooltip]="asistencia.observacion" matTooltipPosition="above">&#x2713;</div>
+                <!-- <div *ngIf="(asistencia.atrasado === false) && asistencia.dia === day.id && asistencia.observacion !== null" class="red pointer" [matTooltip]="asistencia.observacion" matTooltipPosition="above" (click)="editarObservacion(day.id, persona, asistencia)">&#x2713;</div> -->
               </div>
             </div>
             <div *ngIf="!persona.marcas.includes(day.id)" class="red pointer" (click)="editarObservacion(day.id, persona)"></div>
