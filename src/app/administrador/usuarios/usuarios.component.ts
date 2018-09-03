@@ -3,6 +3,8 @@ import { Persona } from '../modelos/persona';
 import {AdministradorService} from '../administrador.service'
 import {MatSnackBar} from '@angular/material';
 
+import { Global} from "../../config/global";
+
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
@@ -11,66 +13,69 @@ import {MatSnackBar} from '@angular/material';
 export class UsuariosComponent implements OnInit {
 
   consulta:boolean=false;
-  profesorEdit:Persona;
+  persona:Persona;
   busca="CI";
   buscaPor=['CI','Rude'];
   action:string='ver'
   tipo="administrativo";
   select:string;
-  parametro:number;
+  parametro:string;
+  qr:string;
+
+  resultadoBusqueda : Array<any> = []
+  displayedColumns : string[]    = ['nro', 'paterno', 'materno', 'nombre', 'identificacion', 'rol', 'ver'];
 
   constructor(
     private serve:AdministradorService,
     private notificacion:MatSnackBar
   ) { }
-  
-  buscarUsuario(){
+
+  buscarUsuario () {
+    if (this.parametro.length < 3) {
+      this.resultadoBusqueda = []
+      return
+    }
     this.consulta=true;
     this.action="ver"
-    console.log(this.parametro)
-      this.serve.getPersonaPorCi(this.parametro).subscribe((data:any[]) =>{
-        console.log(data)
-        if(data.length>0){
-          if(data[0].rol==="administrativo" || data[0].rol==="superAdmin"){
-            this.profesorEdit=data[0];
-            if (this.profesorEdit) {
-            }
-            this.AbrirNotificacion("Datos encontrados","Aceptar")        
-          }else{
-            this.AbrirNotificacion("No es un estudiante","")  
-          }
-        }else{
-          this.AbrirNotificacion("No existen datos","")  
-        }
-                
-        this.consulta=false;
-      },err=>{
-        this.AbrirNotificacion("Error con la consulta","")
-      })
-    
-    
+    this.serve.buscarPersona(this.parametro).subscribe((data:any[]) => {
+      this.resultadoBusqueda = data
+      this.consulta=false;
+    }, err => {
+      this.AbrirNotificacion("Error con la consulta","")
+    })
   }
+  ver (data) {
+    this.action="ver";
+    this.persona=data;
+    if(this.persona.img!==null){
+      if(this.persona.img.indexOf(Global.BASE_URL)==-1){
+        this.persona.img=Global.BASE_URL+":"+Global.port+"/"+this.persona.img;
+      }
+    }
+
+    if (this.persona) {
+      this.qr=this.persona.idenficacion;
+    }
+  }
+
   AbrirNotificacion(message: string,action:string) {
     this.notificacion.open(message,action,{
       duration:2000
     })
   }
-  ngOnInit() {
+
+  ngOnInit () { }
+
+  adicionar () {
+    this.action='nuevo';
+    this.persona=new Persona();
+    this.persona.rol="administrador";
   }
 
-  adicionar(){
-    
-    this.action='nuevo';
-    console.log(this.action)
-    this.profesorEdit=new Persona();
-    this.profesorEdit.rol="administrativo";
-    
-  }
   verProfesor(profesor:Persona){
-    this.profesorEdit=null;
-    this.profesorEdit=profesor;
+    this.persona=null;
+    this.persona=profesor;
     this.action='ver';
-    
   }
   editar(){
     this.action='editar';
@@ -78,11 +83,11 @@ export class UsuariosComponent implements OnInit {
   cancelar(){
     this.action='ver';
   }
-  guardarP(){
+  guardarPersona(){
     this.consulta=true;
-    if(this.profesorEdit.id){
+    if(this.persona.id){
 
-      this.serve.updateProfesor(this.profesorEdit).subscribe(data=>{
+      this.serve.updateProfesor(this.persona).subscribe(data=>{
         this.verProfesor(data);
         this.consulta=false;
         this.AbrirNotificacion("Realizado Correctamente","");
@@ -92,17 +97,29 @@ export class UsuariosComponent implements OnInit {
       })
 
     }else{
-        this.profesorEdit.rol=this.select;
-        this.serve.postProfesor(this.profesorEdit).subscribe(data=>{
+        this.persona.rol=this.select;
+        this.serve.postProfesor(this.persona).subscribe(data=>{
           console.log(data);
           this.consulta=false;
           this.AbrirNotificacion("Realizado correctamente","");
           this.verProfesor(data)
-          this.profesorEdit.id=data.id;
+          this.persona.id=data.id;
         },error=>{
           this.AbrirNotificacion("Error al subir los datos","")
         })
 
+    }
+  }
+  eliminarPersona(id) {
+    if (window.confirm('¿Está seguro de eliminar el registro?')) {
+      this.serve.deletePersona(id).subscribe(data=>{
+        if(data){
+          this.AbrirNotificacion("Exito","Aceptar")
+        }
+        this.buscarUsuario()
+      },err=>{
+        this.AbrirNotificacion("Hubo un error","")
+      })
     }
   }
 }

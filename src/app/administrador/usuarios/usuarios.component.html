@@ -1,28 +1,99 @@
-
+<!-- <app-usuarios-buscar></app-usuarios-buscar> -->
 <div class="top" fxLayout="row wrap" fxLayoutAlign="center"  >
   <div fxFlex="100%" fxFlexAlign="end">
       <form  class="formBuscar">
-          <mat-form-field class="buscar">
-            <input type="text" matInput [(ngModel)]="parametro" name="parametro" placeholder="Ingrese la cédula " aria-label="Number"  >
-          </mat-form-field>
-          <button mat-icon-button color="primary"  (click)="buscarUsuario()" ><mat-icon>search</mat-icon> </button>
-        </form>
-  </div>  
-  
+        <mat-form-field class="buscar">
+          <input type="text" matInput [(ngModel)]="parametro" name="parametro" placeholder="Buscar persona" (input)="buscarUsuario($event.target.value)" aria-label="Number"  >
+        </mat-form-field>
+        <button mat-icon-button color="primary"  (click)="buscarUsuario()" ><mat-icon>search</mat-icon> </button>
+      </form>
+  </div>
+
+  <table mat-table [dataSource]="resultadoBusqueda" class="mat-elevation-z8 resultado-busqueda-table" *ngIf="resultadoBusqueda.length > 0">
+
+    <ng-container matColumnDef="nro">
+      <th mat-header-cell *matHeaderCellDef> Nro. </th>
+      <td mat-cell *matCellDef="let element; let i = index"> {{i + 1}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="paterno">
+      <th mat-header-cell *matHeaderCellDef> Paterno </th>
+      <td mat-cell *matCellDef="let element"> {{element.paterno}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="materno">
+      <th mat-header-cell *matHeaderCellDef> Materno </th>
+      <td mat-cell *matCellDef="let element"> {{element.materno}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef> Nombre </th>
+      <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="identificacion">
+      <th mat-header-cell *matHeaderCellDef> Identificación </th>
+      <td mat-cell *matCellDef="let element"> {{element.identificacion}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="rol">
+      <th mat-header-cell *matHeaderCellDef> Rol </th>
+      <td mat-cell *matCellDef="let element"> {{element.rol}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ver">
+      <th mat-header-cell *matHeaderCellDef> Ver </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button  (click)="ver(element)">
+          <mat-icon> visibility </mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="eliminar">
+      <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button  (click)="eliminarPersona(element.id)">
+          <mat-icon> delete_forever </mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <div style="height: 10px;"></div>
+
   <mat-progress-bar *ngIf="consulta" mode="indeterminate"></mat-progress-bar>
- 
+
  <div fxFlex="60"  FxFill fxFlexAlign="start center" >
-    <mat-card *ngIf="profesorEdit" >
+    <mat-card *ngIf="persona" >
         <mat-card-content>
-          <app-perfil
-           [persona]="profesorEdit"
+          <!-- <app-perfil
+           [persona]="persona"
           [action]="action"
           [tipo]="tipo"
           (EnviarPersona)="guardarProfesor($event)"
-          [qrCode]="profesorEdit.identificacion"
+          [qrCode]="persona.identificacion"
             >
-          </app-perfil>
-         <mat-card>
+          </app-perfil> -->
+          <div fxFlex="100" fxFlex.gt-md="60" fxLayout.gt-md="row wrap" fxLayout="column"  fxFlexAlign="center" >
+           <div *ngIf="persona" class="ancho80" >
+             <h3 class="enlinea " >{{(persona && persona.rol) ? persona.rol.toUpperCase() : ''}}</h3>
+           </div>
+           <div class="margen0">
+             <app-perfil
+               *ngIf="persona" [persona]="persona"
+               [action]="action" [tipo]="tipo"
+               (EnviarPersona)="guardarPersona($event)"
+               [qrCode]="persona.identificacion"
+               >
+             </app-perfil>
+           </div>
+         </div>
+
+         <!-- <mat-card>
            ROLES
            <mat-card-content *ngIf="action==='nuevo'">
               <mat-radio-group name="rol" [(ngModel)]="select" >
@@ -30,16 +101,16 @@
                 <mat-radio-button value="admin">Super Usuario</mat-radio-button>
               </mat-radio-group>
            </mat-card-content>
-           <mat-card-content *ngIf="action==='ver'"> 
-              {{profesorEdit.rol}}
+           <mat-card-content *ngIf="action==='ver'">
+              {{persona.rol}}
            </mat-card-content>
-         </mat-card>
+         </mat-card> -->
 
         </mat-card-content>
 
       <mat-card-actions >
         <button mat-button  *ngIf="action==='nuevo' || action==='editar'" color="primary" (click)="cancelar()" ><mat-icon>arrow_back</mat-icon>Atras</button>
-        <button mat-button  *ngIf="action==='nuevo' || action==='editar'" color="accent" (click)="guardarP()" >Guardar<mat-icon>save</mat-icon> </button>
+        <button mat-button  *ngIf="action==='nuevo' || action==='editar'" color="accent" (click)="guardarPersona()" >Guardar<mat-icon>save</mat-icon> </button>
         <button mat-button  *ngIf="action==='ver'" color="primary" (click)="editar()" ><mat-icon>edit</mat-icon>Editar </button>
         <button mat-button  *ngIf="action==='nuevo' || action==='editar'" color="warn" (click)="cancelar()" >Borrar<mat-icon>delete_forever</mat-icon> </button>
 
@@ -53,6 +124,6 @@
     <div class="buttonAdd" >
         <button mat-fab color="accent" (click)="adicionar()"> <mat-icon>add</mat-icon> </button>
     </div>
-    
-  
+
+
 </div>

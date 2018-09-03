@@ -32,6 +32,9 @@ export class AdministradorService {
   getPersonaPorCi(ci:number):Observable<any>{
     return this.http.get(this.baseUrl+"/persona?cedula="+ci);
   }
+  buscarPersona(txt: string) : Observable<any> {
+    return this.http.get(this.baseUrl+"/persona/buscar/"+txt);
+  }
   getPersonaPorIdentificacion(identificacion:number):Observable<any>{
     return this.http.get(this.baseUrl+"/persona?identificacion="+identificacion);
   }

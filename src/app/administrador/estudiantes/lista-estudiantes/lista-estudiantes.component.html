@@ -1,5 +1,5 @@
 <div fxLayout="row wrap" fxLayoutAlign="center" >
-  
+
   <div fxFlex="100" fxFlexAlign="center center">
     <div class="containerTable mat-elevation-z8">
 	  <mat-table #table [dataSource]="estudiantes">
@@ -21,15 +21,15 @@
 
 	    <ng-container matColumnDef="editar">
 	      <mat-header-cell *matHeaderCellDef> Ver </mat-header-cell>
-	      <mat-cell *matCellDef="let element"> 
-	      	<button mat-icon-button  (click)="ver(element)">
-              <mat-icon> visibility</mat-icon>
-            </button>
+	      <mat-cell *matCellDef="let element">
+      	  <button mat-icon-button  (click)="ver(element)">
+            <mat-icon> visibility</mat-icon>
+          </button>
 	      </mat-cell>
 	    </ng-container>
 	    <ng-container matColumnDef="borrar">
 	      <mat-header-cell *matHeaderCellDef> Borrar </mat-header-cell>
-	      <mat-cell *matCellDef="let element"> 
+	      <mat-cell *matCellDef="let element">
 	      	 <button mat-icon-button color="warn" (click)="eliminar(element.id)" >
               <mat-icon>delete_forever</mat-icon>
             </button>
@@ -42,7 +42,7 @@
 	</div>
 
   </div>
-</div> 
+</div>
 <!-- <div class="buttonAdd" >
   <button mat-fab color="accent" > <mat-icon>dvr</mat-icon> </button>
 </div> -->
