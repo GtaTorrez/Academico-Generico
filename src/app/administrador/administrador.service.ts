@@ -35,6 +35,9 @@ export class AdministradorService {
   buscarPersona(txt: string) : Observable<any> {
     return this.http.get(this.baseUrl+"/persona/buscar/"+txt);
   }
+  buscarTutor(txt: string) : Observable<any> {
+    return this.http.get(this.baseUrl+"/persona/buscar_tutor/"+txt);
+  }
   getPersonaPorIdentificacion(identificacion:number):Observable<any>{
     return this.http.get(this.baseUrl+"/persona?identificacion="+identificacion);
   }

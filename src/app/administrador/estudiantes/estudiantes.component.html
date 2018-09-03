@@ -48,7 +48,7 @@
           <td>{{tutor.idPersona.nombre}} {{tutor.idPersona.paterno}} {{tutor.idPersona.materno}}</td>
           <td>{{tutor.idPersona.celular}}</td>
           <td><button mat-icon-button color="accent" (click)="editarPadre(tutor.idPersona)" ><mat-icon>mode_edit</mat-icon> </button></td>
-          <td><button mat-icon-button color="warn" (click)="adicionarPadres()" ><mat-icon>delete</mat-icon> </button></td>
+          <td><button mat-icon-button color="warn" (click)="eliminarTutor(tutor)" ><mat-icon>delete</mat-icon> </button></td>
         </tr>
       </table>
   </div>

@@ -38,17 +38,17 @@ export class EstudiantesComponent implements OnInit {
     private serve:AdministradorService,
     private notificacion:MatSnackBar,
     private dialog: MatDialog,
-    
-  ) { 
+
+  ) {
     this.action='ver'
   }
 
   ngOnInit() {
 
-    this.getTurnos();  
+    this.getTurnos();
     this.getGrados();
     this.getGrupos();
-    this.getParalelos(); 
+    this.getParalelos();
 
   }
   AbrirNotificacion(message: string,action:string) {
@@ -62,18 +62,18 @@ export class EstudiantesComponent implements OnInit {
   }
 
   adicionar(){
-    
+
     this.action='nuevo';
     console.log(this.action)
     this.estudiante=new Persona();
     this.estudiante.rol="alumno";
-      
+
   }
   deletePersona(id){
     this.serve.deletePersona(id).subscribe(data=>{
       if(data){
         this.AbrirNotificacion("Exito","Aceptar")
-      } 
+      }
     },err=>{
       this.AbrirNotificacion("Hubo un error","")
     })
@@ -94,7 +94,7 @@ export class EstudiantesComponent implements OnInit {
       this.grupos=data;
       this.idGrupo=data[0].id
     })
-  } 
+  }
   getGrados(){
     this.serve.getGrado().subscribe(data=>{
       this.grados=data;
@@ -120,17 +120,17 @@ export class EstudiantesComponent implements OnInit {
           if(data[0].rol==="alumno"){
             this.estudiante=data[0];
             if (this.estudiante) {
-            this.qr=this.estudiante.idenficacion;                        
+            this.qr=this.estudiante.idenficacion;
             }
-            this.getTutores(this.estudiante.id);  
-            this.AbrirNotificacion("Datos encontrados","Aceptar")        
+            this.getTutores(this.estudiante.id);
+            this.AbrirNotificacion("Datos encontrados","Aceptar")
           }else{
-            this.AbrirNotificacion("No es un estudiante","")  
+            this.AbrirNotificacion("No es un estudiante","")
           }
         }else{
-          this.AbrirNotificacion("No existen datos","")  
+          this.AbrirNotificacion("No existen datos","")
         }
-                
+
         this.consulta=false;
       },err=>{
         this.AbrirNotificacion("Error con la consulta","")
@@ -142,12 +142,12 @@ export class EstudiantesComponent implements OnInit {
           if(data[0].rol==="alumno"){
             this.estudiante=data[0];
             if (this.estudiante) {
-              this.qr=this.estudiante.idenficacion;                        
+              this.qr=this.estudiante.idenficacion;
               }
-            this.getTutores(this.estudiante.id);  
-            this.AbrirNotificacion("Datos encontrados","Aceptar")          
+            this.getTutores(this.estudiante.id);
+            this.AbrirNotificacion("Datos encontrados","Aceptar")
           }else{
-            this.AbrirNotificacion("No es un estudiante","")  
+            this.AbrirNotificacion("No es un estudiante","")
           }
           this.consulta=false;
         },err=>{
@@ -155,7 +155,7 @@ export class EstudiantesComponent implements OnInit {
         })
       }
     }
-    
+
   }
   editar(){
     this.action='editar';
@@ -181,11 +181,11 @@ export class EstudiantesComponent implements OnInit {
 
           },err=>{
             console.error(err);
-            
+
           })
         }
       }
-      
+
     });
   }
   cancelar(){
@@ -203,14 +203,14 @@ export class EstudiantesComponent implements OnInit {
 
     if (this.estudiante) {
       this.qr=this.estudiante.idenficacion;
-      this.getTutores(this.estudiante.id);                        
+      this.getTutores(this.estudiante.id);
     }
   }
   guardar(){
     this.consulta=true;
-    console.log(this.estudiante)
+    // console.log(this.estudiante)
     if(this.estudiante.id){
-      
+
       this.serve.updateProfesor(this.estudiante).subscribe(data=>{
         this.verEstudiante(data);
         this.consulta=false;
@@ -219,11 +219,11 @@ export class EstudiantesComponent implements OnInit {
         this.AbrirNotificacion("Error al subir los datos","");
         console.error(err);
       })
-    
+
     }else{
         this.estudiante.rol="alumno";
         this.serve.postProfesor(this.estudiante).subscribe(data=>{
-          console.log(data);
+          // console.log(data);
           this.consulta=false;
           this.AbrirNotificacion("Realizado correctamente","");
           this.verEstudiante(data)
@@ -231,50 +231,70 @@ export class EstudiantesComponent implements OnInit {
         },error=>{
           this.AbrirNotificacion("Error al subir los datos","")
         })
-      
+
     }
   }
 
   adicionarPadres(): void {
-    
+
     let dialogRef = this.dialog.open(ModalP, {
       width: '300px',
       height:'470px',
-      data: {action:'nueva' }
+      data: {action:'nuevo' }
     });
-    this.tutores=[];
+    // this.tutores=[];
     dialogRef.afterClosed().subscribe(result => {
-      console.log("observable de adicionar")
+      // console.log("observable de adicionar")
 
       if(result){
-        if(result.action!='cancel' && result.action==='nueva' ){
+        if(result.action!='cancel' && result.action==='nuevo' ){
           this.consulta=true;
-          console.log(result.padre);
-          this.serve.postPersona(result.padre).subscribe(res=>{
-            console.log(res);
-            this.AbrirNotificacion('Realizado Corretamente','Aceptar');
-            let data={"idAlumno":this.estudiante.id,"idTutor":res.id}
-            this.serve.postTutor(data).subscribe(res=>{
-              this.AbrirNotificacion('Realizado Corretamente','Aceptar');
-              this.getTutores(this.estudiante.id)
-            },err=>{
-              this.AbrirNotificacion('Error, no realizado','');
-            })
-            this.getTutores(this.estudiante.id);
-          },err=>{
-            console.error(err);
-            
+          // console.log(result.padre);
+
+          this.serve.buscarTutor(result.padre.cedula).subscribe((data:any[]) => {
+            // console.log("DIALOG RESULT = ", data)
+            if (data.length === 1) {
+              // console.log("El tutor ya se encuentra registrado, se asigna")
+              let updateData={"idAlumno":this.estudiante.id,"idTutor":data[0].id}
+              this.serve.postTutor(updateData).subscribe(res=>{
+                this.AbrirNotificacion('Realizado Corretamente','Aceptar');
+                this.getTutores(this.estudiante.id)
+              }, err => {
+                this.AbrirNotificacion('Error, no realizado','');
+              })
+            } else {
+              // console.log("El tutor no existe, se crea")
+              this.serve.postPersona(result.padre).subscribe(res => {
+                // console.log(res);
+                this.AbrirNotificacion('Realizado Corretamente','Aceptar');
+                let data={"idAlumno":this.estudiante.id,"idTutor":res.id}
+                this.serve.postTutor(data).subscribe(res=>{
+                  this.AbrirNotificacion('Realizado Corretamente','Aceptar');
+                  this.getTutores(this.estudiante.id)
+                }, err => {
+                  this.AbrirNotificacion('Error, no realizado','');
+                })
+                this.getTutores(this.estudiante.id);
+              }, err => {
+                console.error(err);
+              })
+            }
+          }, err => {
+          console.log("ERR === ", err)
+            // this.AbrirNotificacion("Error con la consulta","")
           })
+
         }
       }
-      
+
     });
   }
 
+  eliminarTutor (tutor) {
+    console.log("Eliminar el tutor", tutor ,"del estudiante ", this.estudiante.nombre)
+  }
+
 }
-
-
-
 
 @Component({
   selector: 'modal',
@@ -282,32 +302,53 @@ export class EstudiantesComponent implements OnInit {
   styleUrls:['./estudiantes.component.css']
 })
 export class ModalP {
-  
+
   padre:Persona;
 
   constructor(
+    public serve: AdministradorService,
     public dialogRef: MatDialogRef<ModalP>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
-      if(data.action==='editar'){
-        this.padre=data.padre
-        console.log(data)
-      }else{
-        if(data.action==='nueva'){
-          this.padre=new Persona();
-          this.padre.rol="tutor"
-        }
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
+    if(data.action==='editar') {
+      this.padre=data.padre
+      console.log(data)
+    } else {
+      if(data.action==='nuevo') {
+        this.padre=new Persona();
+        this.padre.rol="tutor"
       }
-     }
-  
-  
+    }
+  }
+
+  buscarTutor (val) {
+    // console.log("BUSCANDO ... VAL = ", val)
+    // console.log("MAT_DIALOG_DATA = ", MAT_DIALOG_DATA)
+    if (val.length < 3) {
+      return
+    }
+    this.serve.buscarTutor(val).subscribe((data:any[]) => {
+      // console.log("DIALOG RESULT = ", data)
+      if (data.length === 1) {
+        // console.log("DATA = ", this.data)
+        this.padre.nombre  = data[0].nombre
+        this.padre.paterno = data[0].paterno
+        this.padre.materno = data[0].materno
+        this.padre.celular = data[0].celular
+      }
+    }, err => {
+    console.log("ERR === ", err)
+      // this.AbrirNotificacion("Error con la consulta","")
+    })
+  }
+
   onNoClick(): void {
     this.dialogRef.close({action:'cancel'});
   }
-  submit():void{
 
+  submit():void{
     console.log("enviar() "+this.padre);
     this.dialogRef.close({action:this.data.action,padre:this.padre})
   }
-  
 
 }
