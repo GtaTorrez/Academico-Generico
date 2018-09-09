@@ -3,7 +3,7 @@
   <div fxFlex="100%" fxFlexAlign="end">
       <form  class="formBuscar">
         <mat-form-field class="buscar">
-          <input type="text" matInput [(ngModel)]="parametro" name="parametro" placeholder="Buscar persona" (input)="buscarUsuario($event.target.value)" aria-label="Number"  >
+          <input type="text" matInput [(ngModel)]="parametro" name="parametro" placeholder="Buscar persona" (input)="buscarUsuario()" aria-label="Number"  >
         </mat-form-field>
         <button mat-icon-button color="primary"  (click)="buscarUsuario()" ><mat-icon>search</mat-icon> </button>
       </form>
