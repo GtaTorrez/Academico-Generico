@@ -59,9 +59,9 @@ export class DashboardComponent implements OnInit {
     //   this.oneSignal.push(["registerForPushNotifications"])
     // });
     const sendDevice = (id) => {
-      // console.log("Reistrando dispositovo desde const")
+      console.log("Registrando dispositovo desde const",id);
       return this.dashboardService.postDispositivo(id).subscribe(data => {
-        // console.log(data)
+        console.log(data)
         this.snack.open("Registro de dispositivo", '', { duration: 4000 });
       }),err=>{
         console.log("**************************************Error", err)
@@ -81,7 +81,7 @@ export class DashboardComponent implements OnInit {
           console.log("USER ID === ", userId)
           if (userId !== undefined || userId !== null) {
             console.log("sendDevice(userId)")
-            return sendDevice(userId);
+             sendDevice(userId);
           }
         }).catch(err => {
           console.log("ERROR oneSignal getUserId: ", err)

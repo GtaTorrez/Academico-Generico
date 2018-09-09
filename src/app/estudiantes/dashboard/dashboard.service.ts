@@ -34,7 +34,7 @@ export class DashboardService {
   }
 
   postDispositivo(dispositivo){
-    console.log("upload ")
+    console.log("upload ",dispositivo);
     let body={"idDispositivo":dispositivo}
     return this.http.post(Global.BASE_URL+":"+Global.port+"/dispositivo/adicionar",body,{withCredentials:true})
   }
