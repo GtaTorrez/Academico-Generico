@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Persona } from '../modelos/persona';
 import {AdministradorService} from '../administrador.service'
-import {MatSnackBar} from '@angular/material';
+import {MatSnackBar, MatTableDataSource} from '@angular/material';
 
 import { Global} from "../../config/global";
 
@@ -11,19 +11,18 @@ import { Global} from "../../config/global";
   styleUrls: ['./usuarios.component.css']
 })
 export class UsuariosComponent implements OnInit {
-
   consulta:boolean=false;
   persona:Persona;
   busca="CI";
   buscaPor=['CI','Rude'];
-  action:string='ver'
+  action:string='ver';
   tipo="administrativo";
   select:string;
   parametro:string;
   qr:string;
 
-  resultadoBusqueda : Array<any> = []
-  displayedColumns : string[]    = ['nro', 'paterno', 'materno', 'nombre', 'identificacion', 'rol', 'ver'];
+  resultadoBusqueda : MatTableDataSource<any> = new MatTableDataSource();
+  displayedColumns : string[] = ['nro', 'paterno', 'materno', 'nombre', 'identificacion', 'username', 'rol', 'ver', 'reset-pass'];
 
   constructor(
     private serve:AdministradorService,
@@ -32,17 +31,24 @@ export class UsuariosComponent implements OnInit {
 
   buscarUsuario () {
     if (this.parametro.length < 3) {
-      this.resultadoBusqueda = []
+      this.resultadoBusqueda = new MatTableDataSource();
+      return
+    }
+    if (this.parametro.length > 3 && this.resultadoBusqueda.data.length > 0) {
+      this.resultadoBusqueda.filter = this.parametro.trim().toLowerCase();
       return
     }
     this.consulta=true;
     this.action="ver"
     this.serve.buscarPersona(this.parametro).subscribe((data:any[]) => {
-      this.resultadoBusqueda = data
+      this.resultadoBusqueda = new MatTableDataSource(data);
       this.consulta=false;
     }, err => {
       this.AbrirNotificacion("Error con la consulta","")
     })
+  }
+  applyFilter(filterValue: string) {
+    this.resultadoBusqueda.filter = filterValue.trim().toLowerCase();
   }
   ver (data) {
     this.action="ver";
@@ -110,6 +116,7 @@ export class UsuariosComponent implements OnInit {
 
     }
   }
+
   eliminarPersona(id) {
     if (window.confirm('¿Está seguro de eliminar el registro?')) {
       this.serve.deletePersona(id).subscribe(data=>{
@@ -117,6 +124,18 @@ export class UsuariosComponent implements OnInit {
           this.AbrirNotificacion("Exito","Aceptar")
         }
         this.buscarUsuario()
+      },err=>{
+        this.AbrirNotificacion("Hubo un error","")
+      })
+    }
+  }
+
+  resetPass(data) {
+    if (window.confirm(`¿Está seguro de resetear la contraseña de ${data.nombre}?`)) {
+      this.serve.resetPass(data.id).subscribe(data=>{
+        if(data){
+          this.AbrirNotificacion("Exito","Aceptar")
+        }
       },err=>{
         this.AbrirNotificacion("Hubo un error","")
       })
