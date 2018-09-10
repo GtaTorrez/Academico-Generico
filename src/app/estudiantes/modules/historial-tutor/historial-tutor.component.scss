@@ -10,7 +10,12 @@ table {
   padding: 20px;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  border: solid #f2f2f2 1px;
 }
 
 .separator {

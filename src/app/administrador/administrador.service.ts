@@ -23,6 +23,9 @@ export class AdministradorService {
   deletePersona(id):Observable<any>{
     return this.http.delete(this.baseUrl+`/persona/${id}`);
   }
+  resetPass(id):Observable<any>{
+    return this.http.get(this.baseUrl+`/usuario/resetearPassword/${id}`, {headers:this.headers});
+  }
   updatePersona(body):Observable<any>{
     return this.http.put(this.baseUrl+`/persona/${body.id}`,body,{headers:this.headers});
   }

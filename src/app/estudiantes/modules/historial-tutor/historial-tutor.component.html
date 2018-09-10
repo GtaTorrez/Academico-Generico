@@ -10,9 +10,9 @@
 
             <span class="seccion-title">{{ estudiante.nombreCompleto }}</span>
 
-            <div class="container">
+            <div class="table-container">
 
-              <table mat-table [dataSource]="estudiante.dataSource" class="mat-elevation-z8">
+              <table mat-table [dataSource]="estudiante.dataSource">
 
                 <ng-container matColumnDef="nro">
                   <th mat-header-cell *matHeaderCellDef> Nro. </th>

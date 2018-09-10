@@ -39,9 +39,9 @@ export class DatosAccesoComponent implements OnInit {
       return this.snackBar.open('Las contraseñas no coinciden', 'Error', { duration: 2000 })
     }
     const DATA = {
-      id              : this.model.id,
-      password_actual : this.model.password_actual,
-      password        : this.model.password
+      id             : this.model.id,
+      actualPassword : this.model.password_actual,
+      nuevoPassword  : this.model.password
     }
     this.submitted = true
     this.dashboardService.cambiarPassword(DATA).subscribe((result : any) => {
