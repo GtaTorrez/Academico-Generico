@@ -49,6 +49,7 @@ export class DatosAccesoComponent implements OnInit {
       this.snackBar.open('Contraseña actualizada exitosamente', 'Ok', { duration: 2000 })
     },
     error => {
+      this.submitted = false
       console.log("ERROR = ", error)
       this.snackBar.open('Fatal Error', 'Error', { duration: 2000 })
     })
