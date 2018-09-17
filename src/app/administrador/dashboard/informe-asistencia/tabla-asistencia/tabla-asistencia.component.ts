@@ -149,7 +149,7 @@ export class TablaAsistenciaComponent implements OnInit {
       }
     }
     this.service.getAsistencias(this.idTurno, this.idGrado, this.idGrupo, this.idParalelo, this.ini, this.fin).subscribe((result:any) => {
-      //console.log(result)
+      // console.log(result)
       const personas = []
       result.forEach(registro => {
         const NOMBRE = `${`${registro.idPersona.paterno} ${registro.idPersona.materno}`.trim()} ${registro.idPersona.nombre}`.trim()
@@ -163,6 +163,9 @@ export class TablaAsistenciaComponent implements OnInit {
           asistencias      : [],
           marcas           : [],
           idGestionAcademica: registro.idGestionAcademica.id
+        }
+        if (registro.idGestionAcademica.horaEntrada) {
+          this.horaEntrada = registro.idGestionAcademica.horaEntrada
         }
         let adicionado = false
         for (let i in personas) {
