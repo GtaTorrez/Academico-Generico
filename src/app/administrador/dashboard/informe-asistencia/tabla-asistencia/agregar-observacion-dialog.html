@@ -3,13 +3,19 @@
   <span>{{data.nombre}}</span>
   <span style="margin:10px;">{{data.fecha}}</span>
   <form class="form" (ngSubmit)="aceptar()">
-    <mat-form-field style="min-width:200px">
-      <textarea rows="4" matInput placeholder="Observación de la falta" required [(ngModel)]="asistencia.observacion" name="observacion"></textarea>
-    </mat-form-field>
+    <div fxLayout="column" fxLayoutAlign="start center" class="container">
 
-    <div fxLayout="row" fxLayoutAlign="start rigth">
-      <button mat-button color="default" (click)="cancelar()">Cancelar</button>
-      <button type="submit" style="margin-left:20px" mat-raised-button color="primary">Aceptar</button>
+      <mat-form-field style="min-width:200px">
+        <textarea rows="4" matInput placeholder="Observación" [(ngModel)]="asistencia.observacion" name="observacion"></textarea>
+      </mat-form-field>
+
+      <mat-checkbox style="margin: 10px 0 10px 0;" [(ngModel)]="conLicencia" name="conLicencia">Licencia</mat-checkbox>
+
+      <div fxLayout="row" fxLayoutAlign="start rigth">
+        <button mat-button color="default" (click)="cancelar()">Cancelar</button>
+        <button type="submit" style="margin-left:20px" mat-raised-button color="primary">Aceptar</button>
+      </div>
+
     </div>
   </form>
 </div>

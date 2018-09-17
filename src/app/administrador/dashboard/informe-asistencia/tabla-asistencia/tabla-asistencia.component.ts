@@ -1,10 +1,8 @@
 import { Component, OnInit, Inject }                from '@angular/core'
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material'
 
-import { PdfmakeService }   from 'ng-pdf-make/pdfmake/pdfmake.service';
-import { Cell, Row, Table } from 'ng-pdf-make/objects/table';
-
-// import { saveAs } from "file-saver";
+import { PdfmakeService }   from 'ng-pdf-make/pdfmake/pdfmake.service'
+import { Cell, Row, Table } from 'ng-pdf-make/objects/table'
 
 import { AsistenciaService } from '../../services/asistencia.service'
 
@@ -143,7 +141,7 @@ export class TablaAsistenciaComponent implements OnInit {
     let diasHabiles  = 0
     for (let i = 0; i < nroDias; i++, cnt = (cnt % 7) + 1) {
       this.days.push({ id: i+1, nro: cnt })
-      if (cnt <= 5) {
+      if (cnt <= 6) {
         diasHabiles += 1
       }
     }
@@ -190,14 +188,14 @@ export class TablaAsistenciaComponent implements OnInit {
           hora_salida : registro.hora_salida,
           observacion : registro.observacion
         }
-        const ESTADO_CON_LICENCIA = 'Con Licencia'
         for (let i in personas) {
-          if (personas[i].id === ID_PERSONA && asistencia.diaSemana <= 5) {
+          if (personas[i].id === ID_PERSONA && asistencia.diaSemana <= 6) {
             personas[i].asistencias.push(asistencia)
-            if (asistencia.estado !== ESTADO_CON_LICENCIA) {
+            if (asistencia.estado === 'asistió') {
               personas[i].totalAsistencias += 1
               personas[i].totalFaltas      -= 1
-            } else {
+            }
+            if (asistencia.estado === 'con licencia') {
               personas[i].totalLicencias += 1
               personas[i].totalFaltas    -= 1
             }
@@ -208,6 +206,7 @@ export class TablaAsistenciaComponent implements OnInit {
       })
       personas.sort((a, b) => { return a.nombre.localeCompare(b.nombre) })
       this.dataSource  = personas
+      console.log("DATASOURCE = ", this.dataSource)
       this.loadingMode = 'determinate'
     }, error => {
       this.loadingMode = 'determinate'
@@ -215,28 +214,39 @@ export class TablaAsistenciaComponent implements OnInit {
   }
 
   print (persona) {
-    const header1 = new Cell('Nro.')
-    const header2 = new Cell('Hora\Entrada')
-    const header3 = new Cell('Hora\nLlegada')
-    const header4 = new Cell('Hora\nSalida')
-    const header5 = new Cell('Atraso')
-    const header6 = new Cell('Observación')
-    const headerRows = new Row([header1, header2, header3, header4, header5, header6])
+    const header1 = new Cell('N°')
+    const header2 = new Cell('Fecha')
+    const header3 = new Cell('Hora\nEntrada')
+    const header4 = new Cell('Hora\nLlegada')
+    const header5 = new Cell('Hora\nSalida')
+    const header6 = new Cell('Atraso')
+    const header7 = new Cell('Observación')
+    const headerRows = new Row([header1, header2, header3, header4, header5, header6, header7])
     const rows = []
     let cnt = 1
     this.dataSource.forEach(data => {
       if (data.id === persona.id) {
+        data.asistencias.sort((a: any, b: any) => {
+          console.log("A = ", a, " B = ", b)
+          const fechaA = (new Date(a.fecha)).getTime()
+          const fechaB = (new Date(b.fecha)).getTime()
+          return fechaA - fechaB
+          // return new Date(b.fecha) - new Date(a.fecha)
+        })
         data.asistencias.forEach(asis => {
+          const FECHA = moment(asis.fecha).format('DD/MM/YYYY')
           const TA = moment(asis.hora_llegada, 'LTS')
           const TB = moment(this.horaEntrada, 'LTS')
           let TF   = moment.duration(TA.diff(TB)).asMinutes()
+          TF = (isNaN(TF)) ? 0 : parseFloat(TF.toFixed(2))
           if (TF < 0) { TF = 0 }
           const row = new Row([
             new Cell(cnt++ + ''),
+            new Cell(FECHA),
             new Cell(this.horaEntrada),
             new Cell(asis.hora_llegada),
             new Cell(asis.hora_salida),
-            new Cell(TF + ' mins.'),
+            new Cell(TF > 0 ? TF + ' mins.' : ''),
             new Cell(asis.observacion),
           ])
           rows.push(row)
@@ -244,7 +254,7 @@ export class TablaAsistenciaComponent implements OnInit {
       }
     })
 
-    const widths = [30, 80, 80, 80, 80, '*']
+    const widths = [30, 70, 70, 70, 70, 70, '*']
     const table  = new Table(headerRows, rows, widths)
     const MES    = this.mesNombre
     const ANIO   = this.anioNombre
@@ -254,7 +264,7 @@ export class TablaAsistenciaComponent implements OnInit {
       header: { text: 'Sistema académico', style: 'header', margin: [5, 15] },
       footer: { text: 'Copyright 2018', style: 'footer', margin: [15,15,15,15] },
       content:[
-        { text:`\nINFORME DE ASISTENCIA\n${NOMBRE}\n\n`, bold:true, fontSize:12, alignment:'center' }
+        { text:`\nINFORME DE ASISTENCIA\n${NOMBRE}\n\n`, bold:true, fontSize:11, alignment:'center' }
       ],
       styles: {
         header: {
@@ -269,10 +279,9 @@ export class TablaAsistenciaComponent implements OnInit {
         }
       }
     }
+    // this.pdfmake.configureStyles({ table: { fontSize: 10 } })
     this.pdfmake.addTable(table)
     this.pdfmake.open()
-    // this.pdfmake.print();
-    // this.pdfmake.download('Reporte general.pdf');
   }
 
   printGeneral () {
@@ -294,7 +303,7 @@ export class TablaAsistenciaComponent implements OnInit {
       ])
       rows.push(row)
     })
-    const widths = [50, '*', 60, 60, 60]
+    const widths = [50, '*', 65, 60, 60]
     const table  = new Table(headerRows, rows, widths)
     const MES    = this.mesNombre
     const ANIO   = this.anioNombre
@@ -302,7 +311,7 @@ export class TablaAsistenciaComponent implements OnInit {
       header: { text: 'Sistema académico', style: 'header', margin: [5, 15] },
       footer: { text: 'Copyright 2018', style: 'footer', margin: [15, 15, 15, 15] },
       content:[
-        { text:`\nINFORME GENERAL DE ASISTENCIA\n${MES} ${ANIO}\n\n`, bold:true, fontSize:12, alignment:'center' }
+        { text:`\nINFORME GENERAL DE ASISTENCIA\n${MES} ${ANIO}\n\n`, bold:true, fontSize:11, alignment:'center' }
       ],
       styles: {
         header: {
@@ -314,9 +323,13 @@ export class TablaAsistenciaComponent implements OnInit {
           fontSize: 7,
           italic:true,
           alignment:'right'
+        },
+        table: {
+          fontSize: 7
         }
       }
     }
+    // this.pdfmake.configureStyles({ table: { fontSize: 10 } })
     this.pdfmake.addTable(table)
     this.pdfmake.open()
     // this.pdfmake.print()
@@ -324,34 +337,54 @@ export class TablaAsistenciaComponent implements OnInit {
   }
 
   editarObservacion (dia, persona, asistencia) {
+    console.log("Asistencia = ", asistencia)
     const DIA     = dia < 10 ? `0${dia}` : dia
     const FECHA   = moment(`${DIA}/${this.mesAsistencia}/${this.anioAsistencia}`, 'DD/MM/YYYY').format('LL')
     let dialogRef = this.dialog.open(AgregarObservacionDialog, {
       data: { nombre: persona.nombre, fecha: FECHA, asistencia: asistencia }
     })
 
-    dialogRef.afterClosed().subscribe(observacion => {
-      if (observacion) {
-        if (asistencia) {
-          const data =  {
-            observacion: observacion
-          }
-          this.service.update(data, asistencia.id).subscribe(result => {
-            this.actualizar()
-          })
-        } else {
-          const ESTADO_CON_LICENCIA = 'Con Licencia'
-          const data =  {
-            idPersona          : persona.id,
-            idGestionAcademica : persona.idGestionAcademica,
-            fecha              : moment(`${DIA}/${this.mesAsistencia}/${this.anioAsistencia}`, 'DD/MM/YYYY').toDate(),
-            observacion        : observacion
-          }
-          this.service.create(data).subscribe(result => {
-            this.actualizar()
-          })
+    dialogRef.afterClosed().subscribe((resultadoAsistencia: any) => {
+      console.log(resultadoAsistencia)
+      if (!resultadoAsistencia) { return }
+      // console.log("OBSERVACION = ", observacion, " TYPEOF = ", (typeof observacion))
+      if (!asistencia) {
+        const data =  {
+          idPersona          : persona.id,
+          idGestionAcademica : persona.idGestionAcademica,
+          fecha              : moment(`${DIA}/${this.mesAsistencia}/${this.anioAsistencia}`, 'DD/MM/YYYY').toDate(),
+          observacion        : resultadoAsistencia.observacion,
+          estado             : resultadoAsistencia.estado
         }
+        // console.log("create = ", data)
+        return this.service.create(data).subscribe(result => {
+          this.actualizar()
+        })
       }
+
+      return this.service.update(resultadoAsistencia, asistencia.id).subscribe(result => {
+        this.actualizar()
+      })
+      //
+      // if (observacion !== '') {
+      //   if (asistencia) {
+      //     const data =  { observacion: observacion, estado: NUEVO_ESTADO }
+      //     // console.log("update = ", data)
+      //     this.service.update(data, asistencia.id).subscribe(result => {
+      //       this.actualizar()
+      //     })
+      //   } else {
+      //
+      //   }
+      // } else {
+      //   if (asistencia) {
+      //     const data =  { observacion: null, estado: NUEVO_ESTADO }
+      //     // console.log("update = ", data)
+      //     this.service.update(data, asistencia.id).subscribe(result => {
+      //       this.actualizar()
+      //     })
+      //   }
+      // }
     })
   }
 }
@@ -361,8 +394,10 @@ export class TablaAsistenciaComponent implements OnInit {
   templateUrl : 'agregar-observacion-dialog.html'
 })
 export class AgregarObservacionDialog {
-  asistencia = {
-    observacion: ''
+  conLicencia : boolean = false
+
+  asistencia : any = {
+    observacion: null
   }
 
   constructor(
@@ -373,16 +408,16 @@ export class AgregarObservacionDialog {
   ngOnInit () {
     if (this.data.asistencia) {
       this.asistencia = this.data.asistencia
+      this.conLicencia = this.data.asistencia.estado === 'con licencia'
     }
   }
 
   cancelar(): void {
-    this.dialogRef.close();
+    this.dialogRef.close()
   }
 
   aceptar () {
-    if (this.asistencia.observacion !== '') {
-      this.dialogRef.close(this.asistencia.observacion)
-    }
+    this.asistencia.estado = this.conLicencia ? 'con licencia' : (this.asistencia.hora_llegada ? 'asistió' : 'no asistió')
+    this.dialogRef.close(this.asistencia)
   }
 }
