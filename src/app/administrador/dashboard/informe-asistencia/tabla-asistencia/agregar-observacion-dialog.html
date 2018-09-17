@@ -1,8 +1,12 @@
 <div fxLayout="column" fxLayoutAlign="start center" class="container">
+
   <h3>Observación</h3>
+
   <span>{{data.nombre}}</span>
+
   <span style="margin:10px;">{{data.fecha}}</span>
-  <form class="form" (ngSubmit)="aceptar()">
+
+  <form class="form">
     <div fxLayout="column" fxLayoutAlign="start center" class="container">
 
       <mat-form-field style="min-width:200px">
@@ -13,9 +17,10 @@
 
       <div fxLayout="row" fxLayoutAlign="start rigth">
         <button mat-button color="default" (click)="cancelar()">Cancelar</button>
-        <button type="submit" style="margin-left:20px" mat-raised-button color="primary">Aceptar</button>
+        <button style="margin-left:20px" mat-raised-button color="primary" (click)="aceptar()">Aceptar</button>
       </div>
 
     </div>
   </form>
+
 </div>

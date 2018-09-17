@@ -77,8 +77,8 @@
         <th></th>
         <th *ngFor="let day of days">{{day.id}}</th>
         <th style="min-width:20px" matTooltip="Asistencias" matTooltipPosition="above">As</th>
-        <th style="min-width:20px" matTooltip="Faltas" matTooltipPosition="above">Fa</th>
         <th style="min-width:20px" matTooltip="Licencias" matTooltipPosition="above">Li</th>
+        <th style="min-width:20px" matTooltip="Faltas" matTooltipPosition="above">Fa</th>
         <!-- <th style="min-width:20px" matTooltip="Atrasos" matTooltipPosition="above">At</th> -->
       </tr>
     </thead>
@@ -87,22 +87,23 @@
         <td class="no-select static-data1">{{i + 1}}</td>
         <td class="no-select static-data2" style="text-align:left;padding-left:10px">{{persona.nombre}}</td>
         <td class="no-select static-space"></td>
-        <td *ngFor="let day of days">
-          <div *ngIf="(day.nro > 6)" class="white"></div>
-          <div *ngIf="(day.nro <= 6)">
+        <td *ngFor="let day of days" class="{{!day.active ? 'white-td' : ''}}">
+          <div *ngIf="!day.active" class="white"></div>
+          <div *ngIf="day.active">
             <div *ngIf="persona.marcas.includes(day.id)">
               <div *ngFor="let asistencia of persona.asistencias">
-                <div *ngIf="(asistencia.estado === 'asistió') && (asistencia.dia === day.id) && (asistencia.atrasado === true)"  class="yellow pointer" (click)="editarObservacion(day.id, persona, asistencia)" [matTooltip]="asistencia.observacion" matTooltipPosition="above">{{ asistencia.observacion && asistencia.observacion !== '' ? '&#x2713;' : '' }}</div>
-                <div *ngIf="(asistencia.estado === 'asistió') && (asistencia.dia === day.id) && (asistencia.atrasado === false)" class="green pointer"  (click)="editarObservacion(day.id, persona, asistencia)" [matTooltip]="asistencia.observacion" matTooltipPosition="above">{{ asistencia.observacion && asistencia.observacion !== '' ? '&#x2713;' : '' }}</div>
-                <div *ngIf="(asistencia.estado !== 'asistió') && (asistencia.dia === day.id)"                                    class="red pointer"    (click)="editarObservacion(day.id, persona, asistencia)" [matTooltip]="asistencia.observacion" matTooltipPosition="above">{{ asistencia.observacion && asistencia.observacion !== '' ? '&#x2713;' : '' }}</div>
+                <div *ngIf="(asistencia.dia === day.id) && (asistencia.estado === 'asistió')      && (asistencia.atrasado === true)"  class="yellow pointer" (click)="editarObservacion(day.id, persona, asistencia)" [matTooltip]="asistencia.observacion" matTooltipPosition="above">{{ asistencia.observacion && asistencia.observacion !== '' ? '&#x2713;' : '·' }}</div>
+                <div *ngIf="(asistencia.dia === day.id) && (asistencia.estado === 'asistió')      && (asistencia.atrasado === false)" class="green pointer"  (click)="editarObservacion(day.id, persona, asistencia)" [matTooltip]="asistencia.observacion" matTooltipPosition="above">{{ asistencia.observacion && asistencia.observacion !== '' ? '&#x2713;' : '·' }}</div>
+                <div *ngIf="(asistencia.dia === day.id) && (asistencia.estado === 'faltó')       "                                    class="red pointer"    (click)="editarObservacion(day.id, persona, asistencia)" [matTooltip]="asistencia.observacion" matTooltipPosition="above">{{ asistencia.observacion && asistencia.observacion !== '' ? '&#x2713;' : '' }}</div>
+                <div *ngIf="(asistencia.dia === day.id) && (asistencia.estado === 'con licencia')"                                    class="orange pointer" (click)="editarObservacion(day.id, persona, asistencia)" [matTooltip]="asistencia.observacion" matTooltipPosition="above">{{ asistencia.observacion && asistencia.observacion !== '' ? '&#x2713;' : '·' }}</div>
               </div>
             </div>
             <div *ngIf="!persona.marcas.includes(day.id)" class="red pointer" (click)="editarObservacion(day.id, persona)"></div>
           </div>
         </td>
         <td class="no-select green">{{persona.totalAsistencias}}</td>
+        <td class="no-select orange">{{persona.totalLicencias}}</td>
         <td class="no-select red">{{persona.totalFaltas}}</td>
-        <td class="no-select red">{{persona.totalLicencias}}</td>
         <!-- <td class="no-select yellow">{{persona.totalAtrasos}}</td> -->
         <td class="no-select"><button mat-icon-button matTooltip="Reporte individual" matTooltipPosition="above" (click)="print(persona)"><mat-icon>picture_as_pdf</mat-icon></button></td>
       </tr>

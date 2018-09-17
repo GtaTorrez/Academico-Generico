@@ -66,11 +66,22 @@ tbody tr td.no-select:hover {
   padding-top: 10px;
 }
 
-.white {
-  background-color: white;
+.orange {
+  background-color: #ffdab3;
   width: 30px;
   height: 30px;
   padding-top: 10px;
+}
+
+.white {
+  background-color: #f2f2f2;
+  width: 30px;
+  height: 30px;
+  padding-top: 10px;
+}
+
+.white-td:hover {
+  border: solid lightgrey 1px !important;
 }
 
 .static-title1 {
