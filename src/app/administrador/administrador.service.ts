@@ -239,4 +239,17 @@ export class AdministradorService {
     this.http.get(`${this.baseUrl}/auth/salir`, {withCredentials: true})
     localStorage.removeItem('app_sid')
   }
+
+  // gestion 
+  getGestionActual(){
+    return this.http.get(`${this.baseUrl}/gestionacademica/gestionActual`,{withCredentials:true});
+  }
+
+// post inscribe
+  postInscribe(body){
+    return this.http.post(`${this.baseUrl}/inscribe/inscribir`,body,{withCredentials:true})
+  }
+
+
+
 }

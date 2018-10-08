@@ -1,35 +1,26 @@
 <mat-progress-bar *ngIf="consulta" mode="indeterminate"></mat-progress-bar>
 <div class="top" fxLayout="row wrap" fxLayoutAlign="center"  >
-  <!-- <div fxFlex="100" >
-        <mat-radio-group class="center" [(ngModel)]="busca" name="search" >
-          <mat-radio-button class="radiobtn" *ngFor="let buscar of buscaPor" [value]="buscar">{{buscar}}</mat-radio-button>
-        </mat-radio-group>
-  </div>
-  <div fxFlex="100" >
-      <form  class="formBuscar">
-          <mat-form-field class="buscar">
-            <input type="number" matInput class="alignText" #buscador placeholder="Buscar por " name="dato" [(ngModel)]="parametro" aria-label="Number" required >
-          </mat-form-field>
-          <button mat-icon-button color="primary" [disabled]="buscador.invalid" (click)="buscarEstudiante()" ><mat-icon>search</mat-icon> </button>
-        </form>
-  </div>  -->
+  <!-- MOSTRAT ESTUDIANTES  -->
   <div fxFlex="100">
     <app-selector-curso
     [turnos]="turnos"
     (enviarEstudiantes)="mostrarEstudiantes($event)"
     (consultando)="consultando($event)"
-    ></app-selector-curso>
-  </div>
-  <div fxFlex="100">
+    (nuevoActivado)="adicionarBotonActivar($event)"
+    (actualizarCursoId)="actualizarIdCursos($event)"
     
-    <div fxFlex="100" fxFlex.gt-md="60" fxLayout.gt-md="row wrap" fxLayout="column"  fxFlexAlign="center" >
-     <mat-card class="ancho80" >
-       <div *ngIf="estudiante" >
+    ></app-selector-curso>
+  </div> 
+  <div fxFlex="100" class="cards-content">
+    <a name="cardView"></a>
+    <div fxFlex="100" [fxFlex.gt-md]="action === 'nuevo' ? 100 : 60"  fxLayout.gt-md="row wrap" fxLayout="column"  fxFlexAlign="center" >
+     <mat-card *ngIf="estudiante" class="ancho80" >
+       <div>
          <!-- <h3 class="enlinea" id="idPersona-{{ estudiante.id }}" >{{ estudiante.rol.toUpperCase() }}</h3> -->
-           <button mat-button class="enlinea pullRight" *ngIf="action==='nuevo' || action==='editar'" color="primary" (click)="cancelar()" ><mat-icon>arrow_back</mat-icon> </button>
-           <button mat-icon-button class="enlinea pullRight"  *ngIf="action==='nuevo' || action==='editar'" color="accent" (click)="guardar()" ><mat-icon>save</mat-icon> </button>
-           <button mat-icon-button class="enlinea pullRight" *ngIf="action==='ver'" color="primary" (click)="editar()" ><mat-icon>edit</mat-icon> </button>
-           <button mat-icon-button class="enlinea pullRight" *ngIf="action==='nuevo' || action==='editar'" color="warn" (click)="cancelar()" ><mat-icon>delete_forever</mat-icon> </button>
+          <button mat-button class="enlinea pullRight" *ngIf="action==='nuevo' || action==='editar'" color="primary" (click)="cancelar()" ><mat-icon>arrow_back</mat-icon> </button>
+          <button mat-icon-button class="enlinea pullRight"  *ngIf="action==='nuevo' || action==='editar'" color="accent" (click)="guardar()" ><mat-icon>save</mat-icon> </button>
+          <button mat-icon-button class="enlinea pullRight" *ngIf="action==='ver'" color="primary" (click)="editar()" ><mat-icon>edit</mat-icon> </button>
+          <button mat-icon-button class="enlinea pullRight" *ngIf="action==='nuevo' || action==='editar'" color="warn" (click)="cancelar()" ><mat-icon>delete_forever</mat-icon> </button>
        </div>
        <div class="margen0">
          <app-perfil
@@ -56,7 +47,6 @@
           </tr>
         </table>
     </mat-card>
- 
   </div>
   </div>
   <div fxFlex="100">
@@ -64,15 +54,13 @@
     [estudiantes]="estudiantes"
     (mostrar)="verEstudiante($event)"
     (borrar)="deletePersona($event)"
-    ></app-lista-estudiantes>
+    >
+    </app-lista-estudiantes>
   </div>
 
-
-
-
-    <div class="buttonAdd" >
-        <button mat-fab color="accent" (click)="adicionar()"> <mat-icon>add</mat-icon> </button>
-    </div>
+  <div class="buttonAdd" >
+      <button mat-fab color="accent" [disabled]="swAdd"  (click)="adicionar()"> <mat-icon>add</mat-icon> </button>
+  </div>
 
 
 

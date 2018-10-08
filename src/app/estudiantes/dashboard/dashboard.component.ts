@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
   usuario       = { nombre: '', rol: '' }
   dashboardMenu = []
   idDevice:string="";
-  oneSignal:any;
+  // oneSignal:any;
   constructor (
     private dashboardService:DashboardService,
     public authService: AuthService,
@@ -43,30 +43,47 @@ export class DashboardComponent implements OnInit {
       this.addMenuItem({ path: '/estudiantes/dashboard/account', name: 'Inicio' });
       this.addMenuItem({ path: '/estudiantes/dashboard/historial-tutor', name: 'Historial Tutor' });
     }
-    this.oneSignal=window['OneSignal'] || [];
 
-    this.oneSignal.push(["init", {
+    const sendDevice = (id) => {
+      console.log("Registrando dispositovo desde const",id);
+      return this.dashboardService.postDispositivo(id).subscribe(data => {
+        localStorage.setItem("notify","1");
+        console.log(data)
+        this.snack.open("Registro de dispositivo", '', { duration: 4000 });
+      }),err=>{
+        console.log("**************************************Error", err)
+      }
+    };
+
+
+    var oneSignal=window['OneSignal'] || [];
+
+    oneSignal.push(["init", {
       appId: "e338a31b-4667-471e-9a1a-4aa0c3cf6d5f",
       autoRegister: false,
       allowLocalhostAsSecureOrigin: true,
       notifyButton: {
         enable: false
       }
+      
     }]);
 
-    // this.oneSignal.push(function () {
+    oneSignal.push(function() {
+      // Occurs when the user's subscription changes to a new value.
+      oneSignal.on('subscriptionChange', function (isSubscribed) {
+        console.log("The user's subscription state is now:", isSubscribed);
+        oneSignal.getUserId().then(function (userId) {
+          if (userId !== undefined || userId !== null) {
+              console.log("sendDevice(userId)")
+              sendDevice(userId);
+            }
+          }).catch(err => {
+            console.log("ERROR oneSignal getUserId: ", err)
+          });
+      });
+    });
+  
 
-    //   this.oneSignal.push(["registerForPushNotifications"])
-    // });
-    const sendDevice = (id) => {
-      console.log("Registrando dispositovo desde const",id);
-      return this.dashboardService.postDispositivo(id).subscribe(data => {
-        console.log(data)
-        this.snack.open("Registro de dispositivo", '', { duration: 4000 });
-      }),err=>{
-        console.log("**************************************Error", err)
-      }
-    }
     // this.oneSignal.getUserId().then(function (userId) {
     //   console.log("User ID is ", userId);
     //   localStorage.setItem('idDevice',userId);
@@ -74,22 +91,23 @@ export class DashboardComponent implements OnInit {
     //   sendDevice(userId);
     // });
 
-    return this.oneSignal.isPushNotificationsEnabled().then(data=>{
-      console.log(data,!data);
-      if(!data){
-        return this.oneSignal.getUserId().then(function (userId) {
-          console.log("USER ID === ", userId)
-          if (userId !== undefined || userId !== null) {
-            console.log("sendDevice(userId)")
-             sendDevice(userId);
-          }
-        }).catch(err => {
-          console.log("ERROR oneSignal getUserId: ", err)
-        });
-      }
-    }).catch(err=>{
-      console.log(err);
-    })
+    // this.oneSignal.isPushNotificationsEnabled().then(data=>{
+    //   console.log(data);
+    //   if(localStorage.getItem("notify") !== undefined){
+    //     this.oneSignal.getUserId().then(function (userId) {
+    //     console.log("USER ID === ", userId)
+    //     alert(userId)
+    //       if (userId !== undefined || userId !== null) {
+    //         console.log("sendDevice(userId)")
+    //          sendDevice(userId);
+    //       }
+    //     }).catch(err => {
+    //       console.log("ERROR oneSignal getUserId: ", err)
+    //     });
+    //   }
+    // }).catch(err=>{
+    //   console.log(err);
+    // })
   }
   uploadDispositivo(val:string){
     const promise =new Promise(( resolve, reject )=>{

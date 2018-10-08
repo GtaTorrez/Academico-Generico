@@ -33,23 +33,29 @@ export class EstudiantesComponent implements OnInit {
   idTurno:number;
   idGrado:number;
   idGrupo:number;
+  swAdd:boolean;
 
+  paraleloCurso:any;
+  gestionActual:any;
+  
   constructor(
     private serve:AdministradorService,
     private notificacion:MatSnackBar,
     private dialog: MatDialog,
 
   ) {
-    this.action='ver'
+    this.action='ver';
+    this.swAdd=true;
   }
 
   ngOnInit() {
 
     this.getTurnos();
-    this.getGrados();
-    this.getGrupos();
-    this.getParalelos();
-
+    // this.getGrados();
+    // this.getGrupos();
+    // this.getParalelos();
+    this.getGestionActual();
+    
   }
   AbrirNotificacion(message: string,action:string) {
     this.notificacion.open(message,action,{
@@ -60,9 +66,13 @@ export class EstudiantesComponent implements OnInit {
   consultando(event:any){
     this.consulta=event;
   }
+  adicionarBotonActivar(eventData){
+    this.swAdd=eventData;
+  }
 
   adicionar(){
 
+    console.log("turno ",this.idTurno,"grado ",this.idGrado,"grupo ",this.idGrupo,"paralelo ",this.idParalelo)
     this.action='nuevo';
     console.log(this.action)
     this.estudiante=new Persona();
@@ -208,10 +218,8 @@ export class EstudiantesComponent implements OnInit {
   }
   guardar(){
     this.consulta=true;
-    // console.log(this.estudiante)
     if(this.estudiante.id){
-
-      this.serve.updateProfesor(this.estudiante).subscribe(data=>{
+      this.serve.updatePersona(this.estudiante).subscribe(data=>{
         this.verEstudiante(data);
         this.consulta=false;
         this.AbrirNotificacion("Realizado Correctamente","");
@@ -219,15 +227,19 @@ export class EstudiantesComponent implements OnInit {
         this.AbrirNotificacion("Error al subir los datos","");
         console.error(err);
       })
-
     }else{
         this.estudiante.rol="alumno";
-        this.serve.postProfesor(this.estudiante).subscribe(data=>{
-          // console.log(data);
+        this.serve.postPersona(this.estudiante).subscribe(data=>{
           this.consulta=false;
-          this.AbrirNotificacion("Realizado correctamente","");
           this.verEstudiante(data)
           this.estudiante.id=data.id;
+          let body={id:data.id, idCurso:this.paraleloCurso.idCurso,idGestionAcademica:this.gestionActual.id};
+          this.serve.postInscribe(body).subscribe(data=>{
+            console.log(data);
+            this.AbrirNotificacion("Se inscribio el estudiante","");
+          })
+          
+
         },error=>{
           this.AbrirNotificacion("Error al subir los datos","")
         })
@@ -235,26 +247,19 @@ export class EstudiantesComponent implements OnInit {
     }
   }
 
-  adicionarPadres(): void {
+  adicionarPadres():void {
 
     let dialogRef = this.dialog.open(ModalP, {
       width: '300px',
       height:'470px',
       data: {action:'nuevo' }
     });
-    // this.tutores=[];
     dialogRef.afterClosed().subscribe(result => {
-      // console.log("observable de adicionar")
-
       if(result){
         if(result.action!='cancel' && result.action==='nuevo' ){
           this.consulta=true;
-          // console.log(result.padre);
-
           this.serve.buscarTutor(result.padre.cedula).subscribe((data:any[]) => {
-            // console.log("DIALOG RESULT = ", data)
             if (data.length === 1) {
-              // console.log("El tutor ya se encuentra registrado, se asigna")
               let updateData={"idAlumno":this.estudiante.id,"idTutor":data[0].id}
               this.serve.postTutor(updateData).subscribe(res=>{
                 this.AbrirNotificacion('Realizado Corretamente','Aceptar');
@@ -263,9 +268,7 @@ export class EstudiantesComponent implements OnInit {
                 this.AbrirNotificacion('Error, no realizado','');
               })
             } else {
-              // console.log("El tutor no existe, se crea")
               this.serve.postPersona(result.padre).subscribe(res => {
-                // console.log(res);
                 this.AbrirNotificacion('Realizado Corretamente','Aceptar');
                 let data={"idAlumno":this.estudiante.id,"idTutor":res.id}
                 this.serve.postTutor(data).subscribe(res=>{
@@ -281,7 +284,6 @@ export class EstudiantesComponent implements OnInit {
             }
           }, err => {
           console.log("ERR === ", err)
-            // this.AbrirNotificacion("Error con la consulta","")
           })
 
         }
@@ -293,6 +295,18 @@ export class EstudiantesComponent implements OnInit {
   eliminarTutor (tutor) {
     console.log("Eliminar el tutor", tutor ,"del estudiante ", this.estudiante.nombre)
   }
+
+  actualizarIdCursos(event){
+    console.log(" ----> ",event);
+    this.paraleloCurso=event.idParalelo;
+  }
+  getGestionActual(){
+    this.serve.getGestionActual().subscribe(data=>{
+      this.gestionActual=data;
+      console.log(data);
+    })
+  }
+
 
 }
 
