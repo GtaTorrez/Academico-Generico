@@ -48,10 +48,6 @@ export class TablaAsistenciaComponent implements OnInit {
     private excelService : ExcelService
   ) {}
 
-  exportAsXLSX(WorkBook: any):void {
-    this.excelService.exportAsExcelFile(WorkBook, 'informe')
-  }
-
   ngOnInit() {
     this.actualizarSelectorTurnos()
   }
@@ -233,7 +229,43 @@ export class TablaAsistenciaComponent implements OnInit {
     })
   }
 
-  exportToExcel (persona) {
+  exportGeneralToExcel () {
+    const MES    = this.mesNombre
+    const ANIO   = this.anioNombre
+    const TURNO_NOMBRE    = this.obtenerNombreTurno()
+    const GRADO_NOMBRE    = this.obtenerNombreGrado()
+    const GRUPO_NOMBRE    = this.obtenerNombreGrupo()
+    const PARALELO_NOMBRE = this.obtenerNombreParalelo()
+    const CURSO  = `Turno: ${TURNO_NOMBRE}   Grado: ${GRADO_NOMBRE}   Grupo: ${GRUPO_NOMBRE}   Paralelo: ${PARALELO_NOMBRE}`
+    const WorkBook = []
+    WorkBook.push({ A: "INFORME GENERAL DE ASISTENCIA" })
+    WorkBook.push({ A: `${MES} ${ANIO}` })
+    WorkBook.push({ A: "" })
+    WorkBook.push({ A: `${CURSO}` })
+    WorkBook.push({ A: "" })
+    WorkBook.push({
+      A: "N°",
+      B: "Estudiante",
+      C: "Total asistencias",
+      D: "Total Licencias",
+      E: "Total Faltas"
+    })
+    const rows = []
+    let cnt = 1
+    this.dataSource.forEach(data => {
+      const row = {
+        A: cnt++ + '',
+        B: data.nombre,
+        C: data.totalAsistencias,
+        D: data.totalLicencias,
+        E: data.totalFaltas
+      }
+      WorkBook.push(row)
+    })
+    this.excelService.exportAsExcelFile(WorkBook, 'informe-general-asistencia')
+  }
+
+  exportToExcel (persona: any) {
     const MES    = this.mesNombre
     const ANIO   = this.anioNombre
     const NOMBRE = persona.nombre
@@ -318,7 +350,7 @@ export class TablaAsistenciaComponent implements OnInit {
     WorkBook.push({ A: "Total asistencias:", B: totalAsistencias })
     WorkBook.push({ A: "Total licencias:", B: totalLicencias })
     WorkBook.push({ A: "Total faltas:", B: totalFaltas })
-    this.exportAsXLSX(WorkBook)
+    this.excelService.exportAsExcelFile(WorkBook, 'informe-asistencia')
   }
 
   print (persona) {
