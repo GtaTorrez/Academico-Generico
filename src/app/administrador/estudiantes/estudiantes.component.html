@@ -49,8 +49,9 @@
     </mat-card>
   </div>
   </div>
-  <div fxFlex="100">
-    <app-lista-estudiantes
+
+<div fxFlex="100">
+  <app-lista-estudiantes
     [estudiantes]="estudiantes"
     (mostrar)="verEstudiante($event)"
     (borrar)="deletePersona($event)"
@@ -63,5 +64,8 @@
   </div>
 
 
+<div class="buttonAdd" >
+  <button mat-fab color="accent" (click)="adicionar()"> <mat-icon>add</mat-icon> </button>
+</div>
 
 </div>

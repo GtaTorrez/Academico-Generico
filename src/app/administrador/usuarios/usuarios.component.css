@@ -57,11 +57,15 @@ padding: 5px 5px 0px 5px;
 
 }
 
-.resultado-busqueda-table {
-  margin-bottom: 10px;
+.table-content {
+  width: 100%;
+  overflow-x: auto;
+  margin: 20px;
+  border: solid #f2f2f2 1px;
 }
 
 .mat-column-nro            { min-width: 80px; max-width: 80px; }
+.mat-column-username       { min-width: 150px; max-width: 100%; }
 .mat-column-paterno        { min-width: 150px; max-width: 100%; }
 .mat-column-materno        { min-width: 150px; max-width: 100%; }
 .mat-column-nombre         { min-width: 150px; max-width: 100%; }
@@ -69,3 +73,4 @@ padding: 5px 5px 0px 5px;
 .mat-column-rol            { min-width: 100px; max-width: 100px; }
 .mat-column-ver            { min-width: 50px; max-width: 50px; }
 .mat-column-eliminar       { min-width: 50px; max-width: 50px; }
+.mat-column-reset-pass     { min-width: 50px; max-width: 50px; }
