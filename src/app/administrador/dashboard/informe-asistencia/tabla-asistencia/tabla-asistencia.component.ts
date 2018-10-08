@@ -5,6 +5,7 @@ import { PdfmakeService }   from 'ng-pdf-make/pdfmake/pdfmake.service'
 import { Cell, Row, Table } from 'ng-pdf-make/objects/table'
 
 import { AsistenciaService } from '../../services/asistencia.service'
+import { ExcelService }      from '../../services/excel.service'
 
 import 'rxjs/Rx'
 import * as moment from 'moment'
@@ -43,8 +44,13 @@ export class TablaAsistenciaComponent implements OnInit {
   constructor(
     private service : AsistenciaService,
     public  dialog  : MatDialog,
-    public  pdfmake : PdfmakeService
+    public  pdfmake : PdfmakeService,
+    private excelService : ExcelService
   ) {}
+
+  exportAsXLSX(WorkBook: any):void {
+    this.excelService.exportAsExcelFile(WorkBook, 'informe')
+  }
 
   ngOnInit() {
     this.actualizarSelectorTurnos()
@@ -225,6 +231,94 @@ export class TablaAsistenciaComponent implements OnInit {
     }, error => {
       this.loadingMode = 'determinate'
     })
+  }
+
+  exportToExcel (persona) {
+    const MES    = this.mesNombre
+    const ANIO   = this.anioNombre
+    const NOMBRE = persona.nombre
+    const HORA_ENTRADA = moment(this.horaEntrada, 'LTS A').format('HH:mm:ss')
+    const TURNO_NOMBRE    = this.obtenerNombreTurno()
+    const GRADO_NOMBRE    = this.obtenerNombreGrado()
+    const GRUPO_NOMBRE    = this.obtenerNombreGrupo()
+    const PARALELO_NOMBRE = this.obtenerNombreParalelo()
+    const CURSO  = `Turno: ${TURNO_NOMBRE}   Grado: ${GRADO_NOMBRE}   Grupo: ${GRUPO_NOMBRE}   Paralelo: ${PARALELO_NOMBRE}`
+
+    const WorkBook = []
+    WorkBook.push({ A: "INFORME DE ASISTENCIA" })
+    WorkBook.push({ A: `${MES} ${ANIO}` })
+    WorkBook.push({ A: "" })
+    WorkBook.push({ A: `Estudiante: ${NOMBRE}` })
+    WorkBook.push({ A: `${CURSO}` })
+    WorkBook.push({ A: "" })
+    WorkBook.push({ A: `Hora de entrada: ${HORA_ENTRADA}` })
+    WorkBook.push({ A: "" })
+    WorkBook.push({
+      A: "Fecha",
+      B: "Hora de llegada",
+      C: "Hora de salida",
+      D: "Atraso",
+      E: "Estado",
+      F: "Observación"
+    })
+    let totalAsistencias = 0
+    let totalFaltas      = 0
+    let totalLicencias   = 0
+    this.dataSource.forEach(data => {
+      if (data.id === persona.id) {
+        totalAsistencias = data.totalAsistencias
+        totalLicencias   = data.totalLicencias
+        totalFaltas      = data.totalFaltas
+
+        for (let i in this.days) {
+          const DAY = this.days[i]
+          let row
+          if (DAY.active) {
+            data.asistencias.forEach(asis => {
+              if (DAY.id === parseInt(asis.dia)) {
+                const FECHA = moment(asis.fecha).format('DD/MM/YYYY')
+                const TA = moment(asis.hora_llegada, 'LTS A')
+                const TB = moment(this.horaEntrada, 'LTS A')
+                let DIFF = TA.diff(TB) / 1000
+                let segundos = parseInt(`${DIFF % 60}`)
+                let minutos = parseInt(`${(DIFF / 60) % 60}`)
+                let horas = parseInt(`${(DIFF / 60) / 60}`)
+                let ATRASO = (isNaN(DIFF) || DIFF < 0) ? '' : `${horas < 10 ? '0' + horas : horas}:${minutos < 10 ? '0' + minutos : minutos}:${segundos < 10 ? '0' + segundos : segundos}`
+                const HORA_LLEGADA = asis.hora_llegada ? moment(asis.hora_llegada, 'LTS A').format('HH:mm:ss') : ''
+                const HORA_SALIDA  = asis.hora_salida ? moment(asis.hora_salida, 'LTS A').format('HH:mm:ss') : ''
+                row = {
+                  A: FECHA,
+                  B: HORA_LLEGADA,
+                  C: HORA_SALIDA,
+                  D: ATRASO,
+                  E: asis.estado,
+                  F: asis.observacion
+                }
+              }
+            })
+          }
+          if (!row) {
+            const FECHA = `${DAY.id < 10 ? `0${DAY.id}` : DAY.id }/${this.mesAsistencia}/${this.anioAsistencia}`
+            row = {
+              A: FECHA,
+              B: '',
+              C: '',
+              D: '',
+              E: DAY.active ? 'faltó' : ' - - - ',
+              F: ''
+            }
+          }
+          if (DAY.active) {
+            WorkBook.push(row)
+          }
+        }
+      }
+    })
+    WorkBook.push({ A: "" })
+    WorkBook.push({ A: "Total asistencias:", B: totalAsistencias })
+    WorkBook.push({ A: "Total licencias:", B: totalLicencias })
+    WorkBook.push({ A: "Total faltas:", B: totalFaltas })
+    this.exportAsXLSX(WorkBook)
   }
 
   print (persona) {

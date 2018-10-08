@@ -65,7 +65,7 @@ export class DashboardComponent implements OnInit {
       notifyButton: {
         enable: false
       }
-      
+
     }]);
 
     oneSignal.push(function() {
@@ -82,7 +82,7 @@ export class DashboardComponent implements OnInit {
           });
       });
     });
-  
+
 
     // this.oneSignal.getUserId().then(function (userId) {
     //   console.log("User ID is ", userId);

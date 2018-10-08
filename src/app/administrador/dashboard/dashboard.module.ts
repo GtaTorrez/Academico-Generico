@@ -20,6 +20,7 @@ import {
 import { ReportesComponent }          from './informe-asistencia/reportes/reportes.component'
 
 import { AsistenciaService }          from './services/asistencia.service'
+import { ExcelService }               from './services/excel.service'
 
 @NgModule({
   entryComponents: [
@@ -46,6 +47,7 @@ import { AsistenciaService }          from './services/asistencia.service'
   ],
   providers: [
     AsistenciaService,
+    ExcelService
     // ConfigService,
     // AuthService,
     // GuardService,
