@@ -7,8 +7,6 @@ import { HistorialTutorRoutes }      from './historial-tutor.routes';
 // Components
 import { HistorialTutorComponent }   from './historial-tutor.component';
 // Services
-import { AuthService }      from '../../services/auth.service';
-import { GuardService }     from '../../services/guard.service';
 import { DataService }      from '../../../login/data.service';
 import { ConfigService }    from '../../services/config.service';
 import { HistorialTutorService } from './historial-tutor.service';
@@ -27,8 +25,6 @@ import { HistorialTutorService } from './historial-tutor.service';
   providers: [
     DataService,
     ConfigService,
-    AuthService,
-    GuardService,
     HistorialTutorService
   ]
 })

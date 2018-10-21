@@ -14,6 +14,7 @@ import { LoginService }            from './login/login.service';
 import { LoginGuard }              from './login/login.guard'
 import { AdminGuard }              from './login/admin.guard'
 import { EstudianteGuard }         from './login/estudiante.guard'
+import { DashboardGuard }          from './login/dashboard.guard'
 import { TutorGuard }              from './login/tutor.guard'
 import { LoadersService }          from './loader/loaders.service';
 import { LoadComponent }           from './loader/load/load.component';
@@ -40,7 +41,8 @@ import { LoadComponent }           from './loader/load/load.component';
     AdminGuard,
     EstudianteGuard,
     TutorGuard,
-    LoadersService
+    LoadersService,
+    DashboardGuard
   ],
   bootstrap: [ AppComponent ]
 })

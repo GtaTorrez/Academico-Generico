@@ -2,7 +2,6 @@
 import { Component, OnInit } from '@angular/core';
 // Services
 import { DataService } from '../../../login/data.service';
-import { AuthService } from '../../services/auth.service';
 
 import { HistorialService } from './historial.service';
 
@@ -27,12 +26,64 @@ export class HistorialComponent implements OnInit {
   dataSource       : Asistencia[] = [];
 
   constructor (
-    private authService: AuthService,
     private historialService: HistorialService
   ) {}
 
   ngOnInit () {
+    const SESSION = DataService.getSession()
+    if (SESSION.usuario.rol === 'alumno') {
+      this.cargarHistorialEstudiante()
+    }
+    if (SESSION.usuario.rol === 'profesor') {
+      this.cargarHistorialDocente()
+    }
+    if (SESSION.usuario.rol === 'administrador') {
+      this.cargarHistorialAdministrativo()
+    }
+  }
+
+  cargarHistorialEstudiante () {
     this.historialService.obtenerhistorialEstudiante().subscribe((result : any) => {
+      let nro = 1;
+      this.dataSource = []
+      result.forEach(asistencia => {
+        this.dataSource.push({
+          nro          : nro++,
+          fecha        : moment(asistencia.fecha).format('DD/MM/YYYY'),
+          hora_llegada : asistencia.hora_llegada,
+          hora_salida  : asistencia.hora_salida,
+          estado       : asistencia.estado,
+          observacion  : asistencia.observacion
+        })
+      })
+    },
+    error => {
+      console.log("err =", error)
+    })
+  }
+
+  cargarHistorialDocente () {
+    this.historialService.obtenerhistorialDocente().subscribe((result : any) => {
+      let nro = 1;
+      this.dataSource = []
+      result.forEach(asistencia => {
+        this.dataSource.push({
+          nro          : nro++,
+          fecha        : moment(asistencia.fecha).format('DD/MM/YYYY'),
+          hora_llegada : asistencia.hora_llegada,
+          hora_salida  : asistencia.hora_salida,
+          estado       : asistencia.estado,
+          observacion  : asistencia.observacion
+        })
+      })
+    },
+    error => {
+      console.log("err =", error)
+    })
+  }
+
+  cargarHistorialAdministrativo () {
+    this.historialService.obtenerhistorialAdministrativo().subscribe((result : any) => {
       let nro = 1;
       this.dataSource = []
       result.forEach(asistencia => {

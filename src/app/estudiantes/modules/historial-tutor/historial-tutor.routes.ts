@@ -3,8 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 // Pages
 import { HistorialTutorComponent }         from './historial-tutor.component';
-// Servicios
-// import { GuardService } from '../../services/auth/guard.service';
 
 // Routes
 const ROUTES: Routes = [

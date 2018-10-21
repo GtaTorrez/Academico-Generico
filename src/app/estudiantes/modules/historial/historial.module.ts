@@ -7,8 +7,6 @@ import { HistorialRoutes }      from './historial.routes';
 // Components
 import { HistorialComponent }   from './historial.component';
 // Services
-import { AuthService }    from '../../services/auth.service';
-import { GuardService }   from '../../services/guard.service';
 import { DataService }    from '../../../login/data.service';
 import { ConfigService }  from '../../services/config.service';
 import { HistorialService }  from './historial.service';
@@ -27,8 +25,6 @@ import { HistorialService }  from './historial.service';
   providers: [
     DataService,
     ConfigService,
-    AuthService,
-    GuardService,
     HistorialService
   ]
 })

@@ -2,7 +2,6 @@
 import { Component, OnInit } from '@angular/core';
 // Services
 import { DataService } from '../../../login/data.service';
-import { AuthService } from '../../services/auth.service';
 
 import { HistorialTutorService } from './historial-tutor.service';
 
@@ -28,7 +27,6 @@ export class HistorialTutorComponent implements OnInit {
   dataSource       : Asistencia[] = [];
 
   constructor (
-    private authService: AuthService,
     private historialTutorService: HistorialTutorService
   ) {}
 

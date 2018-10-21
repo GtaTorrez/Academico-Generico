@@ -5,19 +5,19 @@ import { NgModule }             from '@angular/core';
 import { DashboardComponent } from './dashboard.component';
 import { AccountComponent }   from './account/account.component';
 // Services
-import { GuardService } from '../services/guard.service';
 
-import { EstudianteGuard } from '../../login/estudiante.guard';
-import { TutorGuard }      from '../../login/tutor.guard';
+import { DashboardGuard } from '../../login/dashboard.guard';
+import { TutorGuard }     from '../../login/tutor.guard';
+// import { EstudianteGuard } from '../../login/estudiante.guard';
 
 const ROUTES: Routes = [
   {
     path        : 'dashboard',
     component   : DashboardComponent,
+    canActivate : [DashboardGuard],
     children    : [
-      { path: 'account',   component: AccountComponent },
-      { path: 'home',      loadChildren: '../modules/home/home.module#HomeModule' },
-      { path: 'historial', canActivate: [EstudianteGuard], loadChildren: '../modules/historial/historial.module#HistorialModule' },
+      { path: 'account', component: AccountComponent },
+      { path: 'historial', loadChildren: '../modules/historial/historial.module#HistorialModule' },
       { path: 'historial-tutor', canActivate: [TutorGuard], loadChildren: '../modules/historial-tutor/historial-tutor.module#HistorialTutorModule' }
     ]
   }

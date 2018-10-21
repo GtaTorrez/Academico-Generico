@@ -4,6 +4,7 @@ import { Component, OnInit,OnDestroy,ChangeDetectorRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { LoadersService } from '../../loader/loaders.service';
 import { AdministradorService } from '../administrador.service';
+import { DataService } from '../../login/data.service'
 
 @Component({
   selector: 'app-menu',
@@ -11,6 +12,7 @@ import { AdministradorService } from '../administrador.service';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit,OnDestroy{
+  usuario = { nombre: '', rol: '' }
 
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
@@ -42,7 +44,9 @@ export class MenuComponent implements OnInit,OnDestroy{
   }
   ngOnInit() {
     this.loaderService.cambiarEstado(false);
-
+    const SESSION = DataService.getSession()
+    this.usuario.nombre = SESSION.usuario.nombre
+    this.usuario.rol    = SESSION.usuario.rol
   }
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
@@ -59,6 +63,6 @@ export class MenuComponent implements OnInit,OnDestroy{
 
   logout() {
     this.administradorService.logout()
-    this.router.navigate(['/login'])
+    location.reload()
   }
 }

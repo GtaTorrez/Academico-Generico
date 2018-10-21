@@ -2,7 +2,6 @@
 import { Component, OnInit } from '@angular/core'
 import { Router }            from '@angular/router'
 // Services
-import { AuthService } from '../services/auth.service'
 import { DataService } from '../../login/data.service'
 import { DashboardService } from './dashboard.service';
 import { MatSnackBar } from '@angular/material';
@@ -18,8 +17,8 @@ export class DashboardComponent implements OnInit {
   idDevice:string="";
   // oneSignal:any;
   constructor (
+    private router: Router,
     private dashboardService:DashboardService,
-    public authService: AuthService,
     private snack:MatSnackBar
   ) {}
 
@@ -31,32 +30,45 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.addMenuItem({ path: '/estudiantes/dashboard/usuarios', name: 'Usuarios' })
     const SESSION = DataService.getSession()
     this.usuario.nombre = SESSION.usuario.nombre
     this.usuario.rol    = SESSION.usuario.rol
+    if (SESSION.usuario.rol === 'admin') {
+      this.addMenuItem({ path: '/user/dashboard/account', name: 'Inicio' });
+      this.addMenuItem({ path: '/administrador/menu/usuarios', name: 'Panel de control' });
+    }
     if (SESSION.usuario.rol === 'alumno') {
-      this.addMenuItem({ path: '/estudiantes/dashboard/account', name: 'Inicio' });
-      this.addMenuItem({ path: '/estudiantes/dashboard/historial', name: 'Historial' });
+      this.addMenuItem({ path: '/user/dashboard/account', name: 'Inicio' });
+      this.addMenuItem({ path: '/user/dashboard/historial', name: 'Historial' });
     }
     if (SESSION.usuario.rol === 'tutor') {
-      this.addMenuItem({ path: '/estudiantes/dashboard/account', name: 'Inicio' });
-      this.addMenuItem({ path: '/estudiantes/dashboard/historial-tutor', name: 'Historial Tutor' });
+      this.addMenuItem({ path: '/user/dashboard/account', name: 'Inicio' });
+      this.addMenuItem({ path: '/user/dashboard/historial-tutor', name: 'Historial Tutor' });
+    }
+    if (SESSION.usuario.rol === 'profesor') {
+      this.addMenuItem({ path: '/user/dashboard/account', name: 'Inicio' });
+      this.addMenuItem({ path: '/user/dashboard/historial', name: 'Historial' });
+    }
+    if (SESSION.usuario.rol === 'administrador') {
+      this.addMenuItem({ path: '/user/dashboard/account', name: 'Inicio' });
+      this.addMenuItem({ path: '/user/dashboard/historial', name: 'Historial' });
     }
 
     const sendDevice = (id) => {
-      console.log("Registrando dispositovo desde const",id);
+      // console.log("Registrando dispositovo desde const",id);
       return this.dashboardService.postDispositivo(id).subscribe(data => {
         localStorage.setItem("notify","1");
-        console.log(data)
+        // console.log(data)
         this.snack.open("Registro de dispositivo", '', { duration: 4000 });
       }),err=>{
-        console.log("**************************************Error", err)
+        // console.log("**************************************Error", err)
       }
     };
 
 
     var oneSignal=window['OneSignal'] || [];
+
+    console.log('ONE SIGNAL ', oneSignal)
 
     oneSignal.push(["init", {
       appId: "e338a31b-4667-471e-9a1a-4aa0c3cf6d5f",
@@ -68,17 +80,19 @@ export class DashboardComponent implements OnInit {
 
     }]);
 
+    console.log('ONE SIGNAL INITIALIZED')
+
     oneSignal.push(function() {
       // Occurs when the user's subscription changes to a new value.
       oneSignal.on('subscriptionChange', function (isSubscribed) {
-        console.log("The user's subscription state is now:", isSubscribed);
+        // console.log("The user's subscription state is now:", isSubscribed);
         oneSignal.getUserId().then(function (userId) {
           if (userId !== undefined || userId !== null) {
-              console.log("sendDevice(userId)")
+              // console.log("sendDevice(userId)")
               sendDevice(userId);
             }
           }).catch(err => {
-            console.log("ERROR oneSignal getUserId: ", err)
+            // console.log("ERROR oneSignal getUserId: ", err)
           });
       });
     });
@@ -113,7 +127,7 @@ export class DashboardComponent implements OnInit {
     const promise =new Promise(( resolve, reject )=>{
       if(val!==null || val!==undefined){
         let dataa=resolve(val);
-        console.log("daata", dataa)
+        // console.log("daata", dataa)
       }else{
         reject(new Error("no se pudo guardar"))
       }
@@ -122,15 +136,16 @@ export class DashboardComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logout()
+    this.dashboardService.logout()
+    location.reload()
   }
 
   registrarDispositivo(id){
-    console.log("Registrndo dispositivo ",id );
+    // console.log("Registrndo dispositivo ",id );
     this.dashboardService.postDispositivo(id).subscribe(data=>{
-      console.log(data)
+      // console.log(data)
     }),err=>{
-      console.log("**************************************Error", err)
+      // console.log("**************************************Error", err)
     }
   }
 

@@ -12,27 +12,29 @@ export class ConfigService {
   }
   public static BASE_URL = `${Global.BASE_URL}:${Global.port}`
   public static AUTHORIZATION = {
-    url                    : `${ConfigService.BASE_URL}`,
-    api                    : `${ConfigService.BASE_URL}/api/v1`,
+    url : `${ConfigService.BASE_URL}`,
+    api : `${ConfigService.BASE_URL}/api/v1`,
 
-    cuentaURL              : `${ConfigService.BASE_URL}/auth/autentificacion`,
-    logOutURL              : `${ConfigService.BASE_URL}/auth/salir`,
-    cambiarPasswordURL     : `${ConfigService.BASE_URL}/usuario/cambiarPassword`,
+    cuentaURL          : `${ConfigService.BASE_URL}/auth/autentificacion`,
+    logOutURL          : `${ConfigService.BASE_URL}/auth/salir`,
+    cambiarPasswordURL : `${ConfigService.BASE_URL}/usuario/cambiarPassword`,
 
     obtenerhistorialEstudianteURL      : `${ConfigService.BASE_URL}/asistencia/historial_alumno`,
     obtenerhistorialEstudianteTutorURL : `${ConfigService.BASE_URL}/asistencia/historial_por_tutor`,
+    obtenerhistorialDocenteURL         : `${ConfigService.BASE_URL}/asistencia/historial_docente`,
+    obtenerhistorialAdministrativoURL  : `${ConfigService.BASE_URL}/asistencia/historial_administrativo`,
 
     habilitarCuentaURL     : `${ConfigService.BASE_URL}/account/habilitar`,
     deshabilitarCuentaURL  : `${ConfigService.BASE_URL}/account/deshabilitar`,
 
-    obtenerTokenURL        : `${ConfigService.BASE_URL}/auth/token`,
-    verificarTokenURL      : `${ConfigService.BASE_URL}/auth/token/info`,
-    refrescarTokenURL      : `${ConfigService.BASE_URL}/auth/token/refrescar`,
+    obtenerTokenURL   : `${ConfigService.BASE_URL}/auth/token`,
+    verificarTokenURL : `${ConfigService.BASE_URL}/auth/token/info`,
+    refrescarTokenURL : `${ConfigService.BASE_URL}/auth/token/refrescar`,
 
-    codigoInfoPasswordURL  : `${ConfigService.BASE_URL}/auth/pass/codigo/info`,
-    recordarPasswordURL    : `${ConfigService.BASE_URL}/auth/pass/recordar`,
-    recuperarPasswordURL   : `${ConfigService.BASE_URL}/auth/pass/recuperar`,
+    codigoInfoPasswordURL : `${ConfigService.BASE_URL}/auth/pass/codigo/info`,
+    recordarPasswordURL   : `${ConfigService.BASE_URL}/auth/pass/recordar`,
+    recuperarPasswordURL  : `${ConfigService.BASE_URL}/auth/pass/recuperar`,
 
-    resetURL               : `${ConfigService.BASE_URL}/resetPassword`
+    resetURL : `${ConfigService.BASE_URL}/resetPassword`
   }
 }

@@ -1,10 +1,7 @@
 // Libraries
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http'
-import { catchError, map, tap }                       from 'rxjs/operators'
+import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs/Observable'
-import { of }         from 'rxjs/observable/of'
-import 'rxjs/add/observable/throw'
 
 // Servicios
 import { ConfigService as Config } from '../../services/config.service';
@@ -18,5 +15,13 @@ export class HistorialService {
 
   obtenerhistorialEstudiante () : Observable<Object> {
     return this.http.get(Config.AUTHORIZATION.obtenerhistorialEstudianteURL, {withCredentials : true})
+  }
+
+  obtenerhistorialDocente () : Observable<Object> {
+    return this.http.get(Config.AUTHORIZATION.obtenerhistorialDocenteURL, {withCredentials : true})
+  }
+
+  obtenerhistorialAdministrativo () : Observable<Object> {
+    return this.http.get(Config.AUTHORIZATION.obtenerhistorialAdministrativoURL, {withCredentials : true})
   }
 }

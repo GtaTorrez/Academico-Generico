@@ -34,12 +34,15 @@ export class LoginComponent implements OnInit {
     let data={username:this.username,password:this.password};
     let resp=this.serve.postUser(data).subscribe(data=>{
       if (data.message==='Acceso satisfactoriamente' && data.user ) {
+        let nombreCompleto = data.user.nombre ? data.user.nombre : ''
+        nombreCompleto = (nombreCompleto += data.user.paterno ? ` ${data.user.paterno}` : '').trim()
+        nombreCompleto = (nombreCompleto += data.user.materno ? ` ${data.user.materno}` : '').trim()
         const SESSION = {
           usuario: {
             id       : data.user.usuario.id,
             username : data.user.usuario.username,
             rol      : data.user.usuario.rol,
-            nombre   : `${data.user.nombre ? data.user.nombre : ''} ${data.user.apellido ? data.user.apellido : ''}`.trim()
+            nombre   : nombreCompleto
           }
         }
         DataService.setSession(SESSION)
@@ -58,15 +61,7 @@ export class LoginComponent implements OnInit {
   }
 
   redirectToHome (rol) {
-    if (rol === 'admin') {
-      this.router.navigate(['/administrador'])
-    }
-    if (rol === 'alumno') {
-      this.router.navigate(['/estudiantes/dashboard/account']);
-    }
-    if (rol === 'tutor') {
-      this.router.navigate(['/estudiantes/dashboard/account']);
-    }
+    this.router.navigate(['/user/dashboard/account']);
   }
 
 }

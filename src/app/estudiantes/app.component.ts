@@ -2,7 +2,6 @@
 import { Component, OnInit } from '@angular/core'
 // Services
 import { LoadingBarService } from '@ngx-loading-bar/core'
-import { AuthService }       from './services/auth.service'
 
 @Component({
   selector    : 'app-root',
@@ -11,11 +10,8 @@ import { AuthService }       from './services/auth.service'
 })
 export class AppComponent {
   constructor (
-    public authService : AuthService,
-    public loader      : LoadingBarService
+    public loader : LoadingBarService
   ) {}
 
-  ngOnInit () {
-    // this.authService.restaurarSesion()
-  }
+  ngOnInit () {}
 }

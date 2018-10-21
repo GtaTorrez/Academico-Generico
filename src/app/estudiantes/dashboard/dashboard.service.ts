@@ -38,4 +38,13 @@ export class DashboardService {
     let body={"idDispositivo":dispositivo}
     return this.http.post(Global.BASE_URL+":"+Global.port+"/dispositivo/adicionar",body,{withCredentials:true})
   }
+
+  logout() {
+    this.http.get(Config.AUTHORIZATION.logOutURL, {withCredentials: true}).subscribe(result => {
+      console.log('Sesión finalizada correctamente :)')
+    }, err => {
+      console.log('Hubo un error al finalizar la sesión en el lado del servidor.')
+    })
+    localStorage.removeItem('app_sid')
+  }
 }
