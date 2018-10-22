@@ -104,7 +104,6 @@
         <th style="min-width:20px" matTooltip="Asistencias" matTooltipPosition="above">As</th>
         <th style="min-width:20px" matTooltip="Licencias" matTooltipPosition="above">Li</th>
         <th style="min-width:20px" matTooltip="Faltas" matTooltipPosition="above">Fa</th>
-        <!-- <th style="min-width:20px" matTooltip="Atrasos" matTooltipPosition="above">At</th> -->
       </tr>
     </thead>
     <tbody>
@@ -117,17 +116,17 @@
           <div *ngIf="day.active">
             <div *ngIf="persona.marcas.includes(day.id)">
               <div *ngFor="let asistencia of persona.asistencias">
-                <div *ngIf="(asistencia.dia === day.id) && (asistencia.estado === 'asistió')      && (asistencia.atrasado === true)"  class="yellow pointer" (click)="editarObservacion(day.id, persona, asistencia)" [matTooltip]="asistencia.observacion" matTooltipPosition="above">{{ asistencia.observacion && asistencia.observacion !== '' ? '&#x2713;' : '·' }}</div>
+                <div *ngIf="(asistencia.dia === day.id) && (asistencia.estado === 'asistió')      && (asistencia.atrasado === true)"  class="orange pointer" (click)="editarObservacion(day.id, persona, asistencia)" [matTooltip]="asistencia.observacion" matTooltipPosition="above">{{ asistencia.observacion && asistencia.observacion !== '' ? '&#x2713;' : '·' }}</div>
                 <div *ngIf="(asistencia.dia === day.id) && (asistencia.estado === 'asistió')      && (asistencia.atrasado === false)" class="green pointer"  (click)="editarObservacion(day.id, persona, asistencia)" [matTooltip]="asistencia.observacion" matTooltipPosition="above">{{ asistencia.observacion && asistencia.observacion !== '' ? '&#x2713;' : '·' }}</div>
-                <div *ngIf="(asistencia.dia === day.id) && (asistencia.estado === 'faltó')       "                                    class="red pointer"    (click)="editarObservacion(day.id, persona, asistencia)" [matTooltip]="asistencia.observacion" matTooltipPosition="above">{{ asistencia.observacion && asistencia.observacion !== '' ? '&#x2713;' : '' }}</div>
-                <div *ngIf="(asistencia.dia === day.id) && (asistencia.estado === 'con licencia')"                                    class="orange pointer" (click)="editarObservacion(day.id, persona, asistencia)" [matTooltip]="asistencia.observacion" matTooltipPosition="above">{{ asistencia.observacion && asistencia.observacion !== '' ? '&#x2713;' : '·' }}</div>
+                <div *ngIf="(asistencia.dia === day.id) && (!asistencia.estado || asistencia.estado === 'faltó' || asistencia.estado === 'no asistió')" class="red pointer"    (click)="editarObservacion(day.id, persona, asistencia)" [matTooltip]="asistencia.observacion" matTooltipPosition="above">{{ asistencia.observacion && asistencia.observacion !== '' ? '&#x2713;' : '' }}</div>
+                <div *ngIf="(asistencia.dia === day.id) && (asistencia.estado === 'con licencia')"                                    class="yellow pointer" (click)="editarObservacion(day.id, persona, asistencia)" [matTooltip]="asistencia.observacion" matTooltipPosition="above">{{ asistencia.observacion && asistencia.observacion !== '' ? '&#x2713;' : '·' }}</div>
               </div>
             </div>
             <div *ngIf="!persona.marcas.includes(day.id)" class="red pointer" (click)="editarObservacion(day.id, persona)"></div>
           </div>
         </td>
         <td class="no-select green">{{persona.totalAsistencias}}</td>
-        <td class="no-select orange">{{persona.totalLicencias}}</td>
+        <td class="no-select yellow">{{persona.totalLicencias}}</td>
         <td class="no-select red">{{persona.totalFaltas}}</td>
         <!-- <td class="no-select yellow">{{persona.totalAtrasos}}</td> -->
         <td class="no-select" style="min-width:100px">

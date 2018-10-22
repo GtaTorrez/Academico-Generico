@@ -282,16 +282,15 @@ export class TablaAsistenciaComponent implements OnInit {
     WorkBook.push({ A: "" })
     WorkBook.push({ A: `Estudiante: ${NOMBRE}` })
     WorkBook.push({ A: `${CURSO}` })
-    WorkBook.push({ A: "" })
-    WorkBook.push({ A: `Hora de entrada: ${HORA_ENTRADA}` })
+    // WorkBook.push({ A: "" })
+    // WorkBook.push({ A: `Hora de entrada: ${HORA_ENTRADA}` })
     WorkBook.push({ A: "" })
     WorkBook.push({
       A: "Fecha",
       B: "Hora de llegada",
       C: "Hora de salida",
-      D: "Atraso",
-      E: "Estado",
-      F: "Observación"
+      D: "Estado",
+      E: "Observación"
     })
     let totalAsistencias = 0
     let totalFaltas      = 0
@@ -315,16 +314,15 @@ export class TablaAsistenciaComponent implements OnInit {
                 let segundos = parseInt(`${DIFF % 60}`)
                 let minutos = parseInt(`${(DIFF / 60) % 60}`)
                 let horas = parseInt(`${(DIFF / 60) / 60}`)
-                let ATRASO = (isNaN(DIFF) || DIFF < 0) ? '' : `${horas < 10 ? '0' + horas : horas}:${minutos < 10 ? '0' + minutos : minutos}:${segundos < 10 ? '0' + segundos : segundos}`
+                // let ATRASO = (isNaN(DIFF) || DIFF < 0) ? '' : `${horas < 10 ? '0' + horas : horas}:${minutos < 10 ? '0' + minutos : minutos}:${segundos < 10 ? '0' + segundos : segundos}`
                 const HORA_LLEGADA = asis.hora_llegada ? moment(asis.hora_llegada, 'LTS A').format('HH:mm:ss') : ''
                 const HORA_SALIDA  = asis.hora_salida ? moment(asis.hora_salida, 'LTS A').format('HH:mm:ss') : ''
                 row = {
                   A: FECHA,
                   B: HORA_LLEGADA,
                   C: HORA_SALIDA,
-                  D: ATRASO,
-                  E: asis.estado,
-                  F: asis.observacion
+                  D: asis.estado,
+                  E: asis.observacion
                 }
               }
             })
@@ -335,9 +333,8 @@ export class TablaAsistenciaComponent implements OnInit {
               A: FECHA,
               B: '',
               C: '',
-              D: '',
-              E: DAY.active ? 'faltó' : ' - - - ',
-              F: ''
+              D: DAY.active ? 'faltó' : ' - - - ',
+              E: ''
             }
           }
           if (DAY.active) {
@@ -357,10 +354,10 @@ export class TablaAsistenciaComponent implements OnInit {
     const header1 = new Cell('Fecha')
     const header2 = new Cell('Hora\nLlegada')
     const header3 = new Cell('Hora\nSalida')
-    const header4 = new Cell('Atraso')
+    // const header4 = new Cell('Atraso')
     const header5 = new Cell('Estado')
     const header6 = new Cell('Observación')
-    const headerRows = new Row([header1, header2, header3, header4, header5, header6])
+    const headerRows = new Row([header1, header2, header3, header5, header6])
     const rows = []
     let totalAsistencias = 0
     let totalFaltas      = 0
@@ -395,7 +392,7 @@ export class TablaAsistenciaComponent implements OnInit {
                   new Cell(FECHA),
                   new Cell(HORA_LLEGADA),
                   new Cell(HORA_SALIDA),
-                  new Cell(ATRASO),
+                  // new Cell(ATRASO),
                   new Cell(asis.estado),
                   new Cell(asis.observacion),
                 ])
@@ -408,7 +405,7 @@ export class TablaAsistenciaComponent implements OnInit {
               new Cell(FECHA),
               new Cell(''),
               new Cell(''),
-              new Cell(''),
+              // new Cell(''),
               new Cell(DAY.active ? 'faltó' : ' - - - '),
               new Cell(''),
             ])
@@ -420,7 +417,7 @@ export class TablaAsistenciaComponent implements OnInit {
       }
     })
 
-    const widths = [70, 50, 50, 50, 70, '*']
+    const widths = [70, 50, 50, 70, '*']
     const table  = new Table(headerRows, rows, widths)
     const MES    = this.mesNombre
     const ANIO   = this.anioNombre
@@ -436,7 +433,7 @@ export class TablaAsistenciaComponent implements OnInit {
       footer: { text: `Fecha de impresión: ${moment().format('DD/MM/YYYY HH:mm:ss')}`, style: 'footer', margin: [15,15,15,15] },
       content:[
         { text:`INFORME DE ASISTENCIA\n${MES} ${ANIO}\n\nEstudiante: ${NOMBRE}\n${CURSO}\n\n`, bold:true, fontSize:11, alignment:'center' },
-        { text:`Hora de entrada: ${HORA_ENTRADA}\n\n`, fontSize:11, alignment:'left' },
+        // { text:`Hora de entrada: ${HORA_ENTRADA}\n\n`, fontSize:11, alignment:'left' },
       ],
       styles: {
         header: {
