@@ -65,38 +65,40 @@ export class DashboardComponent implements OnInit {
       }
     };
 
+    const ONE_SIGNAL    = localStorage.getItem('oneSignal')
+    const ENABLE_BY_ROL = this.usuario.rol !== 'admin'
 
-    var oneSignal=window['OneSignal'] || [];
+    if (ENABLE_BY_ROL && !ONE_SIGNAL) {
+      var oneSignal=window['OneSignal'] || [];
+      console.log('ONE SIGNAL ', oneSignal)
 
-    console.log('ONE SIGNAL ', oneSignal)
+      localStorage.setItem('oneSignal', 'init')
+      oneSignal.push(["init", {
+        appId: "e338a31b-4667-471e-9a1a-4aa0c3cf6d5f",
+        autoRegister: false,
+        allowLocalhostAsSecureOrigin: true,
+        notifyButton: {
+          enable: false
+        }
+      }]);
 
-    oneSignal.push(["init", {
-      appId: "e338a31b-4667-471e-9a1a-4aa0c3cf6d5f",
-      autoRegister: false,
-      allowLocalhostAsSecureOrigin: true,
-      notifyButton: {
-        enable: false
-      }
+      console.log('ONE SIGNAL INITIALIZED')
 
-    }]);
-
-    console.log('ONE SIGNAL INITIALIZED')
-
-    oneSignal.push(function() {
-      // Occurs when the user's subscription changes to a new value.
-      oneSignal.on('subscriptionChange', function (isSubscribed) {
-        // console.log("The user's subscription state is now:", isSubscribed);
-        oneSignal.getUserId().then(function (userId) {
-          if (userId !== undefined || userId !== null) {
-              // console.log("sendDevice(userId)")
-              sendDevice(userId);
-            }
-          }).catch(err => {
-            // console.log("ERROR oneSignal getUserId: ", err)
-          });
+      oneSignal.push(function() {
+        // Occurs when the user's subscription changes to a new value.
+        oneSignal.on('subscriptionChange', function (isSubscribed) {
+          // console.log("The user's subscription state is now:", isSubscribed);
+          oneSignal.getUserId().then(function (userId) {
+            if (userId !== undefined || userId !== null) {
+                // console.log("sendDevice(userId)")
+                sendDevice(userId);
+              }
+            }).catch(err => {
+              // console.log("ERROR oneSignal getUserId: ", err)
+            });
+        });
       });
-    });
-
+    }
 
     // this.oneSignal.getUserId().then(function (userId) {
     //   console.log("User ID is ", userId);

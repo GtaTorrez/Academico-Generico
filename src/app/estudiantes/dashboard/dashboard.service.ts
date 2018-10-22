@@ -46,5 +46,6 @@ export class DashboardService {
       console.log('Hubo un error al finalizar la sesión en el lado del servidor.')
     })
     localStorage.removeItem('app_sid')
+    localStorage.removeItem('oneSignal')
   }
 }
