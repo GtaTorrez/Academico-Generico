@@ -74,7 +74,7 @@ export class DashboardComponent implements OnInit {
 
       localStorage.setItem('oneSignal', 'init')
       oneSignal.push(["init", {
-        appId: "e338a31b-4667-471e-9a1a-4aa0c3cf6d5f",
+        appId: "06db2487-850b-4687-a7d2-7e8c14f4d71d",
         autoRegister: false,
         allowLocalhostAsSecureOrigin: true,
         notifyButton: {
