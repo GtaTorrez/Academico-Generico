@@ -16,7 +16,7 @@ import { CursosComponent } from './cursos/cursos.component';
 import { NotasComponent } from './notas/notas.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { PerfilComponent } from './perfil/perfil.component';
-import { NgxQRCodeModule } from 'ngx-qrcode2';
+// import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { CursosLayoutComponent } from './cursos-layout/cursos-layout.component';
 import { MateriaComponent } from './profesores/materia/materia.component';
 import { GradoComponent } from './cursos/grado/grado.component';
@@ -45,7 +45,7 @@ import {CdkStepperModule} from '@angular/cdk/stepper';
     AdministradorRoutingModule,
     MaterialModule,
     FlexLayoutModule,
-    NgxQRCodeModule,
+    // NgxQRCodeModule,
     MatStepperModule,
     CdkStepperModule,
     NgDragDropModule.forRoot()

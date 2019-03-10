@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { Router }            from '@angular/router'
-import {ObservableMedia}     from '@angular/flex-layout'
+import {MediaObserver}     from '@angular/flex-layout'
 
 @Component({
   selector    : 'app-dashboard',
@@ -12,7 +12,7 @@ export class DashboardComponent implements OnInit {
   usuario = { nombre: 'John Smith Smith' }
   dashboardMenu = []
   constructor(
-    public media  : ObservableMedia,
+    public media  : MediaObserver,
     public router : Router
   ) {}
 
