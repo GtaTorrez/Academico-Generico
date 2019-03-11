@@ -58,7 +58,7 @@ export class HistorialComponent implements OnInit {
       })
     },
     error => {
-      console.log("err =", error)
+      // console.log("err =", error)
     })
   }
 
@@ -78,7 +78,7 @@ export class HistorialComponent implements OnInit {
       })
     },
     error => {
-      console.log("err =", error)
+      // console.log("err =", error)
     })
   }
 
@@ -98,7 +98,7 @@ export class HistorialComponent implements OnInit {
       })
     },
     error => {
-      console.log("err =", error)
+      // console.log("err =", error)
     })
   }
 

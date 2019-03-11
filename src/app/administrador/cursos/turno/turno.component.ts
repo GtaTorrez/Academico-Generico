@@ -50,8 +50,8 @@ export class TurnoComponent implements OnInit {
       this.abrirNotificacion("Realizado correctamente","Ok");
       this.closeTurno();
     },err=>{
-      console.log("ERRROR")
-      console.log(err);
+      // console.log("ERRROR")
+      // console.log(err);
     })
   }
   putTurno(){
@@ -59,8 +59,8 @@ export class TurnoComponent implements OnInit {
       this.abrirNotificacion("Realizado correctamente","Ok");
       this.closeTurno();
     },err=>{
-      console.log("ERRROR")
-      console.log(err);
+      // console.log("ERRROR")
+      // console.log(err);
     })
   }
   getTurno(){
@@ -69,8 +69,8 @@ export class TurnoComponent implements OnInit {
       this.abrirNotificacion("Realizado correctamente","Ok");
 
     },err=>{
-      console.log("ERRROR")
-      console.log(err);
+      // console.log("ERRROR")
+      // console.log(err);
     })
   }
   deleteTurno(id){
@@ -78,8 +78,8 @@ export class TurnoComponent implements OnInit {
       this.abrirNotificacion("Realizado correctamente","Ok");
       this.getTurno()
     },err=>{
-      console.log("ERRROR")
-      console.log(err);
+      // console.log("ERRROR")
+      // console.log(err);
     })
   }
   guardar(){

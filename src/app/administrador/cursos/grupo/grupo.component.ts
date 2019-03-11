@@ -48,8 +48,8 @@ export class GrupoComponent implements OnInit {
       this.abrirNotificacion("Realizado correctamente","Ok");
       this.closeGrupo();
     },err=>{
-      console.log("ERRROR")
-      console.log(err);
+      // console.log("ERRROR")
+      // console.log(err);
     })
   }
   putGrupo(){
@@ -57,8 +57,8 @@ export class GrupoComponent implements OnInit {
       this.abrirNotificacion("Realizado correctamente","Ok");
       this.closeGrupo();
     },err=>{
-      console.log("ERRROR")
-      console.log(err);
+      // console.log("ERRROR")
+      // console.log(err);
     })
   }
   getGrupo(){
@@ -66,8 +66,8 @@ export class GrupoComponent implements OnInit {
       this.grupos=data;
       this.abrirNotificacion("Realizado correctamente","Ok");
     },err=>{
-      console.log("ERRROR")
-      console.log(err);
+      // console.log("ERRROR")
+      // console.log(err);
     })
   }
   deleteGrupo(id){
@@ -75,8 +75,8 @@ export class GrupoComponent implements OnInit {
       this.abrirNotificacion("Realizado correctamente","Ok");
       this.getGrupo();
     },err=>{
-      console.log("ERRROR")
-      console.log(err);
+      // console.log("ERRROR")
+      // console.log(err);
     })
   }
 

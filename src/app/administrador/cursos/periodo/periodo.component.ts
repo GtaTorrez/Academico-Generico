@@ -43,15 +43,15 @@ export class PeriodoComponent implements OnInit {
 
 //periodos
 postPeriodo(){
-  console.log(this.periodo)
+  // console.log(this.periodo)
   this.serve.postPeriodo(this.periodo).subscribe(data=>{
     this.periodos.push(data);
     this.swPeriodo=false;
     this.abrirNotificacion("Realizado correctamente","Ok");
     this.closePeriodo();
   },err=>{
-    console.log("ERRROR")
-    console.log(err);
+    // console.log("ERRROR")
+    // console.log(err);
   })
 }
 putPeriodo(){
@@ -59,8 +59,8 @@ putPeriodo(){
     this.abrirNotificacion("Realizado correctamente","Ok");
     this.closePeriodo();
   },err=>{
-    console.log("ERRROR")
-    console.log(err);
+    // console.log("ERRROR")
+    // console.log(err);
   })
 }
 getPeriodo(){
@@ -68,8 +68,8 @@ getPeriodo(){
     this.periodos=data;
     this.abrirNotificacion("Realizado correctamente","Ok");
   },err=>{
-    console.log("ERRROR")
-    console.log(err);
+    // console.log("ERRROR")
+    // console.log(err);
   })
 }
 deletePeriodo(id){
@@ -77,8 +77,8 @@ deletePeriodo(id){
     this.abrirNotificacion("Realizado correctamente","Ok");
     this.getPeriodo()
   },err=>{
-    console.log("ERRROR")
-    console.log(err);
+    // console.log("ERRROR")
+    // console.log(err);
   })
 }
 guardar(){

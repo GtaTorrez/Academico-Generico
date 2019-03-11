@@ -25,5 +25,5 @@ app.get('/*', function(request, response) {
 
 // run server
 app.listen(app.get('port'), function() {
-  console.log(`Servidor activo: [${process.env.NODE_ENV}] http://localhost:${app.get('port')}`)
+  // console.log(`Servidor activo: [${process.env.NODE_ENV}] http://localhost:${app.get('port')}`)
 })

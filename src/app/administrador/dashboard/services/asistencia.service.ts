@@ -6,11 +6,11 @@ import { Observable ,  of } from 'rxjs'
 
 
 // Servicios
-import { Global as Config } from './../../../config/global';
+import { Global} from './../../../config/global';
 
 import * as moment from 'moment'
 
-const BASE           = `${Config.BASE_URL}:${Config.port}`
+const BASE           = `${Global.BASE_URL}:${Global.port}`
 const ACTUALIZAR_URL = `${BASE}/asistencia`
 const ASISTENCIA_URL = `${BASE}/report/curso`
 const CURSOS_URL     = `${BASE}/curso`

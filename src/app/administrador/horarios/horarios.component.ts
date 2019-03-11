@@ -57,12 +57,12 @@ export class HorariosComponent implements OnInit {
     })
   }
   dragging(materia){
-    console.log("Empieza a arrastrar");
-    console.log(materia);
+    // console.log("Empieza a arrastrar");
+    // console.log(materia);
   }
 
   materiaDrag(materia){
-    console.log(materia);
+    // console.log(materia);
     this.campoHorario=materia;
   }
 
@@ -72,8 +72,8 @@ export class HorariosComponent implements OnInit {
      //   this.materias=datos;
      //   this.consulta=false;
      // },(err)=>{
-     //    console.log("**********")
-     //    console.log(err)
+     //    // console.log("**********")
+     //    // console.log(err)
      //    this.openSnackBar("Error de conexion con el servidor" ,"");
      // });
      this.materias=[

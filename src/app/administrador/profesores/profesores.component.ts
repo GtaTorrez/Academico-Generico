@@ -81,7 +81,7 @@ export class ProfesoresComponent implements OnInit {
 
   getProfeDicta(id){
     this.serve.getProfesorDicta(id).subscribe((data:any[])=>{
-      console.log(data)
+      // console.log(data)
       if (data) {
         if(data.length > 0){
           this.materias=data;
@@ -107,7 +107,7 @@ export class ProfesoresComponent implements OnInit {
     this.profesorEdit=null;
     this.profesorEdit=profesor;
     this.action='ver';
-    console.log(profesor)
+    // console.log(profesor)
     this.getProfeDicta(this.profesorEdit.id)
   }
   editar(){
@@ -133,7 +133,7 @@ export class ProfesoresComponent implements OnInit {
     }else{
         this.profesorEdit.rol="profesor";
         this.serve.postProfesor(this.profesorEdit).subscribe(data=>{
-          console.log(data);
+          // console.log(data);
           this.consulta=false;
           this.AbrirNotificacion("Realizado correctamente","");
           this.verProfesor(data)
@@ -146,7 +146,7 @@ export class ProfesoresComponent implements OnInit {
   }
   guardarProfesor(event){
     this.consulta=true;
-    console.log(event.persona)
+    // console.log(event.persona)
     if(event.persona.id){
       if(this.action==='editar'){
         this.serve.updateProfesor(event.persona).subscribe(data=>{

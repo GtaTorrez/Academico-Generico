@@ -60,7 +60,7 @@ export class SelectorCursoComponent implements OnInit {
     let curso={idTurno:this.idTurno,idGrado:this.idGrado,idGrupo:this.idGrupo,idParalelo:this.idParalelo};
     
  	this.serve.getEstudiantesCurso(curso).subscribe((data:any[])=>{
- 		console.log(data);
+ 		// console.log(data);
     this.enviarEstudiantes.emit(data);
     this.consultando.emit(false);
     if(data.length===0){
@@ -78,7 +78,7 @@ export class SelectorCursoComponent implements OnInit {
   }
   
   getCurso(turno:Turno){
-    console.log("obtencion de curso")
+    // console.log("obtencion de curso")
     this.idTurno=turno.id;
     this.idGrado=undefined;
     this.idGrupo=undefined;
@@ -102,7 +102,7 @@ export class SelectorCursoComponent implements OnInit {
       }
       // this.consulta=false;    
     },err=>{
-      console.log("Error al obtener cursos");
+      // console.log("Error al obtener cursos");
     });
   }
   fillGroup(grado:Grado){

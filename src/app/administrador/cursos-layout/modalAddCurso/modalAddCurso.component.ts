@@ -33,11 +33,11 @@ import { Turno, Grado,Grupo,Curso,Paralelo} from '../../modelos/grupo';
 
     }
     onSubmit(){
-        console.log(this.idTurno+" "+this.idGrado+" "+this.idGrupo+" "+this.idParalelo)
+        // console.log(this.idTurno+" "+this.idGrado+" "+this.idGrupo+" "+this.idParalelo)
         let datos={idTurno:this.idTurno,idGrado:this.idGrado,idGrupo:this.idGrupo,idParalelo:this.idParalelo}
         this.serve.postCurso(datos).subscribe(data=>{
             if(data.id){
-                console.log(data);
+                // console.log(data);
                 this.dialogRef.close("post")
 
             }

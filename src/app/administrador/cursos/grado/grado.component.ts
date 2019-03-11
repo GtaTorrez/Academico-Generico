@@ -51,8 +51,8 @@ export class GradoComponent implements OnInit {
       this.swGrado=false;
       this.closeGrado();
     },err=>{
-      console.log("ERRROR")
-      console.log(err);
+      // console.log("ERRROR")
+      // console.log(err);
     })
   }
   putGrado(){
@@ -60,8 +60,8 @@ export class GradoComponent implements OnInit {
       this.abrirNotificacion("Realizado correctamente","Ok");
       this.closeGrado();
     },err=>{
-      console.log("ERRROR")
-      console.log(err);
+      // console.log("ERRROR")
+      // console.log(err);
     })
   }
   getGrado(){
@@ -69,8 +69,8 @@ export class GradoComponent implements OnInit {
       this.grados=data;
       this.abrirNotificacion("Realizado correctamente","Ok");
     },err=>{
-      console.log("ERRROR")
-      console.log(err);
+      // console.log("ERRROR")
+      // console.log(err);
     })
   }
   deleteGrado(id){
@@ -78,8 +78,8 @@ export class GradoComponent implements OnInit {
       this.abrirNotificacion("Realizado correctamente","Ok");
       this.getGrado();
     },err=>{
-      console.log("ERRROR")
-      console.log(err);
+      // console.log("ERRROR")
+      // console.log(err);
     })
   }
   guardarGrado(){

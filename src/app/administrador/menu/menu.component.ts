@@ -57,7 +57,7 @@ export class MenuComponent implements OnInit,OnDestroy{
   }
 
   cambiodePantalla(){
-    console.log("cambio de tamanho " +screen.width)
+    // console.log("cambio de tamanho " +screen.width)
 
   }
 

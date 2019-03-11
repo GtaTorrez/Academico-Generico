@@ -7,7 +7,7 @@ import { of }         from 'rxjs/observable/of'
 import 'rxjs/add/observable/throw'
 
 // Servicios
-import { ConfigService as Config } from '../../services/config.service';
+import { ConfigService } from '../../services/config.service';
 
 @Injectable()
 export class HistorialTutorService {
@@ -17,6 +17,6 @@ export class HistorialTutorService {
   ) {}
 
   obtenerhistorialEstudianteTutor () : Observable<Object> {
-    return this.http.get(Config.AUTHORIZATION.obtenerhistorialEstudianteTutorURL, {withCredentials : true})
+    return this.http.get(ConfigService.AUTHORIZATION.obtenerhistorialEstudianteTutorURL, {withCredentials : true})
   }
 }

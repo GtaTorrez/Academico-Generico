@@ -26,18 +26,18 @@ export class PensionesComponent implements OnInit {
   buscar(){
     this.serve.getPersonaPorCi(this.cedulaIdentidad).subscribe(data=>{
       let persona=data[0];
-      console.log(persona)
+      // console.log(persona)
       this.serve.getPensionesPadre(persona.id).subscribe((datos:any)=>{
-        console.log(datos)
+        // console.log(datos)
         this.data=datos;
         this.dataSource=this.data.estudiantes;
       })
     });
   }
   verPension(persona){
-    console.log(persona);
+    // console.log(persona);
     this.pensiones=persona.mensualidades;
-    console.log(this.pensiones);
+    // console.log(this.pensiones);
   }
 
 }

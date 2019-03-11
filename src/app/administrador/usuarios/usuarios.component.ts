@@ -105,7 +105,7 @@ export class UsuariosComponent implements OnInit {
     }else{
         this.persona.rol=this.select;
         this.serve.postProfesor(this.persona).subscribe(data=>{
-          console.log(data);
+          // console.log(data);
           this.consulta=false;
           this.AbrirNotificacion("Realizado correctamente","");
           this.verProfesor(data)

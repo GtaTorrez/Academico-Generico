@@ -151,7 +151,7 @@ export class TablaAsistenciaComponent implements OnInit {
       }
     }
     this.service.getAsistencias(this.idTurno, this.idGrado, this.idGrupo, this.idParalelo, this.ini, this.fin).subscribe((result:any) => {
-      // console.log(result)
+      // // console.log(result)
       const personas = []
       result.forEach(registro => {
         const NOMBRE = `${`${registro.idPersona.paterno} ${registro.idPersona.materno}`.trim()} ${registro.idPersona.nombre}`.trim()
@@ -222,7 +222,7 @@ export class TablaAsistenciaComponent implements OnInit {
       })
       personas.sort((a, b) => { return a.nombre.localeCompare(b.nombre) })
       this.dataSource  = personas
-      //console.log("DATASOURCE = ", this.dataSource)
+      //// console.log("DATASOURCE = ", this.dataSource)
       this.loadingMode = 'determinate'
     }, error => {
       this.loadingMode = 'determinate'
@@ -528,7 +528,7 @@ export class TablaAsistenciaComponent implements OnInit {
   }
 
   editarObservacion (dia, persona, asistencia) {
-    // console.log("Asistencia = ", asistencia)
+    // // console.log("Asistencia = ", asistencia)
     const DIA     = dia < 10 ? `0${dia}` : dia
     const FECHA   = moment(`${DIA}/${this.mesAsistencia}/${this.anioAsistencia}`, 'DD/MM/YYYY').format('LL')
     let dialogRef = this.dialog.open(AgregarObservacionDialog, {
@@ -536,7 +536,7 @@ export class TablaAsistenciaComponent implements OnInit {
     })
 
     dialogRef.afterClosed().subscribe((resultadoAsistencia: any) => {
-      // console.log(resultadoAsistencia)
+      // // console.log(resultadoAsistencia)
       if (!resultadoAsistencia) { return }
       if (!asistencia) {
         const data =  {
@@ -546,15 +546,15 @@ export class TablaAsistenciaComponent implements OnInit {
           observacion        : resultadoAsistencia.observacion,
           estado             : resultadoAsistencia.estado
         }
-        // console.log("CREANDO ...\n", data)
+        // // console.log("CREANDO ...\n", data)
         return this.service.create(data).subscribe(result => {
-          // console.log("RESULT = ", result)
+          // // console.log("RESULT = ", result)
           this.actualizar()
         })
       }
-      // console.log("ACTUALIZANDO ...\n", resultadoAsistencia)
+      // // console.log("ACTUALIZANDO ...\n", resultadoAsistencia)
       return this.service.update(resultadoAsistencia, asistencia.id).subscribe(result => {
-        // console.log("RESULTADO = ", result)
+        // // console.log("RESULTADO = ", result)
         this.actualizar()
       })
     })

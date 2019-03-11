@@ -50,7 +50,7 @@ export class DatosAccesoComponent implements OnInit {
     },
     error => {
       this.submitted = false
-      console.log("ERROR = ", error)
+      // console.log("ERROR = ", error)
       this.snackBar.open('Fatal Error', 'Error', { duration: 2000 })
     })
   }

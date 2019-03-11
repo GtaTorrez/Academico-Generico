@@ -26,7 +26,7 @@ export class MateriasComponent implements OnInit {
     private snackBar:MatSnackBar
   ) { 
     
-    console.log(this.dataSource)
+    // console.log(this.dataSource)
   }
   openSnackBar(message: string,action:string) {
     this.snackBar.open(message,action,{
@@ -46,15 +46,15 @@ export class MateriasComponent implements OnInit {
        this.loaderService.cambiarEstado(false);
        this.dataSource=this.asignaturas
      },(err)=>{
-        console.log("**********")
-        console.log(err)
+        // console.log("**********")
+        // console.log(err)
         this.openSnackBar("Error de conexion con el servidor" ,"");
         this.loaderService.cambiarEstado(false); 
      })
   }
 
   editar(materia){
-    console.log(materia)
+    // console.log(materia)
     
       let dialogRef = this.dialog.open(Modal, {
         width: '250px',
@@ -63,12 +63,12 @@ export class MateriasComponent implements OnInit {
   
       dialogRef.afterClosed().subscribe(result => {
         
-        console.log("observable editar")
+        // console.log("observable editar")
         if(result){
           if(result.action!='cancel' && result.action==='editar' ){
             this.consulta=true;
             this.serve.updateMateria(result.materia).subscribe(res=>{
-              console.log(res);
+              // console.log(res);
               this.getMaterias();
               this.consulta=false;
               this.openSnackBar('Realizado Corretamente','Aceptar');
@@ -82,7 +82,7 @@ export class MateriasComponent implements OnInit {
   eliminar(dato){
     this.consulta=true;
     this.serve.deleteMateria(dato.id).subscribe(res=>{
-      console.log(res);
+      // console.log(res);
       this.getMaterias();
       this.openSnackBar('Realizado Corretamente','Aceptar');
     },err=>{
@@ -98,14 +98,14 @@ export class MateriasComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log("observable de adicionar")
+      // console.log("observable de adicionar")
 
       if(result){
         if(result.action!='cancel' && result.action==='nueva' ){
           this.consulta=true;
-          console.log(result.materia);
+          // console.log(result.materia);
           this.serve.postMateria(result.materia).subscribe(res=>{
-            console.log(res);
+            // console.log(res);
             this.getMaterias();
             this.openSnackBar('Realizado Corretamente','Aceptar');
           },err=>{
@@ -134,7 +134,7 @@ export class Modal {
     @Inject(MAT_DIALOG_DATA) public data: any) {
       if(data.action==='editar'){
         this.materia=data.materia
-        console.log(data)
+        // console.log(data)
       }else{
         if(data.action==='nueva'){
           this.materia=new Asignatura();
@@ -147,7 +147,7 @@ export class Modal {
     this.dialogRef.close({action:'cancel'});
   }
   submit():void{
-    console.log("enviar() "+this.materia);
+    // console.log("enviar() "+this.materia);
     this.dialogRef.close({action:this.data.action,materia:this.materia})
   }
 }

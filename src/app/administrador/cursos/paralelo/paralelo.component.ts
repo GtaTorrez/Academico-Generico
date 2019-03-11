@@ -47,8 +47,8 @@ export class ParaleloComponent implements OnInit {
       this.abrirNotificacion("Realizado correctamente","Ok");
       this.closeParalelo();
     },err=>{
-      console.log("ERRROR")
-      console.log(err);
+      // console.log("ERRROR")
+      // console.log(err);
     })
   }
   putParalelo(){
@@ -56,8 +56,8 @@ export class ParaleloComponent implements OnInit {
       this.abrirNotificacion("Realizado correctamente","Ok");
       this.closeParalelo();
     },err=>{
-      console.log("ERRROR")
-      console.log(err);
+      // console.log("ERRROR")
+      // console.log(err);
     })
   }
   getParalelo(){
@@ -65,8 +65,8 @@ export class ParaleloComponent implements OnInit {
       this.paralelos=data;
       this.abrirNotificacion("Realizado correctamente","Ok");
     },err=>{
-      console.log("ERRROR")
-      console.log(err);
+      // console.log("ERRROR")
+      // console.log(err);
     })
   }
   deleteParalelo(id){
@@ -74,8 +74,8 @@ export class ParaleloComponent implements OnInit {
       this.abrirNotificacion("Realizado correctamente","Ok");
       this.getParalelo()
     },err=>{
-      console.log("ERRROR")
-      console.log(err);
+      // console.log("ERRROR")
+      // console.log(err);
     })
   }
   guardar(){

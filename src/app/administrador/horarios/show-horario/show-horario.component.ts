@@ -19,15 +19,15 @@ export class ShowHorarioComponent implements OnInit {
   ngOnInit() {
   }
   droping(){
-  	console.log("dropping")
+  	// console.log("dropping")
   }
   onMateriaDrop(e:any,i:number,clave:string){
-    console.log(i+" **************  "+clave)
-    console.log(e.dragData.nombre);
+    // console.log(i+" **************  "+clave)
+    // console.log(e.dragData.nombre);
 
     switch (clave) {
       case "lunes":
-        console.log(this.horario.periodos[i].lunes);
+        // console.log(this.horario.periodos[i].lunes);
         this.horario.periodos[i].lunes.idMateria=e.dragData.idMateria;
         this.horario.periodos[i].lunes.nombreMateria=e.dragData.nombre;
         this.horario.periodos[i].lunes.docente=e.dragData.profesor;
@@ -67,15 +67,15 @@ export class ShowHorarioComponent implements OnInit {
         // code...
         break;
     }
-    console.log("9999999999s");
-    console.log(e.dragData);
+    // console.log("9999999999s");
+    // console.log(e.dragData);
 
   }
   private onDrop(args) {
     let [e, el] = args;
     // do something 
-    console.log(e);
-    console.log(el);
+    // console.log(e);
+    // console.log(el);
   }
 
 }

@@ -69,7 +69,7 @@ export class PerfilComponent implements OnInit,OnDestroy,DoCheck {
   ngOnInit() {
 
     this.cancel();
-    console.log("inicio")
+    // console.log("inicio")
     if(this.action==='editar' || this.action==='nuevo' ){
       this.edit=true;
     }
@@ -100,16 +100,12 @@ export class PerfilComponent implements OnInit,OnDestroy,DoCheck {
   }
 
   onFileChange(event) {
-    console.log("CAMBIO DE IMAGEN");
+    // console.log("CAMBIO DE IMAGEN");
   }
   private prepareSave(): any {
     let input = new FormData();
-    // This can be done a lot prettier; for example automatically assigning values by looping through `this.form.controls`, but we'll keep it as simple as possible here
-    //input.append('foto', "subiendo");
-
     input.append('avatar', this.fileInput.nativeElement.files.item(0));
 
-    console.log(input.get('avatar'))
     return input;
   }
 
@@ -119,8 +115,8 @@ export class PerfilComponent implements OnInit,OnDestroy,DoCheck {
     // In a real-world app you'd have a http request / service call here like
     // this.http.post('apiUrl', formModel)
     this.http.postPersonaImg(formModel,this.persona.id).subscribe(data=>{
-      console.log("echo")
-      console.log(data)
+      // console.log("echo")
+      // console.log(data)
       this.persona.img= Global.BASE_URL+":"+Global.port +'/'+data.img;
       alert('hecho')
       this.loading=false;

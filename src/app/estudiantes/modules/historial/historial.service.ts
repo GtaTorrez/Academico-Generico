@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs/Observable'
 
 // Servicios
-import { ConfigService as Config } from '../../services/config.service';
+import { ConfigService } from '../../services/config.service';
 
 @Injectable()
 export class HistorialService {
@@ -14,14 +14,14 @@ export class HistorialService {
   ) {}
 
   obtenerhistorialEstudiante () : Observable<Object> {
-    return this.http.get(Config.AUTHORIZATION.obtenerhistorialEstudianteURL, {withCredentials : true})
+    return this.http.get(ConfigService.AUTHORIZATION.obtenerhistorialEstudianteURL, {withCredentials : true})
   }
 
   obtenerhistorialDocente () : Observable<Object> {
-    return this.http.get(Config.AUTHORIZATION.obtenerhistorialDocenteURL, {withCredentials : true})
+    return this.http.get(ConfigService.AUTHORIZATION.obtenerhistorialDocenteURL, {withCredentials : true})
   }
 
   obtenerhistorialAdministrativo () : Observable<Object> {
-    return this.http.get(Config.AUTHORIZATION.obtenerhistorialAdministrativoURL, {withCredentials : true})
+    return this.http.get(ConfigService.AUTHORIZATION.obtenerhistorialAdministrativoURL, {withCredentials : true})
   }
 }

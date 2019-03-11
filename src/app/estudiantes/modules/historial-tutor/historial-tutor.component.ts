@@ -56,7 +56,7 @@ export class HistorialTutorComponent implements OnInit {
       })
     },
     error => {
-      console.log("err =", error)
+      // console.log("err =", error)
     })
   }
 

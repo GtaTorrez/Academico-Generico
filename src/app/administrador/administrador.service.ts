@@ -240,10 +240,10 @@ export class AdministradorService {
 
   logout() {
     this.http.get(`${this.baseUrl}/auth/salir`, {withCredentials: true}).subscribe(result => {
-      console.log('RESULT = ', result)
-      console.log('Sesión finalizada correctamente :)')
+      // console.log('RESULT = ', result)
+      // console.log('Sesión finalizada correctamente :)')
     }, err => {
-      console.log('Hubo un error al finalizar la sesión en el lado del servidor.')
+      // console.log('Hubo un error al finalizar la sesión en el lado del servidor.')
     })
     localStorage.removeItem('app_sid')
     localStorage.removeItem('oneSignal')

@@ -55,13 +55,13 @@ export class DashboardComponent implements OnInit {
     }
 
     const sendDevice = (id) => {
-      // console.log("Registrando dispositovo desde const",id);
+      // // console.log("Registrando dispositovo desde const",id);
       return this.dashboardService.postDispositivo(id).subscribe(data => {
         localStorage.setItem("notify","1");
-        // console.log(data)
+        // // console.log(data)
         this.snack.open("Registro de dispositivo", '', { duration: 4000 });
       }),err=>{
-        // console.log("**************************************Error", err)
+        // // console.log("**************************************Error", err)
       }
     };
 
@@ -70,7 +70,7 @@ export class DashboardComponent implements OnInit {
 
     if (ENABLE_BY_ROL && !ONE_SIGNAL) {
       var oneSignal=window['OneSignal'] || [];
-      console.log('ONE SIGNAL ', oneSignal)
+      // console.log('ONE SIGNAL ', oneSignal)
 
       localStorage.setItem('oneSignal', 'init')
       oneSignal.push(["init", {
@@ -82,54 +82,54 @@ export class DashboardComponent implements OnInit {
         }
       }]);
 
-      console.log('ONE SIGNAL INITIALIZED')
+      // console.log('ONE SIGNAL INITIALIZED')
 
       oneSignal.push(function() {
         // Occurs when the user's subscription changes to a new value.
         oneSignal.on('subscriptionChange', function (isSubscribed) {
-          // console.log("The user's subscription state is now:", isSubscribed);
+          // // console.log("The user's subscription state is now:", isSubscribed);
           oneSignal.getUserId().then(function (userId) {
             if (userId !== undefined || userId !== null) {
-                // console.log("sendDevice(userId)")
+                // // console.log("sendDevice(userId)")
                 sendDevice(userId);
               }
             }).catch(err => {
-              // console.log("ERROR oneSignal getUserId: ", err)
+              // // console.log("ERROR oneSignal getUserId: ", err)
             });
         });
       });
     }
 
     // this.oneSignal.getUserId().then(function (userId) {
-    //   console.log("User ID is ", userId);
+    //   // console.log("User ID is ", userId);
     //   localStorage.setItem('idDevice',userId);
     //   id=userId;
     //   sendDevice(userId);
     // });
 
     // this.oneSignal.isPushNotificationsEnabled().then(data=>{
-    //   console.log(data);
+    //   // console.log(data);
     //   if(localStorage.getItem("notify") !== undefined){
     //     this.oneSignal.getUserId().then(function (userId) {
-    //     console.log("USER ID === ", userId)
+    //     // console.log("USER ID === ", userId)
     //     alert(userId)
     //       if (userId !== undefined || userId !== null) {
-    //         console.log("sendDevice(userId)")
+    //         // console.log("sendDevice(userId)")
     //          sendDevice(userId);
     //       }
     //     }).catch(err => {
-    //       console.log("ERROR oneSignal getUserId: ", err)
+    //       // console.log("ERROR oneSignal getUserId: ", err)
     //     });
     //   }
     // }).catch(err=>{
-    //   console.log(err);
+    //   // console.log(err);
     // })
   }
   uploadDispositivo(val:string){
     const promise =new Promise(( resolve, reject )=>{
       if(val!==null || val!==undefined){
         let dataa=resolve(val);
-        // console.log("daata", dataa)
+        // // console.log("daata", dataa)
       }else{
         reject(new Error("no se pudo guardar"))
       }
@@ -143,11 +143,11 @@ export class DashboardComponent implements OnInit {
   }
 
   registrarDispositivo(id){
-    // console.log("Registrndo dispositivo ",id );
+    // // console.log("Registrndo dispositivo ",id );
     this.dashboardService.postDispositivo(id).subscribe(data=>{
-      // console.log(data)
+      // // console.log(data)
     }),err=>{
-      // console.log("**************************************Error", err)
+      // // console.log("**************************************Error", err)
     }
   }
 

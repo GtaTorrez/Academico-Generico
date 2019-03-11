@@ -7,12 +7,12 @@ import { of }         from 'rxjs/observable/of'
 import 'rxjs/add/observable/throw'
 
 // Servicios
-import { ConfigService as Config } from '../services/config.service';
+import { ConfigService } from '../services/config.service';
 
 import * as moment from 'moment'
 import { Global } from '../../config/global';
 
-const CUENTA_URL = `${Config.AUTHORIZATION.cuentaURL}`
+const CUENTA_URL = `${ConfigService.AUTHORIZATION.cuentaURL}`
 
 @Injectable()
 export class DashboardService {
@@ -22,7 +22,7 @@ export class DashboardService {
   ) {}
 
   obtenerCuenta() : Observable<Object> {
-    return this.http.get(Config.AUTHORIZATION.cuentaURL, { withCredentials: true })
+    return this.http.get(ConfigService.AUTHORIZATION.cuentaURL, { withCredentials: true })
   }
 
   actualizarCuenta(body) : Observable<Object> {
@@ -30,20 +30,20 @@ export class DashboardService {
   }
 
   cambiarPassword (body: any) : Observable<Object> {
-    return this.http.post(Config.AUTHORIZATION.cambiarPasswordURL, body, { withCredentials: true })
+    return this.http.post(ConfigService.AUTHORIZATION.cambiarPasswordURL, body, { withCredentials: true })
   }
 
   postDispositivo(dispositivo){
-    console.log("upload ",dispositivo);
+    // console.log("upload ",dispositivo);
     let body={"idDispositivo":dispositivo}
     return this.http.post(Global.BASE_URL+":"+Global.port+"/dispositivo/adicionar",body,{withCredentials:true})
   }
 
   logout() {
-    this.http.get(Config.AUTHORIZATION.logOutURL, {withCredentials: true}).subscribe(result => {
-      console.log('Sesión finalizada correctamente :)')
+    this.http.get(ConfigService.AUTHORIZATION.logOutURL, {withCredentials: true}).subscribe(result => {
+      // console.log('Sesión finalizada correctamente :)')
     }, err => {
-      console.log('Hubo un error al finalizar la sesión en el lado del servidor.')
+      // console.log('Hubo un error al finalizar la sesión en el lado del servidor.')
     })
     localStorage.removeItem('app_sid')
     localStorage.removeItem('oneSignal')
