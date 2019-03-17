@@ -22,7 +22,7 @@ export class UsuariosComponent implements OnInit {
   qr:string;
 
   resultadoBusqueda : MatTableDataSource<any> = new MatTableDataSource();
-  displayedColumns : string[] = ['nro', 'paterno', 'materno', 'nombre', 'identificacion', 'username', 'rol', 'ver', 'reset-pass'];
+  displayedColumns : string[] = ['nro', 'paterno', 'materno', 'nombre', 'identificacion', 'username', 'rol', 'ver', 'reset-pass', 'marcar-asistencia'];
 
   constructor(
     private serve:AdministradorService,
@@ -140,5 +140,19 @@ export class UsuariosComponent implements OnInit {
         this.AbrirNotificacion("Hubo un error","")
       })
     }
+  }
+
+  marcarAsistencia (usuario) {
+    console.log('usuario = ', usuario);
+    const data = {
+      baseidentificacion: usuario.identificacion
+    };
+    this.serve.postAsistencia(data).subscribe(data=>{
+      if(data){
+        this.AbrirNotificacion("Asistencia marcada exitosamente","Aceptar")
+      }
+    },err=>{
+      this.AbrirNotificacion("Hubo un error","")
+    })
   }
 }

@@ -74,6 +74,15 @@
       </td>
     </ng-container>
 
+    <ng-container matColumnDef="marcar-asistencia">
+      <th mat-header-cell *matHeaderCellDef> Marcar asistencia </th>
+      <td mat-cell *matCellDef="let element">
+        <button ng-if="element.rol === 'alumno'" mat-icon-button  (click)="marcarAsistencia(element)">
+          <mat-icon> check </mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
