@@ -61,7 +61,13 @@ export class LoginComponent implements OnInit {
   }
 
   redirectToHome (rol) {
-    this.router.navigate(['/user/dashboard/account']);
+    if (rol === 'admin') {
+      return this.router.navigate(['/administrador/menu/usuarios']);
+    }
+    if (rol === 'alumno') {
+      return this.router.navigate(['/user/dashboard/historial']);
+    }
+    return this.router.navigate(['/user/dashboard/account']);
   }
 
 }
