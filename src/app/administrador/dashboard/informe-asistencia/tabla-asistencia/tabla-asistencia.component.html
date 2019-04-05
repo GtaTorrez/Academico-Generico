@@ -129,7 +129,7 @@
         <th class="static-title2" rowspan="2" style="min-width:200px">Nombre</th>
         <th class="static-space" rowspan="2"></th>
         <!-- <th [attr.colspan]="days.length">{{mesNombre}} {{anioNombre}}</th> -->
-        <th *ngFor="let mes of meses" [attr.colspan]="days.length">{{mes.nombreMes}} {{mes.nombreAnio}}</th>
+        <th *ngFor="let mes of meses" [attr.colspan]="mes.nroDias">{{mes.nombreMes}} {{mes.nombreAnio}}</th>
         <th colspan="3">Total</th>
         <th rowspan="2">Reporte</th>
       </tr>

@@ -26,7 +26,9 @@ export class TablaAsistenciaComponent implements OnInit {
   mesAsistenciaFinal  = moment().format('MM')
   anioAsistenciaFinal = moment().format('YYYY')
   mesNombre      = ''
-  anioNombre     = ''
+  anioNombre     = '' 
+  mesNombreFinal  = ''
+  anioNombreFinal = ''
   loadingMode    = 'determinate'
 
   idGrupo    = -1
@@ -148,10 +150,28 @@ export class TablaAsistenciaComponent implements OnInit {
     const mes        = `${this.anioAsistencia}-${this.mesAsistencia}-01`
     this.mesNombre   = moment(mes).format('MMMM').toUpperCase()
     this.anioNombre  = moment(mes).format('YYYY').toUpperCase()
-    const nroDias    = moment(mes).daysInMonth()
-    this.generarMeses()
+    const mesFinal   = `${this.anioAsistenciaFinal}-${this.mesAsistenciaFinal}-${moment(`${this.anioAsistencia}-${this.mesAsistenciaFinal}-01`).daysInMonth()}`
+    this.mesNombre   = moment(mesFinal).format('MMMM').toUpperCase()
+    this.anioNombre  = moment(mesFinal).format('YYYY').toUpperCase()
+    
+    
+    var nroDias    = 0
+
+    this.meses = [];
+    for (let i = parseInt(this.mesAsistencia); i <= parseInt(this.mesAsistenciaFinal) ; i++ ) {
+      let mesFor = `${this.anioAsistencia}-${i}-01`;
+      let nroDiasMes = moment(mesFor).daysInMonth();
+      nroDias += nroDiasMes 
+      this.meses.push({
+        nombreMes:moment(mesFor).format('MMMM').toUpperCase(),
+        nombreAnio:moment(mesFor).format('YYYY').toUpperCase(),
+        nroDias:nroDiasMes
+      });
+    }
+    // this.generarMes  es()
+    
     this.ini = mes
-    this.fin = `${this.anioAsistenciaFinal}-${this.mesAsistenciaFinal}-${nroDias}`
+    this.fin = mesFinal
 
     this.desfaceDias = moment(mes).day()
     let cnt          = this.desfaceDias
