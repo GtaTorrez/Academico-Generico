@@ -2,26 +2,60 @@
   <div fxLayout="column" fxFlex="50%" fxLayoutAlign="start start">
     <form>
       <div fxLayout="row" fxLayoutAlign="end end">
-        <mat-form-field>
-          <input type="number" matInput placeholder="Año" required [(ngModel)]="anioAsistencia" name="anioAsistencia" (selectionChange)="actualizar()">
-        </mat-form-field>
-        <div style="width:10px"></div>
-        <mat-form-field>
-          <mat-select placeholder="Mes" [(value)]="mesAsistencia" (selectionChange)="actualizar()">
-            <mat-option value="01">Enero</mat-option>
-            <mat-option value="02">Febrero</mat-option>
-            <mat-option value="03">Marzo</mat-option>
-            <mat-option value="04">Abril</mat-option>
-            <mat-option value="05">Mayo</mat-option>
-            <mat-option value="06">Junio</mat-option>
-            <mat-option value="07">Julio</mat-option>
-            <mat-option value="08">Agosto</mat-option>
-            <mat-option value="09">Septiembre</mat-option>
-            <mat-option value="10">Octubre</mat-option>
-            <mat-option value="11">Noviembre</mat-option>
-            <mat-option value="12">Diciembre</mat-option>
-          </mat-select>
-        </mat-form-field>
+        <div fxLayout="column">
+          <h4>Fecha  Inicial</h4>
+          <div fxLayout="row">
+
+            <mat-form-field>
+              <input type="number" matInput placeholder="Año" required [(ngModel)]="anioAsistencia" name="anioAsistencia" (selectionChange)="actualizar()">
+            </mat-form-field>
+            <div style="width:10px"></div>
+            <mat-form-field>
+              <mat-select placeholder="Mes" [(value)]="mesAsistencia" (selectionChange)="actualizar()">
+                <mat-option value="01">Enero</mat-option>
+                <mat-option value="02">Febrero</mat-option>
+                <mat-option value="03">Marzo</mat-option>
+                <mat-option value="04">Abril</mat-option>
+                <mat-option value="05">Mayo</mat-option>
+                <mat-option value="06">Junio</mat-option>
+                <mat-option value="07">Julio</mat-option>
+                <mat-option value="08">Agosto</mat-option>
+                <mat-option value="09">Septiembre</mat-option>
+                <mat-option value="10">Octubre</mat-option>
+                <mat-option value="11">Noviembre</mat-option>
+                <mat-option value="12">Diciembre</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div fxLayout="column">
+
+            <h4>Fecha Final</h4>
+
+            <div fxLayout="row">
+              <mat-form-field>
+                <input type="number" matInput placeholder="Año" required [(ngModel)]="anioAsistenciaFinal" name="anioAsistencia" (selectionChange)="actualizar()">
+              </mat-form-field>
+              <div style="width:10px"></div>
+              <mat-form-field>
+                <mat-select placeholder="Mes" [(value)]="mesAsistenciaFinal" (selectionChange)="actualizar()">
+                  <mat-option value="01">Enero</mat-option>
+                  <mat-option value="02">Febrero</mat-option>
+                  <mat-option value="03">Marzo</mat-option>
+                  <mat-option value="04">Abril</mat-option>
+                  <mat-option value="05">Mayo</mat-option>
+                  <mat-option value="06">Junio</mat-option>
+                  <mat-option value="07">Julio</mat-option>
+                  <mat-option value="08">Agosto</mat-option>
+                  <mat-option value="09">Septiembre</mat-option>
+                  <mat-option value="10">Octubre</mat-option>
+                  <mat-option value="11">Noviembre</mat-option>
+                  <mat-option value="12">Diciembre</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+        </div>
         <div style="width:10px"></div>
         <button type="button" mat-raised-button color="primary" (click)="actualizar()">Actualizar</button>
       </div>
@@ -94,7 +128,8 @@
         <th class="static-title1" rowspan="2">N°</th>
         <th class="static-title2" rowspan="2" style="min-width:200px">Nombre</th>
         <th class="static-space" rowspan="2"></th>
-        <th [attr.colspan]="days.length">{{mesNombre}} {{anioNombre}}</th>
+        <!-- <th [attr.colspan]="days.length">{{mesNombre}} {{anioNombre}}</th> -->
+        <th *ngFor="let mes of meses" [attr.colspan]="days.length">{{mes.nombreMes}} {{mes.nombreAnio}}</th>
         <th colspan="3">Total</th>
         <th rowspan="2">Reporte</th>
       </tr>

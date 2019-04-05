@@ -23,6 +23,8 @@ export class TablaAsistenciaComponent implements OnInit {
   desfaceDias    = 0
   mesAsistencia  = moment().format('MM')
   anioAsistencia = moment().format('YYYY')
+  mesAsistenciaFinal  = moment().format('MM')
+  anioAsistenciaFinal = moment().format('YYYY')
   mesNombre      = ''
   anioNombre     = ''
   loadingMode    = 'determinate'
@@ -41,6 +43,7 @@ export class TablaAsistenciaComponent implements OnInit {
   grupos    = []
   paralelos = []
 
+  meses=[]
   constructor(
     private service : AsistenciaService,
     public  dialog  : MatDialog,
@@ -128,14 +131,27 @@ export class TablaAsistenciaComponent implements OnInit {
     })
   }
 
+  generarMeses (){
+    this.meses = []
+    for (let i = parseInt(this.mesAsistencia); i <= parseInt(this.mesAsistenciaFinal) ; i++ ) {
+      const mes = `${this.anioAsistencia}-${i}-01`;
+      this.meses.push({
+        nombreMes:moment(mes).format('MMMM').toUpperCase(),
+        nombreAnio:moment(mes).format('YYYY').toUpperCase()
+      });
+    }
+  }
+
+
   actualizar () {
     this.loadingMode = 'indeterminate'
     const mes        = `${this.anioAsistencia}-${this.mesAsistencia}-01`
     this.mesNombre   = moment(mes).format('MMMM').toUpperCase()
     this.anioNombre  = moment(mes).format('YYYY').toUpperCase()
     const nroDias    = moment(mes).daysInMonth()
+    this.generarMeses()
     this.ini = mes
-    this.fin = `${this.anioAsistencia}-${this.mesAsistencia}-${nroDias}`
+    this.fin = `${this.anioAsistenciaFinal}-${this.mesAsistenciaFinal}-${nroDias}`
 
     this.desfaceDias = moment(mes).day()
     let cnt          = this.desfaceDias
@@ -151,75 +167,72 @@ export class TablaAsistenciaComponent implements OnInit {
       }
     }
     this.service.getAsistencias(this.idTurno, this.idGrado, this.idGrupo, this.idParalelo, this.ini, this.fin).subscribe((result:any) => {
-      // // console.log(result)
+      console.log(result)
       const personas = []
-      result.forEach(registro => {
-        const NOMBRE = `${`${registro.idPersona.paterno} ${registro.idPersona.materno}`.trim()} ${registro.idPersona.nombre}`.trim()
-        const persona = {
-          id               : registro.idPersona.id,
-          nombre           : NOMBRE,
-          totalAsistencias : 0,
-          totalFaltas      : diasHabiles,
-          totalLicencias   : 0,
-          totalAtrasos     : 0,
-          asistencias      : [],
-          marcas           : [],
-          idGestionAcademica: registro.idGestionAcademica.id
-        }
-        if (registro.idGestionAcademica.horaEntrada) {
-          this.horaEntrada = registro.idGestionAcademica.horaEntrada
-        }
-        let adicionado = false
-        for (let i in personas) {
-          if (personas[i].id === persona.id) {
-            adicionado = true
-            break;
+        
+        result.forEach(registro => {
+          const NOMBRE = `${`${registro.idPersona.paterno} ${registro.idPersona.materno}`.trim()} ${registro.idPersona.nombre}`.trim()
+          const persona = {
+            id               : registro.idPersona.id,
+            nombre           : NOMBRE,
+            totalAsistencias : 0,
+            totalFaltas      : diasHabiles,
+            totalLicencias   : 0,
+            totalAtrasos     : 0,
+            asistencias      : [],
+            marcas           : [],
+            idGestionAcademica: registro.idGestionAcademica.id
           }
-        }
-        if (!adicionado) { personas.push(persona) }
-      })
-      result.forEach(registro => {
-        const ID_PERSONA = registro.idPersona.id
-        const DIA        = parseInt(moment.utc(registro.fecha).format('DD'))
-        const MES        = parseInt(moment.utc(registro.fecha).format('MM'))
-        const ANIO       = parseInt(moment.utc(registro.fecha).format('YYYY'))
-        if (ANIO !== parseInt(this.anioAsistencia) || MES !== parseInt(this.mesAsistencia)) { return }
-        let diaSemana = 1
-        let ACTIVO = false
-        this.days.forEach(day => {
-          if (day.id === DIA) {
-            diaSemana = day.nro
-            ACTIVO = day.active
+          if (registro.idGestionAcademica.horaEntrada) {
+            this.horaEntrada = registro.idGestionAcademica.horaEntrada
+          }
+          if(!personas.find(personaVector => personaVector.id === persona.id)){personas.push(persona)}
+
+        })
+        result.forEach(registro => {
+          const ID_PERSONA = registro.idPersona.id
+          const DIA        = parseInt(moment.utc(registro.fecha).format('DD'))
+          const MES        = parseInt(moment.utc(registro.fecha).format('MM'))
+          const ANIO       = parseInt(moment.utc(registro.fecha).format('YYYY'))
+          if (ANIO !== parseInt(this.anioAsistencia) || MES < parseInt(this.mesAsistencia) || MES > parseInt(this.mesAsistenciaFinal) ) { return }
+          let diaSemana = 1
+          let ACTIVO = false
+          this.days.forEach(day => {
+            if (day.id === DIA) {
+              diaSemana = day.nro
+              ACTIVO = day.active
+            }
+          })
+          const asistencia = {
+            id          : registro.id,
+            activo      : ACTIVO,
+            fecha       : registro.fecha,
+            atrasado    : false,
+            dia         : DIA,
+            diaSemana   : diaSemana,
+            estado      : registro.estado,
+            hora_llegada: registro.hora_llegada,
+            hora_salida : registro.hora_salida,
+            observacion : registro.observacion
+          }
+          for (let i in personas) {
+            if (personas[i].id === ID_PERSONA && asistencia.activo) {
+              personas[i].asistencias.push(asistencia)
+              if (asistencia.estado === 'asistió') {
+                personas[i].totalAsistencias += 1
+                personas[i].totalFaltas      -= 1
+              }
+              if (asistencia.estado === 'con licencia') {
+                personas[i].totalLicencias += 1
+                personas[i].totalFaltas    -= 1
+              }
+              personas[i].marcas.push(DIA)
+              break;
+            }
           }
         })
-        const asistencia = {
-          id          : registro.id,
-          activo      : ACTIVO,
-          fecha       : registro.fecha,
-          atrasado    : false,
-          dia         : DIA,
-          diaSemana   : diaSemana,
-          estado      : registro.estado,
-          hora_llegada: registro.hora_llegada,
-          hora_salida : registro.hora_salida,
-          observacion : registro.observacion
-        }
-        for (let i in personas) {
-          if (personas[i].id === ID_PERSONA && asistencia.activo) {
-            personas[i].asistencias.push(asistencia)
-            if (asistencia.estado === 'asistió') {
-              personas[i].totalAsistencias += 1
-              personas[i].totalFaltas      -= 1
-            }
-            if (asistencia.estado === 'con licencia') {
-              personas[i].totalLicencias += 1
-              personas[i].totalFaltas    -= 1
-            }
-            personas[i].marcas.push(DIA)
-            break;
-          }
-        }
-      })
+      
+      
       personas.sort((a, b) => { return a.nombre.localeCompare(b.nombre) })
       this.dataSource  = personas
       //// console.log("DATASOURCE = ", this.dataSource)
