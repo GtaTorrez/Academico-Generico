@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { catchError, map, tap }                       from 'rxjs/operators'
 import { Injectable } from '@angular/core'
 import { Observable ,  of } from 'rxjs'
-
+import { MatSnackBar } from '@angular/material';
 
 // Servicios
 import { Global} from './../../../config/global';
@@ -22,23 +22,41 @@ const REPORT_URL     = `http://moswara.com:49000/reporte`
 export class AsistenciaService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private snackBar: MatSnackBar
   ) {}
 
   getCursosPorTurno (idTurno) {
-    return this.http.get(`${CURSOS_URL}/mostrar_turno/${idTurno}`, {withCredentials: true})
+    return this.http.get(`${CURSOS_URL}/mostrar_turno/${idTurno}`, {withCredentials: true}).catch(e => this.createRequestError(e))
   }
 
   getCursos () {
-    return this.http.get(`${CURSOS_URL}`, {withCredentials: true})
+    return this.http.get(`${CURSOS_URL}`, {withCredentials: true}).catch(e => this.createRequestError(e))
+  }
+
+  createRequestError (e) {
+    let errMsg = 'Ocurrió un error inesperado, inténtelo nuevamente.'
+    if (e.message) {
+      errMsg = e.message
+    }
+    if (e.status === 0) {
+      errMsg = 'El servicio no se encuentra disponible, inténtelo mas tarde'
+    }
+
+    this.snackBar.open(errMsg, 'CERRAR', {
+      duration: 4000,
+      panelClass: ['snackbar-red']
+    })
+
+    return Observable.throw(e);
   }
 
   getTurnos () {
-    return this.http.get(`${TURNOS_URL}`, {withCredentials: true})
+    return this.http.get(`${TURNOS_URL}`, {withCredentials: true}).catch(e => this.createRequestError(e))
   }
 
   getAsistencias(idTurno, idGrado, idGrupo, idParalelo, ini, fin) : Observable<Object> {
-    return this.http.get(`${ASISTENCIA_URL}?idTurno=${idTurno}&idGrado=${idGrado}&idGrupo=${idGrupo}&idParalelo=${idParalelo}&ini=${ini}&fin=${fin}`, { withCredentials: true })
+    return this.http.get(`${ASISTENCIA_URL}?idTurno=${idTurno}&idGrado=${idGrado}&idGrupo=${idGrupo}&idParalelo=${idParalelo}&ini=${ini}&fin=${fin}`, { withCredentials: true }).catch(e => this.createRequestError(e))
     // return this.http.get(`${ASISTENCIA_URL}`)
   }
 
